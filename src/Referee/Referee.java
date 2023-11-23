@@ -49,12 +49,5 @@ public class Referee {
         System.out.println(noYellowCards);
         System.out.println("the number of red cards in this match:  ");
         System.out.println(noRedCards);
-
-
-
-
-
-
-
     }
 }

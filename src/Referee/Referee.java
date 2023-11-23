@@ -14,11 +14,11 @@ public class Referee {
 //        this.match = match;
     }
 
-    public void makeYellowCards(){
+    public static void makeYellowCards(){
 
         noYellowCards++;
     }
-    public void makeRedCards(){
+    public static void makeRedCards(){
 
         noRedCards++;
     }

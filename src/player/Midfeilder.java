@@ -1,6 +1,9 @@
-package playertype;
+package player;
 
-public class Midfeilder {
+public class Midfeilder extends Player {
+    public Midfeilder(){
+        super();
+    }
     protected int keyPasses;
 public int GetKeyPasses(){
     return keyPasses;

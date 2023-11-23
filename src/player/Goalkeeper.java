@@ -1,6 +1,9 @@
-package playertype;
+package player;
 
-public class Goalkeeper {
+public class Goalkeeper extends Player {
+    public Goalkeeper(){
+        super();
+    }
    protected  int saves;
     protected int cleanSheets;
     public int GetSaves() {

@@ -1,29 +1,27 @@
 package Person;
 
 public abstract class Person {
-    public String personName;
-    public int personAge;
-    public int personSalary;
-    /*public Person() {
+    public String Name;
+    public int Age;
+    public int Salary;
+public Person() {
 
-       this.personName = "Default Name";
-       this.personAge = 0;
-       this.personSalary = 0;
+
     }
- public Person(String personName,int personAge,int personSalary){
-    this.personName=personName;
-    this.personAge=personAge;
-    this.personSalary=personSalary;
- }*/
+ public Person(String Name,int Age,int Salary){
+    this.Name=Name;
+    this.Age=Age;
+    this.Salary=Salary;
+ }
     public String getPersonName() {
-        return personName;
+        return Name;
     }
 
     public int getPersonAge() {
-        return personAge;
+        return Age;
     }
 
     public int getPersonSalary() {
-        return personSalary;
+        return Salary;
     }
 }

@@ -3,4 +3,6 @@
 
 Football League System using Java
 
-<img width=200px   src="https://brandslogos.com/wp-content/uploads/images/large/java-logo-1.png">&nbsp;
+<div align=center> 
+  <img width=300px   src="https://brandslogos.com/wp-content/uploads/images/large/java-logo-1.png"> &nbsp;
+</div>

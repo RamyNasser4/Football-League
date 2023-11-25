@@ -9,9 +9,10 @@ public class Player extends Person {
     protected double playerScore;
     protected int playerRank;
     protected int goalsScored;
-    protected int assits;
+    protected int assists;
     protected int noOfYellowCards;
     protected int NoOfRedCards;
+
     public Player() {
 
     }
@@ -28,7 +29,7 @@ public class Player extends Person {
         this.goalsScored = 0;
         this.noOfYellowCards = 0;
         this.NoOfRedCards = 0;
-        this.assits = 0;
+        this.assists = 0;
     }
 
     public Player(Player player) {
@@ -43,7 +44,7 @@ public class Player extends Person {
         this.goalsScored = player.goalsScored;
         this.noOfYellowCards = player.noOfYellowCards;
         this.NoOfRedCards = player.NoOfRedCards;
-        this.assits = player.assits;
+        this.assists = player.assists;
     }
 
     // Get
@@ -98,7 +99,7 @@ public class Player extends Person {
     }
 
     public void MakeAssist() {
-        assits++;
+        assists++;
     }
 
     public void ScoreGoal() {

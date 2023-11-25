@@ -92,6 +92,9 @@ public class Match {
         Match_ID++;
         this.Date=Date;
     }
+    public Match(){
+        this("");
+    }
     //Function of adding new teams
     public void addTeams(Team team1, Team team2){
         this.Teams.add(team1);

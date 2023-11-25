@@ -3,20 +3,20 @@ package player;
 import Person.Person;
 
 public class Player extends Person {
-public Player(){
-
-}
     protected int playerId;
     protected String playerTeam;
     protected int playerNumber;
-
     protected double playerScore;
     protected int playerRank;
     protected int goalsScored;
     protected int assits;
     protected int noOfYellowCards;
     protected int NoOfRedCards;
-    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,double playerScore,int playerRank){
+    public Player() {
+
+    }
+
+    public Player(String playerName, int playerId, String playerTeam, int playerNum, int playerAge, double playerScore, int playerRank) {
         super();
         this.Name = playerName;
         this.playerId = playerId;
@@ -25,12 +25,13 @@ public Player(){
         this.Age = playerAge;
         this.playerScore = playerScore;
         this.playerRank = playerRank;
-        this.goalsScored=0;
-        this.noOfYellowCards=0;
-        this.NoOfRedCards=0;
-        this.assits=0;
+        this.goalsScored = 0;
+        this.noOfYellowCards = 0;
+        this.NoOfRedCards = 0;
+        this.assits = 0;
     }
-    public Player(Player player){
+
+    public Player(Player player) {
         super();
         this.Name = player.Name;
         this.playerId = player.playerId;
@@ -39,11 +40,12 @@ public Player(){
         this.Age = player.Age;
         this.playerScore = player.playerScore;
         this.playerRank = player.playerRank;
-        this.goalsScored= player.goalsScored;
-        this.noOfYellowCards= player.noOfYellowCards;
-        this.NoOfRedCards= player.NoOfRedCards;
-        this.assits= player.assits;
+        this.goalsScored = player.goalsScored;
+        this.noOfYellowCards = player.noOfYellowCards;
+        this.NoOfRedCards = player.NoOfRedCards;
+        this.assits = player.assits;
     }
+
     // Get
     public String GetPlayerName() {
         return Name;
@@ -87,22 +89,24 @@ public Player(){
     }
 
 
-    public void   SetPlayerScore(double playerScore) {
+    public void SetPlayerScore(double playerScore) {
         this.playerScore = playerScore;
     }
 
     public void SetPlayerRank(int playerRank) {
         this.playerRank = playerRank;
     }
-public void MakeAssist(){
-        assits++;
-}
 
-    public void ScoreGoal(){
+    public void MakeAssist() {
+        assits++;
+    }
+
+    public void ScoreGoal() {
         goalsScored++;
     }
-    public void DisplayPlayer(String Name,int playerId){
-        if(this.Name.equals(Name)){
+
+    public void DisplayPlayer(String Name, int playerId) {
+        if (this.Name.equals(Name)) {
             System.out.println("Player Name: " + Name);
             System.out.println("Player Id: " + playerId);
             System.out.println("Player Team: " + playerTeam);
@@ -112,7 +116,7 @@ public void MakeAssist(){
             System.out.println("Player Score: " + playerScore);
             System.out.println("Player Rank: " + playerRank);
         }
-        if(this.playerId==playerId){
+        if (this.playerId == playerId) {
             System.out.println("Player Name: " + Name);
             System.out.println("Player Id: " + playerId);
             System.out.println("Player Team: " + playerTeam);
@@ -121,12 +125,11 @@ public void MakeAssist(){
             System.out.println("Player number of goals: " + goalsScored);
             System.out.println("Player Score: " + playerScore);
             System.out.println("Player Rank: " + playerRank);
-        }
-        else{
+        } else {
             System.out.println("Not found");
         }
 
     }
- 
+
 
 }

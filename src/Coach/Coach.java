@@ -3,12 +3,12 @@ package Coach;
 import Person.Person;
 
 public class Coach extends Person {
-    public String Nationality ;
+    public String Nationality;
     // public Team Current_team;//
 
-    public Coach(String name,int age ,int salary,String nationality ){
-        super(name,age,salary);
-        this.Nationality=nationality;
+    public Coach(String name, int age, int salary, String nationality) {
+        super(name, age, salary);
+        this.Nationality = nationality;
     }
 
     public String getNationality() {

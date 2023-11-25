@@ -31,63 +31,63 @@ public Player(){
         this.assits=0;
     }
     // Get
-    public String getPlayerName() {
+    public String GetPlayerName() {
         return Name;
     }
 
-    public int getPlayerId() {
+    public int GetPlayerId() {
         return playerId;
     }
 
-    public String getPlayerTeam() {
+    public String GetPlayerTeam() {
         return playerTeam;
     }
 
-    public int getPlayerNumber() {
+    public int GetPlayerNumber() {
         return playerNumber;
     }
 
-    public int getPlayerAge() {
+    public int GetPlayerAge() {
         return Age;
     }
 
-    public double getPlayerScore() {
+    public double GetPlayerScore() {
         return playerScore;
     }
 
-    public int getPlayerRank() {
+    public int GetPlayerRank() {
         return playerRank;
     }
     // Set
 
-    public void setPlayerId(int playerId) {
+    public void SetPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
-    public void setPlayerTeam(String playerTeam) {
+    public void SetPlayerTeam(String playerTeam) {
         this.playerTeam = playerTeam;
     }
 
-    public void setPlayerNumber(int playerNumber) {
+    public void SetPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
     }
 
 
-    public void setPlayerScore(double playerScore) {
+    public void   SetPlayerScore(double playerScore) {
         this.playerScore = playerScore;
     }
 
-    public void setPlayerRank(int playerRank) {
+    public void SetPlayerRank(int playerRank) {
         this.playerRank = playerRank;
     }
 public void MakeAssist(){
         assits++;
 }
 
-    public void makeGoal(){
+    public void ScoreGoal(){
         goalsScored++;
     }
-    public void displayPlayer(String Name,int playerId){
+    public void DisplayPlayer(String Name,int playerId){
         if(this.Name.equals(Name)){
             System.out.println("Player Name: " + Name);
             System.out.println("Player Id: " + playerId);
@@ -113,4 +113,6 @@ public void MakeAssist(){
         }
 
     }
+ 
+
 }

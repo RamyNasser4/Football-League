@@ -30,6 +30,20 @@ public Player(){
         this.NoOfRedCards=0;
         this.assits=0;
     }
+    public Player(Player player){
+        super();
+        this.Name = player.Name;
+        this.playerId = player.playerId;
+        this.playerTeam = player.playerTeam;
+        this.playerNumber = player.playerNumber;
+        this.Age = player.Age;
+        this.playerScore = player.playerScore;
+        this.playerRank = player.playerRank;
+        this.goalsScored= player.goalsScored;
+        this.noOfYellowCards= player.noOfYellowCards;
+        this.NoOfRedCards= player.NoOfRedCards;
+        this.assits= player.assits;
+    }
     // Get
     public String GetPlayerName() {
         return Name;

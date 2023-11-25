@@ -3,15 +3,34 @@ package Referee;
 public class Referee {
     private String RefereeName;
     private int RefereeAge;
-//   public Match match =new Match();
-    //
+  public Match match =new Match();
+
     public  int  noYellowCards=0;
     public  int noRedCards=0;
 
-    public Referee(String refereeName, int refereeAge/*, Match match*/) {
+    public Referee() {
+        RefereeName = null;
+        RefereeAge=0;
+        noYellowCards=0;
+        noRedCards=0;
+    }
+
+    public Referee(String refereeName) {
         RefereeName = refereeName;
+        RefereeAge=0;
+        noYellowCards=0;
+        noRedCards=0;
+    }
+
+    public Referee(String refereeName,int refereeAge)
+    {
+        this(refereeName);
         RefereeAge = refereeAge;
-//        this.match = match;
+    }
+
+    public Referee(String refereeName, int refereeAge, Match match) {
+        this(refereeName,refereeAge);
+      this.match = match;
         noYellowCards=0;
         noRedCards=0;
     }

@@ -6,6 +6,7 @@ import Team.Team;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.SocketHandler;
 
 public class Match {
     //Fields
@@ -56,13 +57,22 @@ public class Match {
         this("");
     }
     public Match(Match Match){
-        Match_ID++;
-        this.Teams = new Team[2];
-        this.Teams= Arrays.copyOf(Teams,Teams.length);
-        this.Referee = Match.Referee;
-        this.Date = Match.Date;
-        this.Score = Match.Score;
-        this.Stadium = Match.Stadium;
+        try {
+            Match_ID++;
+            this.Teams = new Team[2];
+            try {
+                this.Teams = Arrays.copyOf(Match.Teams, Teams.length);
+            } catch (NullPointerException exp) {
+                System.out.println("Null");
+            }
+            this.Referee = Match.Referee;
+            this.Date = Match.Date;
+            this.Score = Match.Score;
+            this.Stadium = Match.Stadium;
+        }
+        catch (RuntimeException exp){
+            System.out.println("Null");
+        }
     }
     //Getters and Setters
     public static int getMatch_ID() {

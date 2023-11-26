@@ -1,18 +1,34 @@
 package Stadium;
+import Match.Match;
+
 
 
 public class Stadium {
     private String name;
     private String location;
     public int capacity;
-    public String Date;
 
-    public Stadium(String name, String location, int capacity, String date) {
+
+    public Match match ;
+
+
+    public Stadium(String name, String location, int capacity,Match match) {
         this.name = name;
         this.location = location;
         this.capacity = capacity;
-        this.Date = date;
+        this.match=match;
+   }
+    public Stadium(String name, String location, int capacity) {this(name,location,capacity,null);}
+    public Stadium(String name, String location) {this(name,location,0);}
+    public Stadium(String name) {this(name,"");}
+    public Stadium(){this("");}
 
+
+
+    public Stadium(Stadium Stadium) {
+        this.name = Stadium.name;
+        this.capacity = Stadium.capacity;
+        this.location = Stadium.location;
     }
 
     public String getStadiumName() {
@@ -31,13 +47,6 @@ public class Stadium {
         this.location = StadiumLocation;
     }
 
-    public String getDate() {
-        return Date;
-    }
-
-    public void setDate(String Date) {
-        this.Date = Date;
-    }
 
     public int getStadiumCapacity() {
         return capacity;

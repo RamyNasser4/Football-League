@@ -5,19 +5,19 @@ public abstract class Person {
     public int Age;
     public int Salary;
 
-    public Person() {
 
-
-    }
-
-    public Person(String Name, int Age, int Salary) {
+   public Person(String Name, int Age, int Salary){
         this.Name = Name;
         this.Age = Age;
-        this.Salary = Salary;
-    }
+        this.Salary= Salary;
+   }
+    public Person(String Name,int Age){this(Name,Age,0);}
+    public Person(String Name){this(Name,0);}
+    public Person() {this("");}
 
     public String getPersonName() {
         return Name;
+
     }
 
     public int getPersonAge() {

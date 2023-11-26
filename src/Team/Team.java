@@ -1,5 +1,7 @@
 package Team;
 
+import Coach.Coach;
+import Match.Match;
 import player.Player;
 
 public class Team {
@@ -7,13 +9,14 @@ public class Team {
     protected int Team_ID;
     protected Player[] Players;
     protected Player Captain;
-    //protected Match[] Matches;
+    protected Coach Coach;
+    protected Match[] Matches;
     protected int Total_score;
     protected int noOfPlayers;
 
     public static int noOfTeams = 0;
 
-    public Team(String Name, Player[] Players, Player Captain, int Total_score, int noOfPlayers) {
+    public Team(String Name, Player[] Players, Player Captain,Coach Coach,Match[] Matches, int Total_score, int noOfPlayers) {
         ++noOfTeams;
         this.Name = Name;
         this.Team_ID = noOfTeams;
@@ -36,18 +39,42 @@ public class Team {
         } catch (NullPointerException exp) {
             System.out.println("Null");
         }
+        /*try {
+            this.Coach = new Coach(Coach);
+        }catch (NullPointerException exp){
+            System.out.println("Null coach");
+        }*/
+        this.Matches = new Match[38];
+        int j =0;
+        try {
+            for (Match match : Matches){
+                try {
+                    this.Matches[j] = new Match(match);
+                }catch (NullPointerException exp){
+                    System.out.println("Null match in array");
+                }
+                ++j;
+            }
+        }catch (NullPointerException exp){
+            System.out.println("Null match array");
+        }
         this.Total_score = Total_score;
         this.noOfPlayers = noOfPlayers;
     }
 
-    public Team(String Name, Player[] Players, Player Captain, int Total_score) {
-        this(Name, Players, Captain, Total_score, 0);
+    public Team(String Name, Player[] Players, Player Captain,Coach Coach,Match[] Matches, int Total_score) {
+        this(Name, Players, Captain,Coach,Matches, Total_score, 0);
     }
 
+    public Team(String Name, Player[] Players, Player Captain,Coach Coach,Match[] Matches) {
+        this(Name, Players, Captain, Coach,Matches,0);
+    }
+    public Team(String Name, Player[] Players, Player Captain,Coach Coach) {
+        this(Name, Players, Captain, Coach,null);
+    }
     public Team(String Name, Player[] Players, Player Captain) {
-        this(Name, Players, Captain, 0);
+        this(Name, Players, Captain,null);
     }
-
     public Team(String Name, Player[] Players) {
         this(Name, Players, null);
     }
@@ -68,6 +95,24 @@ public class Team {
                 this.Captain = new Player(team.Captain);
             } catch (NullPointerException exp) {
                 System.out.println("Null captain");
+            }
+            /*try {
+               this.Coach = new Coach(team.Coach);
+            }catch (NullPointerException exp){
+            System.out.println("Null coach");
+            }*/
+            int j=0;
+            try {
+                for (Match match : team.Matches){
+                    try {
+                        this.Matches[j] = new Match(match);
+                    }catch (NullPointerException exp){
+                        System.out.println("Null match in array");
+                    }
+                    ++j;
+                }
+            }catch (NullPointerException exp){
+                System.out.println("Null match array");
             }
             this.Total_score = team.Total_score;
             this.noOfPlayers = team.noOfPlayers;

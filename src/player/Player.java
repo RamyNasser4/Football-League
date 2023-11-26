@@ -27,7 +27,7 @@ public class Player extends Person {
        this.assists=0;
    }
     public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,playerScore,0);}
-    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,0.0);}
+    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,0);}
     public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge){this(playerName,playerId,playerTeam,playerNum,playerAge,0);}
     public Player(String playerName,int playerId,String playerTeam,int playerNum){this(playerName,playerId,playerTeam,playerNum,0);}
     public Player(String playerName,int playerId,String playerTeam){this(playerName,playerId,playerTeam,0);}

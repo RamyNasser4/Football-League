@@ -1,16 +1,32 @@
 package Coach;
 
 import Person.Person;
-
+import Team.Team;
 public class Coach extends Person {
     public String Nationality;
-    // public Team Current_team;//
+    public Team CurrentTeam;
 
-    public Coach(String name, int age, int salary, String nationality) {
+    public Coach(String name, int age, int salary, String nationality, Team CurrentTeam) {
         super(name, age, salary);
         this.Nationality = nationality;
+        this.CurrentTeam=CurrentTeam;
     }
+    public Coach(String name, int age, int salary, String nationality){
+        this(name,age,salary,nationality,null);
+    }
+    public Coach(String name, int age, int salary){
+        this(name,age,salary,"");
+    }
+    public Coach(String name, int age){
+        this(name,age,0);
+    }
+    public Coach(String name){
+        this(name,0);
 
+    }
+    public Coach(){
+        this("");
+    }
     public String getNationality() {
         return Nationality;
     }
@@ -19,11 +35,18 @@ public class Coach extends Person {
         Nationality = nationality;
     }
 
-}
- /*  public Team getCurrent_team() {
-        return Current_team;
+
+    public Team getCurrentTeam() {
+        return CurrentTeam;
     }
 
-    public void setCurrent_team (Team currenTeam)
-       {Current_team=currenTeam;
-    }*/
+    public void setCurrentTeam(Team currentTeam) {
+        CurrentTeam = currentTeam;
+    }
+
+    public Coach(Coach otherCoach) {
+        super(otherCoach.Name, otherCoach.Age,otherCoach.Salary);
+                this.Nationality= otherCoach.Nationality;
+                 this.CurrentTeam=otherCoach.CurrentTeam;
+    }
+}

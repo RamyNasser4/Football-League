@@ -12,7 +12,7 @@ public class Midfeilder extends Player {
     public Midfeilder(int keyPasses) {
         this.keyPasses = keyPasses;
     }
-
+//MISSING CONSTRUCTOR IN PARENT CLASS
     /* public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank ,int assists,int noOfYellowCards,int noOfRedCards) {
          super(Name, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists,noOfYellowCards,noOfRedCards);
      }
@@ -20,20 +20,26 @@ public class Midfeilder extends Player {
          super(Name, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists,noOfYellowCards);
          this.NoOfRedCards=0;
      }
-     public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank ,int assists) {
-         super(Name, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists);
+     public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank ,int assists) {
+         super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore, playerRank,assists);
          this.NoOfRedCards=0;
          this.noOfYellowCards=0;
      }*/
-    public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank) {
-        super(Name, playerId, playerTeam, playerNum, Age, playerScore, playerRank);
+    public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank) {
+        super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore, playerRank);
         this.NoOfRedCards = 0;
         this.noOfYellowCards = 0;
         this.assists = 0;
     }
 
-    /*public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore) {
-        super(Name, playerId, playerTeam, playerNum, Age, playerScore);
+    public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore) {
+        super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore);
+        this.NoOfRedCards=0;
+        this.noOfYellowCards=0;
+        this.playerRank=0;
+    }
+    public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary) {
+        super(Name, playerId, playerTeam, playerNum, Age,playerSalary);
         this.NoOfRedCards=0;
         this.noOfYellowCards=0;
         this.playerRank=0;
@@ -85,7 +91,7 @@ public class Midfeilder extends Player {
         this.playerNumber=0;
         this.playerTeam=null;
         this.playerId=0;
-    }*/
+    }
     public int GetKeyPasses() {
         return keyPasses;
     }

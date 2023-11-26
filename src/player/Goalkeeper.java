@@ -14,7 +14,7 @@ public class Goalkeeper extends Player {
         this.saves = saves;
         this.cleanSheets = cleanSheets;
     }
-
+//MISSING CONSTRUCTORS IN PARENT
     /* public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank,int assists,int noOfYellowCards,int noOfRedCards) {
          super(playerName, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists,noOfYellowCards,noOfRedCards);
      }
@@ -23,32 +23,42 @@ public class Goalkeeper extends Player {
          this.NoOfRedCards=0;
 
      }
-     public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank,int assists) {
-         super(playerName, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists);
+     public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age,int playerSalary,double playerScore, int playerRank,int assists) {
+         super(playerName, playerId, playerTeam, playerNum, Age,playerSalary,playerScore, playerRank,assists);
          this.NoOfRedCards=0;
          this.noOfYellowCards=0;
 
      }*/
-    public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank) {
-        super(playerName, playerId, playerTeam, playerNum, Age, playerScore, playerRank);
+    public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age,int playerSalary,double playerScore, int playerRank) {
+        super(playerName, playerId, playerTeam, playerNum, Age,playerSalary, playerScore, playerRank);
         this.NoOfRedCards = 0;
         this.noOfYellowCards = 0;
         this.assists = 0;
     }
 
-    /* public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore) {
-          super(Name, playerId, playerTeam, playerNum, Age, playerScore);
+     public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore) {
+          super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore);
          this.NoOfRedCards=0;
          this.noOfYellowCards=0;
          this.assists=0;
           this.playerRank=0;
       }
+
+   public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary) {
+        super(Name, playerId, playerTeam, playerNum, Age,playerSalary);
+        this.NoOfRedCards=0;
+        this.noOfYellowCards=0;
+        this.assists=0;
+        this.playerRank=0;
+
+}
       public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age) {
           super(Name, playerId, playerTeam, playerNum, Age);
           this.NoOfRedCards=0;
           this.noOfYellowCards=0;
           this.assists=0;
           this.playerRank=0;
+          this.Salary=0;
           this.playerScore=0;
       }
       public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum) {
@@ -58,6 +68,7 @@ public class Goalkeeper extends Player {
           this.assists=0;
           this.playerRank=0;
           this.playerScore=0;
+          this.Salary=0;
           this.Age=0;
       }
       public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam) {
@@ -67,6 +78,7 @@ public class Goalkeeper extends Player {
           this.assists=0;
           this.playerRank=0;
           this.playerScore=0;
+          this.Salary=0;
           this.Age=0;
           this.Name=null;
       }
@@ -77,6 +89,7 @@ public class Goalkeeper extends Player {
           this.assists=0;
           this.playerRank=0;
           this.playerScore=0;
+          this.Salary=0;
           this.Age=0;
           this.Name=null;
           this.playerTeam=null;
@@ -88,11 +101,12 @@ public class Goalkeeper extends Player {
           this.assists=0;
           this.playerRank=0;
           this.playerScore=0;
+          this.Salary=0;
           this.Age=0;
           this.Name=null;
           this.playerTeam=null;
           this.playerId=0;
-      }*/
+      }
     public int GetSaves() {
         return saves;
     }

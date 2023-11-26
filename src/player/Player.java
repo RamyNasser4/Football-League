@@ -26,6 +26,7 @@ public class Player extends Person {
        this.NoOfRedCards=0;
        this.assists=0;
    }
+
     public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,playerScore,0);}
     public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,0);}
     public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge){this(playerName,playerId,playerTeam,playerNum,playerAge,0);}
@@ -35,7 +36,21 @@ public class Player extends Person {
     public Player(String playerName){this(playerName,0);}
     public Player(){this("");}
 
-
+    // additional constructor
+    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore,int playerRank,int assists,int noOfYellowCards,int noOfRedCards)
+    {
+        super(playerName,playerAge,playerSalary);
+        this.playerId = playerId;
+        this.playerTeam = playerTeam;
+        this.playerNumber = playerNum;
+        this.playerScore = playerScore;
+        this.playerRank = playerRank;
+        this.assists=assists;
+        this.noOfYellowCards=noOfYellowCards;
+        this.NoOfRedCards=noOfRedCards;
+    }
+    public Player(String playerName,int playerId,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists,int noOfYellowCards){this(playerName,playerId,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,noOfYellowCards,0);}
+    public Player(String playerName,int playerId,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists){this(playerName,playerId,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,0);}
     public Player(Player player) {
         super();
         this.Name = player.Name;

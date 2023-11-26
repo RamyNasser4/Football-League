@@ -13,24 +13,84 @@ public class Player extends Person {
     protected int noOfYellowCards;
     protected int NoOfRedCards;
 
-    public Player() {
 
-    }
-
-    public Player(String playerName, int playerId, String playerTeam, int playerNum, int playerAge, double playerScore, int playerRank) {
-        super();
+   public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore,int playerRank){
+       super(playerName,playerAge,playerSalary);
+       this.Name = playerName;
+       this.playerId = playerId;
+       this.playerTeam = playerTeam;
+       this.playerNumber = playerNum;
+       this.Age = playerAge;
+       this.Salary=playerSalary;
+       this.playerScore = playerScore;
+       this.playerRank = playerRank;
+       this.goalsScored=0;
+       this.noOfYellowCards=0;
+       this.NoOfRedCards=0;
+       this.assists=0;
+   }
+    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore){
+        super(playerName,playerAge,playerSalary);
         this.Name = playerName;
         this.playerId = playerId;
         this.playerTeam = playerTeam;
         this.playerNumber = playerNum;
         this.Age = playerAge;
+        this.Salary=playerSalary;
         this.playerScore = playerScore;
-        this.playerRank = playerRank;
-        this.goalsScored = 0;
-        this.noOfYellowCards = 0;
-        this.NoOfRedCards = 0;
-        this.assists = 0;
+        this.playerRank =0;
+
     }
+    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary){
+        super(playerName,playerAge,playerSalary);
+        this.Name = playerName;
+        this.playerId = playerId;
+        this.playerTeam = playerTeam;
+        this.playerNumber = playerNum;
+        this.Age = playerAge;
+        this.Salary=playerSalary;
+        this.playerScore =0.0;
+    }
+    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge){
+        super(playerName,playerAge,0);
+        this.Name = playerName;
+        this.playerId = playerId;
+        this.playerTeam = playerTeam;
+        this.playerNumber = playerNum;
+        this.Age = playerAge;
+        this.Salary=0;
+    }
+    public Player(String playerName,int playerId,String playerTeam,int playerNum){
+        super(playerName,0,0);
+        this.Name = playerName;
+        this.playerId = playerId;
+        this.playerTeam = playerTeam;
+        this.playerNumber = playerNum;
+        this.Age =0;
+    }
+    public Player(String playerName,int playerId,String playerTeam){
+        super(playerName,0,0);
+        this.Name = playerName;
+        this.playerId = playerId;
+        this.playerTeam = playerTeam;
+        this.playerNumber =0;
+    }
+    public Player(String playerName,int playerId){
+        super(playerName,0,0);
+        this.Name = playerName;
+        this.playerId = playerId;
+        this.playerTeam ="";
+    }
+    public Player(String playerName){
+        super(playerName,0,0);
+        this.Name = playerName;
+        this.playerId =0;
+    }
+    public Player(){
+        super("");
+        this.Name="";
+    }
+
 
     public Player(Player player) {
         super();

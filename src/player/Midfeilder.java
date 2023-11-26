@@ -13,18 +13,18 @@ public class Midfeilder extends Player {
         this.keyPasses = keyPasses;
     }
 //MISSING CONSTRUCTOR IN PARENT CLASS
-    /* public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank ,int assists,int noOfYellowCards,int noOfRedCards) {
-         super(Name, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists,noOfYellowCards,noOfRedCards);
+     public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank ,int assists,int noOfYellowCards,int noOfRedCards) {
+         super(Name, playerId, playerTeam, playerNum, Age, playerSalary, playerScore, playerRank,assists,noOfYellowCards,noOfRedCards);
      }
-     public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age, double playerScore, int playerRank ,int assists,int noOfYellowCards) {
-         super(Name, playerId, playerTeam, playerNum, Age, playerScore, playerRank,assists,noOfYellowCards);
+     public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank ,int assists,int noOfYellowCards) {
+         super(Name, playerId, playerTeam, playerNum, Age, playerSalary, playerScore, playerRank,assists,noOfYellowCards);
          this.NoOfRedCards=0;
      }
      public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank ,int assists) {
          super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore, playerRank,assists);
          this.NoOfRedCards=0;
          this.noOfYellowCards=0;
-     }*/
+     }
     public Midfeilder(int keyPasses, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank) {
         super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore, playerRank);
         this.NoOfRedCards = 0;

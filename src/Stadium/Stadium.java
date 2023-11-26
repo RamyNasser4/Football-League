@@ -29,6 +29,7 @@ public class Stadium {
         this.name = Stadium.name;
         this.capacity = Stadium.capacity;
         this.location = Stadium.location;
+        this.match= Stadium.match;
     }
 
     public String getStadiumName() {

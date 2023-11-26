@@ -5,22 +5,21 @@ import Stadium.Stadium;
 import Team.Team;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Match {
     //Fields
     public static int Match_ID = 0;
     public String Date;
-    public ArrayList<Team> Teams;
+    public Team[] Teams;
     public Referee Referee;
     public String Score;
     public Stadium Stadium;
-    public Team team1;
-    public Team team2;
 
     //Constructors
     public Match(String Date, Team Teams, Referee Referee, String Score, Stadium Stadium) {
         Match_ID++;
-        this.Teams = new ArrayList<>();
+        this.Teams = new Team[2];
         this.Referee = Referee;
         this.Date = Date;
         this.Score = Score;
@@ -29,7 +28,7 @@ public class Match {
 
     public Match(String Date, Team Teams, Referee Referee, String Score) {
         Match_ID++;
-        this.Teams = new ArrayList<>();
+        this.Teams = new Team[2];
         this.Referee = Referee;
         this.Date = Date;
         this.Score = Score;
@@ -37,14 +36,14 @@ public class Match {
 
     public Match(String Date, Team Teams, Referee Referee) {
         Match_ID++;
-        this.Teams = new ArrayList<>();
+        this.Teams = new Team[2];
         this.Referee = Referee;
         this.Date = Date;
     }
 
     public Match(String Date, Team Teams) {
         Match_ID++;
-        this.Teams = new ArrayList<>();
+        this.Teams = new Team[2];
         this.Date = Date;
     }
 
@@ -56,7 +55,15 @@ public class Match {
     public Match() {
         this("");
     }
-
+    public Match(Match Match){
+        Match_ID++;
+        this.Teams = new Team[2];
+        this.Teams= Arrays.copyOf(Teams,Teams.length);
+        this.Referee = Match.Referee;
+        this.Date = Match.Date;
+        this.Score = Match.Score;
+        this.Stadium = Match.Stadium;
+    }
     //Getters and Setters
     public static int getMatch_ID() {
         return Match_ID;
@@ -97,25 +104,26 @@ public class Match {
     public void setStadium(Stadium stadium) {
         Stadium = stadium;
     }
-
-    public ArrayList<Team> getTeams() {
+    public Team[] getTeams() {
         return Teams;
     }
 
-    public void setTeams(ArrayList<Team> teams) {
+    public void setTeams(Team[] teams) {
         Teams = teams;
     }
 
+
     //Function of adding new teams
     public void addTeams(Team team1, Team team2) {
-        this.Teams.add(team1);
-        this.Teams.add(team2);
+       this.Teams=new Team[2];
+       Teams[0]=team1;
+       Teams[1]=team2;
     }
 
     //Function of Displaying the info of the Match
     public void Display() {
         for (Team team : Teams) {
-            System.out.println("Match Date:" + Date + "\n" + "Home Team" + team1 + "Away Team" + team2 + "\n"
+            System.out.println("Match Date:" + Date + "\n" + "Home Team" + Teams[0].Name + "Away Team" + Teams[0].Name + "\n"
                     + "Pitch Referee:" + Referee.getRefereeName() + "\n" + "Stadium" + Stadium.getStadiumName()
                     + "Final Result is:" + Score);
         }

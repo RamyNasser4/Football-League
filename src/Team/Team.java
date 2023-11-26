@@ -142,7 +142,7 @@ public class Team {
     public void deletePlayer(int PlayerID) {
         boolean isFound = false;
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players[i].getPlayerId() == PlayerID) {
+            if (Players[i].GetPlayerId() == PlayerID) {
                 for (int j = i; j < noOfPlayers - 1; j++) {
                         Players[i] = Players[i + 1];
                 }
@@ -160,7 +160,7 @@ public class Team {
     public void deletePlayer(String playerName) {
         boolean isFound = false;
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players[i].getPlayerName().equals(playerName)) {
+            if (Players[i].GetPlayerName().equals(playerName)) {
                 for (int j = i; j < noOfPlayers - 1; j++) {
                     Players[i] = Players[i + 1];
                 }
@@ -176,7 +176,7 @@ public class Team {
     }
     public Player searchPlayer(String name) {
         for (int i = 0; i < noOfPlayers; i++) {
-            if(Players[i].getPlayerName().equals(name)){
+            if(Players[i].GetPlayerName().equals(name)){
                 return Players[i];
             }
         }
@@ -185,7 +185,7 @@ public class Team {
 
     public Player searchPlayer(int ID) {
         for (int i = 0; i < noOfPlayers; i++) {
-            if(Players[i].getPlayerId() == ID){
+            if(Players[i].GetPlayerId() == ID){
                 return Players[i];
             }
         }

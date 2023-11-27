@@ -1,8 +1,10 @@
-package player;
+package League.Person.Player;
 
-import Person.Person;
+import League.Person.Person;
 
-public class Player extends Person {
+public class Player extends Person
+       // implements League
+{
     //player id should be final
     protected  int playerId;
     protected String playerTeam;

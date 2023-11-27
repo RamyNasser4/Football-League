@@ -1,13 +1,10 @@
-package Match;
+package League.Match;
 
-import Referee.Referee;
-import Stadium.Stadium;
-import Team.Team;
+import League.Person.Refree.Referee;
+import League.Stadium.Stadium;
+import League.Team.Team;
 
-import java.sql.Ref;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.SocketHandler;
 
 public class Match {
     //Fields
@@ -17,6 +14,7 @@ public class Match {
     public Referee Referee;
     public String Score;
     public Stadium Stadium;
+
 
     //Constructors
     public Match(String Date, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {

@@ -1,5 +1,6 @@
-package Referee;
-import Match.*;
+package League.Person.Refree;
+import League.Match.Match;
+
 public class Referee {
     private String RefereeName;
     private int RefereeAge;

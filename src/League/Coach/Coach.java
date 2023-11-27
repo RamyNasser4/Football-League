@@ -1,7 +1,7 @@
-package Coach;
+package League.Coach;
 
-import Person.Person;
-import Team.Team;
+import League.Person.Person;
+import League.Team.Team;
 public class Coach extends Person {
     public String Nationality;
     public Team CurrentTeam;

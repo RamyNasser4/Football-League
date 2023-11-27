@@ -1,7 +1,7 @@
 package League;
 
-import Match.Match;
-import Team.Team;
+import League.Match.Match;
+import League.Team.Team;
 
 public interface League {
 
@@ -10,8 +10,8 @@ public interface League {
 
         void DisplayTopScorers();
         void DisplayTopGoalKeepers();
-        void DisplayByGoals(int numOfGoals);
-        void DisplayByAge(int age);
+        void DisplayByGoals();
+        void DisplayByAge();
         void DisplayByDate(String date);
 
 

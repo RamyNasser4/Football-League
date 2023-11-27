@@ -1,5 +1,5 @@
-package Stadium;
-import Match.Match;
+package League.Stadium;
+import League.Match.Match;
 
 
 
@@ -8,7 +8,7 @@ public class Stadium {
     private String location;
     public int capacity;
     public Match match ;
-    public String date;
+
     public Stadium(String name, String location, int capacity,Match match) {
         this.name = name;
         this.location = location;
@@ -54,7 +54,7 @@ public class Stadium {
         this.capacity = capacity;
     }
     public boolean CheckAvailabilty(String date){
-        if (this.date.equals(date)){
+        if (match.Date.equals(date)){
             return false;
         }
         else {

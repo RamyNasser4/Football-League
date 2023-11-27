@@ -1,4 +1,4 @@
-package player;
+package League.Person.Player;
 
 public class Defender extends Player {
     protected int tackle;

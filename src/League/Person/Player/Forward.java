@@ -1,4 +1,4 @@
-package player;
+package League.Person.Player;
 
 public class Forward extends Player {
     protected int shots;

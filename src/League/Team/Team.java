@@ -1,8 +1,8 @@
-package Team;
+package League.Team;
 
-import Coach.Coach;
-import Match.Match;
-import player.Player;
+import League.Coach.Coach;
+import League.Match.Match;
+import League.Person.Player.Player;
 
 public class Team {
     public String Name;

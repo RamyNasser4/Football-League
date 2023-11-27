@@ -1,4 +1,4 @@
-package player;
+package League.Person.Player;
 
 public class Midfeilder extends Player {
     protected int keyPasses;

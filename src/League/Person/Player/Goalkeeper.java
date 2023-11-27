@@ -1,4 +1,4 @@
-package player;
+package League.Person.Player;
 
 public class Goalkeeper extends Player {
     protected int saves;

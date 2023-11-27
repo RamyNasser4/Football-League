@@ -4,6 +4,7 @@ import Referee.Referee;
 import Stadium.Stadium;
 import Team.Team;
 
+import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.SocketHandler;
@@ -18,43 +19,45 @@ public class Match {
     public Stadium Stadium;
 
     //Constructors
-    public Match(String Date, Team Teams, Referee Referee, String Score, Stadium Stadium) {
+    public Match(String Date, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
         Match_ID++;
         this.Teams = new Team[2];
-        this.Referee = Referee;
+        this.Teams[0]=Teams[0];
+        this.Teams[1]=Teams[1];
+        /*try{
+        this.Referee = new Referee(Referee);}
+        catch (NullPointerException exp){
+            System.out.println("Null");
+        }*/
         this.Date = Date;
         this.Score = Score;
         this.Stadium = Stadium;
     }
 
-    public Match(String Date, Team Teams, Referee Referee, String Score) {
+    public Match(String Date, Team[] Teams, Referee Referee, String Score) {
+        this(Date,Teams,Referee,Score,null);
         Match_ID++;
-        this.Teams = new Team[2];
-        this.Referee = Referee;
-        this.Date = Date;
-        this.Score = Score;
     }
 
-    public Match(String Date, Team Teams, Referee Referee) {
+    public Match(String Date,Team[] Teams, Referee Referee) {
+        this(Date,Teams,Referee,null,null);
         Match_ID++;
-        this.Teams = new Team[2];
-        this.Referee = Referee;
-        this.Date = Date;
+
     }
 
-    public Match(String Date, Team Teams) {
+    public Match(String Date, Team[] Teams) {
+        this(Date,Teams,null,null,null);
         Match_ID++;
-        this.Teams = new Team[2];
-        this.Date = Date;
     }
 
     public Match(String Date) {
+        this(Date,null,null,null,null);
         Match_ID++;
-        this.Date = Date;
     }
 
     public Match() {
         this("");
+        Match_ID++;
     }
     public Match(Match Match){
         try {

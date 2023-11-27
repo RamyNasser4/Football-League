@@ -3,7 +3,8 @@ package player;
 import Person.Person;
 
 public class Player extends Person {
-    protected int playerId;
+    //player id should be final
+    protected  int playerId;
     protected String playerTeam;
     protected int playerNumber;
     protected double playerScore;

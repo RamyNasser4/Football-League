@@ -7,11 +7,8 @@ public class Stadium {
     private String name;
     private String location;
     public int capacity;
-
-
     public Match match ;
-
-
+    public String date;
     public Stadium(String name, String location, int capacity,Match match) {
         this.name = name;
         this.location = location;
@@ -56,20 +53,19 @@ public class Stadium {
     public void setStadiumCapacity(int capacity) {
         this.capacity = capacity;
     }
+    public boolean CheckAvailabilty(String date){
+        if (this.date.equals(date)){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 }
 
- /*   public boolean Check_Available(String date ) {
-       if (Date.equals(date)) {
-           return false ;
-       }
-       else{
-           return true;
-       }
-   }
 
 
-   }*/
 
 
 

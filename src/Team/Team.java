@@ -44,6 +44,7 @@ public class Team {
         }catch (NullPointerException exp){
             System.out.println("Null coach");
         }*/
+        //would be better in league class
         this.Matches = new Match[38];
         int j =0;
         try {

@@ -1,6 +1,8 @@
 package League.Stadium;
 import League.Match.Match;
-
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 
 public class Stadium {
@@ -53,8 +55,12 @@ public class Stadium {
     public void setStadiumCapacity(int capacity) {
         this.capacity = capacity;
     }
+   //user to input the date
+   //function to be called
     public boolean CheckAvailabilty(String date){
-        if (match.Date.equals(date)){
+        match.StringtoDate(date);
+        if (match.matchdate.equals(date))
+        {
             return false;
         }
         else {

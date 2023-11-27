@@ -3,31 +3,46 @@ package League.Match;
 import League.Person.Refree.Referee;
 import League.Stadium.Stadium;
 import League.Team.Team;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import java.util.Arrays;
 
 public class Match {
     //Fields
     public static int Match_ID = 0;
-    public String Date;
+   public String matchDate;
+   SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
+   public Date matchdate;
+   //Function to be called when setting date in constructor
+public void StringtoDate(String matchDate) {
+    try {
+        matchdate = Date.parse(matchDate);
+
+    } catch (Throwable throwable) {
+        System.out.println("Wrong input");
+    }
+}
     public Team[] Teams;
     public Referee Referee;
     public String Score;
     public Stadium Stadium;
-
+    public String dateOfMatch;
 
     //Constructors
-    public Match(String Date, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
+    public Match(String dateOfMatch, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
         Match_ID++;
         this.Teams = new Team[2];
         this.Teams[0]=Teams[0];
         this.Teams[1]=Teams[1];
-        /*try{
-        this.Referee = new Referee(Referee);}
-        catch (NullPointerException exp){
-            System.out.println("Null");
-        }*/
-        this.Date = Date;
+         /*   try {
+                this.Referee = new Referee(Referee);
+            } catch (NullPointerException exp) {
+                System.out.println("Null");
+            }
+        */
+       this.dateOfMatch = dateOfMatch;
         this.Score = Score;
         this.Stadium = Stadium;
     }
@@ -84,13 +99,13 @@ public class Match {
         Match_ID = match_ID;
     }
 
-    public String getDate() {
-        return Date;
-    }
+    //public String getDate() {
+        //return Date;
+   // }
 
-    public void setDate(String date) {
-        Date = date;
-    }
+  //  public void setDate(String date) {
+     //   Date = date;
+  //  }
 
     public Referee getReferee() {
         return Referee;

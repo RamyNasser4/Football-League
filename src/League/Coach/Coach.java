@@ -49,4 +49,14 @@ public class Coach extends Person {
                 this.Nationality= otherCoach.Nationality;
                  this.CurrentTeam=otherCoach.CurrentTeam;
     }
+    public Coach( String nationality, Team currentTeam) {
+
+        try {
+            setNationality(nationality);
+            setCurrentTeam(currentTeam);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Exception: ");
+        }
+    }
+
 }

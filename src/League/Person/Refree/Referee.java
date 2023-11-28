@@ -4,9 +4,8 @@ import League.Person.Person;
 
 public class Referee extends Person {
 
-    public Match match ;
-    public  int  noYellowCards=0;
-    public  int noRedCards=0;
+    public  int  noYellowCards;
+    public  int noRedCards;
 
     public Referee() {
         super();
@@ -31,11 +30,10 @@ public class Referee extends Person {
         noYellowCards=0;
         noRedCards=0;
     }
-    public Referee(String refereeName, int refereeAge, int Salary, Match match) {
-        this(refereeName,refereeAge,Salary);
-      this.match = match;
-    }
 
+    public Referee(Referee Ref) {
+        this(Ref.Name, Ref.Age, Ref.Salary);
+    }
     public  void makeYellowCards(){
 
         noYellowCards++;

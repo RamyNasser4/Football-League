@@ -150,7 +150,7 @@ public void StringtoDate(String matchDate) {
     public void Display() {
         for (Team team : Teams) {
             System.out.println("Match Date:" + Date + "\n" + "Home Team" + Teams[0].Name + "Away Team" + Teams[0].Name + "\n"
-                    + "Pitch Referee:" + Referee.getRefereeName() + "\n" + "Stadium" + Stadium.getStadiumName()
+                    + "Pitch Referee:" + Referee.Name + "\n" + "Stadium" + Stadium.getStadiumName()
                     + "Final Result is:" + Score);
         }
     }

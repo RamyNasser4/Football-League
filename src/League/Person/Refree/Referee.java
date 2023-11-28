@@ -27,12 +27,21 @@ public class Referee extends Person {
     }
     public Referee(String refereeName, int refereeAge, int Salary) {
         super(refereeName,refereeAge,Salary);
-        noYellowCards=0;
-        noRedCards=0;
+
     }
 
     public Referee(Referee Ref) {
-        this(Ref.Name, Ref.Age, Ref.Salary);
+        try {
+            this.Name=Ref.Name;
+            this.Age=Ref.Age;
+            this.Salary=Ref.Salary;
+            noYellowCards=0;
+            noRedCards=0;
+        }
+             catch (Exception e) {
+
+            System.out.println("Null");
+        }
     }
     public  void makeYellowCards(){
 

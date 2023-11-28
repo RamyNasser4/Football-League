@@ -99,13 +99,13 @@ public void StringtoDate(String matchDate) {
         Match_ID = match_ID;
     }
 
-    //public String getDate() {
-        //return Date;
-   // }
+    public Date getDate() {
+        return matchdate;
+   }
 
-  //  public void setDate(String date) {
-     //   Date = date;
-  //  }
+   public void setDate(Date date) {
+    matchdate = date;
+  }
 
     public Referee getReferee() {
         return Referee;

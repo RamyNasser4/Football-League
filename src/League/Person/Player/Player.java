@@ -6,8 +6,8 @@ public class Player extends Person
 
 {
     protected static int numberOfPlayers=0;
-    //final
-    protected int playerId;
+  //final is producing compilation error please check
+    protected final int playerId;
 
     protected String playerTeam;
     protected int playerNumber;

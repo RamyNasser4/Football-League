@@ -36,12 +36,11 @@ public void StringtoDate(String matchDate) {
         this.Teams = new Team[2];
         this.Teams[0]=Teams[0];
         this.Teams[1]=Teams[1];
-         /*   try {
+            try {
                 this.Referee = new Referee(Referee);
             } catch (NullPointerException exp) {
                 System.out.println("Null");
             }
-        */
        this.dateOfMatch = dateOfMatch;
         this.Score = Score;
         this.Stadium = Stadium;
@@ -81,7 +80,7 @@ public void StringtoDate(String matchDate) {
             } catch (NullPointerException exp) {
                 System.out.println("Null");
             }
-            this.Referee = Match.Referee;
+            this.Referee = new Referee (Match.Referee);
             this.Date = Match.Date;
             this.Score = Match.Score;
             this.Stadium = Match.Stadium;

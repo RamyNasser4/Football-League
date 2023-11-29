@@ -5,7 +5,7 @@ import League.Person.Person;
 public class Player extends Person
        // implements League
 {
-    //player id should be final
+
     protected  int playerId;
     protected String playerTeam;
     protected int playerNumber;
@@ -19,7 +19,7 @@ public class Player extends Person
 
    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore,int playerRank){
        super(playerName,playerAge,playerSalary);
-       this.playerId = playerId;
+       this.playerId=playerId;
        this.playerTeam = playerTeam;
        this.playerNumber = playerNum;
        this.playerScore = playerScore;
@@ -56,17 +56,22 @@ public class Player extends Person
     public Player(String playerName,int playerId,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists){this(playerName,playerId,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,0);}
     public Player(Player player) {
         super();
-        this.Name = player.Name;
-        this.playerId = player.playerId;
-        this.playerTeam = player.playerTeam;
-        this.playerNumber = player.playerNumber;
-        this.Age = player.Age;
-        this.playerScore = player.playerScore;
-        this.playerRank = player.playerRank;
-        this.goalsScored = player.goalsScored;
-        this.noOfYellowCards = player.noOfYellowCards;
-        this.NoOfRedCards = player.NoOfRedCards;
-        this.assists = player.assists;
+        try {
+            this.Name = player.Name;
+            this.playerId = player.playerId;
+            this.playerTeam = player.playerTeam;
+            this.playerNumber = player.playerNumber;
+            this.Age = player.Age;
+            this.playerScore = player.playerScore;
+            this.playerRank = player.playerRank;
+            this.goalsScored = player.goalsScored;
+            this.noOfYellowCards = player.noOfYellowCards;
+            this.NoOfRedCards = player.NoOfRedCards;
+            this.assists = player.assists;
+        }
+        catch (NullPointerException exp){
+            System.out.println("Null");
+        }
     }
 
     // Get
@@ -99,9 +104,9 @@ public class Player extends Person
     }
     // Set
 
-    public void SetPlayerId(int playerId) {
+   /* public void SetPlayerId(int playerId) {
         this.playerId = playerId;
-    }
+    }*/
 
     public void SetPlayerTeam(String playerTeam) {
         this.playerTeam = playerTeam;

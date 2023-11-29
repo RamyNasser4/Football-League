@@ -11,102 +11,25 @@ public class Goalkeeper extends Player {
     }
 
     public Goalkeeper(int saves, int cleanSheets) {
+        super();
         this.saves = saves;
         this.cleanSheets = cleanSheets;
     }
-//MISSING CONSTRUCTORS IN PARENT
-     public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank,int assists,int noOfYellowCards,int noOfRedCards) {
-         super(playerName, playerId, playerTeam, playerNum, Age,playerSalary,playerScore, playerRank,assists,noOfYellowCards,noOfRedCards);
-     }
-     public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore, int playerRank,int assists,int noOfYellowCards) {
-         super(playerName, playerId, playerTeam, playerNum, Age,playerSalary ,playerScore, playerRank,assists,noOfYellowCards);
-         this.NoOfRedCards=0;
 
-     }
-     public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age,int playerSalary,double playerScore, int playerRank,int assists) {
-         super(playerName, playerId, playerTeam, playerNum, Age,playerSalary,playerScore, playerRank,assists);
-         this.NoOfRedCards=0;
-         this.noOfYellowCards=0;
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,0.0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam){this(saves,cleanSheets,playerName,playerAge,playerSalary,playerTeam,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge,int playerSalary){this(saves,cleanSheets,playerName,playerAge,playerSalary,"");}
+    public Goalkeeper(int saves,int cleanSheets,String playerName,int playerAge){this(saves,cleanSheets,playerName,playerAge,0);}
+    public Goalkeeper(int saves,int cleanSheets,String playerName){this(saves,cleanSheets,playerName,0);}
 
-     }
-    public Goalkeeper(int saves, int cleansSheets, String playerName, int playerId, String playerTeam, int playerNum, int Age,int playerSalary,double playerScore, int playerRank) {
-        super(playerName, playerId, playerTeam, playerNum, Age,playerSalary, playerScore, playerRank);
-        this.NoOfRedCards = 0;
-        this.noOfYellowCards = 0;
-        this.assists = 0;
-    }
 
-     public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary, double playerScore) {
-          super(Name, playerId, playerTeam, playerNum, Age,playerSalary, playerScore);
-         this.NoOfRedCards=0;
-         this.noOfYellowCards=0;
-         this.assists=0;
-          this.playerRank=0;
-      }
 
-   public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age,int playerSalary) {
-        super(Name, playerId, playerTeam, playerNum, Age,playerSalary);
-        this.NoOfRedCards=0;
-        this.noOfYellowCards=0;
-        this.assists=0;
-        this.playerRank=0;
-
-}
-      public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum, int Age) {
-          super(Name, playerId, playerTeam, playerNum, Age);
-          this.NoOfRedCards=0;
-          this.noOfYellowCards=0;
-          this.assists=0;
-          this.playerRank=0;
-          this.Salary=0;
-          this.playerScore=0;
-      }
-      public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam, int playerNum) {
-          super(Name, playerId, playerTeam, playerNum);
-          this.NoOfRedCards=0;
-          this.noOfYellowCards=0;
-          this.assists=0;
-          this.playerRank=0;
-          this.playerScore=0;
-          this.Salary=0;
-          this.Age=0;
-      }
-      public Goalkeeper(int saves, int cleansSheets, String Name, int playerId, String playerTeam) {
-          super(Name, playerId, playerTeam);
-          this.NoOfRedCards=0;
-          this.noOfYellowCards=0;
-          this.assists=0;
-          this.playerRank=0;
-          this.playerScore=0;
-          this.Salary=0;
-          this.Age=0;
-          this.Name=null;
-      }
-      public Goalkeeper(int saves, int cleansSheets, String Name, int playerId) {
-          super(Name, playerId);
-          this.NoOfRedCards=0;
-          this.noOfYellowCards=0;
-          this.assists=0;
-          this.playerRank=0;
-          this.playerScore=0;
-          this.Salary=0;
-          this.Age=0;
-          this.Name=null;
-          this.playerTeam=null;
-      }
-      public Goalkeeper(int saves, int cleansSheets, String Name) {
-          super(Name);
-          this.NoOfRedCards=0;
-          this.noOfYellowCards=0;
-          this.assists=0;
-          this.playerRank=0;
-          this.playerScore=0;
-          this.Salary=0;
-          this.Age=0;
-          this.Name=null;
-          this.playerTeam=null;
-          this.playerId=0;
-      }
     public int GetSaves() {
         return saves;
     }

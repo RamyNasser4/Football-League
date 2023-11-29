@@ -6,7 +6,10 @@ public class Player extends Person
 
 {
     protected static int numberOfPlayers=0;
-    protected final int playerId;
+
+
+    protected final int playerId=++numberOfPlayers;
+
     protected String playerTeam;
     protected int playerNumber;
     protected double playerScore;
@@ -15,6 +18,8 @@ public class Player extends Person
     protected int assists;
     protected int noOfYellowCards;
     protected int NoOfRedCards;
+
+
 
 
    public Player(String playerName,int playerAge, int playerSalary,String playerTeam,int playerNumber, double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards, int noOfRedCards){
@@ -27,7 +32,7 @@ public class Player extends Person
        this.noOfYellowCards=noOfYellowCards;
        this.NoOfRedCards=noOfRedCards;
        this.assists=assists;
-       this.playerId=++numberOfPlayers;
+      // this.playerId=++numberOfPlayers;
    }
 
     public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,0);}
@@ -47,6 +52,8 @@ public class Player extends Person
     {
         super(playerName,playerAge,playerSalary);
 
+       // this.playerId=++numberOfPlayers;
+
         this.playerTeam = playerTeam;
         this.playerNumber = playerNum;
         this.playerScore = playerScore;
@@ -61,7 +68,7 @@ public class Player extends Person
         super();
         try {
             this.Name = player.Name;
-            this.playerId=++numberOfPlayers;
+            //this.playerId=++numberOfPlayers;
             this.playerTeam = player.playerTeam;
             this.playerNumber = player.playerNumber;
             this.Age = player.Age;

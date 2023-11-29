@@ -104,9 +104,9 @@ public class Player extends Person
     }
     // Set
 
-   /* public void SetPlayerId(int playerId) {
+    public void SetPlayerId(int playerId) {
         this.playerId = playerId;
-    }*/
+    }
 
     public void SetPlayerTeam(String playerTeam) {
         this.playerTeam = playerTeam;

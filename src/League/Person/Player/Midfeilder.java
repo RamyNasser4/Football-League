@@ -22,9 +22,7 @@ public class Midfeilder extends Player {
     public Midfeilder(int keyPasses,String playerName,int playerAge,int playerSalary){this(keyPasses,playerName,playerAge,playerSalary,"");}
     public Midfeilder(int keyPasses,String playerName,int playerAge){this(keyPasses,playerName,playerAge,0);}
     public Midfeilder(int keyPasses,String playerName){this(keyPasses,playerName,0);}
-    public Midfeilder(int keyPasses,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards){
-        super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);
-    }
+
 
 
     public int GetKeyPasses() {

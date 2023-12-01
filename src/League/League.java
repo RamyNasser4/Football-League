@@ -5,13 +5,20 @@ import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Team.Team;
 import League.Team.*;
+import java.text.SimpleDateFormat;
 
+import java.util.Comparator;
+import java.util.Date;
+
+import java.math.MathContext;
 import java.util.Arrays;
 
-public interface League {
+public class League {
 
     Match[] matches = new Match[34];
     Team[] teams = new Team[18];
+    public static int matchCount=0;
+    public String DATE;
 
     /*public Player[] DisplayTopScorers(){
             Player[] topScorers = new Player[3];
@@ -98,6 +105,38 @@ public interface League {
             }
         }
     }
+    public void AddMatch(Match match) {
+        try {
+                matches[matchCount] = new Match(match);
+                matchCount++;
+            }
+
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("OUT OF ARRAY BOUNDS");
+        }
+        catch (NullPointerException e) {
+            System.out.println("Objects cant be null");
+        }
+
+    }
+
+
+    public void Display_match_ByDateFN(String DATE){
+             int counter =0;
+        Match[] match  = new Match[matches.length];
+        for (int i = 0; i < matches.length; i++) {
+           if (matches[i].dateOfMatch.equals(DATE))
+            {
+                match[counter]=new Match(matches[i]);
+                counter++;
+            }
+
+        }
+    }
+
+
+
+
 
 }
 

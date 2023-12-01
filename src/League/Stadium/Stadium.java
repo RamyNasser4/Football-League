@@ -39,8 +39,14 @@ public class Stadium {
         this.location = Stadium.location;
         this.match = new Match[Stadium.match.length];
         for (int i = 0; i < Stadium.match.length; i++) {
-            this.match[i] = new Match(Stadium.match[i]);
+            try {
+                this.match[i] = new Match(Stadium.match[i]);
+            } catch (NullPointerException e) {
+                System.err.println("Exception while creating Match  " );
+
+                           }
         }
+
     }
 
     public String getStadiumName() {
@@ -48,12 +54,23 @@ public class Stadium {
     }
     public Match[] getMatch() {return match;}
     public void setMatch(Match[] matches) {
-        if (matches != null) {
-            this.match= matches;
-        } else {
-            throw new IllegalArgumentException("Invalid match array");
+        try {
+            if (matches == null) {
+                throw new NullPointerException("Input array 'matches' cannot be null");
+            }
+
+            if (matches.length == 0) {
+                throw new RuntimeException("Input array 'matches' must not be empty");
+            }
+
+
+            this.match = matches;
+        } catch (RuntimeException e) {
+            System.err.println("Exception" );
+
         }
     }
+
 
 
     public void setStadiumName(String StadiumName) {

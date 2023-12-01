@@ -54,7 +54,7 @@ public class Coach extends Person {
         try {
             setNationality(nationality);
             setCurrentTeam(currentTeam);
-        } catch (IllegalArgumentException e) {
+        } catch (RuntimeException e) {
             System.err.println("Exception: ");
         }
     }

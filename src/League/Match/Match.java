@@ -148,7 +148,7 @@ public void StringtoDate(String matchDate) {
     //Function of Displaying the info of the Match
     public void Display() {
         for (Team team : Teams) {
-            System.out.println("Match Date:" + Date + "\n" + "Home Team" + Teams[0].Name + "Away Team" + Teams[0].Name + "\n"
+            System.out.println("Match Date:" + matchdate + "\n" + "Home Team" + Teams[0].Name + "Away Team" + Teams[0].Name + "\n"
                     + "Pitch Referee:" + Referee.Name + "\n" + "Stadium" + Stadium.getStadiumName()
                     + "Final Result is:" + Score);
         }

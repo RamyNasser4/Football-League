@@ -3,10 +3,13 @@ package League.Person.Player;
 import League.Person.Person;
 
 public class Player extends Person
-       // implements League
-{
 
-    protected  int playerId;
+{
+    protected static int numberOfPlayers=0;
+
+
+    protected final int playerId=++numberOfPlayers;
+
     protected String playerTeam;
     protected int playerNumber;
     protected double playerScore;
@@ -17,33 +20,40 @@ public class Player extends Person
     protected int NoOfRedCards;
 
 
-   public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore,int playerRank){
+
+
+   public Player(String playerName,int playerAge, int playerSalary,String playerTeam,int playerNumber, double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards, int noOfRedCards){
        super(playerName,playerAge,playerSalary);
-       this.playerId=playerId;
        this.playerTeam = playerTeam;
-       this.playerNumber = playerNum;
+       this.playerNumber = playerNumber;
        this.playerScore = playerScore;
        this.playerRank = playerRank;
-       this.goalsScored=0;
-       this.noOfYellowCards=0;
-       this.NoOfRedCards=0;
-       this.assists=0;
+       this.goalsScored=goalsScored;
+       this.noOfYellowCards=noOfYellowCards;
+       this.NoOfRedCards=noOfRedCards;
+       this.assists=assists;
+      // this.playerId=++numberOfPlayers;
    }
 
-    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,playerScore,0);}
-    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary){this(playerName,playerId,playerTeam,playerNum,playerAge,playerSalary,0);}
-    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge){this(playerName,playerId,playerTeam,playerNum,playerAge,0);}
-    public Player(String playerName,int playerId,String playerTeam,int playerNum){this(playerName,playerId,playerTeam,playerNum,0);}
-    public Player(String playerName,int playerId,String playerTeam){this(playerName,playerId,playerTeam,0);}
-    public Player(String playerName,int playerId){this(playerName,playerId,"");}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,0);}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,0);}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,0);}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,0);}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,0);}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,0.0);}
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam){this(playerName,playerAge,playerSalary,playerTeam,0);}
+    public Player(String playerName,int playerAge,int playerSalary){this(playerName,playerAge,playerSalary,"");}
+    public Player(String playerName,int playerAge){this(playerName,playerAge,0);}
     public Player(String playerName){this(playerName,0);}
     public Player(){this("");}
 
     // additional constructor
-    public Player(String playerName,int playerId,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore,int playerRank,int assists,int noOfYellowCards,int noOfRedCards)
+    public Player(String playerName,String playerTeam,int playerNum,int playerAge,int playerSalary,double playerScore,int playerRank,int assists,int noOfYellowCards,int noOfRedCards)
     {
         super(playerName,playerAge,playerSalary);
-        this.playerId = playerId;
+
+       // this.playerId=++numberOfPlayers;
+
         this.playerTeam = playerTeam;
         this.playerNumber = playerNum;
         this.playerScore = playerScore;
@@ -52,13 +62,13 @@ public class Player extends Person
         this.noOfYellowCards=noOfYellowCards;
         this.NoOfRedCards=noOfRedCards;
     }
-    public Player(String playerName,int playerId,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists,int noOfYellowCards){this(playerName,playerId,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,noOfYellowCards,0);}
-    public Player(String playerName,int playerId,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists){this(playerName,playerId,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,0);}
+    public Player(String playerName,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists,int noOfYellowCards){this(playerName,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,noOfYellowCards,0);}
+    public Player(String playerName,String playerTeam,int playerNumber,int playerAge,int playerSalary,double playerScore,int playerRank,int assists){this(playerName,playerTeam,playerNumber,playerAge,playerSalary,playerScore,playerRank,assists,0);}
     public Player(Player player) {
         super();
         try {
             this.Name = player.Name;
-            this.playerId = player.playerId;
+            //this.playerId=++numberOfPlayers;
             this.playerTeam = player.playerTeam;
             this.playerNumber = player.playerNumber;
             this.Age = player.Age;
@@ -102,11 +112,15 @@ public class Player extends Person
     public int GetPlayerRank() {
         return playerRank;
     }
+
+    public int getGoalsScored() {
+        return goalsScored;
+    }
     // Set
 
-    public void SetPlayerId(int playerId) {
+    /*public void SetPlayerId(int playerId) {
         this.playerId = playerId;
-    }
+    }*/
 
     public void SetPlayerTeam(String playerTeam) {
         this.playerTeam = playerTeam;
@@ -123,6 +137,10 @@ public class Player extends Person
 
     public void SetPlayerRank(int playerRank) {
         this.playerRank = playerRank;
+    }
+
+    public void setGoalsScored(int goalsScored) {
+        this.goalsScored = goalsScored;
     }
 
     public void MakeAssist() {

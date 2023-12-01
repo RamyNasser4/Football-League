@@ -40,26 +40,31 @@ public class League {
             }
             return topScorers;
     }*/
-      /*  public Player[] DisplayTopGoalKeepers() {
+      public Player[] DisplayTopGoalKeepers() {
                 Player[] topKeepers = new Player[3];
                 int max = 0;
-                for (int i=0;i<3;i++) {
+                topKeepers[0] = (Goalkeeper) teams[0].getPlayers()[0];
+                topKeepers[1] = (Goalkeeper) teams[0].getPlayers()[0];
+                topKeepers[2] = (Goalkeeper) teams[0].getPlayers()[0];
+
                         for (int j = 0; j < teams.length; j++) {
                                 for (int k = 0; k < teams[j].getTotal(); k++) {
                                         if (teams[j].getPlayers()[k] instanceof Goalkeeper) {
-                                                topKeepers[i] = (Goalkeeper) teams[j].getPlayers()[k];
+
                                                 if (max < ((Goalkeeper) teams[j].getPlayers()[k]).GetSaves()) {
                                                         max = ((Goalkeeper) teams[j].getPlayers()[k]).GetSaves();
-                                                        topKeepers[i + 1] = topKeepers[i];
-                                                        topKeepers[i] = (Goalkeeper) teams[j].getPlayers()[k];
+                                                        topKeepers[2] = topKeepers[1];
+                                                        topKeepers[1] = topKeepers[0];
+
+                                                        topKeepers[0] = (Goalkeeper) teams[j].getPlayers()[k];
                                                 }
 
                                         }
                                 }
-                        }
+
                 }
                 return topKeepers;
-        }*/
+        }
     void DisplayByGoals();
 
     void DisplayByAge();

@@ -4,7 +4,7 @@ import League.Coach.Coach;
 import League.Match.Match;
 import League.Person.Player.Player;
 
-public class Team {
+public class Team  {
     public String Name;
     protected int Team_ID;
     protected Player[] Players;
@@ -184,6 +184,13 @@ public class Team {
         this.noOfPlayers = noOfPlayers;
     }
 
+    public double AvgTeamAge(){
+        double avgAge=0;
+       for(Player player:Players){
+           avgAge+=player.getPersonAge();
+       }
+      return avgAge=avgAge/noOfPlayers;
+    }
     public void display() {
         //
     }
@@ -258,4 +265,5 @@ public class Team {
         }
         return null;
     }
+
 }

@@ -52,7 +52,16 @@ public class League {
         }
         /*void DisplayByGoals();
         void DisplayByAge();
-        void DisplayByDate(String date);*/
+        void DisplayByDate(String date);
+        default void DisplayTeamByAvgAge(){
+                double min=0;
+                Team[] teamscopy= Arrays.copyOf(teams,teams.length);
+                for(Team teams:teamscopy){
+                        Arrays.sort(teamscopy);
+                }
+                for(Team teams:teamscopy){
+                        System.out.println(teams.getName()+" Average Age is "+teams.AvgTeamAge());
+                }*/
 
 
 }

@@ -133,32 +133,31 @@ public class League {
         }
     }
 //Function to filter matches as held or to be held
-protected void FilterMatchByTime(Match match){
-ArrayList<Match> upcomingMatches=new ArrayList<>();
-ArrayList<Match> pastMatches=new ArrayList<>();
-Date now=new Date();
-if(match.matchdate.before(now)){
-    System.out.println("Match time:Past");
-    try {
-        pastMatches.add(match);
-    } catch (NullPointerException exp) {
-        System.out.println("Null");
-    }
+protected void FilterMatchByTime(Match match) {
+    for (Match m : matches) {
+        ArrayList<Match> upcomingMatches = new ArrayList<>();
+        ArrayList<Match> pastMatches = new ArrayList<>();
+        Date now = new Date();
+        if (m.matchdate.before(now)) {
+            System.out.println("Match time:Past");
+            try {
+                pastMatches.add(match);
+            } catch (NullPointerException exp) {
+                System.out.println("Null");
+            }
 
-}
-else if(match.matchdate.after(now)){
-    System.out.println("Match time:upcoming");
-    try {
-        upcomingMatches.add(match);
-    } catch (NullPointerException exp) {
-        System.out.println("Null");
+        } else if (m.matchdate.after(now)) {
+            System.out.println("Match time:upcoming");
+            try {
+                upcomingMatches.add(match);
+            } catch (NullPointerException exp) {
+                System.out.println("Null");
+            }
+        } else {
+            System.out.println("Match time:now");
+        }
     }
 }
-else{
-    System.out.println("Match time:now");
-}
-}
-
 
 
 

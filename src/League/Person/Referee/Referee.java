@@ -1,16 +1,18 @@
-package League.Person.Refree;
-import League.Match.Match;
+package League.Person.Referee;
 import League.Person.Person;
 
 public class Referee extends Person {
-
     public  int  noYellowCards;
     public  int noRedCards;
 
-    public Referee() {
-        super();
-        noYellowCards=0;
-        noRedCards=0;
+    public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards) {
+        super(refereeName, refereeAge, Salary);
+        this.noYellowCards = noYellowCards;
+        this.noRedCards = noRedCards;
+    }
+
+    public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards) {
+        this(refereeName, refereeAge, Salary, noYellowCards, 0);
     }
 
     public Referee(String refereeName) {
@@ -25,10 +27,10 @@ public class Referee extends Person {
         noYellowCards=0;
         noRedCards=0;
     }
-    public Referee(String refereeName, int refereeAge, int Salary) {
+    /*public Referee() {
         super(refereeName,refereeAge,Salary);
 
-    }
+    }*/
 
     public Referee(Referee Ref) {
         try {
@@ -44,7 +46,6 @@ public class Referee extends Person {
         }
     }
     public  void makeYellowCards(){
-
         noYellowCards++;
     }
     public  void makeRedCards(){

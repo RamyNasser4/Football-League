@@ -1,0 +1,11 @@
+package League.Team;
+
+import java.util.Comparator;
+
+public class TeamGoalsComparator implements Comparator<Team> {
+
+    @Override
+    public int compare(Team team1, Team team2) {
+        return (Integer.compare(team1.GetTeamGoals(), team2.GetTeamGoals()));
+    }
+}

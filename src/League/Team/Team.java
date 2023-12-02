@@ -4,79 +4,57 @@ import League.Coach.Coach;
 import League.Match.Match;
 import League.Person.Player.Player;
 
+import java.util.ArrayList;
+
 public class Team  {
     public String Name;
+    private static int noOfTeams = 0;
+    //can be final
     protected int Team_ID;
-    protected Player[] Players;
     protected Player Captain;
     protected Coach Coach;
-    protected Match[] Matches;
+    protected ArrayList<Player> Players;
     protected int Total_score;
     protected int noOfPlayers;
+    protected ArrayList<Match> Matches;
 
-    public static int noOfTeams = 0;
-
-    public Team(String Name, Player[] Players, Player Captain,Coach Coach,Match[] Matches, int Total_score, int noOfPlayers) {
+    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score, int noOfPlayers) {
         ++noOfTeams;
         this.Name = Name;
         this.Team_ID = noOfTeams;
-        this.Players = new Player[25];
-        int i = 0;
-        try {
-            for (Player player : Players) {
-                try {
-                    this.Players[i] = new Player(player);
-                } catch (NullPointerException exp) {
-                    System.out.println("Null");
-                }
-                ++i;
-            }
-        } catch (NullPointerException exp) {
-            System.out.println("Null");
-        }
+        this.Players = new ArrayList<>(Players);
         try {
             this.Captain = new Player(Captain);
         } catch (NullPointerException exp) {
             System.out.println("Null");
         }
-        /*try {
+        try {
             this.Coach = new Coach(Coach);
         }catch (NullPointerException exp){
             System.out.println("Null coach");
-        }*/
-        //would be better in league class
-        this.Matches = new Match[38];
-        int j =0;
-        try {
-            for (Match match : Matches){
-                try {
-                    this.Matches[j] = new Match(match);
-                }catch (NullPointerException exp){
-                    System.out.println("Null match in array");
-                }
-                ++j;
-            }
-        }catch (NullPointerException exp){
-            System.out.println("Null match array");
         }
+        this.Matches = new ArrayList<>(Matches);
         this.Total_score = Total_score;
         this.noOfPlayers = noOfPlayers;
     }
 
-    public Team(String Name, Player[] Players, Player Captain,Coach Coach,Match[] Matches, int Total_score) {
+    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score) {
         this(Name, Players, Captain,Coach,Matches, Total_score, 0);
     }
 
-    public Team(String Name, Player[] Players, Player Captain,Coach Coach,Match[] Matches) {
+    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches) {
         this(Name, Players, Captain, Coach,Matches,0);
     }
-    public Team(String Name, Player[] Players, Player Captain,Coach Coach) {
+
+    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach) {
         this(Name, Players, Captain, Coach,null);
     }
-    public Team(String Name, Player[] Players, Player Captain) {
+
+    public Team(String Name, ArrayList<Player> Players, Player Captain) {
         this(Name, Players, Captain,null);
     }
-    public Team(String Name, Player[] Players) {
+
+    public Team(String Name, ArrayList<Player> Players) {
         this(Name, Players, null);
     }
 
@@ -84,48 +62,31 @@ public class Team  {
         this(Name, null);
     }
 
+    public Team() {
+        this("");
+    }
     public Team(Team team) {
         try {
             this.Name = team.Name;
             this.Team_ID = team.Team_ID;
-            this.Players = new Player[25];
-            for (int i = 0; i < team.noOfPlayers; i++) {
-                this.Players[i] = new Player(team.Players[i]);
-            }
+            this.Players = new ArrayList<>(team.Players);
             try {
                 this.Captain = new Player(team.Captain);
             } catch (NullPointerException exp) {
                 System.out.println("Null captain");
             }
-            /*try {
+            try {
                this.Coach = new Coach(team.Coach);
             }catch (NullPointerException exp){
             System.out.println("Null coach");
-            }*/
-            int j=0;
-            try {
-                for (Match match : team.Matches){
-                    try {
-                        this.Matches[j] = new Match(match);
-                    }catch (NullPointerException exp){
-                        System.out.println("Null match in array");
-                    }
-                    ++j;
-                }
-            }catch (NullPointerException exp){
-                System.out.println("Null match array");
             }
+            this.Matches = new ArrayList<>(team.Matches);
             this.Total_score = team.Total_score;
             this.noOfPlayers = team.noOfPlayers;
         } catch (NullPointerException exp) {
             System.out.println("Null object");
         }
     }
-
-    public Team() {
-        this("");
-    }
-
     public String getName() {
         return Name;
     }
@@ -142,22 +103,14 @@ public class Team  {
         this.Team_ID = Team_ID;
     }
 
-    public Player[] getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return Players;
 
     }
 
-    public void setPlayers(Player[] Players) {
-        int i = 0;
-        for (Player player : Players) {
-            try {
-                this.Players[i] = new Player(player);
-            } catch (NullPointerException exp) {
-                System.out.println("Null");
-            }
-            ++i;
-        }
-        this.noOfPlayers = i;
+    public void setPlayers(ArrayList<Player> Players) {
+        this.Players = new ArrayList<>(Players);
+        this.noOfPlayers = Players.size();
     }
 
     public Player getCaptain() {
@@ -165,9 +118,12 @@ public class Team  {
     }
 
     public void setCaptain(Player Captain) {
-        this.Captain = new Player(Captain);
+        try {
+            this.Captain = new Player(Captain);
+        } catch (NullPointerException exp) {
+            System.out.println("Null captain");
+        }
     }
-
     public int getTotal_score() {
         return Total_score;
     }
@@ -184,12 +140,20 @@ public class Team  {
         this.noOfPlayers = noOfPlayers;
     }
 
-    public double AvgTeamAge(){
+    public double GetAvgTeamAge() {
         double avgAge=0;
-       for(Player player:Players){
-           avgAge+=player.getPersonAge();
-       }
-      return avgAge=avgAge/noOfPlayers;
+        for (Player player : Players) {
+            avgAge += player.getPersonAge();
+        }
+        return (avgAge /= noOfPlayers);
+    }
+
+    public int GetTeamGoals() {
+        int teamGoals = 0;
+        for (Player player : Players) {
+            teamGoals += player.getGoalsScored();
+        }
+        return teamGoals;
     }
     public void display() {
         //
@@ -205,21 +169,17 @@ public class Team  {
 
     public void addPlayer(Player player) throws NullPointerException {
         try {
-            Players[noOfPlayers] = new Player(player);
+            Players.add(new Player(player));
             ++noOfPlayers;
         } catch (NullPointerException exp) {
             System.out.println("Null");
         }
     }
-
     public void deletePlayer(int PlayerID) {
         boolean isFound = false;
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players[i].GetPlayerId() == PlayerID) {
-                for (int j = i; j < noOfPlayers - 1; j++) {
-                    Players[i] = Players[i + 1];
-                }
-                Players[noOfPlayers - 1] = null;
+            if (Players.get(i).GetPlayerId() == PlayerID) {
+                Players.remove(i);
                 --noOfPlayers;
                 isFound = true;
                 break;
@@ -233,11 +193,8 @@ public class Team  {
     public void deletePlayer(String playerName) {
         boolean isFound = false;
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players[i].GetPlayerName().equals(playerName)) {
-                for (int j = i; j < noOfPlayers - 1; j++) {
-                    Players[i] = Players[i + 1];
-                }
-                Players[noOfPlayers - 1] = null;
+            if (Players.get(i).GetPlayerName().equals(playerName)) {
+                Players.remove(i);
                 --noOfPlayers;
                 isFound = true;
                 break;
@@ -247,11 +204,10 @@ public class Team  {
             System.out.println("Invalid Name");
         }
     }
-
     public Player searchPlayer(String name) {
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players[i].GetPlayerName().equals(name)) {
-                return Players[i];
+            if (Players.get(i).GetPlayerName().equals(name)) {
+                return Players.get(i);
             }
         }
         return null;
@@ -259,11 +215,10 @@ public class Team  {
 
     public Player searchPlayer(int ID) {
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players[i].GetPlayerId() == ID) {
-                return Players[i];
+            if (Players.get(i).GetPlayerId() == ID) {
+                return Players.get(i);
             }
         }
         return null;
     }
-
 }

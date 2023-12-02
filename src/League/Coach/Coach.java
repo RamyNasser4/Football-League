@@ -9,7 +9,12 @@ public class Coach extends Person {
     public Coach(String name, int age, int salary, String nationality, Team CurrentTeam) {
         super(name, age, salary);
         this.Nationality = nationality;
-        this.CurrentTeam=CurrentTeam;
+        try{
+            this.CurrentTeam=CurrentTeam;
+        }catch (NullPointerException exp){
+            System.out.println("Null Team");
+        }
+
     }
     public Coach(String name, int age, int salary, String nationality){
         this(name,age,salary,nationality,null);
@@ -22,7 +27,6 @@ public class Coach extends Person {
     }
     public Coach(String name){
         this(name,0);
-
     }
     public Coach(){
         this("");
@@ -41,22 +45,26 @@ public class Coach extends Person {
     }
 
     public void setCurrentTeam(Team currentTeam) {
-        CurrentTeam = currentTeam;
-    }
-
-    public Coach(Coach otherCoach) {
-        super(otherCoach.Name, otherCoach.Age,otherCoach.Salary);
-                this.Nationality= otherCoach.Nationality;
-                 this.CurrentTeam=otherCoach.CurrentTeam;
-    }
-    public Coach( String nationality, Team currentTeam) {
-
         try {
-            setNationality(nationality);
-            setCurrentTeam(currentTeam);
-        } catch (RuntimeException e) {
-            System.err.println("Exception: ");
+            CurrentTeam = currentTeam;
+        }catch (NullPointerException exp){
+            System.out.println("Null Match");
         }
     }
-
+    public Coach(Coach otherCoach) throws NullPointerException {
+        super();
+        try {
+            this.Name = otherCoach.Name;
+            this.Age = otherCoach.Age;
+            this.Salary = otherCoach.Salary;
+            this.Nationality= otherCoach.Nationality;
+            try {
+                this.CurrentTeam=otherCoach.CurrentTeam;
+            }catch (NullPointerException exp){
+                System.out.println("Null coach team");
+            }
+        }catch (NullPointerException exp){
+            System.out.println("Null obj coach");
+        }
+    }
 }

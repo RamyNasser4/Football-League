@@ -1,79 +1,71 @@
 package League.Match;
 
-import League.Person.Refree.Referee;
+import League.Person.Referee.Referee;
 import League.Stadium.Stadium;
 import League.Team.Team;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 public class Match {
     //Fields
-    public static int Match_ID = 0;
-   public String matchDate;
-   SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
-   public Date matchdate;
-   //Function to be called when setting date in constructor
-public void StringtoDate(String matchDate) {
-    try {
-        matchdate = Date.parse(matchDate);
-
-    } catch (Throwable throwable) {
-        System.out.println("Wrong input");
+    public static int noOfMatches = 0;
+    private final int Match_ID;
+    public String matchDate;
+    public Date matchdate;
+    SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
+    //Constructors
+    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
+        Match_ID = ++noOfMatches;
+        this.Teams = new Team[2];
+        try {
+            this.Teams[0] = Teams[0];
+        } catch (NullPointerException exp) {
+            System.out.println("Null first team");
+        }
+        try {
+            this.Teams[1] = Teams[1];
+        } catch (NullPointerException exp) {
+            System.out.println("Null second team");
+        }
+        try {
+            this.Referee = new Referee(Referee);
+        } catch (NullPointerException exp) {
+            System.out.println("Null referee");
+        }
+        this.matchDate = matchDate;
+        this.matchdate = matchdate;
+        this.Score = Score;
+        this.Stadium = Stadium;
     }
-}
     public Team[] Teams;
     public Referee Referee;
     public String Score;
     public Stadium Stadium;
-    public String dateOfMatch;
-
-    //Constructors
-    public Match(String dateOfMatch, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
-        Match_ID++;
-        this.Teams = new Team[2];
-        this.Teams[0]=Teams[0];
-        this.Teams[1]=Teams[1];
-            try {
-                this.Referee = new Referee(Referee);
-            } catch (NullPointerException exp) {
-                System.out.println("Null");
-            }
-       this.dateOfMatch = dateOfMatch;
-        this.Score = Score;
-        this.Stadium = Stadium;
+    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score) {
+        this(matchDate, matchdate, Teams, Referee, Score, null);
     }
 
-    public Match(String Date, Team[] Teams, Referee Referee, String Score) {
-        this(Date,Teams,Referee,Score,null);
-        Match_ID++;
+    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee) {
+        this(matchDate, matchdate, Teams, Referee, null);
     }
 
-    public Match(String Date,Team[] Teams, Referee Referee) {
-        this(Date,Teams,Referee,null,null);
-        Match_ID++;
-
+    public Match(String matchDate, Date matchdate, Team[] Teams) {
+        this(matchDate, matchdate, Teams, null);
     }
 
-    public Match(String Date, Team[] Teams) {
-        this(Date,Teams,null,null,null);
-        Match_ID++;
+    public Match(String matchDate, Date matchdate) {
+        this(matchDate, matchdate, null);
     }
 
-    public Match(String Date) {
-        this(Date,null,null,null,null);
-        Match_ID++;
+    public Match(String matchDate) {
+        this(matchDate, null);
     }
 
-    public Match() {
-        this("");
-        Match_ID++;
-    }
     public Match(Match Match){
+        Match_ID = ++noOfMatches;
         try {
-            Match_ID++;
             this.Teams = new Team[2];
             try {
                 this.Teams = Arrays.copyOf(Match.Teams, Teams.length);
@@ -81,7 +73,10 @@ public void StringtoDate(String matchDate) {
                 System.out.println("Null");
             }
             this.Referee = new Referee (Match.Referee);
-            this.Date = Match.Date;
+            //Date
+            this.matchdate = Match.matchdate;
+            //String
+            this.matchDate = Match.matchDate;
             this.Score = Match.Score;
             this.Stadium = Match.Stadium;
         }
@@ -89,13 +84,22 @@ public void StringtoDate(String matchDate) {
             System.out.println("Null");
         }
     }
-    //Getters and Setters
-    public static int getMatch_ID() {
-        return Match_ID;
+    public Match() {
+        this("");
     }
 
-    public static void setMatch_ID(int match_ID) {
-        Match_ID = match_ID;
+   //Function to be called when setting date in constructor
+    public void StringToDate() {
+        try {
+            matchdate = Date.parse(matchDate);
+        } catch (Throwable throwable) {
+            System.out.println("Wrong input");
+        }
+    }
+
+    //Getters and Setters
+    public int getMatch_ID() {
+        return Match_ID;
     }
 
     public Date getDate() {
@@ -111,7 +115,11 @@ public void StringtoDate(String matchDate) {
     }
 
     public void setReferee(Referee referee) {
-        Referee = referee;
+        try {
+            Referee = referee;
+        } catch (NullPointerException exp) {
+            System.out.println("Null referee");
+        }
     }
 
     public String getScore() {
@@ -127,24 +135,42 @@ public void StringtoDate(String matchDate) {
     }
 
     public void setStadium(Stadium stadium) {
-        Stadium = stadium;
+        try {
+            Stadium = stadium;
+        } catch (NullPointerException exp) {
+            System.out.println("Null stadium");
+        }
     }
     public Team[] getTeams() {
         return Teams;
     }
 
     public void setTeams(Team[] teams) {
-        Teams = teams;
+        this.Teams = new Team[teams.length];
+        int i = 0;
+        for (Team team : teams) {
+            try {
+                this.Teams[i] = team;
+            } catch (NullPointerException exp) {
+                System.out.println("Null team in array");
+            }
+            ++i;
+        }
     }
-
-
     //Function of adding new teams
     public void addTeams(Team team1, Team team2) {
        this.Teams=new Team[2];
-       Teams[0]=team1;
-       Teams[1]=team2;
+        try {
+            Teams[0] = team1;
+        } catch (NullPointerException exp) {
+            System.out.println("Null team 1");
+        }
+        try {
+            Teams[1] = team2;
+        } catch (NullPointerException exp) {
+            System.out.println("Null team 2");
+        }
     }
-
     //Function of Displaying the info of the Match
     public void Display() {
         for (Team team : Teams) {

@@ -4,8 +4,6 @@ public abstract class Person {
     public String Name;
     public int Age;
     public int Salary;
-
-
    public Person(String Name, int Age, int Salary){
         this.Name = Name;
         this.Age = Age;
@@ -17,7 +15,6 @@ public abstract class Person {
 
     public String getPersonName() {
         return Name;
-
     }
 
     public int getPersonAge() {

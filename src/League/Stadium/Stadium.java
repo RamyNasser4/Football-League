@@ -1,78 +1,48 @@
 package League.Stadium;
+
 import League.Match.Match;
-import java.util.Date;
+
 import java.text.SimpleDateFormat;
-import java.text.ParseException;
-
-
+import java.util.ArrayList;
+import java.util.Date;
 public class Stadium {
     public String name;
     public String location;
     public int capacity;
-    private Match[] match;
+    public ArrayList<Match> matches;
 
-    public Stadium(String name, String location, int capacity,Match match) {
+    public Stadium(String name, String location, int capacity, ArrayList<Match> matches) {
         this.name = name;
         this.location = location;
         this.capacity = capacity;
-        this.match = new Match[0];
-   }
-    public Stadium(String name, int capacity, Match[] matches) {
-        try {
-            setStadiumName(name);
-            setStadiumCapacity(capacity);
-            setMatch(matches);
-        } catch (IllegalArgumentException e) {
-            System.err.println("Exception: " );
-        }
+        this.matches = new ArrayList<>(matches);
     }
     public Stadium(String name, String location, int capacity) {this(name,location,capacity,null);}
     public Stadium(String name, String location) {this(name,location,0);}
     public Stadium(String name) {this(name,"");}
     public Stadium(){this("");}
-
-
-
     public Stadium(Stadium Stadium) {
-        this.name = Stadium.name;
-        this.capacity = Stadium.capacity;
-        this.location = Stadium.location;
-        this.match = new Match[Stadium.match.length];
-        for (int i = 0; i < Stadium.match.length; i++) {
-            try {
-                this.match[i] = new Match(Stadium.match[i]);
-            } catch (NullPointerException e) {
-                System.err.println("Exception while creating Match  " );
-
-                           }
+        try {
+            this.name = Stadium.name;
+            this.capacity = Stadium.capacity;
+            this.location = Stadium.location;
+            this.matches = new ArrayList<>(Stadium.matches);
+        } catch (NullPointerException exp) {
+            System.out.println("Null stadium");
         }
-
     }
 
     public String getStadiumName() {
         return name;
     }
-    public Match[] getMatch() {return match;}
-    public void setMatch(Match[] matches) {
-        try {
-            if (matches == null) {
-                throw new NullPointerException("Input array 'matches' cannot be null");
-            }
 
-            if (matches.length == 0) {
-                throw new RuntimeException("Input array 'matches' must not be empty");
-            }
-
-
-            this.match = matches;
-        } catch (RuntimeException e) {
-            System.err.println("Exception" );
-
-        }
+    public ArrayList<Match> getMatches() {
+        return matches;
     }
 
-
-
+    public void setMatches(ArrayList<Match> matches) {
+        this.matches = new ArrayList<>(matches);
+    }
     public void setStadiumName(String StadiumName) {
         this.name = StadiumName;
     }
@@ -84,28 +54,29 @@ public class Stadium {
     public void setStadiumLocation(String StadiumLocation) {
         this.location = StadiumLocation;
     }
-
-
     public int getStadiumCapacity() {
         return capacity;
     }
-
     public void setStadiumCapacity(int capacity) {
         this.capacity = capacity;
     }
    //user to input the date
    //function to be called
-  /*  public boolean CheckAvailabilty(String date){
-        match.StringtoDate(date);
-        if (match.matchdate.equals(date))
-        {
-            return false;
-        }
-        else {
+   public boolean CheckAvailability(String date) {
+       SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+       try {
+           Date currentDate = dateFormat.parse(date);
+           for (Match match : matches) {
+               if (match.matchdate.equals(currentDate)) {
+                   return false;
+               }
+           }
             return true;
+       } catch (Throwable throwable) {
+           System.out.println("Wrong input");
+           return false;
         }
     }
-*/
 }
 
 

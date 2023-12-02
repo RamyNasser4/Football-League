@@ -3,7 +3,6 @@ package League.Person.Player;
 public class Goalkeeper extends Player {
     protected int saves;
     protected int cleanSheets;
-
     public Goalkeeper() {
         super();
         this.saves = 0;

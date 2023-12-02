@@ -4,120 +4,109 @@ import League.Match.Match;
 import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Team.Team;
-import League.Team.*;
-import java.text.SimpleDateFormat;
+import League.Team.TeamAgeComparator;
+import League.Team.TeamGoalsComparator;
 
-import java.util.Comparator;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
-import java.math.MathContext;
-import java.util.Arrays;
-
 public class League {
+    public int matchCount;
+    public Date DATE;
+    ArrayList<Match> matches;
+    ArrayList<Team> teams;
 
-    Match[] matches = new Match[34];
-    Team[] teams = new Team[18];
-    public static int matchCount=0;
-    public String DATE;
+    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date) {
+        this.matches = new ArrayList<>(matches);
+        this.teams = new ArrayList<>(teams);
+        this.matchCount = matchCount;
+        this.DATE = Date;
+    }
 
-    /*public Player[] DisplayTopScorers(){
+    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount) {
+        this(matches, teams, matchCount, null);
+    }
+
+    public League(ArrayList<Match> matches, ArrayList<Team> teams) {
+        this(matches, teams, 0);
+    }
+
+    public League(ArrayList<Match> matches) {
+        this(matches, null);
+    }
+
+    public League() {
+        this(null);
+    }
+
+    public Player[] DisplayTopScorers() {
             Player[] topScorers = new Player[3];
-            int currentTopScorer = 0;
             for (int i = 0; i < 3; i++) {
                     int maxGoals = -1;
-                    for (int j = 0; j < teams.length; j++) {
-                            for (int k = 0; k < teams[j].getTotal(); k++) {
-                                    if(teams[j].getPlayers()[k].getGoalsScored()>maxGoals &&
-                                            teams[j].getPlayers()[k] != topScorers[0] &&
-                                            teams[j].getPlayers()[k] != topScorers[1] )
+                for (int j = 0; j < teams.size(); j++) {
+                    for (int k = 0; k < teams.get(j).getTotal(); k++) {
+                        if (teams.get(j).getPlayers().get(k).getGoalsScored() > maxGoals &&
+                                teams.get(j).getPlayers().get(k) != topScorers[0] &&
+                                teams.get(j).getPlayers().get(k) != topScorers[1])
                                     {
-                                            maxGoals = teams[j].getPlayers()[k].getGoalsScored();
-                                            topScorers[currentTopScorer] = teams[j].getPlayers()[k];
-                                            ++currentTopScorer;
+                                        maxGoals = teams.get(j).getPlayers().get(k).getGoalsScored();
+                                        topScorers[i] = teams.get(j).getPlayers().get(k);
                                     }
                             }
                     }
             }
+        //display (return until GUI)
             return topScorers;
-    }*/
+    }
       public Player[] DisplayTopGoalKeepers() {
-                Player[] topKeepers = new Player[3];
+          Player[] topKeepers = new Goalkeeper[3];
                 int max = 0;
-                topKeepers[0] = (Goalkeeper) teams[0].getPlayers()[0];
-                topKeepers[1] = (Goalkeeper) teams[0].getPlayers()[0];
-                topKeepers[2] = (Goalkeeper) teams[0].getPlayers()[0];
+          topKeepers[0] = null;
+          topKeepers[1] = null;
+          topKeepers[2] = null;
 
-                        for (int j = 0; j < teams.length; j++) {
-                                for (int k = 0; k < teams[j].getTotal(); k++) {
-                                        if (teams[j].getPlayers()[k] instanceof Goalkeeper) {
-
-                                                if (max < ((Goalkeeper) teams[j].getPlayers()[k]).GetSaves()) {
-                                                        max = ((Goalkeeper) teams[j].getPlayers()[k]).GetSaves();
+          for (int j = 0; j < teams.size(); j++) {
+              for (int k = 0; k < teams.get(j).getTotal(); k++) {
+                  if (teams.get(j).getPlayers().get(k) instanceof Goalkeeper) {
+                      if (max < ((Goalkeeper) teams.get(j).getPlayers().get(k)).GetSaves()) {
+                          max = ((Goalkeeper) teams.get(j).getPlayers().get(k)).GetSaves();
                                                         topKeepers[2] = topKeepers[1];
                                                         topKeepers[1] = topKeepers[0];
-
-                                                        topKeepers[0] = (Goalkeeper) teams[j].getPlayers()[k];
+                          topKeepers[0] = teams.get(j).getPlayers().get(k);
                                                 }
 
                                         }
                                 }
 
                 }
+          //display (return until GUI)
                 return topKeepers;
         }
-    void DisplayByGoals();
 
-    void DisplayByAge();
-
-    void DisplayByDate(String date);
-
-    default void DisplayTeamByAvgAge() {
-        double min = 0;
-        Team[] teamscopy = Arrays.copyOf(teams, teams.length);
+    void DisplayTeamByAvgAge() {
+        ArrayList<Team> teamscopy = new ArrayList<>(teams);
+        TeamAgeComparator comparator = new TeamAgeComparator();
+        Collections.sort(teamscopy, comparator);
         for (Team teams : teamscopy) {
-            Arrays.sort(teamscopy);
-        }
-        for (Team teams : teamscopy) {
-            System.out.println(teams.getName() + " Average Age is " + teams.AvgTeamAge());
+            System.out.println(teams.getName() + " Average Age is " + teams.GetAvgTeamAge());
         }
     }
 
-    default void DisplayTeamsByGoals() {
-        int[] teamGoals = new int[teams.length];
-        int totalTeamGoals = -1;
-        for (int i = 0; i < teams.length; i++) {
-            for (int j = 0; j < teams[i].getTotal(); j++) {
-                teamGoals[i] += teams[i].getPlayers()[j].getGoalsScored();
-            }
-            if (teamGoals[i] > totalTeamGoals) {
-                totalTeamGoals = teamGoals[i];
-            }
-
-        }
-        // option 1
-        /*Arrays.sort(teams, Comparator.comparingInt((Team team) -> teamGoals[Arrays.asList(teams).indexOf(team)]).reversed());*/
-        // option 2
-        for (int i = 0; i < teams.length; i++) {
-            for (int j = i; j < teams.length; j++) {
-                if (teamGoals[i] < teamGoals[j]) {
-                    Team temp = teams[i];
-                    teams[i] = teams[j];
-                    teams[j] = temp;
-                    int tempGoals = teamGoals[i];
-                    teamGoals[i] = teamGoals[j];
-                    teamGoals[j] = tempGoals;
-                }
-            }
-        }
+    public void DisplayTeamsByGoals() {
+        ArrayList<Team> teamscopy = new ArrayList<>(teams);
+        TeamGoalsComparator comparator = new TeamGoalsComparator();
+        Collections.sort(teamscopy, comparator);
     }
     public void AddMatch(Match match) {
         try {
-                matches[matchCount] = new Match(match);
+            if (match == null) {
+                throw new NullPointerException("Null");
+            } else {
+                matches.add(match);
                 matchCount++;
             }
-
-        catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("OUT OF ARRAY BOUNDS");
         }
         catch (NullPointerException e) {
             System.out.println("Objects cant be null");
@@ -125,17 +114,18 @@ public class League {
 
     }
 
-
-    public void Display_match_ByDateFN(String DATE){
-             int counter =0;
-        Match[] match  = new Match[matches.length];
-        for (int i = 0; i < matches.length; i++) {
-           if (matches[i].dateOfMatch.equals(DATE))
-            {
-                match[counter]=new Match(matches[i]);
-                counter++;
+    public void Display_match_ByDateFN(String date) {
+        ArrayList<Match> matchesByDate = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date currentDate = dateFormat.parse(date);
+            for (Match match : matches) {
+                if (match.matchdate.equals(currentDate)) {
+                    matchesByDate.add(match);
+                }
             }
-
+        } catch (Throwable throwable) {
+            System.out.println("Wrong input");
         }
     }
 

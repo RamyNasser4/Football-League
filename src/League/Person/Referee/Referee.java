@@ -14,24 +14,15 @@ public class Referee extends Person {
     public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards) {
         this(refereeName, refereeAge, Salary, noYellowCards, 0);
     }
-
+    public Referee(String refereeName, int refereeAge, int Salary) {
+        this(refereeName, refereeAge, Salary,0);
+    }
+    public Referee(String refereeName, int refereeAge) {
+        this(refereeName, refereeAge,0);
+    }
     public Referee(String refereeName) {
-     super(refereeName);
-        noYellowCards=0;
-        noRedCards=0;
+        this(refereeName, 0);
     }
-
-    public Referee(String refereeName,int refereeAge)
-    {
-       super(refereeName,refereeAge);
-        noYellowCards=0;
-        noRedCards=0;
-    }
-    /*public Referee() {
-        super(refereeName,refereeAge,Salary);
-
-    }*/
-
     public Referee(Referee Ref) {
         try {
             this.Name=Ref.Name;
@@ -46,6 +37,7 @@ public class Referee extends Person {
         }
     }
     public  void makeYellowCards(){
+
         noYellowCards++;
     }
     public  void makeRedCards(){

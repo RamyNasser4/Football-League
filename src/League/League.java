@@ -10,7 +10,11 @@ import League.Team.TeamGoalsComparator;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+
 import java.util.Date;
+
+import java.time.LocalDate;
+
 
 public class League {
     public int matchCount;
@@ -128,6 +132,32 @@ public class League {
             System.out.println("Wrong input");
         }
     }
+//Function to filter matches as held or to be held
+protected void FilterMatchByTime(Match match){
+ArrayList<Match> upcomingMatches=new ArrayList<>();
+ArrayList<Match> pastMatches=new ArrayList<>();
+Date now=new Date();
+if(match.matchdate.before(now)){
+    System.out.println("Match time:Past");
+    try {
+        pastMatches.add(match);
+    } catch (NullPointerException exp) {
+        System.out.println("Null");
+    }
+
+}
+else if(match.matchdate.after(now)){
+    System.out.println("Match time:upcoming");
+    try {
+        upcomingMatches.add(match);
+    } catch (NullPointerException exp) {
+        System.out.println("Null");
+    }
+}
+else{
+    System.out.println("Match time:now");
+}
+}
 
 
 

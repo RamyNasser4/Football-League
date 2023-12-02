@@ -15,18 +15,18 @@ public class Defender extends Player {
         this.cleanSheets = cleanSheets;
 
     }
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards){
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int tackles,int cleanSheets){
         super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,playerNumber,0.0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary,String playerTeam){this(tackles,cleanSheets,playerName,playerAge,playerSalary,playerTeam,0);}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge,int playerSalary){this(tackles,cleanSheets,playerName,playerAge,playerSalary,"");}
-    public Defender(int tackles,int cleanSheets,String playerName,int playerAge){this(tackles,cleanSheets,playerName,playerAge,0);}
-    public Defender(int tackles,int cleanSheets,String playerName){this(tackles,cleanSheets,playerName,0);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,0.0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,String playerTeam,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,playerTeam,0,tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int playerSalary,int tackles,int cleanSheets){this(playerName,playerAge,playerSalary,"",tackles,cleanSheets);}
+    public Defender(String playerName,int playerAge,int tackles,int cleanSheets){this(playerName,playerAge,0,tackles,cleanSheets);}
+    public Defender(String playerName,int tackles,int cleanSheets){this(playerName,0,tackles,cleanSheets);}
 
     public int GetTackle() {
         return tackle;

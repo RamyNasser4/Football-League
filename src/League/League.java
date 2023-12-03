@@ -13,15 +13,12 @@ import java.util.Collections;
 
 import java.util.Date;
 
-import java.time.LocalDate;
-
-
 public class League {
     public int matchCount;
     public Date DATE;
     ArrayList<Match> matches;
     ArrayList<Team> teams;
-
+    ArrayList<Player> searchByNameAndTeam;
     public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date) {
         this.matches = new ArrayList<>(matches);
         this.teams = new ArrayList<>(teams);
@@ -64,7 +61,8 @@ public class League {
         //display (return until GUI)
             return topScorers;
     }
-      public Player[] DisplayTopGoalKeepers() {
+
+        public Player[] DisplayTopGoalKeepers() {
           Player[] topKeepers = new Goalkeeper[3];
                 int max = 0;
           topKeepers[0] = null;
@@ -134,7 +132,7 @@ public class League {
     }
 //Function to filter matches as held or to be held
 protected void FilterMatchByTime(Match match) {
-    for (Match m : matches) {
+   for (Match m : matches) {
         ArrayList<Match> upcomingMatches = new ArrayList<>();
         ArrayList<Match> pastMatches = new ArrayList<>();
         Date now = new Date();
@@ -158,6 +156,34 @@ protected void FilterMatchByTime(Match match) {
         }
     }
 }
+//when called pass team.name and player.name
+protected void SerachByNameAndTeam(Team team,Player player){
+    searchByNameAndTeam.clear();
+        for (Team t: teams){
+            if(team.Name.equals(t.Name)){
+                for (Player p: t.Players){
+                    if(player.Name.equals(p.Name)){
+                      searchByNameAndTeam.add(player);
+                    }
+                }
+            }
+        }
+    int resultCount =  searchByNameAndTeam.size();
+    if(resultCount==0){
+        System.out.println("No results Found");
+    }
+    else if(resultCount==1){
+        System.out.println(resultCount +" result found");
+    }
+    else{
+        System.out.println(resultCount +" results found");
+    }
+    for(Player p: searchByNameAndTeam){
+        //to be replaced in gui
+        System.out.println(p);
+    }
+    }
+
 
 
 

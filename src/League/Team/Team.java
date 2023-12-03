@@ -13,7 +13,7 @@ public class Team  {
     protected int Team_ID;
     protected Player Captain;
     protected Coach Coach;
-    protected ArrayList<Player> Players;
+    public ArrayList<Player> Players;
     protected int Total_score;
     protected int noOfPlayers;
     protected ArrayList<Match> Matches;

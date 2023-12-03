@@ -157,7 +157,7 @@ protected void FilterMatchByTime(Match match) {
     }
 }
 //when called pass team.name and player.name
-protected void SerachByNameAndTeam(Team team,Player player){
+protected void SearchByNameAndTeam(Team team,Player player){
     searchByNameAndTeam.clear();
         for (Team t: teams){
             if(team.Name.equals(t.Name)){

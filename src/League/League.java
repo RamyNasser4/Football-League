@@ -157,13 +157,13 @@ protected void FilterMatchByTime(Match match) {
     }
 }
 //when called pass team.name and player.name
-protected void SearchByNameAndTeam(Team team,Player player){
+protected void SearchByNameAndTeam(String teamname,String playername){
     searchByNameAndTeam.clear();
         for (Team t: teams){
-            if(team.Name.equals(t.Name)){
+            if(teamname.equals(t.Name)){
                 for (Player p: t.Players){
-                    if(player.Name.equals(p.Name)){
-                      searchByNameAndTeam.add(player);
+                    if(playername.equals(p.Name)){
+                      searchByNameAndTeam.add(p);
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package League.Team;
 
-import League.Coach.Coach;
+import League.Person.Coach.Coach;
 import League.Match.Match;
 import League.Person.Player.Player;
 

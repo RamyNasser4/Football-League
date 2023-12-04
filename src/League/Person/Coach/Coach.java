@@ -1,4 +1,4 @@
-package League.Coach;
+package League.Person.Coach;
 
 import League.Person.Person;
 import League.Team.Team;

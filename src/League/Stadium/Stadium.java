@@ -64,10 +64,17 @@ public class Stadium {
    //function to be called
    public boolean CheckAvailability(String date) {
        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
        try {
-           Date currentDate = dateFormat.parse(date);
+           Date checkDate = dateFormat.parse(date);
+           Date datenow=new Date();
            for (Match match : matches) {
-               if (match.matchdate.equals(currentDate)) {
+               if (match.matchdate.equals(checkDate)) {
+                   System.out.println("Stadium won't be available");
+                   return false;
+               }
+               if(datenow.before(checkDate)){
+                   System.out.println("Date should be upcoming date");
                    return false;
                }
            }
@@ -76,6 +83,7 @@ public class Stadium {
            System.out.println("Wrong input");
            return false;
         }
+
     }
 }
 

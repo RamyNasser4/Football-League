@@ -140,8 +140,12 @@ protected void FilterMatchByTime(Match match) {
             System.out.println("Match time:Past");
             try {
                 pastMatches.add(match);
+
             } catch (NullPointerException exp) {
                 System.out.println("Null");
+            }
+            if(upcomingMatches.contains(match)) {
+            upcomingMatches.remove(match);
             }
 
         } else if (m.matchdate.after(now)) {
@@ -151,8 +155,17 @@ protected void FilterMatchByTime(Match match) {
             } catch (NullPointerException exp) {
                 System.out.println("Null");
             }
+            if(pastMatches.contains(match)) {
+                pastMatches.remove(match);
+            }
         } else {
             System.out.println("Match time:now");
+            if(upcomingMatches.contains(match)) {
+                upcomingMatches.remove(match);
+            }
+            if(pastMatches.contains(match)) {
+                pastMatches.remove(match);
+            }
         }
     }
 }

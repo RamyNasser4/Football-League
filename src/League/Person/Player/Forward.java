@@ -3,11 +3,6 @@ package League.Person.Player;
 public class Forward extends Player {
     protected int shots;
 
-    public Forward() {
-        super();
-        this.shots = 0;
-    }
-
 
     public Forward(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int shots){
     super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);

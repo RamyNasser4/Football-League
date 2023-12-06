@@ -3,20 +3,9 @@ package League.Person.Player;
 public class Midfielder extends Player {
     protected int keyPasses;
 
-    public Midfielder() {
-        super();
-        this.keyPasses = 0;
-
-    }
-
-    public Midfielder(int keyPasses) {
-        this.keyPasses = keyPasses;
-    }
-
     public Midfielder(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards, int keyPasses) {
         super(playerName, playerAge, playerSalary, playerTeam, playerNumber, playerScore, playerRank, goalsScored, assists, noOfYellowCards, noOfRedCards);
         this.keyPasses = keyPasses;
-
     }
 
     public Midfielder(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards) {

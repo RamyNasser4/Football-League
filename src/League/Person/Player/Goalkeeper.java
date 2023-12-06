@@ -3,18 +3,6 @@ package League.Person.Player;
 public class Goalkeeper extends Player {
     protected int saves;
     protected int cleanSheets;
-    public Goalkeeper() {
-        super();
-        this.saves = 0;
-        this.cleanSheets = 0;
-    }
-
-    public Goalkeeper(int saves, int cleanSheets) {
-        super();
-        this.saves = saves;
-        this.cleanSheets = cleanSheets;
-    }
-
     public Goalkeeper(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int saves,int cleanSheets){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);
         this.saves = saves;
         this.cleanSheets = cleanSheets;

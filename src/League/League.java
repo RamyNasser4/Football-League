@@ -1,6 +1,7 @@
 package League;
 
 import League.Match.Match;
+import League.Person.Coach.Coach;
 import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Team.Team;
@@ -38,10 +39,23 @@ public class League {
         this(matches, null);
     }
 
-    public League() {
+   /* public League() {
         this(null);
+    }*/
+    public League (League League) {
+        try {
+            this.matchCount = League.matchCount;
+            this.DATE = League.DATE;
+            this.matches = new ArrayList<>(League.matches);
+            try {
+                this.teams = new ArrayList<>(League.teams);
+            } catch (NullPointerException exp) {
+                System.out.println("Null team");
+            }
+        } catch (NullPointerException exp) {
+            System.out.println("Null object");
+        }
     }
-
     public Player[] DisplayTopScorers() {
             Player[] topScorers = new Player[3];
             for (int i = 0; i < 3; i++) {

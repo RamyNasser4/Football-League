@@ -1,9 +1,11 @@
 package League.Match;
+import java.lang.*;
 
 import League.Person.Referee.Referee;
 import League.Stadium.Stadium;
 import League.Team.Team;
 
+import java.sql.Ref;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -14,9 +16,11 @@ public class Match {
     private final int Match_ID;
     public String matchDate;
     public Date matchdate;
+    public int team1score;
+    public int team2score;
     SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
     //Constructors
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
+    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score, Stadium Stadium,int team1score,int team2score) {
         Match_ID = ++noOfMatches;
         this.Teams = new Team[2];
         try {
@@ -38,29 +42,36 @@ public class Match {
         this.matchdate = matchdate;
         this.Score = Score;
         this.Stadium = Stadium;
+        this.team1score=team1score;
+        this.team2score=team2score;
     }
     public Team[] Teams;
     public Referee Referee;
     public String Score;
     public Stadium Stadium;
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score) {
-        this(matchDate, matchdate, Teams, Referee, Score, null);
+    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score,Stadium Stadium, int team1score) {
+        this(matchDate, matchdate, Teams, Referee, Score, Stadium,team1score,0);
+    }
+
+    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee,String Score,Stadium Stadium) {
+        this(matchDate, matchdate, Teams, Referee, Score,Stadium,0);
+    }
+
+    public Match(String matchDate, Date matchdate, Team[] Teams,Referee Referee,String Score) {
+        this(matchDate, matchdate, Teams, Referee,Score,null);
     }
 
     public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee) {
-        this(matchDate, matchdate, Teams, Referee, null);
+        this(matchDate, matchdate, Teams,Referee,null);
     }
 
-    public Match(String matchDate, Date matchdate, Team[] Teams) {
-        this(matchDate, matchdate, Teams, null);
+    public Match(String matchDate,Date matchdate,Team[] Teams) {
+        this(matchDate, matchdate,Teams , null);
     }
-
-    public Match(String matchDate, Date matchdate) {
-        this(matchDate, matchdate, null);
-    }
-
-    public Match(String matchDate) {
-        this(matchDate, null);
+    public Match (String matchDate,Date matchdate){this(matchDate,matchdate,null);}
+    public Match(String matchDate){this(matchDate,null);}
+    public Match() {
+        this("");
     }
 
     public Match(Match Match){
@@ -84,9 +95,7 @@ public class Match {
             System.out.println("Null");
         }
     }
-    public Match() {
-        this("");
-    }
+
 
    //Function to be called when setting date in constructor
     public void StringToDate() {
@@ -178,5 +187,24 @@ public class Match {
                     + "Pitch Referee:" + Referee.Name + "\n" + "Stadium" + Stadium.getStadiumName()
                     + "Final Result is:" + Score);
         }
+    }
+    //Function to Add Points for the teams
+    public void AddPoints(){
+        if (team1score==team2score){
+            Teams[0].setTotal_score(Teams[0].getTotal_score()+1);
+            Teams[1].setTotal_score(Teams[1].getTotal_score()+1);
+        }
+       else if (team1score>team2score){
+            Teams[0].setTotal_score(Teams[0].getTotal_score()+3);
+
+        }
+       else {
+            Teams[1].setTotal_score(Teams[1].getTotal_score()+3);
+        }
+    }
+    public void TeamsScoreToString(){
+    String team1=Integer.toString(team1score);
+    String team2=Integer.toString(team2score);
+    Score= team1+" "+team2;
     }
 }

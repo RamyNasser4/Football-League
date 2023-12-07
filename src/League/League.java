@@ -15,31 +15,35 @@ import java.util.Collections;
 import java.util.Date;
 
 public class League {
+    //eg 2023/2024
+    public String season;
     public int matchCount;
     public Date DATE;
     ArrayList<Match> matches;
     ArrayList<Team> teams;
     ArrayList<Player> searchByNameAndTeam;
-    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date) {
+    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date,String season) {
         this.matches = new ArrayList<>(matches);
         this.teams = new ArrayList<>(teams);
         this.matchCount = matchCount;
         this.DATE = Date;
+        this.season=season;
     }
 
+    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount,Date Date) {
+        this(matches, teams, matchCount, Date,null);
+    }
     public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount) {
-        this(matches, teams, matchCount, null);
+        this(matches, teams, matchCount,null);
     }
-
     public League(ArrayList<Match> matches, ArrayList<Team> teams) {
         this(matches, teams, 0);
     }
-
     public League(ArrayList<Match> matches) {
         this(matches, null);
     }
 
-   /* public League() {
+    /*public League() {
         this(null);
     }*/
     public League (League League) {

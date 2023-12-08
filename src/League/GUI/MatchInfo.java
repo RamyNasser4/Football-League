@@ -19,7 +19,7 @@ public class MatchInfo extends JPanel {
         JPanel panelLabel3 = createPanel("REFEREE", Color.gray);
         JPanel panelLabel4 = createPanel("STADIUM", Color.gray);
 
-        Font bigFont = new Font(Font.SANS_SERIF, Font.BOLD, 40);
+        Font bigFont = new Font(Font.SANS_SERIF, Font.BOLD, 60);
         JLabel label1 = (JLabel) panelLabel1.getComponent(0);
         label1.setFont(bigFont);
 
@@ -39,7 +39,7 @@ public class MatchInfo extends JPanel {
         JPanel panel = new JPanel(new BorderLayout());
         JLabel label = new JLabel(labelText);
 
-        Font boldFont = new Font(Font.SANS_SERIF, Font.BOLD, 20);
+        Font boldFont = new Font(Font.SANS_SERIF, Font.BOLD, 40);
         Color whiteColor = Color.WHITE;
 
         label.setFont(boldFont);

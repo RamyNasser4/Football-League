@@ -20,8 +20,8 @@ public class League {
     public int matchCount;
     public Date DATE;
     ArrayList<Match> matches;
-   public static  ArrayList<Team> teams;
-
+   public ArrayList<Team> teams;
+   public static ArrayList <String> teamnames;
     ArrayList<Player> searchByNameAndTeam;
     public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date,String season) {
         this.matches = new ArrayList<>(matches);
@@ -213,6 +213,9 @@ protected void SearchByNameAndTeam(String teamname,String playername){
     for(Player p: searchByNameAndTeam){
         //to be replaced in gui
         System.out.println(p);
+    }
+    for(Team t:teams){
+        this.teamnames.add(t.Name);
     }
     }
 

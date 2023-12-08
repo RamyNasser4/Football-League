@@ -31,7 +31,7 @@ public class MatchInfo extends JPanel {
         this.add(panel1);
         this.add(panel2);
         this.add(panel3);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     // create panel with label

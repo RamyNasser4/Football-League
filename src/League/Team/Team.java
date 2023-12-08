@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Team  {
     public String Name;
-    private static int noOfTeams = 0;
+    protected static int noOfTeams = 0;
     //can be final
     protected int Team_ID;
     protected Player Captain;
@@ -19,6 +19,7 @@ public class Team  {
     protected int noOfPlayers;
     protected int noOfGoalkeepers;
     protected ArrayList<Match> Matches;
+
 
     public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score, int noOfPlayers,int noOfGoalkeepers) {
         ++noOfTeams;

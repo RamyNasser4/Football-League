@@ -2,6 +2,7 @@ package League.Team;
 
 import League.Person.Coach.Coach;
 import League.Match.Match;
+import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 
 import java.util.ArrayList;
@@ -16,9 +17,10 @@ public class Team  {
     public ArrayList<Player> Players;
     protected int Total_score;
     protected int noOfPlayers;
+    protected int noOfGoalkeepers;
     protected ArrayList<Match> Matches;
 
-    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score, int noOfPlayers) {
+    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score, int noOfPlayers,int noOfGoalkeepers) {
         ++noOfTeams;
         this.Name = Name;
         this.Team_ID = noOfTeams;
@@ -36,6 +38,10 @@ public class Team  {
         this.Matches = new ArrayList<>(Matches);
         this.Total_score = Total_score;
         this.noOfPlayers = noOfPlayers;
+        this.noOfGoalkeepers = noOfGoalkeepers;
+    }
+    public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score, int noOfPlayers) {
+        this(Name, Players, Captain,Coach,Matches, Total_score, noOfPlayers,0);
     }
 
     public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach, ArrayList<Match> Matches, int Total_score) {
@@ -105,7 +111,6 @@ public class Team  {
 
     public ArrayList<Player> getPlayers() {
         return Players;
-
     }
 
     public void setPlayers(ArrayList<Player> Players) {
@@ -124,6 +129,19 @@ public class Team  {
             System.out.println("Null captain");
         }
     }
+
+    public Coach getCoach() {
+        return Coach;
+    }
+
+    public void setCoach(Coach coach) {
+        try {
+            Coach = coach;
+        }catch (NullPointerException exp){
+            System.out.println("Null coach");
+        }
+    }
+
     public int getTotal_score() {
         return Total_score;
     }
@@ -169,10 +187,23 @@ public class Team  {
 
     public void addPlayer(Player player) throws NullPointerException {
         try {
-            Players.add(new Player(player));
-            ++noOfPlayers;
+            if(noOfPlayers<25){
+                if(player instanceof Goalkeeper && noOfGoalkeepers < 3){
+                    Players.add(new Player(player));
+                    ++noOfPlayers;
+                }else if(!(player instanceof Goalkeeper)){
+                    Players.add(new Player(player));
+                    ++noOfPlayers;
+                }else{
+                    throw new Exception("Maximum capacity of goalkeepers reached");
+                }
+            }else {
+                throw new Exception("Maximum capacity of players reached");
+            }
         } catch (NullPointerException exp) {
             System.out.println("Null");
+        }catch (Exception exp){
+            System.out.println(exp.getMessage());
         }
     }
     public void deletePlayer(int PlayerID) {

@@ -15,19 +15,21 @@ import League.League;
    // String comboBoxChoice="GoalKeeper";
 
 public GUI() {
-
-    this.setSize(1400, 900);
+    this.setSize(1280, 720);
     this.setResizable(false);
     this.setTitle("Football League");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLocationRelativeTo(null);
-    this.setLayout(null);
+    this.setLayout(new BorderLayout());
+    this.setVisible(true);
+    SideBar sideBar = new SideBar();
+    this.getContentPane().add(sideBar,BorderLayout.WEST);
     //place logo
     //  ImageIcon appicon= new ImageIcon("");
     // this.setIconImage(appicon.getImage());
     //Add Player
 
-     int s=0;
+     /*int s=0;
      try{
          s=League.teams.size();
          teamsComboBox = new JComboBox(League.teams.toArray());
@@ -92,7 +94,7 @@ public GUI() {
          warning.setFont((new Font("Arial", Font.BOLD, 70)));
          p1.add(warning);
          this.add(warning);
-     }
+     }*/
 
 
 

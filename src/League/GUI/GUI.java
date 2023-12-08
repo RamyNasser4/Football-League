@@ -21,7 +21,9 @@ public GUI() {
     this.setLayout(new BorderLayout());
     this.setVisible(true);
     SideBar sideBar = new SideBar();
+    MatchInfo MatchInfo= new MatchInfo();
     this.getContentPane().add(sideBar,BorderLayout.WEST);
+    this.add(MatchInfo);
     //place logo
     //  ImageIcon appicon= new ImageIcon("");
     // this.setIconImage(appicon.getImage());

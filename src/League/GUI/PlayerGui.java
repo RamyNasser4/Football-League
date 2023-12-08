@@ -26,8 +26,13 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
+            panel1.setVisible(false);
+            panel2.setVisible(false);
+            panel3.setVisible(false);
+              AddPlayerGui();
             }
+
+
 
         });
         //Edit Player Button
@@ -41,7 +46,10 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
+                panel1.setVisible(false);
+                panel2.setVisible(false);
+                panel3.setVisible(false);
+                EditPlayerGui();
             }
 
         });
@@ -55,7 +63,10 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
+                panel1.setVisible(false);
+                panel2.setVisible(false);
+                panel3.setVisible(false);
+                DeletePlayerGui();
             }
 
         });
@@ -69,13 +80,17 @@ public class PlayerGui extends JPanel implements ActionListener {
         this.add(panel2);
         this.add(panel3);
         this.setVisible(true);
-      /*  JComboBox comboBox;
+
+    }
+public void AddPlayerGui(){
+
+         JComboBox comboBox;
         JComboBox teamsComboBox;
         JButton comboBoxBtn;
         JLabel checkBoxLabel, titleLabel, nameLabel, scoreLabel, rankLabel, teamLabel, ageLabel, salaryLabel, numberLabel;
         JTextField scoreField,rankField,teamField,nameField,ageField,salaryField,numberField;
         int s = 0;
-     try
+    try
 
         {
           s = League.teamnames.size();
@@ -155,15 +170,20 @@ public class PlayerGui extends JPanel implements ActionListener {
         JLabel("choose player position");
      checkBoxLabel.setBounds(820,530,200,20);
      this.add(checkBoxLabel);
-*/
+
+}
+private void EditPlayerGui(){
+
+}
+private void DeletePlayerGui(){
+
     }
 
     @Override
    public void actionPerformed(ActionEvent e) {
- //  if(e.getSource() == panel1Button){
 
    }
-  //  }
+
 
 }
 

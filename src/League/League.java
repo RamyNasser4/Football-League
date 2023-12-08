@@ -20,7 +20,8 @@ public class League {
     public int matchCount;
     public Date DATE;
     ArrayList<Match> matches;
-    ArrayList<Team> teams;
+   public static  ArrayList<Team> teams;
+
     ArrayList<Player> searchByNameAndTeam;
     public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date,String season) {
         this.matches = new ArrayList<>(matches);

@@ -1,5 +1,7 @@
 package League.GUI;
 import League.*;
+import League.Person.Player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -9,13 +11,15 @@ import java.awt.event.ActionListener;
 public class PlayerGui extends JPanel implements ActionListener {
 
     public  PlayerGui() {
-        this.setPreferredSize(new Dimension(980, 720));
+        AddPlayerGui();
+
+       /* this.setPreferredSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(3, 1));
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
         JPanel panel2 = new JPanel(new GridLayout(1, 1));
         JPanel panel3 = new JPanel(new GridLayout(1, 1));
         ImageIcon addPlayerIcon =new ImageIcon("src/Assets/add-player.png");
-
+        this.setVisible(true);
         //Add Player button
         JButton panel1Button=new JButton("Add Player");
         panel1Button.setFocusable(false);
@@ -26,10 +30,11 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-            panel1.setVisible(false);
-            panel2.setVisible(false);
-            panel3.setVisible(false);
-              AddPlayerGui();
+                panel1.setVisible(false);
+                panel2.setVisible(false);
+                panel3.setVisible(false);
+                 AddPlayerGui();
+
             }
 
 
@@ -79,104 +84,120 @@ public class PlayerGui extends JPanel implements ActionListener {
         this.add(panel1);
         this.add(panel2);
         this.add(panel3);
-        this.setVisible(true);
+*/
 
     }
 public void AddPlayerGui(){
 
-         JComboBox comboBox;
+    this.setPreferredSize(new Dimension(980, 720));
+    this.setLayout(new GridLayout(2, 1));
+    JPanel titlepanel = new JPanel(new GridLayout(5, 1,0,30));
+    JPanel contentPanel=new JPanel(new GridLayout(1, 1));
+    JPanel panel2 = new JPanel(new GridLayout(4, 1,0,50));
+    JLabel titleLabel = new JLabel("Add Player");
+    titleLabel.setFont(new Font("Comic Sans",Font.BOLD,40));
+    titleLabel.setVerticalAlignment(JLabel.TOP);
+    titleLabel.setHorizontalAlignment(JLabel.CENTER);
+    JLabel titleLabel1 = new JLabel("Add Player");
+    titlepanel.add(titleLabel);
+    this.add(titlepanel);
+   this.add(contentPanel);
+
+
+    contentPanel.add(panel2);
+
+
         JComboBox teamsComboBox;
-        JButton comboBoxBtn;
-        JLabel checkBoxLabel, titleLabel, nameLabel, scoreLabel, rankLabel, teamLabel, ageLabel, salaryLabel, numberLabel;
-        JTextField scoreField,rankField,teamField,nameField,ageField,salaryField,numberField;
+
         int s = 0;
     try
 
-        {
-          s = League.teamnames.size();
-            teamsComboBox = new JComboBox(League.teamnames.toArray());
-           teamsComboBox.setBounds(300, 350, 100, 20);
+       {
+         s = League.teamnames.size();
+    JPanel comboboxpanel = new JPanel(new GridLayout(1, 1));
+    JLabel comboBoxLabel = new JLabel("Team");
+    String k[]={"1","2","3"};
+            teamsComboBox = new JComboBox(k);
+            comboboxpanel.add(comboBoxLabel);
+            comboboxpanel.add(teamsComboBox);
             this.setVisible(true);
-            this.add(teamsComboBox);
+            titlepanel.add(comboboxpanel);
 
-        }
+       }
      catch(NullPointerException ignored)
-
        {
 
     }
-     if(s!=0)
+    if(s!=0)
+    {
+    JPanel namepanel = new JPanel(new GridLayout(1, 1));
+       JLabel nameLabel = new JLabel("Name");
+       namepanel.add(nameLabel);
+       JTextField nameFeild = new JTextField("");
+        namepanel.add(nameFeild);
+        titlepanel.add(namepanel);
 
-        {
-            String positions[] = {"GoalKeeper", "Defender", "Midfielder", "Forward"};
-            checkBoxLabel = new JLabel("choose player position");
-            checkBoxLabel.setBounds(820, 300, 200, 20);
-            this.add(checkBoxLabel);
-            comboBox = new JComboBox(positions);
-            comboBox.setBounds(820, 350, 100, 20);
-            this.setVisible(true);
-            this.add(comboBox);
-            titleLabel = new JLabel("Add Teams Player");
-            titleLabel.setVisible(true);
-            titleLabel.setBounds(600, 50, 200, 20);
-            this.add(titleLabel);
+        JPanel agepanel = new JPanel(new GridLayout(1, 1));
+        JLabel ageLabel = new JLabel("Age");
+        agepanel.add(ageLabel);
+        JTextField ageFeild = new JTextField("");
+        agepanel.add(ageFeild);
+        titlepanel.add(agepanel);
 
-            comboBoxBtn = new JButton("Next");
-            comboBoxBtn.setFont(new Font("Arial", Font.BOLD, 30));
-            comboBoxBtn.setBounds(600, 800, 250, 30);
-            this.add(comboBoxBtn);
-            comboBoxBtn.addActionListener(this);
-            scoreField = new JTextField("Enter Player score here");
-            rankField = new JTextField("Enter Player Rank here");
-            //to be team drop down
-            teamField = new JTextField("Enter Player Team here");
-            nameField = new JTextField("Enter Player Name here");
-            ageField = new JTextField("Enter Player Age here");
-            salaryField = new JTextField("Enter Player salary here");
-            numberField = new JTextField("Enter Player number here");
-            this.add(teamField);
-            this.add(nameField);
-            this.add(rankField);
-            this.add(scoreField);
-            this.add(ageField);
-            this.add(salaryField);
-            this.add(numberField);
-            // nameLabel =new JLabel("Player Name");
-            // nameLabel.setBounds(200,100,200,20);
-            //this.add(nameLabel);
-            nameField.setBounds(500, 30, 200, 20);
-            ageField.setBounds(500, 130, 200, 20);
-            salaryField.setBounds(500, 230, 200, 20);
-            numberField.setBounds(500, 330, 200, 20);
-            teamField.setBounds(820, 30, 200, 20);
-            rankField.setBounds(820, 130, 200, 20);
-            scoreField.setBounds(820, 230, 200, 20);
+    JPanel salarypanel = new JPanel(new GridLayout(1, 1));
+    JLabel salaryLabel = new JLabel("Salary");
+    salarypanel.add(salaryLabel);
+    JTextField salaryFeild = new JTextField("");
+    salarypanel.add(salaryFeild);
+    titlepanel.add(salarypanel);
+
+    JPanel rankpanel = new JPanel(new GridLayout(1, 1));
+    JLabel rankLabel = new JLabel("Rank");
+    rankpanel.add(rankLabel);
+    JTextField rankFeild = new JTextField("");
+    rankpanel.add(rankFeild);
+    panel2.add(rankpanel);
+
+    JPanel scorepanel = new JPanel(new GridLayout(1, 1));
+    JLabel scoreLabel = new JLabel("Score");
+    scorepanel.add(scoreLabel);
+    JTextField scoreFeild = new JTextField("");
+    scorepanel.add(scoreFeild);
+    panel2.add(scorepanel);
+
+    JPanel positionspanel = new JPanel(new GridLayout(1, 1));
+    JLabel positionsLabel = new JLabel("Position");
+    positionspanel.add(positionsLabel);
+    String positions[]={"GoalKeeper","Defender","Midfielder","Forward"};
+    JComboBox positionsComboBox =new JComboBox(positions);
+    positionspanel.add(positionsComboBox);
+    panel2.add(positionspanel);
+
+    JButton saveButton=new JButton("Save");
+    saveButton.setFocusable(false);
+    saveButton.setFont(new Font("Comic Sans",Font.BOLD,20));
+    panel2.add(saveButton);
         }
      else
 
-        {
+       {
 
-            JPanel p1 = new JPanel();
-            JLabel warning = new JLabel("Add team First");
-            warning.setBounds(350, 130, 500, 50);
-            warning.setFont((new Font("Arial", Font.BOLD, 70)));
-            p1.add(warning);
-            this.add(warning);
+
         }
 
 
-        checkBoxLabel=new
+// validation
+    //else
+  //add arguments from text inputs
+    //  Player p=new Player();
 
-        JLabel("choose player position");
-     checkBoxLabel.setBounds(820,530,200,20);
-     this.add(checkBoxLabel);
 
 }
 private void EditPlayerGui(){
 
 }
 private void DeletePlayerGui(){
-
+Player.totalPlayers--;
     }
 
     @Override

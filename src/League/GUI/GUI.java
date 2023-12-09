@@ -27,13 +27,16 @@ public GUI() {
     PlayerGui PlayerGui = new PlayerGui();
     Matches Matches = new Matches();
     this.add(PlayerGui);
+    this.add(Matches);
+    this.add(MatchInfo);
+//    Standings Standings = new Standings();
+//
+//    this.add(Standings);
 
-   // this.add(Matches);
-   // this.add(MatchInfo);
     //place logo
     //  ImageIcon appicon= new ImageIcon("");
     // this.setIconImage(appicon.getImage());
-
+    //Add Player
 
 
 

@@ -13,9 +13,9 @@ public class SideBarButton extends JButton implements MouseListener {
         this.setMaximumSize(new Dimension(Integer.MAX_VALUE,this.getPreferredSize().height));
         this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,20));
         this.addMouseListener(this);
-        this.setBackground(Color.black);
+        this.setBackground(new Color(0x2a2c2f));
         this.setFocusable(false);
-        this.setForeground(new Color(0xFFD700));
+        this.setForeground(Color.white);
         this.setVisible(true);
     }
 
@@ -36,11 +36,11 @@ public class SideBarButton extends JButton implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        this.setBackground(new Color(0x2a2c2f));
+        this.setBackground(Color.black);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        this.setBackground(Color.black);
+        this.setBackground(new Color(0x2a2c2f));
     }
 }

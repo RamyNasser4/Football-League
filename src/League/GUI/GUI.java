@@ -20,19 +20,18 @@ public GUI() {
     this.setLocationRelativeTo(null);
     this.setLayout(new BorderLayout());
     this.setVisible(true);
-    SideBar sideBar = new SideBar();
-    MatchInfo MatchInfo= new MatchInfo();
+    /*PlayerGui PlayerGui = new PlayerGui();
+    Matches Matches = new Matches(this);*/
+    MainPanel main = new MainPanel();
+    SideBar sideBar = new SideBar(main,main.cardLayout);
+    //MatchInfo MatchInfo= new MatchInfo();
     this.getContentPane().add(sideBar,BorderLayout.WEST);
-    this.add(MatchInfo);
-    PlayerGui PlayerGui = new PlayerGui();
-    Matches Matches = new Matches();
-    this.add(PlayerGui);
-    this.add(Matches);
-    this.add(MatchInfo);
-//    Standings Standings = new Standings();
-//
-//    this.add(Standings);
+    this.add(main);
+    //this.add(MatchInfo);
 
+    //this.add(PlayerGui);
+    //this.add(Matches);
+    //this.add(MatchInfo);
     //place logo
     //  ImageIcon appicon= new ImageIcon("");
     // this.setIconImage(appicon.getImage());

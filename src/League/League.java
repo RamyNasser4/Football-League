@@ -189,7 +189,7 @@ protected void FilterMatchByTime(Match match) {
     }
 }
 //when called pass team.name and player.name
-protected void SearchByNameAndTeam(String teamname,String playername){
+public void SearchByNameAndTeam(String teamname,String playername){
     searchByNameAndTeam.clear();
         for (Team t: teams){
             if(teamname.equals(t.Name)){
@@ -210,10 +210,7 @@ protected void SearchByNameAndTeam(String teamname,String playername){
     else{
         System.out.println(resultCount +" results found");
     }
-    for(Player p: searchByNameAndTeam){
-        //to be replaced in gui
-        System.out.println(p);
-    }
+
     for(Team t:teams){
         this.teamnames.add(t.Name);
     }

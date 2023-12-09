@@ -6,14 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class PlayerGui extends JPanel implements ActionListener {
 
     public  PlayerGui() {
-        AddPlayerGui();
 
-       /* this.setPreferredSize(new Dimension(980, 720));
+        this.setPreferredSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(3, 1));
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
         JPanel panel2 = new JPanel(new GridLayout(1, 1));
@@ -84,10 +83,12 @@ public class PlayerGui extends JPanel implements ActionListener {
         this.add(panel1);
         this.add(panel2);
         this.add(panel3);
-*/
+
 
     }
 public void AddPlayerGui(){
+
+
 
     this.setPreferredSize(new Dimension(980, 720));
     this.setLayout(new GridLayout(2, 1));
@@ -98,15 +99,12 @@ public void AddPlayerGui(){
     titleLabel.setFont(new Font("Comic Sans",Font.BOLD,40));
     titleLabel.setVerticalAlignment(JLabel.TOP);
     titleLabel.setHorizontalAlignment(JLabel.CENTER);
-    JLabel titleLabel1 = new JLabel("Add Player");
     titlepanel.add(titleLabel);
     this.add(titlepanel);
-   this.add(contentPanel);
+    this.add(contentPanel);
 
 
     contentPanel.add(panel2);
-
-
         JComboBox teamsComboBox;
 
         int s = 0;
@@ -126,7 +124,8 @@ public void AddPlayerGui(){
        }
      catch(NullPointerException ignored)
        {
-
+     JOptionPane.showMessageDialog(null,"Add Team First then you can add Player");
+     titlepanel.setVisible(false);
    }
     if(s!=0)
     {

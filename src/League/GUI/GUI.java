@@ -25,7 +25,10 @@ public GUI() {
     this.getContentPane().add(sideBar,BorderLayout.WEST);
     this.add(MatchInfo);
     PlayerGui PlayerGui = new PlayerGui();
+    Matches Matches = new Matches();
     this.add(PlayerGui);
+    this.add(Matches);
+    this.add(MatchInfo);
     //place logo
     //  ImageIcon appicon= new ImageIcon("");
     // this.setIconImage(appicon.getImage());

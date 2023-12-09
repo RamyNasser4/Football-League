@@ -1,5 +1,6 @@
 package League.Person.Player;
 
+import League.Match.Match;
 import League.Person.Person;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Player extends Person
     protected int noOfYellowCards;
     protected int NoOfRedCards;
     public static int totalPlayers;
+
 
    public Player(String playerName,int playerAge, int playerSalary,String playerTeam,int playerNumber, double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards, int noOfRedCards){
        super(playerName,playerAge,playerSalary);
@@ -96,6 +98,7 @@ public class Player extends Person
     public int getGoalsScored() {
         return goalsScored;
     }
+
     // Set
     public void SetPlayerTeam(String playerTeam) {
         this.playerTeam = playerTeam;

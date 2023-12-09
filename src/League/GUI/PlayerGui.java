@@ -1,24 +1,23 @@
 package League.GUI;
 import League.*;
 import League.Person.Player.Player;
+import League.Team.Team;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import static League.League.teamnames;
+
 
 public class PlayerGui extends JPanel implements ActionListener {
 
-    JPanel panel1 = new JPanel(new GridLayout(1, 1));
-    JPanel panel2 = new JPanel(new GridLayout(1, 1));
-    JPanel panel3 = new JPanel(new GridLayout(1, 1));
-    ImageIcon addPlayerIcon =new ImageIcon("src/Assets/add-player.png");
-        //this.setVisible(true);
+    JComboBox teamsComboBox;
     public  PlayerGui() {
 
-      EditPlayerGui();
-     /* this.setSize(new Dimension(980, 720));
+
+      this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(3, 1));
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
         JPanel panel2 = new JPanel(new GridLayout(1, 1));
@@ -49,8 +48,10 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
-                 AddPlayerGui();
+                removeAll();  // Remove existing panels
+                AddPlayerGui();
+                revalidate(); // Ensure the layout is updated
+                repaint();    // Repaint the components
 
 
             }
@@ -63,10 +64,11 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                panel1.removeAll();
-                panel2.removeAll();
-                panel3.removeAll();
+                removeAll();
                 EditPlayerGui();
+                revalidate();
+                repaint();
+
             }
 
         });
@@ -75,8 +77,11 @@ public class PlayerGui extends JPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
+                removeAll();
                 DeletePlayerGui();
+                revalidate();
+                repaint();
+
             }
 
         });
@@ -85,11 +90,11 @@ public class PlayerGui extends JPanel implements ActionListener {
         panel1.add(panel1Button);
         panel2.add(panel2Button);
         panel3.add(panel3Button);
-        this.validate();
+
         this.add(panel1);
         this.add(panel2);
         this.add(panel3);
-*/
+
 
     }
 public void AddPlayerGui(){
@@ -112,31 +117,32 @@ public void AddPlayerGui(){
 
 
         int s = 0;
-  //  try
+    try
 
-    //  {
+      {
 
-        // s = League.teamnames.size();
-   /* JPanel comboboxpanel = new JPanel(new GridLayout(1, 1));
+         s = teamnames.size();
+    JPanel comboboxpanel = new JPanel(new GridLayout(1, 1));
     JLabel comboBoxLabel = new JLabel("Team");
     comboBoxLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
 
-    JComboBox teamsComboBox=new JComboBox ((ComboBoxModel) League.teamnames);
+     teamsComboBox=new JComboBox ((ComboBoxModel) teamnames);
 
           comboboxpanel.add(comboBoxLabel);
             comboboxpanel.add(teamsComboBox);
             this.setVisible(true);
-            titlepanel.add(comboboxpanel);*/
+            titlepanel.add(comboboxpanel);
 
-       //}
-    /* catch(NullPointerException ignored)
+       }
+     catch(NullPointerException ignored)
        {
      JOptionPane.showMessageDialog(null,"Add Team First then you can add Player");
-       teamsComboBox.addItem("null");
+     String arr[]={"null"};
+           teamsComboBox=new JComboBox (arr);
      titlepanel.setVisible(false);
-   }*/
-   // if(s==0)
-   // {
+   }
+    if(s==0)
+    {
     JPanel namepanel = new JPanel(new GridLayout(1, 1));
        JLabel nameLabel = new JLabel("Name");
        namepanel.add(nameLabel);
@@ -170,13 +176,6 @@ public void AddPlayerGui(){
     rankpanel.add(rankFeild);
     panel2.add(rankpanel);
 
-   /* JPanel scorepanel = new JPanel(new GridLayout(1, 1));
-    JLabel scoreLabel = new JLabel("Score");
-    scoreLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-    scorepanel.add(scoreLabel);
-    JTextField scoreFeild = new JTextField("");
-    scorepanel.add(scoreFeild);
-    panel2.add(scorepanel);*/
 
     JPanel positionspanel = new JPanel(new GridLayout(1, 1));
     JLabel positionsLabel = new JLabel("Position");
@@ -200,12 +199,16 @@ public void AddPlayerGui(){
                 String Salary = salaryFeild.getText();
                 String rank =rankFeild.getText();
                 String position = (String) positionsComboBox.getItemAt(positionsComboBox.getSelectedIndex());
-              /*  try{
-                    String team = (String) teamsComboBox.getItemAt(teamsComboBox.getSelectedIndex());
+                String team="null";
+                try{
+
+                       team = (String) teamsComboBox.getItemAt(teamsComboBox.getSelectedIndex());
+
+
                 }
                 catch(NullPointerException ignorable){
 
-                }*/
+                }
             // validation
                 if (name.equals("")||Age.equals("")||Salary.equals("")||rank.equals("")) {
                     JOptionPane.showMessageDialog(null, "Please fill all fields");
@@ -220,23 +223,23 @@ public void AddPlayerGui(){
                    catch(NumberFormatException e){
                        JOptionPane.showMessageDialog(null, "Enter valid number in salary and age");
                    }
-                   // Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(Salary),team);
+                   Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(Salary),team);
                 }
             }
  });
 
-       // }
-    // else
+        }
+     else
 
-      // {
+       {
 
 
-      //  }
+       }
 
 
 
 }
-private void EditPlayerGui(){
+public void EditPlayerGui(){
     this.setSize(new Dimension(980, 720));
     this.setLayout(new GridLayout(2, 1));
     JPanel titlepanel = new JPanel(new GridLayout(5, 1,0,30));
@@ -265,7 +268,7 @@ private void EditPlayerGui(){
 
     contentPanel.add(panel2);
     JPanel teampanel = new JPanel(new GridLayout(1, 1));
-    JLabel teamLabel = new JLabel("Age");
+    JLabel teamLabel = new JLabel("Team");
     teamLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
     teampanel.add(teamLabel);
     JTextField teamFeild = new JTextField("");
@@ -277,8 +280,92 @@ private void EditPlayerGui(){
     searchButton.setFocusable(false);
     searchButton.setFont(new Font("Comic Sans",Font.BOLD,20));
     panel2.add(searchButton);
+    searchButton.addActionListener(new ActionListener(){
+
+        @Override
+        public void actionPerformed(ActionEvent arg0) {
+            String name=nameFeild.getText();
+            String team =nameFeild.getText();
+
+            if(name.equals("")||team.equals("")){
+                JOptionPane.showMessageDialog(null,"Enter valid name and team");
+            }
+
+        }
+
+
+
+    });
 }
 private void DeletePlayerGui(){
+    this.setSize(new Dimension(980, 720));
+    this.setLayout(new GridLayout(2, 1));
+    JPanel titlepanel = new JPanel(new GridLayout(5, 1,0,30));
+    JPanel contentPanel=new JPanel(new GridLayout(1, 1));
+    JPanel panel2 = new JPanel(new GridLayout(4, 1,0,50));
+    JLabel titleLabel = new JLabel("Delete Player");
+    JLabel title2Label = new JLabel("Search by Team and Name");
+    title2Label.setFont(new Font("Comic Sans",Font.BOLD,15));
+    title2Label.setVerticalAlignment(JLabel.TOP);
+    title2Label.setHorizontalAlignment(JLabel.CENTER);
+    titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));
+    titleLabel.setVerticalAlignment(JLabel.TOP);
+    titleLabel.setHorizontalAlignment(JLabel.CENTER);
+    titlepanel.add(titleLabel);
+    titlepanel.add(title2Label);
+    this.add(titlepanel);
+    this.add(contentPanel);
+
+    JPanel namepanel = new JPanel(new GridLayout(1, 1));
+    JLabel nameLabel = new JLabel("Enter Name");
+    namepanel.add(nameLabel);
+    nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+    JTextField nameFeild = new JTextField("");
+    namepanel.add(nameFeild);
+    titlepanel.add(namepanel);
+
+    contentPanel.add(panel2);
+    JPanel teampanel = new JPanel(new GridLayout(1, 1));
+    JLabel teamLabel = new JLabel("Team");
+    teamLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+    teampanel.add(teamLabel);
+    JTextField teamFeild = new JTextField("");
+    teampanel.add(teamFeild);
+    titlepanel.add(teampanel);
+
+
+    JButton searchButton=new JButton("Search");
+    searchButton.setFocusable(false);
+    searchButton.setFont(new Font("Comic Sans",Font.BOLD,20));
+    panel2.add(searchButton);
+    searchButton.addActionListener(new ActionListener(){
+
+        @Override
+        public void actionPerformed(ActionEvent arg0) {
+            String name=nameFeild.getText();
+            String team =nameFeild.getText();
+            boolean found=false;
+            try {
+                for (String s : teamnames) {
+                    if (s.equals(team)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    JOptionPane.showMessageDialog(null, "Team not found");
+                }
+            }
+            catch(NullPointerException exp){
+                JOptionPane.showMessageDialog(null,"No teams Exist");
+            }
+            if(name.equals("")||team.equals("")){
+                JOptionPane.showMessageDialog(null,"Enter valid name and team");
+            }
+        }
+
+    });
 Player.totalPlayers--;
     }
 

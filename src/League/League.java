@@ -22,7 +22,7 @@ public class League {
     ArrayList<Match> matches;
    public ArrayList<Team> teams;
    public static ArrayList <String> teamnames;
-    ArrayList<Player> searchByNameAndTeam;
+    public ArrayList<Player> searchByNameAndTeam;
     public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date,String season) {
         this.matches = new ArrayList<>(matches);
         this.teams = new ArrayList<>(teams);
@@ -188,8 +188,8 @@ protected void FilterMatchByTime(Match match) {
         }
     }
 }
-//when called pass team.name and player.name
-public void SearchByNameAndTeam(String teamname,String playername){
+
+public void SearchByNameAndTeam(String teamname, String playername){
     searchByNameAndTeam.clear();
         for (Team t: teams){
             if(teamname.equals(t.Name)){

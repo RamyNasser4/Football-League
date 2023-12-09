@@ -112,12 +112,12 @@ public void AddPlayerGui(){
         int s = 0;
     try
 
-       {
+      {
          s = League.teamnames.size();
     JPanel comboboxpanel = new JPanel(new GridLayout(1, 1));
     JLabel comboBoxLabel = new JLabel("Team");
-    String k[]={"1","2","3"};
-            teamsComboBox = new JComboBox(k);
+    comboBoxLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+            teamsComboBox = new JComboBox((ComboBoxModel) League.teamnames);
             comboboxpanel.add(comboBoxLabel);
             comboboxpanel.add(teamsComboBox);
             this.setVisible(true);
@@ -127,18 +127,20 @@ public void AddPlayerGui(){
      catch(NullPointerException ignored)
        {
 
-    }
+   }
     if(s!=0)
     {
     JPanel namepanel = new JPanel(new GridLayout(1, 1));
        JLabel nameLabel = new JLabel("Name");
        namepanel.add(nameLabel);
+       nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
        JTextField nameFeild = new JTextField("");
         namepanel.add(nameFeild);
         titlepanel.add(namepanel);
 
         JPanel agepanel = new JPanel(new GridLayout(1, 1));
         JLabel ageLabel = new JLabel("Age");
+        ageLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         agepanel.add(ageLabel);
         JTextField ageFeild = new JTextField("");
         agepanel.add(ageFeild);
@@ -146,6 +148,7 @@ public void AddPlayerGui(){
 
     JPanel salarypanel = new JPanel(new GridLayout(1, 1));
     JLabel salaryLabel = new JLabel("Salary");
+    salaryLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
     salarypanel.add(salaryLabel);
     JTextField salaryFeild = new JTextField("");
     salarypanel.add(salaryFeild);
@@ -153,6 +156,7 @@ public void AddPlayerGui(){
 
     JPanel rankpanel = new JPanel(new GridLayout(1, 1));
     JLabel rankLabel = new JLabel("Rank");
+    rankLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
     rankpanel.add(rankLabel);
     JTextField rankFeild = new JTextField("");
     rankpanel.add(rankFeild);
@@ -160,6 +164,7 @@ public void AddPlayerGui(){
 
     JPanel scorepanel = new JPanel(new GridLayout(1, 1));
     JLabel scoreLabel = new JLabel("Score");
+    scoreLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
     scorepanel.add(scoreLabel);
     JTextField scoreFeild = new JTextField("");
     scorepanel.add(scoreFeild);
@@ -167,6 +172,7 @@ public void AddPlayerGui(){
 
     JPanel positionspanel = new JPanel(new GridLayout(1, 1));
     JLabel positionsLabel = new JLabel("Position");
+    positionsLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
     positionspanel.add(positionsLabel);
     String positions[]={"GoalKeeper","Defender","Midfielder","Forward"};
     JComboBox positionsComboBox =new JComboBox(positions);

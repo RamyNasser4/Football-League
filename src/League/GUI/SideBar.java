@@ -4,6 +4,8 @@ import League.GUI.Components.SideBarButton;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SideBar extends JPanel {
     public SideBar(){
@@ -14,9 +16,12 @@ public class SideBar extends JPanel {
         SideBarButton matches = new SideBarButton("Matches");
         SideBarButton teams = new SideBarButton("Teams");
         SideBarButton players = new SideBarButton("Players");
-        this.add(matches);
+        SideBarButton standings = new SideBarButton("Standings");
+
+                this.add(matches);
         this.add(teams);
         this.add(players);
+        this.add(standings);
         this.setVisible(true);
     }
 }

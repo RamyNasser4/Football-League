@@ -20,9 +20,9 @@ public class League {
     public int matchCount;
     public Date DATE;
     ArrayList<Match> matches;
-   public ArrayList<Team> teams;
+   public static ArrayList<Team> teams;
    public static ArrayList <String> teamnames;
-    public ArrayList<Player> searchByNameAndTeam;
+    public static ArrayList<Player> searchByNameAndTeam;
     public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date,String season) {
         this.matches = new ArrayList<>(matches);
         this.teams = new ArrayList<>(teams);
@@ -189,7 +189,7 @@ protected void FilterMatchByTime(Match match) {
     }
 }
 
-public void SearchByNameAndTeam(String teamname, String playername){
+public static void SearchByNameAndTeam(String teamname, String playername){
     searchByNameAndTeam.clear();
         for (Team t: teams){
             if(teamname.equals(t.Name)){
@@ -212,7 +212,7 @@ public void SearchByNameAndTeam(String teamname, String playername){
     }
 
     for(Team t:teams){
-        this.teamnames.add(t.Name);
+        teamnames.add(t.Name);
     }
     }
 

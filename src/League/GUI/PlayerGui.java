@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import static League.League.searchByNameAndTeam;
 import static League.League.teamnames;
 
 
@@ -138,10 +139,11 @@ public void AddPlayerGui(){
        {
      JOptionPane.showMessageDialog(null,"Add Team First then you can add Player");
      String arr[]={"null"};
-           teamsComboBox=new JComboBox (arr);
-     titlepanel.setVisible(false);
+     teamsComboBox=new JComboBox (arr);
+
+     s=0;
    }
-    if(s==0)
+    if(s!=0)
     {
     JPanel namepanel = new JPanel(new GridLayout(1, 1));
        JLabel nameLabel = new JLabel("Name");
@@ -290,7 +292,14 @@ public void EditPlayerGui(){
             if(name.equals("")||team.equals("")){
                 JOptionPane.showMessageDialog(null,"Enter valid name and team");
             }
-
+            else {
+                League.SearchByNameAndTeam(name,team);
+                Player p=new Player(searchByNameAndTeam.getFirst());
+                JLabel select =new JLabel("Select Values to edit");
+                JButton serachValue = new JButton(p.Name +" "+p.Age+" "+p.Salary);
+                panel2.add(serachValue);
+                panel2.add(select);
+            }
         }
 
 
@@ -362,6 +371,27 @@ private void DeletePlayerGui(){
             }
             if(name.equals("")||team.equals("")){
                 JOptionPane.showMessageDialog(null,"Enter valid name and team");
+            }
+            else{
+                League.SearchByNameAndTeam(name,team);
+               try{ Player p=new Player(searchByNameAndTeam.getFirst());
+
+                JLabel select =new JLabel("Select Values to delete");
+                JButton serachValue = new JButton(p.Name +" "+p.Age+" "+p.Salary);
+                panel2.add(serachValue);
+                panel2.add(select);
+                serachValue.addActionListener(new ActionListener() {
+
+               @Override
+               public void actionPerformed(ActionEvent arg0) {
+                   searchByNameAndTeam.remove(0);
+               }
+                });}
+               catch(NullPointerException exp){
+                   JOptionPane.showMessageDialog(null,"No results Found");
+               }
+
+
             }
         }
 

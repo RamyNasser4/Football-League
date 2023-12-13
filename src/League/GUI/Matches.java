@@ -7,7 +7,6 @@ import League.Match.Match;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,11 +45,11 @@ public class Matches extends JPanel implements ActionListener {
         JLabel upcoming = new JLabel("Upcoming Matches");
         upcoming.setForeground(Color.white);
         upcoming.setBackground(new Color(0x313741));
-        upcoming.setFont(new Font(Font.SANS_SERIF,Font.BOLD,30));
-        upcoming.setBorder(BorderFactory.createEmptyBorder(0,0,30,0));
+        upcoming.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+        upcoming.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(upcoming);
         upcoming.setAlignmentX(0.5f);
-        MatchButton match1 = new MatchButton("Team 1 vs Team 2",main,cardLayout);
+        MatchButton match1 = new MatchButton("Team 1 vs Team 2", main, cardLayout);
         this.add(match1);
     }
 

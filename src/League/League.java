@@ -46,9 +46,9 @@ public class League {
         this(matches, null);
     }
 
-    /*public League() {
-        this(null);
-    }*/
+    public League() {
+        this((ArrayList<Match>) null);
+    }
     public League(League League) {
         try {
             this.matchCount = League.matchCount;

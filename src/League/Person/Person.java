@@ -24,4 +24,17 @@ public abstract class Person {
     public int getPersonSalary() {
         return Salary;
     }
+
+    public void setPersonName(String Name) {
+         this.Name=Name;
+    }
+
+    public void setPersonAge(int Age) {
+
+       this.Age=Age;
+    }
+
+    public void setPersonSalary(int Salary) {
+        this.Salary=Salary;
+    }
 }

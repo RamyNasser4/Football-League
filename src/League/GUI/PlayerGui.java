@@ -286,22 +286,101 @@ public void EditPlayerGui(){
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            String name=nameFeild.getText();
-            String team =nameFeild.getText();
+            try {
+                String name = nameFeild.getText();
+                String team = nameFeild.getText();
 
-            if(name.equals("")||team.equals("")){
-                JOptionPane.showMessageDialog(null,"Enter valid name and team");
-            }
-            else {
-                League.SearchByNameAndTeam(name,team);
-                Player p=new Player(searchByNameAndTeam.getFirst());
-                JLabel select = new JLabel("Select Values to edit");
-                JButton serachValue = new JButton(p.Name +" "+p.Age+" "+p.Salary);
-                panel2.add(serachValue);
-                panel2.add(select);
-            }
+                if (name.equals("") || team.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Enter valid name and team");
+                } else {
+                    League.SearchByNameAndTeam(name, team);
+
+                    Player p = new Player(searchByNameAndTeam.getFirst());
+                    JLabel select = new JLabel("Select Values to edit");
+                    JButton searchValue = new JButton(p.Name + " " + p.Age + " " + p.Salary);
+                    panel2.add(searchValue);
+                    panel2.add(select);
+                    searchValue.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent arg0) {
+                            if (searchByNameAndTeam.size() >= 1) {
+                                JPanel namepanel = new JPanel(new GridLayout(1, 1));
+                                JLabel nameLabel = new JLabel("Name");
+                                namepanel.add(nameLabel);
+                                nameLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                JTextField nameFeild = new JTextField(p.GetPlayerName());
+                                namepanel.add(nameFeild);
+                                titlepanel.add(namepanel);
+
+
+                                JPanel agepanel = new JPanel(new GridLayout(1, 1));
+                                JLabel ageLabel = new JLabel("Age");
+                                ageLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                agepanel.add(ageLabel);
+                                JTextField ageFeild = new JTextField("");
+                                agepanel.add(ageFeild);
+                                titlepanel.add(agepanel);
+
+                                JPanel salarypanel = new JPanel(new GridLayout(1, 1));
+                                JLabel salaryLabel = new JLabel("Salary");
+                                salaryLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                salarypanel.add(salaryLabel);
+                                JTextField salaryFeild = new JTextField(p.getPersonSalary());
+                                salarypanel.add(salaryFeild);
+                                titlepanel.add(salarypanel);
+
+                                JPanel rankpanel = new JPanel(new GridLayout(1, 1));
+                                JLabel rankLabel = new JLabel("Rank");
+                                rankLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                rankpanel.add(rankLabel);
+                                JTextField rankFeild = new JTextField(p.GetPlayerRank());
+                                rankpanel.add(rankFeild);
+                                panel2.add(rankpanel);
+
+
+                                JPanel positionspanel = new JPanel(new GridLayout(1, 1));
+                                JLabel positionsLabel = new JLabel("Position");
+                                positionsLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                positionspanel.add(positionsLabel);
+                                String positions[] = {"GoalKeeper", "Defender", "Midfielder", "Forward"};
+                                JComboBox positionsComboBox = new JComboBox(positions);
+                                positionspanel.add(positionsComboBox);
+                                panel2.add(positionspanel);
+
+                                JButton saveButton = new JButton("Save");
+                                saveButton.setFocusable(false);
+                                saveButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                saveButton.addActionListener(new ActionListener() {
+
+                                    @Override
+                                    public void actionPerformed(ActionEvent arg0) {
+                                        if(p.getPersonName().equals(nameFeild.getText())==false){
+                                         p.setPersonName(nameFeild.getText());
+                                        }
+                                        if(p.GetPlayerAge()!=Integer.parseInt(ageFeild.getText())){
+                                            p.setPersonAge(Integer.parseInt(ageFeild.getText()));
+                                        }
+                                        if(p.GetPlayerRank()!=Integer.parseInt(rankFeild.getText())){
+                                            p.SetPlayerRank(Integer.parseInt(rankFeild.getText()));
+                                        }
+                                        if(p.GetPlayerTeam().equals(teamsComboBox.getSelectedItem())==false){
+                                        p.SetPlayerTeam((String) teamsComboBox.getSelectedItem());
+                                        }
+
+                                    }
+                                });
+                            }
+                        }
+
+                    });
+                }
         }
 
+            catch(NullPointerException exp){
+                JOptionPane.showMessageDialog(null, "Player not found");
+            }
+        }
 
 
     });

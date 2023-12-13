@@ -26,9 +26,13 @@ public class SideBar extends JPanel implements ActionListener {
         players = new SideBarButton("Players");
         standings = new SideBarButton("Standings");
         matches.addActionListener(this);
+        teams.addActionListener(this);
+        players.addActionListener(this);
+        standings.addActionListener(this);
         this.add(matches);
         this.add(teams);
         this.add(players);
+        this.add(standings);
         this.setVisible(true);
     }
 
@@ -36,6 +40,12 @@ public class SideBar extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == matches){
             cardLayout.show(main,"Matches");
+        }else if(e.getSource() == teams){
+
+        }else if(e.getSource() == players){
+            cardLayout.show(main,"PlayerGUI");
+        }else if(e.getSource() == standings){
+            cardLayout.show(main,"Standings");
         }
     }
 }

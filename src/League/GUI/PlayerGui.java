@@ -295,7 +295,7 @@ public void EditPlayerGui(){
             else {
                 League.SearchByNameAndTeam(name,team);
                 Player p=new Player(searchByNameAndTeam.getFirst());
-                JLabel select =new JLabel("Select Values to edit");
+                JLabel select = new JLabel("Select Values to edit");
                 JButton serachValue = new JButton(p.Name +" "+p.Age+" "+p.Salary);
                 panel2.add(serachValue);
                 panel2.add(select);

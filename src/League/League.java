@@ -44,9 +44,9 @@ public class League {
         this(matches, null);
     }
 
-    /*public League() {
-        this(null);
-    }*/
+    public League() {
+        this((ArrayList<Match>) null);
+    }
     public League (League League) {
         try {
             this.matchCount = League.matchCount;
@@ -135,7 +135,7 @@ public class League {
 
     }
 
-    public void Display_match_ByDateFN(String date) {
+    public ArrayList<Match> Display_match_ByDateFN(String date) {
         ArrayList<Match> matchesByDate = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -148,6 +148,7 @@ public class League {
         } catch (Throwable throwable) {
             System.out.println("Wrong input");
         }
+        return matchesByDate;
     }
 //Function to filter matches as held or to be held
 protected void FilterMatchByTime(Match match) {

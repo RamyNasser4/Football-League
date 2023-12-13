@@ -1,7 +1,7 @@
 package League.GUI;
 import League.*;
 import League.Person.Player.Player;
-import League.Team.Team;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -209,10 +209,10 @@ public void AddPlayerGui(){
 
                 }
                 catch(NullPointerException ignorable){
-
+                    JOptionPane.showMessageDialog(null, "null team");
                 }
             // validation
-                if (name.equals("")||Age.equals("")||Salary.equals("")||rank.equals("")) {
+                if (name.isEmpty()||Age.isEmpty()||Salary.isEmpty()||rank.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Please fill all fields");
 
                 }
@@ -226,6 +226,7 @@ public void AddPlayerGui(){
                        JOptionPane.showMessageDialog(null, "Enter valid number in salary and age");
                    }
                    Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(Salary),team);
+
                 }
             }
  });
@@ -290,7 +291,7 @@ public void EditPlayerGui(){
                 String name = nameFeild.getText();
                 String team = nameFeild.getText();
 
-                if (name.equals("") || team.equals("")) {
+                if (name.isEmpty() || team.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Enter valid name and team");
                 } else {
                     League.SearchByNameAndTeam(name, team);
@@ -304,7 +305,7 @@ public void EditPlayerGui(){
 
                         @Override
                         public void actionPerformed(ActionEvent arg0) {
-                            if (searchByNameAndTeam.size() >= 1) {
+                            if (!searchByNameAndTeam.isEmpty()) {
                                 JPanel namepanel = new JPanel(new GridLayout(1, 1));
                                 JLabel nameLabel = new JLabel("Name");
                                 namepanel.add(nameLabel);
@@ -355,7 +356,7 @@ public void EditPlayerGui(){
 
                                     @Override
                                     public void actionPerformed(ActionEvent arg0) {
-                                        if(p.getPersonName().equals(nameFeild.getText())==false){
+                                        if(!p.getPersonName().equals(nameFeild.getText())){
                                          p.setPersonName(nameFeild.getText());
                                         }
                                         if(p.GetPlayerAge()!=Integer.parseInt(ageFeild.getText())){
@@ -364,8 +365,12 @@ public void EditPlayerGui(){
                                         if(p.GetPlayerRank()!=Integer.parseInt(rankFeild.getText())){
                                             p.SetPlayerRank(Integer.parseInt(rankFeild.getText()));
                                         }
-                                        if(p.GetPlayerTeam().equals(teamsComboBox.getSelectedItem())==false){
+                                        if(!p.GetPlayerTeam().equals(teamsComboBox.getSelectedItem())){
                                         p.SetPlayerTeam((String) teamsComboBox.getSelectedItem());
+                                        }
+                                        if(p.getPersonSalary()!=Integer.parseInt(salaryFeild.getText()))
+                                        {
+                                            p.setPersonSalary(Integer.parseInt(salaryFeild.getText()));
                                         }
 
                                     }
@@ -448,14 +453,14 @@ private void DeletePlayerGui(){
             catch(NullPointerException exp){
                 JOptionPane.showMessageDialog(null,"No teams Exist");
             }
-            if(name.equals("")||team.equals("")){
+            if(name.isEmpty()||team.isEmpty()){
                 JOptionPane.showMessageDialog(null,"Enter valid name and team");
             }
             else{
                 League.SearchByNameAndTeam(name,team);
                try{ Player p=new Player(searchByNameAndTeam.getFirst());
 
-                JLabel select =new JLabel("Select Values to delete");
+                JLabel select =new JLabel("Select Player to delete");
                 JButton serachValue = new JButton(p.Name +" "+p.Age+" "+p.Salary);
                 panel2.add(serachValue);
                 panel2.add(select);

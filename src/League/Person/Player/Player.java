@@ -1,10 +1,5 @@
 package League.Person.Player;
-
-import League.Match.Match;
 import League.Person.Person;
-
-import java.util.ArrayList;
-
 public class Player extends Person
 
 {

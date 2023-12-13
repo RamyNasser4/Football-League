@@ -1,15 +1,14 @@
 package League.GUI;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Standings extends JPanel  {
+public class Standings extends JPanel {
     public JTable table;
 
     public Standings() {
@@ -19,7 +18,7 @@ public class Standings extends JPanel  {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Object [] [] data= new Object[][]{
+        Object[][] data = new Object[][]{
                 {"Data 1", "Data 2", "Data 3", "Data 4"},
                 {"More data 1", "More data 2", "More data 3", "More data 4"},
                 {"Data 1", "Data 2", "Data 3", "Data 4"},
@@ -44,7 +43,7 @@ public class Standings extends JPanel  {
                 {"More data 1", "More data 2", "More data 3", "More data 4"}
         };
         DefaultTableModel model = new DefaultTableModel(
-              data,
+                data,
                 new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"}
         );
 
@@ -66,14 +65,14 @@ public class Standings extends JPanel  {
         JTableHeader header = table.getTableHeader();
         header.setForeground(Color.BLACK);
         header.setBackground(Color.BLACK); // Change header background color
-        header.setFont(new Font("Arial", Font.BOLD, 18)); 
+        header.setFont(new Font("Arial", Font.BOLD, 18));
 
         JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
         verticalScrollBar.setUI(new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
                 thumbColor = Color.WHITE;
-                        trackColor = Color.DARK_GRAY;
+                trackColor = Color.DARK_GRAY;
             }
         });
         JButton ByPoints = new JButton("Points");
@@ -106,7 +105,7 @@ public class Standings extends JPanel  {
                 Object[][] newGoalData = {
                         {"New Data 1", "New Data 2", "New Data 3", "New Data 4"},
                         {"More new data 1", "More new data 2", "More new data 3", "More new data 4"},
-                        {"Even more new data 1", "Even more new data 2", "Even more new data 3", "Even more new data 4"},{"New Data 1", "New Data 2", "New Data 3", "New Data 4"},
+                        {"Even more new data 1", "Even more new data 2", "Even more new data 3", "Even more new data 4"}, {"New Data 1", "New Data 2", "New Data 3", "New Data 4"},
                         {"More new data 1", "More new data 2", "More new data 3", "More new data 4"},
                         {"Even more new data 1", "Even more new data 2", "Even more new data 3", "Even more new data 4"}
 

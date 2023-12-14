@@ -58,4 +58,7 @@ public class Referee extends Person {
         System.out.println("the number of red cards in this match:  ");
         System.out.println(noRedCards);
     }
+    public String WriteReferee(){
+        return this.Name + "\t" + this.Age + "\t" + this.Salary + "\t" + noYellowCards + "\t" + noRedCards;
+    }
 }

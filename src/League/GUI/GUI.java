@@ -1,14 +1,19 @@
 package League.GUI;
 
+import League.League;
+import League.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class GUI extends JFrame implements ActionListener {
-
-
-    public GUI() {
+public class GUI extends JFrame implements ActionListener, WindowListener {
+    League league;
+    public GUI(League league) {
+        this.league = league;
         this.setSize(1280, 720);
         this.setResizable(false);
         this.setTitle("Football League");
@@ -57,6 +62,41 @@ public class GUI extends JFrame implements ActionListener {
             JTextField savesField=new JTextField("Enter Saves here");
             JTextField cleanSheetField=new JTextField("Enter clean sheets here");
         }*/
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        Main.WriteFiles(league);
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
 

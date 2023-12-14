@@ -46,16 +46,16 @@ public class League {
         this(matches, teams,referees,stadiums,0);
     }
     public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees){
-        this(matches, teams,referees,null);
+        this(matches, teams,referees,new ArrayList<>());
     }
     public League(ArrayList<Match> matches, ArrayList<Team> teams){
-        this(matches, teams,null);
+        this(matches, teams,new ArrayList<>());
     }
     public League(ArrayList<Match> matches) {
-        this(matches,null);
+        this(matches,new ArrayList<>());
     }
     public League() {
-        this((ArrayList<Match>) null);
+        this(new ArrayList<>());
     }
     public League(League League) {
         try {

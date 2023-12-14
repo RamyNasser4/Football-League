@@ -55,7 +55,7 @@ public class Team {
     }
 
     public Team(String Name, ArrayList<Player> Players, Player Captain, Coach Coach) {
-        this(Name, Players, Captain, Coach, null);
+        this(Name, Players, Captain, Coach, new ArrayList<>());
     }
 
     public Team(String Name, ArrayList<Player> Players, Player Captain) {
@@ -67,7 +67,7 @@ public class Team {
     }
 
     public Team(String Name) {
-        this(Name, null);
+        this(Name, new ArrayList<>());
     }
 
     public Team() {
@@ -258,5 +258,8 @@ public class Team {
             }
         }
         return null;
+    }
+    public String WriteTeam(){
+        return Name + "\t" + Total_score + "\t" + noOfPlayers + "\t" + noOfGoalkeepers;
     }
 }

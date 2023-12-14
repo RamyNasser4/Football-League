@@ -42,6 +42,9 @@ public class Coach extends Person {
     public void setTeamID(int teamID) {
         TeamID = teamID;
     }
+    public String writeCoach(){
+        return this.Name + "\t" + this.Age + "\t" + this.Salary + "\t" + this.Nationality;
+    }
 
     public Coach(Coach otherCoach) throws NullPointerException {
         super();

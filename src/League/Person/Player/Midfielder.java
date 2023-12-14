@@ -76,6 +76,9 @@ public class Midfielder extends Player {
             System.out.println("Null");
         }
     }
+    public String WriteMidfielder(){
+        return Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + keyPasses + "\t" + isCaptain;
+    }
     public int GetKeyPasses() {
         return keyPasses;
     }

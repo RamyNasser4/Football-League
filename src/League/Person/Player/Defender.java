@@ -84,6 +84,9 @@ public class Defender extends Player {
             System.out.println("Null");
         }
     }
+    public String WriteDefender(){
+        return Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" +  tackle + "\t" + cleanSheets + "\t" + isCaptain;
+    }
     public int GetTackle() {
         return tackle;
     }

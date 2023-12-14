@@ -9,9 +9,7 @@ import League.Stadium.Stadium;
 import League.Team.Team;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,8 +19,9 @@ public class Main {
     public static void ReadFiles(League league){
         //Read Coaches
         ArrayList<Coach> coaches = new ArrayList<>();
+        BufferedReader ReadCoach = null;
         try {
-            BufferedReader ReadCoach = new BufferedReader(new FileReader("Coaches.txt"));
+            ReadCoach = new BufferedReader(new FileReader("Coaches.txt"));
             while (ReadCoach.ready()){
                 String coach = ReadCoach.readLine();
                 String[] coachInfo = coach.split("\t");
@@ -31,11 +30,20 @@ public class Main {
             }
         }catch (IOException exp){
             System.out.println("Coaches file not found");
+        }finally {
+            if (ReadCoach!= null){
+                try {
+                    ReadCoach.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close coaches file");
+                }
+            }
         }
         //Read Referees
         ArrayList<Referee> referees = new ArrayList<>();
+        BufferedReader ReadReferee = null;
         try {
-            BufferedReader ReadReferee = new BufferedReader(new FileReader("Referees.txt"));
+            ReadReferee = new BufferedReader(new FileReader("Referees.txt"));
             while (ReadReferee.ready()){
                 String referee = ReadReferee.readLine();
                 String[] refereeInfo = referee.split("\t");
@@ -44,30 +52,50 @@ public class Main {
             }
         }catch (IOException exp){
             System.out.println("Referees file not found");
+        }finally {
+            if (ReadReferee!= null){
+                try {
+                    ReadReferee.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close referees file");
+                }
+            }
         }
         //Read Stadiums
         ArrayList<Stadium> stadiums = new ArrayList<>();
+        BufferedReader ReadStadium = null;
         try {
-            BufferedReader ReadStadium = new BufferedReader(new FileReader("Stadiums.txt"));
+            ReadStadium = new BufferedReader(new FileReader("Stadiums.txt"));
             while (ReadStadium.ready()){
                 String stadium = ReadStadium.readLine();
                 String[] stadiumInfo = stadium.split("\t");
                 Stadium newStadium = new Stadium(stadiumInfo[0],stadiumInfo[1],Integer.parseInt(stadiumInfo[2]));
                 stadiums.add(newStadium);
             }
+
         }catch (IOException exp){
             System.out.println("Stadiums file not found");
+        }finally {
+            if (ReadStadium!= null){
+                try {
+                    ReadStadium.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close stadiums file");
+                }
+            }
         }
         //Read Teams
         ArrayList<Team> teams = new ArrayList<>();
+        BufferedReader ReadTeam = null;
         try {
-            BufferedReader ReadTeam = new BufferedReader(new FileReader("Teams.txt"));
+            ReadTeam = new BufferedReader(new FileReader("Teams.txt"));
             int TeamsCount = 1;
             while (ReadTeam.ready()){
                 ArrayList<Player> players = new ArrayList<>();
                 Player TeamCaptain = new Player();
+                BufferedReader ReadTeamPlayers = null;
                 try {
-                    BufferedReader ReadTeamPlayers = new BufferedReader(new FileReader("Team"+TeamsCount+".txt"));
+                    ReadTeamPlayers = new BufferedReader(new FileReader("Team"+TeamsCount+"Players.txt"));
                     while (ReadTeamPlayers.ready()){
                         String player = ReadTeamPlayers.readLine();
                         String[] playerInfo = player.split("\t");
@@ -145,6 +173,14 @@ public class Main {
                     }
                 }catch (IOException exp){
                     System.out.println("Team " + TeamsCount + " file not found");
+                }finally {
+                    if (ReadTeamPlayers!= null){
+                        try {
+                            ReadTeamPlayers.close();
+                        }catch (IOException exp){
+                            System.out.println("Couldn't close team" + TeamsCount + "Players file");
+                        }
+                    }
                 }
                 Coach TeamCoach = new Coach();
                 for (Coach coach : coaches){
@@ -167,11 +203,20 @@ public class Main {
             }
         }catch (IOException exp){
             System.out.println("Teams file not found");
+        }finally {
+            if (ReadTeam!= null){
+                try {
+                    ReadTeam.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close teams file");
+                }
+            }
         }
         //Read Matches
         ArrayList<Match> matches = new ArrayList<>();
+        BufferedReader ReadMatch = null;
         try {
-            BufferedReader ReadMatch = new BufferedReader(new FileReader("Matches.txt"));
+            ReadMatch = new BufferedReader(new FileReader("Matches.txt"));
             while (ReadMatch.ready()){
                 String match = ReadMatch.readLine();
                 String[] matchInfo = match.split("\t");
@@ -212,12 +257,149 @@ public class Main {
             }
         }catch (IOException exp){
             System.out.println("Matches files not found");
+        }finally {
+            if (ReadMatch!= null){
+                try {
+                    ReadMatch.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close matches file");
+                }
+            }
         }
     }
     public static void WriteFiles(League league){
-
+        //Write Coaches
+        BufferedWriter WriteCoach = null;
+        try {
+            WriteCoach = new BufferedWriter(new FileWriter("Coaches.txt"));
+            for (Team team : league.teams){
+                WriteCoach.write(team.getCoach().writeCoach());
+                WriteCoach.write("\n");
+            }
+        }catch (IOException exp){
+            System.out.println("Coaches file not found");
+        }finally {
+            if (WriteCoach!=null){
+                try {
+                    WriteCoach.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close coaches file");
+                }
+            }
+        }
+        //Write Referees
+        BufferedWriter WriteReferees = null;
+        try {
+            WriteReferees = new BufferedWriter(new FileWriter("Referees.txt"));
+            for (Referee referee : league.referees){
+                WriteReferees.write(referee.WriteReferee());
+                WriteReferees.write("\n");
+            }
+        }catch (IOException exp){
+            System.out.println("Referees file not found");
+        }finally {
+            if (WriteReferees!=null){
+                try {
+                    WriteReferees.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close referees file");
+                }
+            }
+        }
+        //Write Stadiums
+        BufferedWriter WriteStadiums = null;
+        try {
+            WriteStadiums = new BufferedWriter(new FileWriter("Stadiums.txt"));
+            for (Stadium stadium : league.stadiums){
+                WriteStadiums.write(stadium.WriteStadium());
+                WriteStadiums.write("\n");
+            }
+        }catch (IOException exp){
+            System.out.println("Stadiums file not found");
+        }finally {
+            if (WriteStadiums!=null){
+                try {
+                    WriteStadiums.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close stadiums file");
+                }
+            }
+        }
+        //Write Teams
+        BufferedWriter WriteTeams = null;
+        try {
+            WriteTeams = new BufferedWriter(new FileWriter("Teams.txt"));
+            int TeamsCount = 1;
+            for (Team team : league.teams){
+                WriteTeams.write(team.WriteTeam());
+                WriteTeams.write("\n");
+                BufferedWriter WriteTeamPlayers = null;
+                try {
+                    WriteTeamPlayers = new BufferedWriter(new FileWriter("Team" + TeamsCount + "Players.txt"));
+                    for (Player player : team.Players){
+                        if (player instanceof Forward){
+                            Forward forward = (Forward) player;
+                            WriteTeamPlayers.write(forward.WriteForward());
+                        }else if(player instanceof Midfielder){
+                            Midfielder midfielder = (Midfielder) player;
+                            WriteTeamPlayers.write(midfielder.WriteMidfielder());
+                        }else if(player instanceof Defender){
+                            Defender defender = (Defender) player;
+                            WriteTeamPlayers.write(defender.WriteDefender());
+                        }else{
+                            Goalkeeper goalkeeper = (Goalkeeper) player;
+                            WriteTeamPlayers.write(goalkeeper.WriteGoalkeeper());
+                        }
+                        WriteTeamPlayers.write("\n");
+                    }
+                }catch (IOException exp){
+                    System.out.println("Team" + TeamsCount + "Players file not found");
+                }finally {
+                    if (WriteTeamPlayers!=null){
+                        try {
+                            WriteTeamPlayers.close();
+                        }catch (IOException exp){
+                            System.out.println("Couldn't close Team" + TeamsCount + "Players file");
+                        }
+                    }
+                }
+                ++TeamsCount;
+            }
+        }catch (IOException exp){
+            System.out.println("Teams file not found");
+        }finally {
+            if (WriteTeams != null){
+                try {
+                    WriteTeams.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close teams file");
+                }
+            }
+        }
+        //Write Matches
+        BufferedWriter WriteMatches = null;
+        try {
+            WriteMatches = new BufferedWriter(new FileWriter("Matches.txt"));
+            for (Match match : league.matches){
+                WriteMatches.write(match.WriteMatch());
+                WriteMatches.write("\n");
+            }
+        }catch (IOException exp){
+            System.out.println("Matches file not found");
+        }finally {
+            if (WriteMatches!=null){
+                try {
+                    WriteMatches.close();
+                }catch (IOException exp){
+                    System.out.println("Couldn't close matches file");
+                }
+            }
+        }
     }
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new GUI());
+        League league = new League();
+        ReadFiles(league);
+        SwingUtilities.invokeLater(() -> new GUI(league));
+        System.out.println("Program closed");
     }
 }

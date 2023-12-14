@@ -103,6 +103,9 @@ public class Stadium {
         }
 
     }
+    public String WriteStadium(){
+        return name + "\t" + this.location + "\t" + this.capacity;
+    }
 }
 
 

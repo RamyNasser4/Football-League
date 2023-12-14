@@ -51,6 +51,7 @@ public class Forward extends Player {
         super();
         try {
             this.Name = forward.Name;
+            this.Salary = forward.Salary;
             this.playerTeam = forward.playerTeam;
             this.playerNumber = forward.playerNumber;
             this.Age = forward.Age;
@@ -65,6 +66,9 @@ public class Forward extends Player {
         } catch (NullPointerException exp){
             System.out.println("Null");
         }
+    }
+    public String WriteForward(){
+        return Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + shots + "\t" + isCaptain;
     }
     public int GetShots() {
         return shots;

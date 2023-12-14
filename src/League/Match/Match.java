@@ -100,6 +100,9 @@ public class Match {
             System.out.println("Null");
         }
     }
+    public String WriteMatch(){
+        return matchdate + "\t" + Teams[0].getName() + "\t" + Teams[1].getName() + "\t" + Referee.getPersonName() + "\t" + Score + "\t" + Stadium.getStadiumName();
+    }
 
 
     //Function to be called when setting date in constructor

@@ -23,6 +23,9 @@ public class Referee extends Person {
     public Referee(String refereeName) {
         this(refereeName, 0);
     }
+    public Referee(){
+        this("");
+    }
     public Referee(Referee Ref) {
         try {
             this.Name=Ref.Name;

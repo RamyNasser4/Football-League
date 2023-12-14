@@ -13,10 +13,11 @@ public class Player extends Person
     protected int assists;
     protected int noOfYellowCards;
     protected int NoOfRedCards;
+    protected Boolean isCaptain;
     public static int totalPlayers;
 
 
-   public Player(String playerName,int playerAge, int playerSalary,String playerTeam,int playerNumber, double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards, int noOfRedCards){
+   public Player(String playerName,int playerAge, int playerSalary,String playerTeam,int playerNumber, double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards, int noOfRedCards,Boolean isCaptain){
        super(playerName,playerAge,playerSalary);
        this.playerTeam = playerTeam;
        this.playerNumber = playerNumber;
@@ -27,9 +28,10 @@ public class Player extends Person
        this.NoOfRedCards=noOfRedCards;
        this.assists=assists;
        this.playerId = ++playersSerialNum;
+       this.isCaptain = isCaptain;
        ++totalPlayers;
    }
-
+    public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards,false);}
     public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,0);}
     public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,0);}
     public Player(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored){this(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,0);}
@@ -53,6 +55,7 @@ public class Player extends Person
             this.playerScore = player.playerScore;
             this.playerRank = player.playerRank;
             this.goalsScored = player.goalsScored;
+            this.isCaptain = player.isCaptain;
             this.noOfYellowCards = player.noOfYellowCards;
             this.NoOfRedCards = player.NoOfRedCards;
             this.assists = player.assists;
@@ -88,6 +91,14 @@ public class Player extends Person
 
     public int GetPlayerRank() {
         return playerRank;
+    }
+
+    public Boolean getCaptain() {
+        return isCaptain;
+    }
+
+    public void setCaptain(Boolean captain) {
+        isCaptain = captain;
     }
 
     public int getGoalsScored() {

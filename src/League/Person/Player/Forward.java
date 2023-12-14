@@ -4,9 +4,12 @@ public class Forward extends Player {
     protected int shots;
 
 
-    public Forward(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int shots){
-    super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);
+    public Forward(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int shots,Boolean isCaptain){
+    super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards,isCaptain);
     this.shots=shots;
+    }
+    public Forward(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards,int shots) {
+        this(playerName, playerAge, playerSalary, playerTeam, playerNumber, playerScore, playerRank, goalsScored, assists, noOfYellowCards, noOfRedCards,shots,false);
     }
     public Forward(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards) {
         this(playerName, playerAge, playerSalary, playerTeam, playerNumber, playerScore, playerRank, goalsScored, assists, noOfYellowCards, noOfRedCards,0);
@@ -37,6 +40,31 @@ public class Forward extends Player {
     }
     public Forward(String playerName, int playerAge) {
         this(playerName, playerAge,0);
+    }
+    public Forward(String playerName){
+        this(playerName,0);
+    }
+    public Forward(){
+        this("");
+    }
+    public Forward(Forward forward){
+        super();
+        try {
+            this.Name = forward.Name;
+            this.playerTeam = forward.playerTeam;
+            this.playerNumber = forward.playerNumber;
+            this.Age = forward.Age;
+            this.playerScore = forward.playerScore;
+            this.playerRank = forward.playerRank;
+            this.isCaptain = forward.isCaptain;
+            this.goalsScored = forward.goalsScored;
+            this.noOfYellowCards = forward.noOfYellowCards;
+            this.NoOfRedCards = forward.NoOfRedCards;
+            this.assists = forward.assists;
+            this.shots = forward.shots;
+        } catch (NullPointerException exp){
+            System.out.println("Null");
+        }
     }
     public int GetShots() {
         return shots;

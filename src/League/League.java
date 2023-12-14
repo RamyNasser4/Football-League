@@ -1,8 +1,11 @@
 package League;
 
 import League.Match.Match;
+import League.Person.Coach.Coach;
 import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
+import League.Person.Referee.Referee;
+import League.Stadium.Stadium;
 import League.Team.Team;
 import League.Team.TeamAgeComparator;
 import League.Team.TeamGoalsComparator;
@@ -13,39 +16,44 @@ import java.util.Collections;
 import java.util.Date;
 
 public class League {
-    public static ArrayList<Team> teams;
+    public ArrayList<Team> teams;
     public static ArrayList<String> teamnames;
     public static ArrayList<Player> searchByNameAndTeam;
     //eg 2023/2024
     public String season;
     public int matchCount;
     public Date DATE;
-    ArrayList<Match> matches;
+    public ArrayList<Match> matches;
+    public ArrayList<Referee> referees;
+    public ArrayList<Stadium> stadiums;
 
-    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date, String season) {
+    public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees,ArrayList<Stadium> stadiums, int matchCount, Date Date, String season) {
         this.matches = new ArrayList<>(matches);
-        League.teams = new ArrayList<>(teams);
+        this.teams = new ArrayList<>(teams);
+        this.referees = new ArrayList<>(referees);
+        this.stadiums = new ArrayList<>(stadiums);
         this.matchCount = matchCount;
         this.DATE = Date;
         this.season = season;
     }
-
-    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount, Date Date) {
-        this(matches, teams, matchCount, Date, null);
+    public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees,ArrayList<Stadium> stadiums, int matchCount, Date Date){
+        this(matches, teams,referees,stadiums,matchCount, Date,"");
     }
-
-    public League(ArrayList<Match> matches, ArrayList<Team> teams, int matchCount) {
-        this(matches, teams, matchCount, null);
+    public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees,ArrayList<Stadium> stadiums, int matchCount){
+        this(matches, teams,referees,stadiums,matchCount, null);
     }
-
-    public League(ArrayList<Match> matches, ArrayList<Team> teams) {
-        this(matches, teams, 0);
+    public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees,ArrayList<Stadium> stadiums){
+        this(matches, teams,referees,stadiums,0);
     }
-
+    public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees){
+        this(matches, teams,referees,null);
+    }
+    public League(ArrayList<Match> matches, ArrayList<Team> teams){
+        this(matches, teams,null);
+    }
     public League(ArrayList<Match> matches) {
-        this(matches, null);
+        this(matches,null);
     }
-
     public League() {
         this((ArrayList<Match>) null);
     }
@@ -55,16 +63,18 @@ public class League {
             this.DATE = League.DATE;
             this.matches = new ArrayList<>(League.matches);
             try {
-                teams = new ArrayList<>(teams);
+                this.teams = new ArrayList<>(League.teams);
             } catch (NullPointerException exp) {
                 System.out.println("Null team");
             }
+            this.referees = new ArrayList<>(League.referees);
+            this.stadiums = new ArrayList<>(League.stadiums);
         } catch (NullPointerException exp) {
             System.out.println("Null object");
         }
     }
 
-    public static void SearchByNameAndTeam(String teamname, String playername) {
+    public void SearchByNameAndTeam(String teamname, String playername) {
         searchByNameAndTeam.clear();
         for (Team t : teams) {
             if (teamname.equals(t.Name)) {

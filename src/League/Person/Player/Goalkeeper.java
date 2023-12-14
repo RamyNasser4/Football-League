@@ -3,9 +3,12 @@ package League.Person.Player;
 public class Goalkeeper extends Player {
     protected int saves;
     protected int cleanSheets;
-    public Goalkeeper(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int saves,int cleanSheets){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards);
+    public Goalkeeper(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int saves,int cleanSheets,Boolean isCaptain){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards,isCaptain);
         this.saves = saves;
         this.cleanSheets = cleanSheets;
+    }
+    public Goalkeeper(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards,int saves,int cleanSheets) {
+        this(playerName, playerAge, playerSalary, playerTeam, playerNumber, playerScore, playerRank, goalsScored, assists, noOfYellowCards, noOfRedCards,saves, cleanSheets,false);
     }
     public Goalkeeper(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards,int saves) {
         this(playerName, playerAge, playerSalary, playerTeam, playerNumber, playerScore, playerRank, goalsScored, assists, noOfYellowCards, noOfRedCards,saves, 0);
@@ -34,6 +37,29 @@ public class Goalkeeper extends Player {
         this(playerName, playerAge,0);}
     public Goalkeeper(String playerName) {
         this(playerName,0);}
+    public Goalkeeper(){
+        this("");
+    }
+    public Goalkeeper(Goalkeeper goalkeeper){
+        super();
+        try {
+            this.Name = goalkeeper.Name;
+            this.playerTeam = goalkeeper.playerTeam;
+            this.playerNumber = goalkeeper.playerNumber;
+            this.Age = goalkeeper.Age;
+            this.playerScore = goalkeeper.playerScore;
+            this.playerRank = goalkeeper.playerRank;
+            this.isCaptain = goalkeeper.isCaptain;
+            this.goalsScored = goalkeeper.goalsScored;
+            this.noOfYellowCards = goalkeeper.noOfYellowCards;
+            this.NoOfRedCards = goalkeeper.NoOfRedCards;
+            this.assists = goalkeeper.assists;
+            this.saves = goalkeeper.saves;
+            this.cleanSheets = goalkeeper.cleanSheets;
+        } catch (NullPointerException exp){
+            System.out.println("Null");
+        }
+    }
     public int GetSaves() {
         return saves;
     }

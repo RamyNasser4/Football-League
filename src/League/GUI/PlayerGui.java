@@ -294,7 +294,8 @@ public void EditPlayerGui(){
                 if (name.isEmpty() || team.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Enter valid name and team");
                 } else {
-                    League.SearchByNameAndTeam(name, team);
+                    //until League obj is added
+                    //League.SearchByNameAndTeam(name, team);
 
                     Player p = new Player(searchByNameAndTeam.getFirst());
                     JLabel select = new JLabel("Select Values to edit");
@@ -457,7 +458,8 @@ private void DeletePlayerGui(){
                 JOptionPane.showMessageDialog(null,"Enter valid name and team");
             }
             else{
-                League.SearchByNameAndTeam(name,team);
+                //Until League obj is added
+                //League.SearchByNameAndTeam(name,team);
                try{ Player p=new Player(searchByNameAndTeam.getFirst());
 
                 JLabel select =new JLabel("Select Player to delete");

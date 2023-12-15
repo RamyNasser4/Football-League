@@ -1,6 +1,7 @@
-package League;
+package mainPackage;
 
 import League.GUI.GUI;
+import League.League;
 import League.Match.Match;
 import League.Person.Coach.Coach;
 import League.Person.Player.*;
@@ -13,6 +14,8 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Main {
@@ -92,7 +95,7 @@ public class Main {
             int TeamsCount = 1;
             while (ReadTeam.ready()){
                 ArrayList<Player> players = new ArrayList<>();
-                Player TeamCaptain = new Player();
+                Player TeamCaptain = null;
                 BufferedReader ReadTeamPlayers = null;
                 try {
                     ReadTeamPlayers = new BufferedReader(new FileReader("Team"+TeamsCount+"Players.txt"));
@@ -182,25 +185,27 @@ public class Main {
                         }
                     }
                 }
-                Coach TeamCoach = new Coach();
+                Coach TeamCoach = null;
                 for (Coach coach : coaches){
                     if (coach.getTeamID() == TeamsCount){
-                        TeamCoach = new Coach(coach);
+                        TeamCoach = coach;
                     }
                 }
                 String team = ReadTeam.readLine();
                 String[] teamInfo = team.split("\t");
+                System.out.println(Arrays.toString(teamInfo));
                 Team newTeam = new Team(teamInfo[0],
                         players,
                         TeamCaptain,
                         TeamCoach,
-                        null,
+                        new ArrayList<>(),
                         Integer.parseInt(teamInfo[1]),
                         Integer.parseInt(teamInfo[2]),
                         Integer.parseInt(teamInfo[3]));
                 teams.add(newTeam);
                 ++TeamsCount;
             }
+            league.setTeams(teams);
         }catch (IOException exp){
             System.out.println("Teams file not found");
         }finally {
@@ -272,9 +277,13 @@ public class Main {
         BufferedWriter WriteCoach = null;
         try {
             WriteCoach = new BufferedWriter(new FileWriter("Coaches.txt"));
-            for (Team team : league.teams){
-                WriteCoach.write(team.getCoach().writeCoach());
-                WriteCoach.write("\n");
+            for (Team team : league.getTeams()){
+                try {
+                    WriteCoach.write(team.getCoach().writeCoach());
+                    WriteCoach.write("\n");
+                }catch (NullPointerException exp){
+                    System.out.println("Team has no coach");
+                }
             }
         }catch (IOException exp){
             System.out.println("Coaches file not found");
@@ -330,7 +339,8 @@ public class Main {
         try {
             WriteTeams = new BufferedWriter(new FileWriter("Teams.txt"));
             int TeamsCount = 1;
-            for (Team team : league.teams){
+            for (Team team : league.getTeams()){
+                System.out.println(team.WriteTeam());
                 WriteTeams.write(team.WriteTeam());
                 WriteTeams.write("\n");
                 BufferedWriter WriteTeamPlayers = null;
@@ -396,10 +406,118 @@ public class Main {
             }
         }
     }
+    public static void teamMenu(League league,Scanner input,Team currentTeam){
+        while (true){
+            System.out.println("TEAM MENU :");
+            System.out.println("1- Add Player");
+            System.out.println("2- Search for a Player");
+            System.out.println("3- Display Players");
+            System.out.println("4- Display Team Info");
+            System.out.println("5- Display Team Matches");
+            System.out.println("6- Edit Team");
+            System.out.println("7- Exit");
+            int choice = input.nextInt();
+            if (choice == 1){
+                System.out.println("Enter Player Info:");
+                System.out.print("Player Name:");
+                input.nextLine();
+                String PlayerName = input.nextLine();
+                System.out.print("Player Age: ");
+                int PlayerAge = input.nextInt();
+                System.out.print("Player Number");
+                int PlayerNumber = input.nextInt();
+                System.out.print("Enter Player Position (Forward/Midfielder/Defender/Goalkeeper) : ");
+                input.nextLine();
+                String PlayerPosition;
+                while (true){
+                    PlayerPosition = input.nextLine();
+                    if (PlayerPosition.toLowerCase().startsWith("f") ||
+                            PlayerPosition.toLowerCase().startsWith("m") ||
+                            PlayerPosition.toLowerCase().startsWith("d") ||
+                            PlayerPosition.toLowerCase().startsWith("g")){
+                        break;
+                    }else {
+                        System.out.println("Invalid Input");
+                    }
+                }
+                System.out.println("Is this player a captain?(y/n)");
+                boolean isCaptain;
+                while (true){
+                    String answer = input.next();
+                    if (answer.toLowerCase().startsWith("y")){
+                        isCaptain = true;
+                        break;
+                    }else if (answer.toLowerCase().startsWith("n")){
+                        isCaptain = false;
+                        break;
+                    }else {
+                        System.out.println("Invalid input");
+                    }
+                }
+                /*if (PlayerPosition.toLowerCase().startsWith("f")){
+                    Player newPlayer = new Forward(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
+                }
+                Player newPlayer = new Player(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,isCaptain);
+                currentTeam.addPlayer(newPlayer);*/
+            }
+        }
+    }
+    public static void teamsMenu(League league,Scanner input){
+        while (true){
+            System.out.println("TEAMS MENU :");
+            System.out.println("1- Add Team");
+            System.out.println("2- Search for a Team");
+            System.out.println("3- Display Teams");
+            System.out.println("4- Back to the main menu");
+            int choice = input.nextInt();
+            if (choice == 1){
+                System.out.println("Enter Team Info :");
+                System.out.println("Team Name: ");
+                input.nextLine();
+                String TeamName = input.nextLine();
+                Team newTeam = new Team(TeamName,new ArrayList<>(),null,null,new ArrayList<>(),0,0,0);
+                league.AddTeam(newTeam);
+            }else if (choice == 2){
+                System.out.print("Enter team info :");
+                String TeamName = input.nextLine();
+                Team searched = league.searchTeam(TeamName);
+                try {
+                    teamMenu(league,input,searched);
+                }catch (NullPointerException exp){
+                    System.out.println("Team not found");
+                }
+            }else if (choice == 3){
+                //league.getTeams().
+            } else if (choice == 4) {
+                break;
+            }
+        }
+    }
+    public static void mainMenu(League league){
+        Scanner input = new Scanner(System.in);
+        while (true){
+            System.out.println("Select one of the following choices : ");
+            System.out.println("1- Teams Menu");
+            System.out.println("2- Matches Menu");
+            System.out.println("3- Stats Menu");
+            System.out.println("4- Exit");
+            int choice = input.nextInt();
+            if (choice == 1){
+                teamsMenu(league,input);
+            }else if (choice == 2){
+                //Matches menu
+            } else if (choice == 3) {
+                //stats menu
+            }else if(choice == 4){
+                break;
+            }
+        }
+    }
     public static void main(String[] args) {
         League league = new League();
         ReadFiles(league);
-        SwingUtilities.invokeLater(() -> new GUI(league));
-        System.out.println("Program closed");
+        //SwingUtilities.invokeLater(() -> new GUI(league));
+        mainMenu(league);
+        WriteFiles(league);
     }
 }

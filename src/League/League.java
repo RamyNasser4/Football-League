@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.Date;
 
 public class League {
-    public ArrayList<Team> teams;
+    protected ArrayList<Team> teams;
     public static ArrayList<String> teamnames;
     public static ArrayList<Player> searchByNameAndTeam;
     //eg 2023/2024
@@ -72,6 +72,38 @@ public class League {
         } catch (NullPointerException exp) {
             System.out.println("Null object");
         }
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
+
+    public ArrayList<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(ArrayList<Match> matches) {
+        this.matches = matches;
+    }
+
+    public ArrayList<Referee> getReferees() {
+        return referees;
+    }
+
+    public void setReferees(ArrayList<Referee> referees) {
+        this.referees = referees;
+    }
+
+    public ArrayList<Stadium> getStadiums() {
+        return stadiums;
+    }
+
+    public void setStadiums(ArrayList<Stadium> stadiums) {
+        this.stadiums = stadiums;
     }
 
     public void SearchByNameAndTeam(String teamname, String playername) {
@@ -218,8 +250,47 @@ public class League {
             }
         }
     }
-
-
+    public void DeleteTeam(String TeamName){
+        boolean isFound = false;
+        for (int i = 0; i < teams.size(); i++) {
+            if (teams.get(i).getName().equals(TeamName)){
+                teams.remove(i);
+                isFound = true;
+                break;
+            }
+        }
+        if (!isFound){
+            System.out.println("Invalid Team Name");
+        }
+    }
+    public void DeleteMatch(int MatchID){
+        boolean isFound = false;
+        for (int i = 0; i < matches.size(); i++) {
+            if (matches.get(i).getMatch_ID() == MatchID){
+                matches.remove(i);
+                isFound = true;
+                break;
+            }
+        }
+        if (!isFound){
+            System.out.println("Invalid Match ID");
+        }
+    }
+    public void AddTeam(Team team){
+        try {
+            teams.add(team);
+        }catch (NullPointerException exp){
+            System.out.println("Invalid team");
+        }
+    }
+    public Team searchTeam(String name) {
+        for (Team team : teams){
+            if (team.getName().equals(name)){
+                return team;
+            }
+        }
+        return null;
+    }
 }
 
 

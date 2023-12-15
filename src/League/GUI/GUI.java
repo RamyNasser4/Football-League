@@ -1,7 +1,7 @@
 package League.GUI;
 
 import League.League;
-import League.Main;
+import mainPackage.Main;
 
 import javax.swing.*;
 import java.awt.*;

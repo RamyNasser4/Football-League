@@ -27,12 +27,12 @@ public class Team {
         this.Team_ID = noOfTeams;
         this.Players = new ArrayList<>(Players);
         try {
-            this.Captain = new Player(Captain);
+            this.Captain = Captain;
         } catch (NullPointerException exp) {
             System.out.println("Null");
         }
         try {
-            this.Coach = new Coach(Coach);
+            this.Coach = Coach;
         } catch (NullPointerException exp) {
             System.out.println("Null coach");
         }
@@ -95,6 +95,14 @@ public class Team {
         } catch (NullPointerException exp) {
             System.out.println("Null object");
         }
+    }
+
+    public static int getNoOfTeams() {
+        return noOfTeams;
+    }
+
+    public static void setNoOfTeams(int noOfTeams) {
+        Team.noOfTeams = noOfTeams;
     }
 
     public String getName() {
@@ -194,10 +202,11 @@ public class Team {
         try {
             if (noOfPlayers < 25) {
                 if (player instanceof Goalkeeper && noOfGoalkeepers < 3) {
-                    Players.add(new Player(player));
+                    Players.add(player);
                     ++noOfPlayers;
+                    ++noOfGoalkeepers;
                 } else if (!(player instanceof Goalkeeper)) {
-                    Players.add(new Player(player));
+                    Players.add(player);
                     ++noOfPlayers;
                 } else {
                     throw new Exception("Maximum capacity of goalkeepers reached");

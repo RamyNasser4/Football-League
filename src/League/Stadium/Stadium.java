@@ -20,7 +20,7 @@ public class Stadium {
     }
 
     public Stadium(String name, String location, int capacity) {
-        this(name, location, capacity, null);
+        this(name, location, capacity, new ArrayList<>());
     }
 
     public Stadium(String name, String location) {

@@ -253,7 +253,7 @@ public class League {
     public void DeleteTeam(String TeamName){
         boolean isFound = false;
         for (int i = 0; i < teams.size(); i++) {
-            if (teams.get(i).getName().equals(TeamName)){
+            if (teams.get(i).getName().equalsIgnoreCase(TeamName)){
                 teams.remove(i);
                 isFound = true;
                 break;
@@ -285,11 +285,19 @@ public class League {
     }
     public Team searchTeam(String name) {
         for (Team team : teams){
-            if (team.getName().equals(name)){
+            if (team.getName().equalsIgnoreCase(name)){
                 return team;
             }
         }
         return null;
+    }
+    public Team searchTeam(int Team_ID){
+        for (Team team : teams){
+            if (team.getTeam_ID() == Team_ID){
+                return team;
+            }
+        }
+        return  null;
     }
 }
 

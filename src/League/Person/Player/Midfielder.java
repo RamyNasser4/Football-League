@@ -77,7 +77,7 @@ public class Midfielder extends Player {
         }
     }
     public String WriteMidfielder(){
-        return Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + keyPasses + "\t" + isCaptain;
+        return "Midfielder" + "\t" + Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + keyPasses + "\t" + isCaptain;
     }
     public int GetKeyPasses() {
         return keyPasses;

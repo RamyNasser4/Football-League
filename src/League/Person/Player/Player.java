@@ -4,7 +4,7 @@ public class Player extends Person
 
 {
     protected static int playersSerialNum=0;
-    private final int playerId;
+    private int playerId;
     protected String playerTeam;
     protected int playerNumber;
     protected double playerScore;
@@ -106,6 +106,10 @@ public class Player extends Person
     }
 
     // Set
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
+    }
+
     public void SetPlayerTeam(String playerTeam) {
         this.playerTeam = playerTeam;
     }

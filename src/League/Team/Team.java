@@ -253,7 +253,7 @@ public class Team {
 
     public Player searchPlayer(String name) {
         for (int i = 0; i < noOfPlayers; i++) {
-            if (Players.get(i).GetPlayerName().equals(name)) {
+            if (Players.get(i).GetPlayerName().equalsIgnoreCase(name)) {
                 return Players.get(i);
             }
         }
@@ -269,6 +269,6 @@ public class Team {
         return null;
     }
     public String WriteTeam(){
-        return Name + "\t" + Total_score + "\t" + noOfPlayers + "\t" + noOfGoalkeepers;
+        return Name + "\t" + Total_score + "\t" + noOfPlayers + "\t" + noOfGoalkeepers + "\t" + Team_ID;
     }
 }

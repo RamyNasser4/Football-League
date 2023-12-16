@@ -61,7 +61,7 @@ public class Goalkeeper extends Player {
         }
     }
     public String WriteGoalkeeper(){
-        return Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + cleanSheets + "\t" + isCaptain;
+        return "Goalkeeper" + "\t" + Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + saves + "\t" + cleanSheets + "\t" + isCaptain;
     }
     public int GetSaves() {
         return saves;

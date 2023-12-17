@@ -7,8 +7,13 @@ import java.awt.event.ActionEvent;
 import static League.League.searchByNameAndTeam;
 import static League.League.teamnames;
 
-
+/**
+ * This class represents the graphical user interface for managing players in a sports league.
+ */
 public class PlayerGui extends JPanel implements ActionListener {
+    /**
+     * Displays the home screen for managing players.
+     */
 public void PlayerHomeScreen(){
          this.setSize(new Dimension(980, 720));
          this.setLayout(new GridLayout(3, 1));
@@ -88,6 +93,16 @@ public void PlayerHomeScreen(){
 
 
      }
+    /**
+     * Validates player information entered during addition or editing.
+     *
+     * @param name     The player's name.
+     * @param Age      The player's age.
+     * @param Salary   The player's salary.
+     * @param rank     The player's rank.
+     * @param position The player's position.
+     * @return True if the information is valid, otherwise false.
+     */
 public boolean Validation(String name,String Age,String Salary,String rank,String position){
      if (name.isEmpty()||Age.isEmpty()||Salary.isEmpty()||rank.isEmpty()||position.isEmpty()) {
          JOptionPane.showMessageDialog(null, "Please fill all fields");
@@ -97,6 +112,7 @@ public boolean Validation(String name,String Age,String Salary,String rank,Strin
             return true;
      }
  }
+
 public boolean Validation(String name,String team ){
          if(name.isEmpty()||team.isEmpty()){
              return false;
@@ -105,7 +121,9 @@ public boolean Validation(String name,String team ){
              return true;
          }
     }
-
+    /**
+     * Adds fields form for adding a new player.
+     */
  public void AddPlayerFields(){
      this.setSize(new Dimension(980, 720));
      this.setLayout(new GridLayout(2, 1));
@@ -193,6 +211,10 @@ public boolean Validation(String name,String team ){
 
 
              }
+             /**
+              *
+              * @throws NullPointerException  if no team exists
+              */
              catch(NullPointerException ignorable){
                  JOptionPane.showMessageDialog(null, "Add team first");
              }
@@ -209,6 +231,10 @@ public boolean Validation(String name,String team ){
                      Integer.parseInt(rank);
                      Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(Salary),team);
                  }
+                 /**
+                  *
+                  * @throws NumberFormatException if user enters non integers
+                  */
                  catch(NumberFormatException e) {
                      JOptionPane.showMessageDialog(null, "Enter a valid number in salary,age and rank");
                  }
@@ -226,6 +252,9 @@ public boolean Validation(String name,String team ){
 
 
     }
+    /**
+     * Displays the GUI for adding a new player.
+     */
 public void AddPlayerGui(){
         int TeamlistSize = 0;
     try
@@ -236,6 +265,10 @@ public void AddPlayerGui(){
           AddPlayerFields();
 
        }
+    /**
+     *
+     * @throws NullPointerException if no team exist
+     */
      catch(NullPointerException ignored)
        {
      JOptionPane.showMessageDialog(null,"Add Team First then you can add Player");
@@ -257,6 +290,9 @@ public void AddPlayerGui(){
 
 
 }
+    /**
+     * Displays the GUI for editing a player.
+ */
 public void EditPlayerGui(){
     this.setSize(new Dimension(980, 720));
     this.setLayout(new GridLayout(2, 1));
@@ -302,6 +338,7 @@ public void EditPlayerGui(){
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
+
             try {
                 String name = nameFeild.getText();
                 String team = nameFeild.getText();
@@ -375,6 +412,10 @@ public void EditPlayerGui(){
                                         if(!p.getPersonName().equals(nameFeild.getText())){
                                          p.setPersonName(nameFeild.getText());
                                         }
+                                        /**
+                                         *
+                                         * @throws NumberFormatException if user enters non integers
+                                         */
                                         try{
 
                                             if(p.GetPlayerAge()!=Integer.parseInt(ageFeild.getText())){
@@ -388,7 +429,11 @@ public void EditPlayerGui(){
                                                 p.setPersonSalary(Integer.parseInt(salaryFeild.getText()));
                                             }
                                         }
-                                        catch(NumberFormatException e){
+                                            /**
+                                             *
+                                             * @throws NumberFormatException if user enters non integers
+                                            */
+                                            catch(NumberFormatException e){
                                             JOptionPane.showMessageDialog(null, "Enter valid number in salary,age and rank");
                                         }
 
@@ -405,7 +450,10 @@ public void EditPlayerGui(){
                     });
                 }
         }
-
+            /**
+             *
+             * @throws NullPointerException if given player doesn't exist
+             */
             catch(NullPointerException exp){
                 JOptionPane.showMessageDialog(null, "Player not found");
             }
@@ -414,6 +462,9 @@ public void EditPlayerGui(){
 
     });
 }
+    /**
+     * Displays the GUI for deleting a player.
+     */
 private void DeletePlayerGui(){
     this.setSize(new Dimension(980, 720));
     this.setLayout(new GridLayout(2, 1));
@@ -474,6 +525,10 @@ private void DeletePlayerGui(){
                     JOptionPane.showMessageDialog(null, "Team not found");
                 }
             }
+            /**
+             *
+             * @throws NullPointerException if no team exists
+             */
             catch(NullPointerException exp){
                 JOptionPane.showMessageDialog(null,"No teams Exist");
             }
@@ -496,6 +551,10 @@ private void DeletePlayerGui(){
                    searchByNameAndTeam.remove(0);
                }
                 });}
+               /**
+                *
+                * @throws NullPointerException if no player exists
+                */
                catch(NullPointerException exp){
                    JOptionPane.showMessageDialog(null,"No results Found");
                }

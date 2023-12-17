@@ -78,8 +78,14 @@ public class Stadium {
         this.capacity = capacity;
     }
 
-    //user to input the date
-    //function to be called
+
+    /**
+     * This function compares date given by user to stored date in stadium
+     * @param date date entered by user
+     *
+     * @return true if given date has no matches and false otherwise
+     * @throws Throwable If user inputs invalid date
+     */
     public boolean CheckAvailability(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 

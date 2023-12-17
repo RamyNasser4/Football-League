@@ -220,6 +220,12 @@ public class League {
     }
 
     //Function to filter matches as held or to be held
+    /**
+     * This function filters matches according to current date into upcoming and past matches
+     * @param match
+     * @return true if given date has no matches and false otherwise
+     * @throws NullPointerException If there is no elements in array list
+     */
     protected void FilterMatchByTime(Match match) {
         for (Match m : matches) {
             ArrayList<Match> upcomingMatches = new ArrayList<>();
@@ -228,25 +234,30 @@ public class League {
             if (m.matchdate.before(now)) {
                 System.out.println("Match time:Past");
                 try {
-                    pastMatches.add(match);
-
+                    upcomingMatches.remove(match);
                 } catch (NullPointerException exp) {
                     System.out.println("Null");
                 }
-                upcomingMatches.remove(match);
+                pastMatches.add(match);
 
             } else if (m.matchdate.after(now)) {
                 System.out.println("Match time:upcoming");
                 try {
-                    upcomingMatches.add(match);
+                    pastMatches.remove(match);
                 } catch (NullPointerException exp) {
                     System.out.println("Null");
                 }
-                pastMatches.remove(match);
+                upcomingMatches.add(match);
+
             } else {
                 System.out.println("Match time:now");
-                upcomingMatches.remove(match);
-                pastMatches.remove(match);
+                try {
+                    upcomingMatches.remove(match);
+                    pastMatches.remove(match);
+                } catch (NullPointerException exp) {
+                    System.out.println("Null");
+                }
+
             }
         }
     }

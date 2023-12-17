@@ -9,7 +9,7 @@ import static League.League.teamnames;
 
 
 public class PlayerGui extends JPanel implements ActionListener {
-public void playerhomescreen(){
+public void PlayerHomeScreen(){
          this.setSize(new Dimension(980, 720));
          this.setLayout(new GridLayout(3, 1));
          JPanel panel1 = new JPanel(new GridLayout(1, 1));
@@ -106,7 +106,7 @@ public boolean Validation(String name,String team ){
          }
     }
 
- public void AddPlayerFeilds(){
+ public void AddPlayerFields(){
      this.setSize(new Dimension(980, 720));
      this.setLayout(new GridLayout(2, 1));
      JPanel titlepanel = new JPanel(new GridLayout(5, 1,0,30));
@@ -222,18 +222,18 @@ public boolean Validation(String name,String team ){
 
     JComboBox teamsComboBox;
     public  PlayerGui() {
-        playerhomescreen();
+        PlayerHomeScreen();
 
 
     }
 public void AddPlayerGui(){
-        int s = 0;
+        int TeamlistSize = 0;
     try
 
       {
 
-         s = teamnames.size();
-          AddPlayerFeilds();
+          TeamlistSize= teamnames.size();
+          AddPlayerFields();
 
        }
      catch(NullPointerException ignored)
@@ -241,11 +241,11 @@ public void AddPlayerGui(){
      JOptionPane.showMessageDialog(null,"Add Team First then you can add Player");
      String arr[]={"null"};
      teamsComboBox=new JComboBox (arr);
-     s=0;
+           TeamlistSize=0;
    }
-    if(s!=0)
+    if(TeamlistSize!=0)
     {
-        AddPlayerFeilds();
+        AddPlayerFields();
         }
      else
       //do nothing until validation

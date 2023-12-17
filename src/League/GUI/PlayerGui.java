@@ -221,9 +221,10 @@ public void AddPlayerGui(){
                    try{
                        Integer.parseInt(Age);
                        Integer.parseInt(Salary);
+                       Integer.parseInt(rank);
                    }
                    catch(NumberFormatException e){
-                       JOptionPane.showMessageDialog(null, "Enter valid number in salary and age");
+                       JOptionPane.showMessageDialog(null, "Enter valid number in salary,age and rank");
                    }
                    Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(Salary),team);
 
@@ -360,19 +361,26 @@ public void EditPlayerGui(){
                                         if(!p.getPersonName().equals(nameFeild.getText())){
                                          p.setPersonName(nameFeild.getText());
                                         }
-                                        if(p.GetPlayerAge()!=Integer.parseInt(ageFeild.getText())){
-                                            p.setPersonAge(Integer.parseInt(ageFeild.getText()));
+                                        try{
+                                            if(p.GetPlayerAge()!=Integer.parseInt(ageFeild.getText())){
+                                                p.setPersonAge(Integer.parseInt(ageFeild.getText()));
+                                            }
+                                            if(p.GetPlayerRank()!=Integer.parseInt(rankFeild.getText())){
+                                                p.SetPlayerRank(Integer.parseInt(rankFeild.getText()));
+                                            }
+                                            if(p.getPersonSalary()!=Integer.parseInt(salaryFeild.getText()))
+                                            {
+                                                p.setPersonSalary(Integer.parseInt(salaryFeild.getText()));
+                                            }
                                         }
-                                        if(p.GetPlayerRank()!=Integer.parseInt(rankFeild.getText())){
-                                            p.SetPlayerRank(Integer.parseInt(rankFeild.getText()));
+                                        catch(NumberFormatException e){
+                                            JOptionPane.showMessageDialog(null, "Enter valid number in salary,age and rank");
                                         }
+
                                         if(!p.GetPlayerTeam().equals(teamsComboBox.getSelectedItem())){
                                         p.SetPlayerTeam((String) teamsComboBox.getSelectedItem());
                                         }
-                                        if(p.getPersonSalary()!=Integer.parseInt(salaryFeild.getText()))
-                                        {
-                                            p.setPersonSalary(Integer.parseInt(salaryFeild.getText()));
-                                        }
+
 
                                     }
                                 });

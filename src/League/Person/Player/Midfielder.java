@@ -1,6 +1,12 @@
 package League.Person.Player;
-
+/**
+ * This class represents Midfielders
+ */
 public class Midfielder extends Player {
+    /**
+     *  Key Passes field
+     * uniquely identifies Midfielders
+     */
     protected int keyPasses;
 
     public Midfielder(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards, int keyPasses,Boolean isCaptain) {

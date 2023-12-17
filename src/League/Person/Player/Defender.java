@@ -1,6 +1,12 @@
 package League.Person.Player;
-
+/**
+ * This class represents Defenders
+ */
 public class Defender extends Player {
+    /**
+     *  tackles and clean sheets
+     * uniquely identifies Defenders 
+     */
     protected int tackle;
     protected int cleanSheets;
 

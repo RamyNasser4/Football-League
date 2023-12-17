@@ -1,6 +1,12 @@
 package League.Person.Player;
-
+/**
+ * This class represents Forwards
+ */
 public class Forward extends Player {
+    /**
+     *  Shots
+     * uniquely identifies Forwards
+     */
     protected int shots;
 
 

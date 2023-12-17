@@ -1,6 +1,12 @@
 package League.Person.Player;
-
+/**
+ * This class represents Goalkeepers
+ */
 public class Goalkeeper extends Player {
+    /**
+     *  Saves and clean sheets
+     * uniquely identifies Goalkeepers
+     */
     protected int saves;
     protected int cleanSheets;
     public Goalkeeper(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int saves,int cleanSheets,Boolean isCaptain){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards,isCaptain);

@@ -20,6 +20,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void ReadFiles(League league){
+
         //Read Coaches
         ArrayList<Coach> coaches = new ArrayList<>();
         BufferedReader ReadCoach = null;

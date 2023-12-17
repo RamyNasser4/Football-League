@@ -1,19 +1,15 @@
 package League.GUI;
-
 import League.Person.Player.Player;
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import static League.League.searchByNameAndTeam;
 import static League.League.teamnames;
 
 
 public class PlayerGui extends JPanel implements ActionListener {
-     public void playerhomescreen(){
+public void playerhomescreen(){
          this.setSize(new Dimension(980, 720));
          this.setLayout(new GridLayout(3, 1));
          JPanel panel1 = new JPanel(new GridLayout(1, 1));
@@ -92,7 +88,7 @@ public class PlayerGui extends JPanel implements ActionListener {
 
 
      }
- public boolean AddPlayerValidtaion(String name,String Age,String Salary,String rank,String position){
+public boolean Validation(String name,String Age,String Salary,String rank,String position){
      if (name.isEmpty()||Age.isEmpty()||Salary.isEmpty()||rank.isEmpty()||position.isEmpty()) {
          JOptionPane.showMessageDialog(null, "Please fill all fields");
          return false;
@@ -101,6 +97,14 @@ public class PlayerGui extends JPanel implements ActionListener {
             return true;
      }
  }
+public boolean Validation(String name,String team ){
+         if(name.isEmpty()||team.isEmpty()){
+             return false;
+         }
+         else{
+             return true;
+         }
+    }
 
  public void AddPlayerFeilds(){
      this.setSize(new Dimension(980, 720));
@@ -193,7 +197,7 @@ public class PlayerGui extends JPanel implements ActionListener {
                  JOptionPane.showMessageDialog(null, "Add team first");
              }
              // validation
-             if (!AddPlayerValidtaion(name,Age,Salary,rank,position)) {
+             if (!Validation(name,Age,Salary,rank,position)) {
                  JOptionPane.showMessageDialog(null, "Please fill all fields");
 
              }
@@ -302,7 +306,7 @@ public void EditPlayerGui(){
                 String name = nameFeild.getText();
                 String team = nameFeild.getText();
 
-                if (name.isEmpty() || team.isEmpty()) {
+                if (!Validation(name,team)) {
                     JOptionPane.showMessageDialog(null, "Enter valid name and team");
                 } else {
                     //until League obj is added
@@ -372,6 +376,7 @@ public void EditPlayerGui(){
                                          p.setPersonName(nameFeild.getText());
                                         }
                                         try{
+
                                             if(p.GetPlayerAge()!=Integer.parseInt(ageFeild.getText())){
                                                 p.setPersonAge(Integer.parseInt(ageFeild.getText()));
                                             }
@@ -507,7 +512,6 @@ Player.totalPlayers--;
    public void actionPerformed(ActionEvent e) {
 
    }
-
 
 }
 

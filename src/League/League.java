@@ -204,7 +204,7 @@ public class League {
 
     }
 
-    public void Display_match_ByDateFN(String date) {
+    public ArrayList<Match> Display_match_ByDateFN(String date) {
         ArrayList<Match> matchesByDate = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -217,6 +217,7 @@ public class League {
         } catch (Throwable throwable) {
             System.out.println("Wrong input");
         }
+        return matchesByDate;
     }
 
     //Function to filter matches as held or to be held
@@ -306,6 +307,36 @@ public class League {
         for (Team team : teams){
             if (team.getTeam_ID() == Team_ID){
                 return team;
+            }
+        }
+        return  null;
+    }
+    public void AddReferee(Referee referee){
+        try {
+            referees.add(referee);
+        }catch (NullPointerException exp){
+            System.out.println("Invalid Referee");
+        }
+    }
+    public void AddStadium(Stadium stadium){
+        try {
+            stadiums.add(stadium);
+        }catch (NullPointerException exp){
+            System.out.println("Invalid stadium");
+        }
+    }
+    public Referee searchReferee(int Referee_ID){
+        for (Referee referee : referees){
+            if (referee.getRefereeID() == Referee_ID){
+                return referee;
+            }
+        }
+        return  null;
+    }
+    public Stadium searchStadium(int Stadium_ID){
+        for (Stadium stadium : stadiums){
+            if (stadium.getStadiumID() == Stadium_ID){
+                return stadium;
             }
         }
         return  null;

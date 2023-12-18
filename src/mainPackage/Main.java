@@ -13,9 +13,7 @@ import javax.swing.*;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
@@ -29,7 +27,7 @@ public class Main {
             while (ReadCoach.ready()){
                 String coach = ReadCoach.readLine();
                 String[] coachInfo = coach.split("\t");
-                Coach newCoach = new Coach(coachInfo[0],Integer.parseInt(coachInfo[1]),Integer.parseInt(coachInfo[2]),coachInfo[3],Integer.parseInt(coachInfo[4]));
+                Coach newCoach = new Coach(coachInfo[0],Integer.parseInt(coachInfo[1]),Integer.parseInt(coachInfo[2]),coachInfo[3],coachInfo[4]);
                 coaches.add(newCoach);
             }
         }catch (IOException exp){
@@ -65,6 +63,7 @@ public class Main {
                 }
             }
         }
+        league.setReferees(referees);
         //Read Stadiums
         ArrayList<Stadium> stadiums = new ArrayList<>();
         BufferedReader ReadStadium = null;
@@ -73,6 +72,7 @@ public class Main {
             while (ReadStadium.ready()){
                 String stadium = ReadStadium.readLine();
                 String[] stadiumInfo = stadium.split("\t");
+                System.out.println(Arrays.toString(stadiumInfo));
                 Stadium newStadium = new Stadium(stadiumInfo[0],stadiumInfo[1],Integer.parseInt(stadiumInfo[2]));
                 stadiums.add(newStadium);
             }
@@ -88,22 +88,35 @@ public class Main {
                 }
             }
         }
+        league.setStadiums(stadiums);
         //Read Teams
         ArrayList<Team> teams = new ArrayList<>();
         BufferedReader ReadTeam = null;
         try {
             ReadTeam = new BufferedReader(new FileReader("Teams.txt"));
-            int TeamsCount = 1;
             while (ReadTeam.ready()){
                 ArrayList<Player> players = new ArrayList<>();
                 Player TeamCaptain = null;
                 BufferedReader ReadTeamPlayers = null;
+                String team = ReadTeam.readLine();
+                String[] teamInfo = team.split("\t");
+                Coach TeamCoach = null;
+                for (Coach coach : coaches){
+                    if (coach.getTeamName().equals(teamInfo[0])){
+                        TeamCoach = coach;
+                    }
+                }
+                System.out.println(Arrays.toString(teamInfo));
                 try {
-                    ReadTeamPlayers = new BufferedReader(new FileReader("Team"+TeamsCount+"Players.txt"));
+                    ReadTeamPlayers = new BufferedReader(new FileReader("Team"+teamInfo[4]+"Players.txt"));
                     while (ReadTeamPlayers.ready()){
                         String player = ReadTeamPlayers.readLine();
                         String[] playerInfo = player.split("\t");
+                        System.out.println(Arrays.toString(playerInfo));
                         if(playerInfo[0].equals("Forward")){
+                            //PlayerName - PlayerAge - PlayerSalary - PlayerTeam
+                            // - PlayerNumber - PlayerScore - PlayerRank - GoalsScored
+                            // - Assists - noOfYellowCards - noOfRedCards - shots - Boolean isCaptain
                             Forward newPlayer = new Forward(playerInfo[1],
                                     Integer.parseInt(playerInfo[2]),
                                     Integer.parseInt(playerInfo[3]),
@@ -121,6 +134,9 @@ public class Main {
                             }
                             players.add(newPlayer);
                         }else if (playerInfo[0].equals("Midfielder")){
+                            //PlayerName - PlayerAge - PlayerSalary - PlayerTeam
+                            // - PlayerNumber - PlayerScore - PlayerRank - GoalsScored
+                            // - Assists - noOfYellowCards - noOfRedCards - keyPasses - Boolean isCaptain
                             Midfielder newPlayer = new Midfielder(playerInfo[1],
                                     Integer.parseInt(playerInfo[2]),
                                     Integer.parseInt(playerInfo[3]),
@@ -138,6 +154,10 @@ public class Main {
                             }
                             players.add(newPlayer);
                         }else if (playerInfo[0].equals("Defender")){
+                            //PlayerName - PlayerAge - PlayerSalary - PlayerTeam
+                            // - PlayerNumber - PlayerScore - PlayerRank - GoalsScored
+                            // - Assists - noOfYellowCards - noOfRedCards - tackles - cleanSheets
+                            // - Boolean isCaptain
                             Defender newPlayer = new Defender(playerInfo[1],
                                     Integer.parseInt(playerInfo[2]),
                                     Integer.parseInt(playerInfo[3]),
@@ -156,6 +176,10 @@ public class Main {
                             }
                             players.add(newPlayer);
                         }else{
+                            //PlayerName - PlayerAge - PlayerSalary - PlayerTeam
+                            // - PlayerNumber - PlayerScore - PlayerRank - GoalsScored
+                            // - Assists - noOfYellowCards - noOfRedCards - saves - cleanSheets
+                            // - Boolean isCaptain
                             Goalkeeper newPlayer = new Goalkeeper(playerInfo[1],
                                     Integer.parseInt(playerInfo[2]),
                                     Integer.parseInt(playerInfo[3]),
@@ -176,25 +200,16 @@ public class Main {
                         }
                     }
                 }catch (IOException exp){
-                    System.out.println("Team " + TeamsCount + " file not found");
+                    System.out.println("Team " + teamInfo[4] + " file not found");
                 }finally {
                     if (ReadTeamPlayers!= null){
                         try {
                             ReadTeamPlayers.close();
                         }catch (IOException exp){
-                            System.out.println("Couldn't close team" + TeamsCount + "Players file");
+                            System.out.println("Couldn't close team" + teamInfo[4] + "Players file");
                         }
                     }
                 }
-                Coach TeamCoach = null;
-                for (Coach coach : coaches){
-                    if (coach.getTeamID() == TeamsCount){
-                        TeamCoach = coach;
-                    }
-                }
-                String team = ReadTeam.readLine();
-                String[] teamInfo = team.split("\t");
-                System.out.println(Arrays.toString(teamInfo));
                 Team newTeam = new Team(teamInfo[0],
                         players,
                         TeamCaptain,
@@ -204,7 +219,6 @@ public class Main {
                         Integer.parseInt(teamInfo[2]),
                         Integer.parseInt(teamInfo[3]));
                 teams.add(newTeam);
-                ++TeamsCount;
             }
             league.setTeams(teams);
         }catch (IOException exp){
@@ -339,14 +353,12 @@ public class Main {
         BufferedWriter WriteTeams = null;
         try {
             WriteTeams = new BufferedWriter(new FileWriter("Teams.txt"));
-            int TeamsCount = 1;
             for (Team team : league.getTeams()){
-                System.out.println(team.WriteTeam());
                 WriteTeams.write(team.WriteTeam());
                 WriteTeams.write("\n");
                 BufferedWriter WriteTeamPlayers = null;
                 try {
-                    WriteTeamPlayers = new BufferedWriter(new FileWriter("Team" + TeamsCount + "Players.txt"));
+                    WriteTeamPlayers = new BufferedWriter(new FileWriter("Team" + team.getTeam_ID() + "Players.txt"));
                     for (Player player : team.Players){
                         if (player instanceof Forward){
                             Forward forward = (Forward) player;
@@ -364,17 +376,16 @@ public class Main {
                         WriteTeamPlayers.write("\n");
                     }
                 }catch (IOException exp){
-                    System.out.println("Team" + TeamsCount + "Players file not found");
+                    System.out.println("Team" + team.getTeam_ID() + "Players file not found");
                 }finally {
                     if (WriteTeamPlayers!=null){
                         try {
                             WriteTeamPlayers.close();
                         }catch (IOException exp){
-                            System.out.println("Couldn't close Team" + TeamsCount + "Players file");
+                            System.out.println("Couldn't close Team" + team.getTeam_ID() + "Players file");
                         }
                     }
                 }
-                ++TeamsCount;
             }
         }catch (IOException exp){
             System.out.println("Teams file not found");
@@ -407,6 +418,157 @@ public class Main {
             }
         }
     }
+    public static void matchesMenu(League league,Scanner input){
+        while (true){
+            System.out.println("MATCHES MENU : ");
+            System.out.println("1- Add Match");
+            System.out.println("2- Search for a match by date");
+            System.out.println("3- Display all matches");
+            System.out.println("4- Back to main menu");
+            int choice = input.nextInt();
+            if (choice == 1){
+                System.out.println("Enter Match Date : (dd/MM/yyyy)");
+                String date = input.next();
+                SimpleDateFormat DateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Date matchDate = null;
+                try {
+                    matchDate = DateFormat.parse(date);
+                }catch (ParseException exp){
+                    System.out.println("Invalid Date");
+                }
+                System.out.println("Enter Team 1");
+                Team team1 = null;
+                while (true){
+                    for (Team team : league.getTeams()){
+                        System.out.println(team.getTeam_ID() + "- " + team.getName());
+                    }
+                    int Team1Choice = input.nextInt();
+                    Team searched = league.searchTeam(Team1Choice);
+                    if (searched != null){
+                        team1 = searched;
+                        break;
+                    }
+                }
+                Team team2 = null;
+                while (true){
+                    for (Team team : league.getTeams()){
+                        System.out.println(team.getTeam_ID() + "- " + team.getName());
+                    }
+                    int Team2Choice = input.nextInt();
+                    Team searched = league.searchTeam(Team2Choice);
+                    if (searched != null && searched!= team1){
+                        team2 = searched;
+                        break;
+                    }
+                }
+                Team[] matchTeams = new Team[2];
+                matchTeams[0] = team1;
+                matchTeams[1] = team2;
+                System.out.println("Choose Match Referee : ");
+                Referee matchReferee = null;
+                while (true){
+                    for (Referee referee : league.getReferees()){
+                        System.out.println(referee.getRefereeID() + "- " + referee.getPersonName());
+                    }
+                    int RefereeChoice = input.nextInt();
+                    Referee searched = league.searchReferee(RefereeChoice);
+                    if (searched != null){
+                        matchReferee = searched;
+                        break;
+                    }
+                }
+                System.out.println("Choose Match Stadium : ");
+                Stadium matchStadium = null;
+                while (true){
+                    for (Stadium stadium : league.getStadiums()){
+                        System.out.println(stadium.getStadiumID() + "- " + stadium.getStadiumName());
+                    }
+                    int StadiumChoice = input.nextInt();
+                    Stadium searched = league.searchStadium(StadiumChoice);
+                    if (searched != null && searched.CheckAvailability(date)){
+                        matchStadium = searched;
+                        break;
+                    }
+                }
+                Date now = new Date();
+                String matchScore = "";
+                try {
+                    if (matchDate.before(now)){
+                        System.out.print("Enter Match Score : ");
+                        matchScore = input.next();
+                    }
+                }catch (NullPointerException exp){
+
+                }
+                Match newMatch = new Match(date, matchDate,matchTeams,matchReferee,matchScore,matchStadium);
+                league.AddMatch(newMatch);
+                matchStadium.AddMatch(newMatch);
+                team1.AddMatch(newMatch);
+                team2.AddMatch(newMatch);
+            } else if (choice == 2) {
+                System.out.print("Enter Date : ");
+                String searchDate = input.next();
+                ArrayList<Match> searchedMatches = league.Display_match_ByDateFN(searchDate);
+                for (Match match : searchedMatches){
+                    //display matches
+                }
+            } else if (choice == 3) {
+                //display all matches
+            } else if (choice == 4) {
+                break;
+            }
+        }
+
+    }
+    public static void playersMenu(League league,Scanner input,Team currentTeam,Player currentPlayer){
+        while (true){
+            System.out.println("PLAYER MENU :");
+            System.out.println("1- Update Name");
+            System.out.println("2- Update ID");
+            System.out.println("3- Update Number");
+            System.out.println("4- Update Age");
+            System.out.println("5- Update Score");
+            System.out.println("6- Update Rank");
+            System.out.println("7- Delete player");
+            System.out.println("8- Display player Info");
+            System.out.println("9- Back to Team Menu");
+            int choice = input.nextInt();
+            if (choice == 1){
+                System.out.print("Enter Player Name : ");
+                input.nextLine();
+                String PlayerName = input.nextLine();
+                currentPlayer.setPersonName(PlayerName);
+            } else if (choice == 2) {
+                System.out.print("Enter Player ID : ");
+                int PlayerID = input.nextInt();
+                currentPlayer.setPlayerId(PlayerID);
+            } else if (choice == 3) {
+                System.out.print("Enter Player Number : ");
+                int PlayerNumber = input.nextInt();
+                currentPlayer.SetPlayerNumber(PlayerNumber);
+            } else if (choice == 4) {
+                System.out.print("Enter Player Age : ");
+                int PlayerAge = input.nextInt();
+                currentPlayer.setPersonAge(PlayerAge);
+            } else if (choice == 5) {
+                System.out.print("Enter Player Score : ");
+                double PlayerScore = input.nextDouble();
+                currentPlayer.SetPlayerScore(PlayerScore);
+            } else if (choice == 6) {
+                System.out.print("Enter Player Rank : ");
+                int PlayerRank = input.nextInt();
+                currentPlayer.SetPlayerRank(PlayerRank);
+            } else if (choice == 7) {
+                currentTeam.deletePlayer(currentPlayer.GetPlayerId());
+                break;
+            } else if (choice == 8) {
+                //display Player info
+            } else if (choice == 9) {
+                break;
+            }
+        }
+
+    }
     public static void teamMenu(League league,Scanner input,Team currentTeam){
         while (true){
             System.out.println("TEAM MENU :");
@@ -415,8 +577,10 @@ public class Main {
             System.out.println("3- Display Players");
             System.out.println("4- Display Team Info");
             System.out.println("5- Display Team Matches");
-            System.out.println("6- Edit Team");
-            System.out.println("7- Exit");
+            System.out.println("6- Edit Team Name");
+            System.out.println("7- Delete Team");
+            System.out.println("8- Update Coach");
+            System.out.println("9- Back to Teams Menu");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter Player Info:");
@@ -432,10 +596,10 @@ public class Main {
                 String PlayerPosition;
                 while (true){
                     PlayerPosition = input.nextLine();
-                    if (PlayerPosition.toLowerCase().startsWith("f") ||
-                            PlayerPosition.toLowerCase().startsWith("m") ||
-                            PlayerPosition.toLowerCase().startsWith("d") ||
-                            PlayerPosition.toLowerCase().startsWith("g")){
+                    if (PlayerPosition.equalsIgnoreCase("forward") ||
+                            PlayerPosition.equalsIgnoreCase("midfielder") ||
+                            PlayerPosition.equalsIgnoreCase("defender") ||
+                            PlayerPosition.equalsIgnoreCase("goalkeeper")){
                         break;
                     }else {
                         System.out.println("Invalid Input");
@@ -455,11 +619,58 @@ public class Main {
                         System.out.println("Invalid input");
                     }
                 }
-                /*if (PlayerPosition.toLowerCase().startsWith("f")){
-                    Player newPlayer = new Forward(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
+                Player newPlayer = null;
+                if (PlayerPosition.equalsIgnoreCase("forward")){
+                    newPlayer = new Forward(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
+                } else if (PlayerPosition.equalsIgnoreCase("midfielder")) {
+                    newPlayer = new Midfielder(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
+                } else if (PlayerPosition.equalsIgnoreCase("defender")) {
+                    newPlayer = new Defender(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,0,isCaptain);
+                }else {
+                    newPlayer = new Goalkeeper(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,0,isCaptain);
                 }
-                Player newPlayer = new Player(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,isCaptain);
-                currentTeam.addPlayer(newPlayer);*/
+                currentTeam.addPlayer(newPlayer);
+            } else if (choice == 2) {
+                System.out.println("Enter Player Name :");
+                input.nextLine();
+                String PlayerName = input.nextLine();
+                Player searched = currentTeam.searchPlayer(PlayerName);
+                try {
+                    if (searched != null){
+                        playersMenu(league,input,currentTeam,searched);
+                    }else {
+                        throw new NullPointerException();
+                    }
+                }catch (NullPointerException exp){
+                    System.out.println("Player not found");
+                }
+            } else if (choice == 3) {
+                //display players
+            } else if (choice == 4) {
+                //display team info
+            } else if (choice == 5) {
+                //display team matches
+            } else if (choice == 6) {
+                System.out.println("Enter New Team Name");
+                input.nextLine();
+                String TeamName = input.nextLine();
+                currentTeam.setName(TeamName);
+                for (Player player : currentTeam.getPlayers()){
+                    player.SetPlayerTeam(TeamName);
+                }
+            } else if (choice == 7) {
+                league.DeleteTeam(currentTeam.getName());
+                break;
+            } else if (choice == 8) {
+                System.out.println("Enter Coach Name :");
+                input.nextLine();
+                String CoachName = input.nextLine();
+                System.out.println("Enter Coach Age");
+                int CoachAge = input.nextInt();
+                Coach newCoach = new Coach(CoachName,CoachAge,0,"",currentTeam.getName());
+                currentTeam.setCoach(newCoach);
+            } else if (choice == 9) {
+                break;
             }
         }
     }
@@ -469,7 +680,10 @@ public class Main {
             System.out.println("1- Add Team");
             System.out.println("2- Search for a Team");
             System.out.println("3- Display Teams");
-            System.out.println("4- Back to the main menu");
+            System.out.println("4- Display teams by goals");
+            System.out.println("5- Display teams by avg age");
+            System.out.println("6- Display teams by points");
+            System.out.println("7- Back to the main menu");
             int choice = input.nextInt();
             if (choice == 1){
                 System.out.println("Enter Team Info :");
@@ -480,16 +694,27 @@ public class Main {
                 league.AddTeam(newTeam);
             }else if (choice == 2){
                 System.out.print("Enter team info :");
+                input.nextLine();
                 String TeamName = input.nextLine();
                 Team searched = league.searchTeam(TeamName);
                 try {
-                    teamMenu(league,input,searched);
+                    if (searched != null){
+                        teamMenu(league,input,searched);
+                    }else {
+                        throw new NullPointerException();
+                    }
                 }catch (NullPointerException exp){
                     System.out.println("Team not found");
                 }
             }else if (choice == 3){
                 //league.getTeams().
             } else if (choice == 4) {
+                //display teams by goals
+            } else if (choice == 5) {
+                //display teams by avg age
+            } else if (choice == 6) {
+                //display teams by points
+            } else if (choice == 7) {
                 break;
             }
         }
@@ -501,15 +726,36 @@ public class Main {
             System.out.println("1- Teams Menu");
             System.out.println("2- Matches Menu");
             System.out.println("3- Stats Menu");
-            System.out.println("4- Exit");
+            System.out.println("4- Add Referee");
+            System.out.println("5- Add Stadium");
+            System.out.println("6- Exit");
             int choice = input.nextInt();
             if (choice == 1){
                 teamsMenu(league,input);
             }else if (choice == 2){
-                //Matches menu
+                matchesMenu(league,input);
             } else if (choice == 3) {
                 //stats menu
             }else if(choice == 4){
+                System.out.print("Enter Referee Name :");
+                input.nextLine();
+                String RefereeName = input.nextLine();
+                System.out.print("Enter Referee Age :");
+                int RefereeAge = input.nextInt();
+                Referee newReferee = new Referee(RefereeName,RefereeAge,0,0,0);
+                league.AddReferee(newReferee);
+            } else if (choice == 5) {
+                System.out.println("Enter Stadium Name :");
+                input.nextLine();
+                String StadiumName = input.nextLine();
+                System.out.println("Enter Stadium location :");
+                input.nextLine();
+                String StadiumLocation = input.nextLine();
+                System.out.print("Enter Stadium capacity");
+                int StadiumCapacity = input.nextInt();
+                Stadium newStadium = new Stadium(StadiumName,StadiumLocation,StadiumCapacity,new ArrayList<>());
+                league.AddStadium(newStadium);
+            } else if (choice == 6) {
                 break;
             }
         }

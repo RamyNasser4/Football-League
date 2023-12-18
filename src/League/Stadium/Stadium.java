@@ -10,12 +10,16 @@ public class Stadium {
     public String name;
     public String location;
     public int capacity;
+    protected int StadiumID;
+    private static int noOfStadiums = 0;
     public ArrayList<Match> matches;
 
     public Stadium(String name, String location, int capacity, ArrayList<Match> matches) {
+        ++noOfStadiums;
         this.name = name;
         this.location = location;
         this.capacity = capacity;
+        this.StadiumID = noOfStadiums;
         this.matches = new ArrayList<>(matches);
     }
 
@@ -41,6 +45,7 @@ public class Stadium {
             this.capacity = Stadium.capacity;
             this.location = Stadium.location;
             this.matches = new ArrayList<>(Stadium.matches);
+            this.StadiumID = ++noOfStadiums;
         } catch (NullPointerException exp) {
             System.out.println("Null stadium");
         }
@@ -111,6 +116,21 @@ public class Stadium {
     }
     public String WriteStadium(){
         return name + "\t" + this.location + "\t" + this.capacity;
+    }
+
+    public int getStadiumID() {
+        return StadiumID;
+    }
+
+    public void setStadiumID(int stadiumID) {
+        StadiumID = stadiumID;
+    }
+    public void AddMatch(Match match){
+        try {
+            matches.add(match);
+        }catch (NullPointerException exp){
+            System.out.println("Invalid Match");
+        }
     }
 }
 

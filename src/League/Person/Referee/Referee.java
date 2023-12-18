@@ -4,9 +4,13 @@ import League.Person.Person;
 public class Referee extends Person {
     public  int  noYellowCards;
     public  int noRedCards;
+    protected int RefereeID;
+    private static int noOfReferees = 0;
 
     public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards) {
         super(refereeName, refereeAge, Salary);
+        ++noOfReferees;
+        this.RefereeID = noOfReferees;
         this.noYellowCards = noYellowCards;
         this.noRedCards = noRedCards;
     }
@@ -33,6 +37,7 @@ public class Referee extends Person {
             this.Salary=Ref.Salary;
             noYellowCards=0;
             noRedCards=0;
+            this.RefereeID = ++noOfReferees;
         }
              catch (Exception e) {
 
@@ -60,5 +65,13 @@ public class Referee extends Person {
     }
     public String WriteReferee(){
         return this.Name + "\t" + this.Age + "\t" + this.Salary + "\t" + noYellowCards + "\t" + noRedCards;
+    }
+
+    public int getRefereeID() {
+        return RefereeID;
+    }
+
+    public void setRefereeID(int refereeID) {
+        RefereeID = refereeID;
     }
 }

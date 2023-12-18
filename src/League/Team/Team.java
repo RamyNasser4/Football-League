@@ -271,4 +271,11 @@ public class Team {
     public String WriteTeam(){
         return Name + "\t" + Total_score + "\t" + noOfPlayers + "\t" + noOfGoalkeepers + "\t" + Team_ID;
     }
+    public void AddMatch(Match match){
+        try {
+            Matches.add(match);
+        }catch (NullPointerException exp){
+            System.out.println("Invalid Match");
+        }
+    }
 }

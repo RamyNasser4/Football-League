@@ -4,15 +4,15 @@ import League.Person.Person;
 import League.Team.Team;
 public class Coach extends Person {
     public String Nationality;
-    public int TeamID;
+    public String TeamName;
 
-    public Coach(String name, int age, int salary, String nationality, int TeamID) {
+    public Coach(String name, int age, int salary, String nationality,String TeamName) {
         super(name, age, salary);
         this.Nationality = nationality;
-        this.TeamID = TeamID;
+        this.TeamName = TeamName;
     }
     public Coach(String name, int age, int salary, String nationality){
-        this(name,age,salary,nationality,0);
+        this(name,age,salary,nationality,"0");
     }
     public Coach(String name, int age, int salary){
         this(name,age,salary,"");
@@ -34,16 +34,16 @@ public class Coach extends Person {
         Nationality = nationality;
     }
 
-
-    public int getTeamID() {
-        return TeamID;
+    public String getTeamName() {
+        return TeamName;
     }
 
-    public void setTeamID(int teamID) {
-        TeamID = teamID;
+    public void setTeamName(String teamName) {
+        TeamName = teamName;
     }
+
     public String writeCoach(){
-        return this.Name + "\t" + this.Age + "\t" + this.Salary + "\t" + this.Nationality;
+        return this.Name + "\t" + this.Age + "\t" + this.Salary + "\t" + this.Nationality + "\t" + TeamName;
     }
 
     public Coach(Coach otherCoach) throws NullPointerException {
@@ -53,7 +53,7 @@ public class Coach extends Person {
             this.Age = otherCoach.Age;
             this.Salary = otherCoach.Salary;
             this.Nationality= otherCoach.Nationality;
-            this.TeamID = otherCoach.TeamID;
+            this.TeamName = otherCoach.TeamName;
         }catch (NullPointerException exp){
             System.out.println("Null obj coach");
         }

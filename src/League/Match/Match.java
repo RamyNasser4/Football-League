@@ -94,6 +94,7 @@ public class Match {
             this.matchdate = Match.matchdate;
             //String
             this.matchDate = Match.matchDate;
+            StringToDate();
             this.Score = Match.Score;
             this.Stadium = Match.Stadium;
         } catch (RuntimeException exp) {
@@ -101,7 +102,7 @@ public class Match {
         }
     }
     public String WriteMatch(){
-        return matchdate + "\t" + Teams[0].getName() + "\t" + Teams[1].getName() + "\t" + Referee.getPersonName() + "\t" + Score + "\t" + Stadium.getStadiumName();
+        return matchDate + "\t" + Teams[0].getName() + "\t" + Teams[1].getName() + "\t" + Referee.getPersonName() + "\t" + Score + "\t" + Stadium.getStadiumName();
     }
 
 

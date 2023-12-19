@@ -185,7 +185,9 @@ public class Team {
         }
         return teamGoals;
     }
-
+    public int getNoOfMatches(){
+        return Matches.size();
+    }
     public void display() {
         //
     }

@@ -19,9 +19,11 @@ public class Matches extends JPanel implements ActionListener {
     JButton Search;
     MainPanel main;
     CardLayout cardLayout;
-    public Matches(MainPanel main,CardLayout cardLayout){
+    League league;
+    public Matches(MainPanel main,CardLayout cardLayout,ArrayList<Match> upcomingMatches,ArrayList<Match> pastMatches,League league){
         this.main = main;
         this.cardLayout = cardLayout;
+        this.league = league;
         this.setPreferredSize(new Dimension(980,720));
         this.setBackground(new Color(0x313741));
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -49,8 +51,21 @@ public class Matches extends JPanel implements ActionListener {
         upcoming.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(upcoming);
         upcoming.setAlignmentX(0.5f);
-        MatchButton match1 = new MatchButton("Team 1 vs Team 2", main, cardLayout);
-        this.add(match1);
+        for (Match match : upcomingMatches){
+            MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + "vs" + match.getTeams()[1].getName(),main,cardLayout,match);
+            this.add(matchButton);
+        }
+        JLabel past = new JLabel("Past Matches");
+        past.setForeground(Color.white);
+        past.setBackground(new Color(0x313741));
+        past.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+        past.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
+        this.add(past);
+        past.setAlignmentX(0.5f);
+        for (Match match : pastMatches){
+            MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + " " + match.getScore() + " " + match.getTeams()[1].getName(),main,cardLayout,match);
+            this.add(matchButton);
+        }
     }
 
     @Override
@@ -64,12 +79,16 @@ public class Matches extends JPanel implements ActionListener {
             if (result == JOptionPane.OK_OPTION){
                 Date selectedDate = (Date) dateSpinner.getValue();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                System.out.println(dateFormat.format(selectedDate) instanceof String);
-                ArrayList<Match> currentMatches = new ArrayList<>();
-                //ArrayList currentDateMatches = new League().Display_match_ByDateFN(dateFormat.format(selectedDate));
-                Matches matches = new Matches(main,cardLayout);
-                matches.add(new MatchButton("Team 4 vs Team 5",main,cardLayout));
-                main.add(matches,"Matches");
+                //System.out.println(dateFormat.format(selectedDate) instanceof String);
+                ArrayList<Match> currentDateMatches = league.Display_match_ByDateFN(dateFormat.format(selectedDate));
+                Date now = new Date();
+                Matches searchedMatches;
+                if (selectedDate.before(now)){
+                    searchedMatches = new Matches(main,cardLayout,new ArrayList<>(),currentDateMatches,league);
+                }else {
+                    searchedMatches = new Matches(main,cardLayout,currentDateMatches,new ArrayList<>(),league);
+                }
+                main.add(searchedMatches,"Matches");
                 cardLayout.show(main,"Matches");
             }
         }

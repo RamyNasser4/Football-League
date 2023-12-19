@@ -105,7 +105,30 @@ public class Player extends Person
         return goalsScored;
     }
 
-    // Set
+    public int getAssists() {
+        return assists;
+    }
+
+    public int getNoOfYellowCards() {
+        return noOfYellowCards;
+    }
+
+    public int getNoOfRedCards() {
+        return NoOfRedCards;
+    }
+
+// Set
+
+    public void setNoOfYellowCards(int noOfYellowCards) {
+    this.noOfYellowCards = noOfYellowCards;
+}
+    public void setNoOfRedCards(int noOfRedCards) {
+        NoOfRedCards = noOfRedCards;
+    }
+
+    public void setAssists(int assists) {
+        this.assists = assists;
+    }
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }

@@ -269,12 +269,14 @@ public class Main {
                     }
                 }
                 try {
-                    Match newMatch = new Match(matchInfo[0],new SimpleDateFormat("dd/MM/yyyy").parse(matchInfo[0]),MatchTeams,MatchReferee,matchInfo[4],MatchStadium,Integer.parseInt(matchInfo[6]),Integer.parseInt(matchInfo[7]));
+                    Match newMatch = new Match(matchInfo[0],new SimpleDateFormat("dd/MM/yyyy").parse(matchInfo[0]),MatchTeams,MatchReferee,matchInfo[4],MatchStadium);
                     MatchStadium.matches.add(newMatch);
+                    matches.add(newMatch);
                 }catch (ParseException exp){
                     System.out.println("Invalid date");
                 }
             }
+            league.setMatches(matches);
         }catch (IOException exp){
             System.out.println("Matches files not found");
         }finally {
@@ -763,8 +765,8 @@ public class Main {
     public static void main(String[] args) {
         League league = new League();
         ReadFiles(league);
-        //SwingUtilities.invokeLater(() -> new GUI(league));
-        mainMenu(league);
-        WriteFiles(league);
+        SwingUtilities.invokeLater(() -> new GUI(league));
+        //mainMenu(league);
+        //WriteFiles(league);
     }
 }

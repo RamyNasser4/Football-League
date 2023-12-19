@@ -12,6 +12,7 @@ public class SideBar extends JPanel implements ActionListener {
     SideBarButton teams;
     SideBarButton players;
     SideBarButton standings;
+    SideBarButton stats;
     CardLayout cardLayout;
     MainPanel main;
 
@@ -23,17 +24,35 @@ public class SideBar extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setAlignmentX(CENTER_ALIGNMENT);
         matches = new SideBarButton("Matches");
+        ImageIcon match = new ImageIcon("src/Assets/match4.png");
+        matches.setIcon(match);
+        matches.setIconTextGap(15);
         teams = new SideBarButton("Teams");
+        ImageIcon team = new ImageIcon("src/Assets/team.png");
+        teams.setIcon(team);
+        teams.setIconTextGap(25);
         players = new SideBarButton("Players");
+        ImageIcon player = new ImageIcon("src/Assets/player.png");
+        players.setIcon(player);
+        players.setIconTextGap(25);
         standings = new SideBarButton("Standings");
+        ImageIcon standing = new ImageIcon("src/Assets/ranking.png");
+        standings.setIcon(standing);
+        standings.setIconTextGap(25);
+        stats = new SideBarButton("Stats");
+        ImageIcon stat = new ImageIcon("src/Assets/stats.png");
+        stats.setIcon(stat);
+        stats.setIconTextGap(25);
         matches.addActionListener(this);
         teams.addActionListener(this);
         players.addActionListener(this);
         standings.addActionListener(this);
+        stats.addActionListener(this);
         this.add(matches);
         this.add(teams);
         this.add(players);
         this.add(standings);
+        this.add(stats);
         this.setVisible(true);
     }
 
@@ -42,11 +61,13 @@ public class SideBar extends JPanel implements ActionListener {
         if (e.getSource() == matches) {
             cardLayout.show(main, "Matches");
         } else if (e.getSource() == teams) {
-
+            cardLayout.show(main,"TeamInfo");
         } else if (e.getSource() == players) {
-            cardLayout.show(main, "PlayerGUI");
+            cardLayout.show(main, "PlayerHome");
         } else if (e.getSource() == standings) {
             cardLayout.show(main, "Standings");
+        } else if (e.getSource() == stats) {
+            cardLayout.show(main,"Stats");
         }
     }
 }

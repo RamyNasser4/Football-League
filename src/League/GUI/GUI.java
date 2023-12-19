@@ -23,7 +23,7 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
         this.setVisible(true);
     /*PlayerGui PlayerGui = new PlayerGui();
     Matches Matches = new Matches(this);*/
-        MainPanel main = new MainPanel();
+        MainPanel main = new MainPanel(league);
         SideBar sideBar = new SideBar(main, main.cardLayout);
         //MatchInfo MatchInfo= new MatchInfo();
         this.getContentPane().add(sideBar, BorderLayout.WEST);
@@ -71,7 +71,7 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Main.WriteFiles(league);
+        //Main.WriteFiles(league);
     }
 
     @Override

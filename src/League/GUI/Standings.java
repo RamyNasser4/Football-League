@@ -14,7 +14,7 @@ public class Standings extends JPanel {
     public Standings() {
         try {
             // Applying Nimbus Look and Feel
-            UIManager.setLookAndFeel("javax.swing.pilaf.nimbus.NimbusLookAndFeel");
+            //UIManager.setLookAndFeel("javax.swing.pilaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import League.GUI.GUI;
 import League.GUI.MainPanel;
 import League.GUI.MatchInfo;
 import League.GUI.Matches;
+import League.Match.Match;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +14,12 @@ import java.awt.event.ActionListener;
 public class MatchButton extends JButton implements ActionListener{
     CardLayout cardLayout;
     MainPanel main;
-    public MatchButton(String text,MainPanel main,CardLayout cardLayout){
+    Match match;
+    public MatchButton(String text, MainPanel main, CardLayout cardLayout, Match match){
         super(text);
         this.main = main;
         this.cardLayout = cardLayout;
+        this.match = match;
         this.setForeground(Color.white);
         this.setBackground(new Color(0x313741));
         this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,30));
@@ -29,12 +32,8 @@ public class MatchButton extends JButton implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this){
-            main.add(new MatchInfo(),"Match 1");
-            cardLayout.show(main,"Match 1");
-            /*matches.setVisible(false);
-            gui.validate();
-            gui.add(new MatchInfo());*/
-            System.out.println("clicked");
+            main.add(new MatchInfo(match),"Match " + match.getMatch_ID());
+            cardLayout.show(main,"Match " + match.getMatch_ID());
         }
     }
 }

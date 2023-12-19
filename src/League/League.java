@@ -14,22 +14,34 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 public class League {
     protected ArrayList<Team> teams;
-    public static ArrayList<String> teamnames;
+    public ArrayList<String> teamnames;
     public static ArrayList<Player> searchByNameAndTeam;
     //eg 2023/2024
     public String season;
     public int matchCount;
     public Date DATE;
     public ArrayList<Match> matches;
+    public ArrayList<Match> upcomingMatches;
+    public ArrayList<Match> pastMatches;
     public ArrayList<Referee> referees;
     public ArrayList<Stadium> stadiums;
 
     public League(ArrayList<Match> matches, ArrayList<Team> teams,ArrayList<Referee> referees,ArrayList<Stadium> stadiums, int matchCount, Date Date, String season) {
         this.matches = new ArrayList<>(matches);
+        this.upcomingMatches = new ArrayList<>();
+        this.pastMatches = new ArrayList<>();
+        for (Match match : matches){
+            FilterMatchByTime(match);
+        }
         this.teams = new ArrayList<>(teams);
+        teamnames = new ArrayList<>();
+        for (Team team : teams){
+            teamnames.add(team.getName());
+        }
         this.referees = new ArrayList<>(referees);
         this.stadiums = new ArrayList<>(stadiums);
         this.matchCount = matchCount;
@@ -64,6 +76,10 @@ public class League {
             this.matches = new ArrayList<>(League.matches);
             try {
                 this.teams = new ArrayList<>(League.teams);
+                teamnames = new ArrayList<>();
+                for (Team team : teams){
+                    teamnames.add(team.getName());
+                }
             } catch (NullPointerException exp) {
                 System.out.println("Null team");
             }
@@ -80,6 +96,9 @@ public class League {
 
     public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
+        for (Team team : teams){
+            teamnames.add(team.getName());
+        }
     }
 
     public ArrayList<Match> getMatches() {
@@ -88,6 +107,9 @@ public class League {
 
     public void setMatches(ArrayList<Match> matches) {
         this.matches = matches;
+        for (Match match : matches){
+            FilterMatchByTime(match);
+        }
     }
 
     public ArrayList<Referee> getReferees() {
@@ -106,29 +128,28 @@ public class League {
         this.stadiums = stadiums;
     }
 
-    public void SearchByNameAndTeam(String teamname, String playername) {
-        searchByNameAndTeam.clear();
+    public ArrayList<Player> SearchByNameAndTeam(String playername, String teamname) {
+        //searchByNameAndTeam.clear();
+        ArrayList<Player> searched = new ArrayList<>();
         for (Team t : teams) {
-            if (teamname.equals(t.Name)) {
+            if (teamname.equalsIgnoreCase(t.getName())) {
                 for (Player p : t.Players) {
-                    if (playername.equals(p.Name)) {
-                        searchByNameAndTeam.add(p);
+                    if (playername.equalsIgnoreCase(p.getPersonName())) {
+                        searched.add(p);
                     }
                 }
             }
         }
-        int resultCount = searchByNameAndTeam.size();
+        int resultCount = searched.size();
         if (resultCount == 0) {
             System.out.println("No results Found");
-        } else if (resultCount == 1) {
-            System.out.println(resultCount + " result found");
-        } else {
+        }else {
             System.out.println(resultCount + " results found");
         }
-
         for (Team t : teams) {
-            teamnames.add(t.Name);
+            teamnames.add(t.getName());
         }
+        return searched;
     }
 
     public Player[] DisplayTopScorers() {
@@ -210,6 +231,8 @@ public class League {
         try {
             Date currentDate = dateFormat.parse(date);
             for (Match match : matches) {
+                System.out.println(currentDate);
+                System.out.println(match.matchdate);
                 if (match.matchdate.equals(currentDate)) {
                     matchesByDate.add(match);
                 }
@@ -229,8 +252,6 @@ public class League {
      */
     protected void FilterMatchByTime(Match match) {
         for (Match m : matches) {
-            ArrayList<Match> upcomingMatches = new ArrayList<>();
-            ArrayList<Match> pastMatches = new ArrayList<>();
             Date now = new Date();
             if (m.matchdate.before(now)) {
                 System.out.println("Match time:Past");

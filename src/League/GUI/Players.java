@@ -6,16 +6,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import League.GUI.Components.playerButton;
+import League.League;
+import League.Person.Player.Player;
+import League.Team.Team;
 
-public class searchBYplayer extends JPanel implements ActionListener {
+public class Players extends JPanel implements ActionListener {
     JButton SEARCH;
     JButton TOPSCORERS;
     JButton TOPGKS;
-    public searchBYplayer(MainPanel main, CardLayout CARD) {
+    public Players(MainPanel main, CardLayout CARD, League league) {
         this.setBackground(Color.white);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical alignment
         this.setPreferredSize(new Dimension(980, 720));
-
          TOPGKS =new JButton();
         TOPGKS.setText("TopGKS");
         TOPGKS.setFont(new Font("MVBoli",Font.PLAIN,30));
@@ -42,9 +44,18 @@ public class searchBYplayer extends JPanel implements ActionListener {
         PANELS.add(TOPGKS);
         PANELS.add(TOPSCORERS);
         this.add(PANELS);
-
-
-        playerButton player1 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
+        for (Team team : league.getTeams()){
+            for (Player player : team.getPlayers()){{
+                playerButton playerButton = new playerButton("name:  " + player.getPersonName() + "                 age:  " + player.getPersonAge()  + "     team:  " + player.GetPlayerTeam() + "            Goals:  " + player.getGoalsScored() +         "    assists:  " + player.getAssists() + "           ", main, CARD,player);
+                JPanel panel = new JPanel(new GridLayout(1, 1));
+                this.add(panel);
+                panel.setSize(980,50);
+                panel.add(playerButton);
+                playerButton.setHorizontalAlignment(SwingConstants.LEFT);
+                playerButton.setBackground(Color.darkGray);
+            }}
+        }
+        /*playerButton player1 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
         playerButton player2 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
         playerButton player3 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
         playerButton player4 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
@@ -66,17 +77,21 @@ public class searchBYplayer extends JPanel implements ActionListener {
         PANEL1.add(player1);
         PANEL2.add(player2);
         PANEL3.add(player3);
-        PANEL4.add(player4);
-        player1.setHorizontalAlignment(SwingConstants.LEFT);
+        PANEL4.add(player4);*/
+        /*player1.setHorizontalAlignment(SwingConstants.LEFT);
         player4.setHorizontalAlignment(SwingConstants.LEFT);
         player2.setHorizontalAlignment(SwingConstants.LEFT);
-        player3.setHorizontalAlignment(SwingConstants.LEFT);
+        player3.setHorizontalAlignment(SwingConstants.LEFT);*/
 
         // Set background color for playerButtons if needed
-        player1.setBackground(Color.DARK_GRAY);
+        /*player1.setBackground(Color.DARK_GRAY);
         player2.setBackground(Color.DARK_GRAY);
         player3.setBackground(Color.DARK_GRAY);
         player4.setBackground(Color.DARK_GRAY);
+        player1.setFocusable(false);
+        player2.setFocusable(false);
+        player3.setFocusable(false);
+        player4.setFocusable(false);*/
     }
 
     @Override

@@ -348,12 +348,15 @@ public void EditPlayerGui(){
                 } else {
                     //until League obj is added
                     //League.SearchByNameAndTeam(name, team);
-
+                    removeAll();
+                    revalidate();
+                    repaint();
                     Player p = new Player(searchByNameAndTeam.getFirst());
                     JLabel select = new JLabel("Select Values to edit");
                     JButton searchValue = new JButton(p.Name + " " + p.Age + " " + p.Salary);
                     panel2.add(searchValue);
                     panel2.add(select);
+
                     searchValue.addActionListener(new ActionListener() {
 
                         @Override
@@ -405,6 +408,7 @@ public void EditPlayerGui(){
                                 JButton saveButton = new JButton("Save");
                                 saveButton.setFocusable(false);
                                 saveButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+                                panel2.add(saveButton);
                                 saveButton.addActionListener(new ActionListener() {
 
                                     @Override

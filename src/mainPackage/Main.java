@@ -199,9 +199,13 @@ public class Main {
                             players.add(newPlayer);
                         }
                     }
-                }catch (IOException exp){
+                }catch (IOException exp ){
                     System.out.println("Team " + teamInfo[4] + " file not found");
-                }finally {
+                }
+                catch(ArrayIndexOutOfBoundsException exp){
+
+                }
+                finally {
                     if (ReadTeamPlayers!= null){
                         try {
                             ReadTeamPlayers.close();

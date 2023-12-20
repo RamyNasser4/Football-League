@@ -769,7 +769,7 @@ public class Main {
     public static void main(String[] args) {
         League league = new League();
         ReadFiles(league);
-        SwingUtilities.invokeLater(() -> new GUI(league));
+       SwingUtilities.invokeLater(() -> new GUI(league));
         //mainMenu(league);
         //WriteFiles(league);
     }

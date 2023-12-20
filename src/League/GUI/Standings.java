@@ -1,5 +1,9 @@
 package League.GUI;
 
+import League.GUI.Components.StandingsButton;
+import League.League;
+import League.Team.Team;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableModel;
@@ -8,48 +12,64 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Standings extends JPanel {
-    public JTable table;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Arrays;
 
-    public Standings() {
+public class Standings extends JPanel implements MouseListener{
+    public JTable table;
+    Object[][] AllData ;
+    Object[][] TableData  ;
+    Object[][] AvgData ;
+    Object[][] GoalData ;
+
+
+League league;
+    MainPanel mainPanel;
+    CardLayout cardLayout;
+
+    public Standings(MainPanel mainPanel,CardLayout cardLayout ,League league) {
+        this.mainPanel=mainPanel;
+        this.cardLayout=cardLayout;
+        this.league=league;
         try {
             // Applying Nimbus Look and Feel
             //UIManager.setLookAndFeel("javax.swing.pilaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Object[][] data = new Object[][]{
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"}, {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"}, {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"},
-                {"Data 1", "Data 2", "Data 3", "Data 4"},
-                {"More data 1", "More data 2", "More data 3", "More data 4"}
-        };
-        DefaultTableModel model = new DefaultTableModel(
-                data,
-                new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"}
-        );
 
-//table view
+
+
+        AllData=new Object[league.getTeams().size()][4];
+        for (int i = 0; i < league.getTeams().size(); i++) {
+            AllData[i][0] = league.getTeams().get(i).getName();
+            AllData[i][1] =  league.getTeams().get(i).getTotal_score();
+            AllData[i][2] =   league.getTeams().get(i).getPlayers().size();
+            AllData[i][3] =   league.getTeams().get(i).getNoOfMatches();
+
+
+
+
+
+        }
+        TableData=AllData;
+        DefaultTableModel model = new DefaultTableModel(
+                AllData,
+                new Object[]{"Team", "Score", "players", "Played"}
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // This makes all cells non-editable
+            }
+        };
+
         table = new JTable(model);
 
+        table.getTableHeader().setReorderingAllowed(false);
+
+        table.addMouseListener(this);
 
         table.setForeground(Color.WHITE);
         table.setBackground(new Color(0, 0, 0));
@@ -63,7 +83,7 @@ public class Standings extends JPanel {
 
         // Customizing the header row appearance
         JTableHeader header = table.getTableHeader();
-        header.setForeground(Color.BLACK);
+        header.setForeground(Color.white);
         header.setBackground(Color.BLACK); // Change header background color
         header.setFont(new Font("Arial", Font.BOLD, 18));
 
@@ -75,10 +95,12 @@ public class Standings extends JPanel {
                 trackColor = Color.DARK_GRAY;
             }
         });
-        JButton ByPoints = new JButton("Points");
+
+        JButton ByPoints = new JButton("All teams");
         ByPoints.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                model.setDataVector(data, new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"});
+
+                model.setDataVector(AllData,  new Object[]{"Team", "Score", "players", "Played"});
             }
         });
 
@@ -88,30 +110,36 @@ public class Standings extends JPanel {
         showListButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                Object[][] newData = {
-                        {"New Data 1", "New Data 2", "New Data 3", "New Data 4"},
-                        {"More new data 1", "More new data 2", "More new data 3", "More new data 4"},
-                        {"Even more new data 1", "Even more new data 2", "Even more new data 3", "Even more new data 4"}
 
-                };
-                model.setDataVector(newData, new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"});
+
+                // Prepare data for the table model
+                AvgData = new Object[league.DisplayTeamByAvgAge().size()][4];
+                for (int i = 0; i < league.DisplayTeamByAvgAge().size(); i++) {
+                    AvgData[i][0] = league.DisplayTeamByAvgAge().get(i).getName();
+                    AvgData[i][1] = league.DisplayTeamByAvgAge().get(i).GetAvgTeamAge();
+                    AvgData[i][2] =  league.DisplayTeamByAvgAge().get(i).getPlayers().size();
+                    AvgData[i][3] = league.DisplayTeamByAvgAge().get(i).getNoOfMatches();
+                }
+                TableData=AvgData;
+                model.setDataVector(AvgData,  new Object[]{"Team", "average age", "players", "Played"});
             }
         });
+
 
         JButton ByGoals = new JButton("Goals");
         ByGoals.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                Object[][] newGoalData = {
-                        {"New Data 1", "New Data 2", "New Data 3", "New Data 4"},
-                        {"More new data 1", "More new data 2", "More new data 3", "More new data 4"},
-                        {"Even more new data 1", "Even more new data 2", "Even more new data 3", "Even more new data 4"}, {"New Data 1", "New Data 2", "New Data 3", "New Data 4"},
-                        {"More new data 1", "More new data 2", "More new data 3", "More new data 4"},
-                        {"Even more new data 1", "Even more new data 2", "Even more new data 3", "Even more new data 4"}
-
-                };
-                model.setDataVector(newGoalData, new Object[]{"Column 1", "Column 2", "Column 3", "Column 4"});
+                GoalData=new Object[league.DisplayTeamsByGoals().size()][4];
+                for (int i = 0; i < league.DisplayTeamsByGoals().size(); i++) {
+                    AvgData[i][0] = league.DisplayTeamsByGoals().get(i).getName();
+                    AvgData[i][1] = league.DisplayTeamsByGoals().get(i).GetTeamGoals();
+                    AvgData[i][2] =  league.DisplayTeamsByGoals().get(i).getPlayers().size();
+                    AvgData[i][3] = league.DisplayTeamsByGoals().get(i).getNoOfMatches();
+                }
+                TableData=AvgData;
+                model.setDataVector(AvgData,  new Object[]{"Team", "Goals", "players", "Played"});
             }
+
         });
         buttonPanel.add(showListButton);
         buttonPanel.add(ByPoints);
@@ -124,5 +152,37 @@ public class Standings extends JPanel {
 
         setBackground(new Color(240, 240, 240));
         setVisible(true);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int column = 0;
+        int row = table.rowAtPoint(e.getPoint());
+        String TeamName=(String) TableData[row][column];
+        Team team=new Team(TeamName);
+        mainPanel.add(new TeamInfo(team),"TeamInfo");
+        cardLayout.show(mainPanel,"TeamInfo");
+
+    }
+
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

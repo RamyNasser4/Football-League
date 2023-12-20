@@ -18,7 +18,7 @@ import java.util.List;
 
 public class League {
     protected ArrayList<Team> teams;
-    public ArrayList<String> teamnames;
+    public static ArrayList<String> teamnames;
     public static ArrayList<Player> searchByNameAndTeam;
     //eg 2023/2024
     public String season;
@@ -196,19 +196,19 @@ public class League {
         return topKeepers;
     }
 
-    void DisplayTeamByAvgAge() {
+   public ArrayList<Team> DisplayTeamByAvgAge() {
         ArrayList<Team> teamscopy = new ArrayList<>(teams);
         TeamAgeComparator comparator = new TeamAgeComparator();
         Collections.sort(teamscopy, comparator);
-        for (Team teams : teamscopy) {
-            System.out.println(teams.getName() + " Average Age is " + teams.GetAvgTeamAge());
-        }
+        return teamscopy;
     }
 
-    public void DisplayTeamsByGoals() {
+    public ArrayList<Team> DisplayTeamsByGoals() {
         ArrayList<Team> teamscopy = new ArrayList<>(teams);
         TeamGoalsComparator comparator = new TeamGoalsComparator();
         Collections.sort(teamscopy, comparator);
+        return teamscopy;
+
     }
 
     public void AddMatch(Match match) {

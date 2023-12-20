@@ -247,7 +247,6 @@ public class League {
     /**
      * This function filters matches according to current date into upcoming and past matches
      * @param match
-     * @return true if given date has no matches and false otherwise
      * @throws NullPointerException If there is no elements in array list
      */
     protected void FilterMatchByTime(Match match) {

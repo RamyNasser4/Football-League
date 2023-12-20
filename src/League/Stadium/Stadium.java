@@ -89,7 +89,7 @@ public class Stadium {
      * @param date date entered by user
      *
      * @return true if given date has no matches and false otherwise
-     * @throws Throwable If user inputs invalid date
+     * @throws RuntimeException If user inputs invalid date
      */
     public boolean CheckAvailability(String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

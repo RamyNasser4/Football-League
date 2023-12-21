@@ -11,7 +11,7 @@ public class Team {
     protected static int noOfTeams = 0;
     public String Name;
     public ArrayList<Player> Players;
-    //can be final
+
     protected int Team_ID;
     protected Player Captain;
     protected Coach Coach;
@@ -97,6 +97,7 @@ public class Team {
         }
     }
 
+
     public static int getNoOfTeams() {
         return noOfTeams;
     }
@@ -181,6 +182,9 @@ public class Team {
          return 0;
      }
     }
+
+
+
 
 
     public int GetTeamGoals() {
@@ -284,5 +288,13 @@ public class Team {
         }catch (NullPointerException exp){
             System.out.println("Invalid Match");
         }
+    }
+
+    public ArrayList<String> getPlayernames() {
+        ArrayList <String> players=new ArrayList<>();
+        for(Player p:Players){
+            players.add(p.getPersonName());
+        }
+        return players;
     }
 }

@@ -67,7 +67,7 @@ public class DeletePlayer extends JPanel {
                 JLabel nameLabel = new JLabel("Player Name");
                 nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
                 namepanel.add(nameLabel);
-                JComboBox nameComboBox =new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayers().toArray()));
+                JComboBox nameComboBox =new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayernames().toArray()));
                 namepanel.add(nameComboBox);
                 String name;
                 try {
@@ -112,7 +112,6 @@ public class DeletePlayer extends JPanel {
                             panel2.add(serachValue);
                             panel2.add(select);
                             serachValue.addActionListener(new ActionListener() {
-
                                 @Override
                                 public void actionPerformed(ActionEvent arg0) {
                                     //searchByNameAndTeam.remove(0);

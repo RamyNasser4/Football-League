@@ -64,6 +64,10 @@ public class DeleteTeam extends JPanel implements ActionListener {
             main.add(new AddPlayer(league.teamnames,league),"AddPlayer");
             main.add(new DeleteTeam(league,main,cardLayout),"DeleteTeam");
             cardLayout.show(main,"TeamHome");
+            main.add(new Standings(main,cardLayout,league),"Standings");
+            main.add(new EditTeam(league,main,cardLayout),"EditTeam");
+            main.add(new DeleteTeam(league,main,cardLayout),"DeleteTeam");
+
         }
     }
 }

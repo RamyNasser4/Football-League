@@ -175,8 +175,13 @@ public class Team {
         for (Player player : Players) {
             avgAge += player.getPersonAge();
         }
-        return (avgAge /= noOfPlayers);
+     if(noOfPlayers!=0) {
+         return (avgAge /= noOfPlayers);}
+     else {
+         return 0;
+     }
     }
+
 
     public int GetTeamGoals() {
         int teamGoals = 0;

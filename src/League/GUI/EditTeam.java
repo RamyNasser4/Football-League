@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Person.Coach.Coach;
+import League.Person.Player.Player;
 import League.Team.Team;
 
 import javax.swing.*;
@@ -136,6 +137,9 @@ public class EditTeam extends JPanel implements ActionListener {
                     searched.setTeam_ID(TeamID);
                     searched.getCoach().setPersonName(CoachName);
                     searched.getCoach().setPersonAge(CoachAge);
+                    for (Player player : searched.getPlayers()) {
+                        player.SetPlayerTeam(TeamName);
+                    }
                     for (int i = 0; i < league.teamnames.size(); i++) {
                         if (league.teamnames.get(i).equalsIgnoreCase(currentTeamName)){
                             league.teamnames.set(i,TeamName);
@@ -143,6 +147,11 @@ public class EditTeam extends JPanel implements ActionListener {
                     }
                     main.add(new AddPlayer(league.teamnames,league),"AddPlayer");
                     cardLayout.show(main,"TeamHome");
+                    main.add(new Standings(main,cardLayout,league),"Standings");
+                    main.add(new EditTeam(league,main,cardLayout),"EditTeam");
+                    main.add(new DeleteTeam(league,main,cardLayout),"DeleteTeam");
+                    main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
+
                 }else {
                     JOptionPane.showConfirmDialog(this,"Invalid Fields","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
                 }

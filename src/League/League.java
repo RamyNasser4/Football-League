@@ -311,6 +311,7 @@ public class League {
     public void AddTeam(Team team){
         try {
             teams.add(team);
+            teamnames.add(team.getName());
         }catch (NullPointerException exp){
             System.out.println("Invalid team");
         }

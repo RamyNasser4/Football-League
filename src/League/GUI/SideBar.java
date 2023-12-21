@@ -13,6 +13,7 @@ public class SideBar extends JPanel implements ActionListener {
     SideBarButton players;
     SideBarButton standings;
     SideBarButton stats;
+    SideBarButton league;
     CardLayout cardLayout;
     MainPanel main;
 
@@ -43,16 +44,22 @@ public class SideBar extends JPanel implements ActionListener {
         ImageIcon stat = new ImageIcon("src/Assets/stats.png");
         stats.setIcon(stat);
         stats.setIconTextGap(25);
+        league = new SideBarButton("League");
+        ImageIcon leagueIcon = new ImageIcon("src/Assets/league.png");
+        league.setIcon(leagueIcon);
+        league.setIconTextGap(25);
         matches.addActionListener(this);
         teams.addActionListener(this);
         players.addActionListener(this);
         standings.addActionListener(this);
         stats.addActionListener(this);
+        league.addActionListener(this);
         this.add(matches);
         this.add(teams);
         this.add(players);
         this.add(standings);
         this.add(stats);
+        this.add(league);
         this.setVisible(true);
     }
 
@@ -61,13 +68,15 @@ public class SideBar extends JPanel implements ActionListener {
         if (e.getSource() == matches) {
             cardLayout.show(main, "Matches");
         } else if (e.getSource() == teams) {
-            cardLayout.show(main,"TeamInfo");
+            cardLayout.show(main,"TeamHome");
         } else if (e.getSource() == players) {
             cardLayout.show(main, "PlayerHome");
         } else if (e.getSource() == standings) {
             cardLayout.show(main, "Standings");
         } else if (e.getSource() == stats) {
             cardLayout.show(main,"Stats");
+        } else if (e.getSource() == league) {
+            cardLayout.show(main,"LeagueHome");
         }
     }
 }

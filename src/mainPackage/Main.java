@@ -72,7 +72,6 @@ public class Main {
             while (ReadStadium.ready()){
                 String stadium = ReadStadium.readLine();
                 String[] stadiumInfo = stadium.split("\t");
-                System.out.println(Arrays.toString(stadiumInfo));
                 Stadium newStadium = new Stadium(stadiumInfo[0],stadiumInfo[1],Integer.parseInt(stadiumInfo[2]));
                 stadiums.add(newStadium);
             }
@@ -106,13 +105,11 @@ public class Main {
                         TeamCoach = coach;
                     }
                 }
-                System.out.println(Arrays.toString(teamInfo));
                 try {
                     ReadTeamPlayers = new BufferedReader(new FileReader("Team"+teamInfo[4]+"Players.txt"));
                     while (ReadTeamPlayers.ready()){
                         String player = ReadTeamPlayers.readLine();
                         String[] playerInfo = player.split("\t");
-                        System.out.println(Arrays.toString(playerInfo));
                         if(playerInfo[0].equals("Forward")){
                             //PlayerName - PlayerAge - PlayerSalary - PlayerTeam
                             // - PlayerNumber - PlayerScore - PlayerRank - GoalsScored

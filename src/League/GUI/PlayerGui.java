@@ -1,11 +1,11 @@
 package League.GUI;
+import League.League;
 import League.Person.Player.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import static League.League.searchByNameAndTeam;
-import static League.League.teamnames;
 
 /**
  * This class represents the graphical user interface for managing players in a sports league.
@@ -14,6 +14,7 @@ public class PlayerGui extends JPanel implements ActionListener {
     /**
      * Displays the home screen for managing players.
      */
+    League league;
 public void PlayerHomeScreen(){
          this.setSize(new Dimension(980, 720));
          this.setLayout(new GridLayout(3, 1));
@@ -44,11 +45,10 @@ public void PlayerHomeScreen(){
 
              @Override
              public void actionPerformed(ActionEvent arg0) {
-                 removeAll();  // Remove existing panels
+                 /*removeAll();  // Remove existing panels
                  AddPlayerGui();
                  revalidate(); // Ensure the layout is updated
-                 repaint();    // Repaint the components
-
+                 repaint();    // Repaint the components*/
 
              }
 
@@ -186,7 +186,8 @@ public boolean Validation(String name,String team ){
      saveButton.setFont(new Font("Comic Sans",Font.BOLD,20));
 
      panel2.add(saveButton);
-     teamsComboBox=new JComboBox ((ComboBoxModel) teamnames);
+     System.out.println(league.teamnames);
+     teamsComboBox = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
 
      JPanel comboboxpanel = new JPanel(new GridLayout(1, 1));
      JLabel comboBoxLabel = new JLabel("Team");
@@ -206,10 +207,7 @@ public boolean Validation(String name,String team ){
              String position = (String) positionsComboBox.getItemAt(positionsComboBox.getSelectedIndex());
              String team="Null";
              try{
-
                  team = (String) teamsComboBox.getItemAt(teamsComboBox.getSelectedIndex());
-
-
              }
              /**
               *
@@ -247,7 +245,8 @@ public boolean Validation(String name,String team ){
 
 
     JComboBox teamsComboBox;
-    public  PlayerGui() {
+    public  PlayerGui(MainPanel main ,CardLayout card,League league) {
+        this.league = league;
         PlayerHomeScreen();
 
 
@@ -261,7 +260,7 @@ public void AddPlayerGui(){
 
       {
 
-          TeamlistSize= teamnames.size();
+          TeamlistSize= league.teamnames.size();
           AddPlayerFields();
 
        }
@@ -278,7 +277,7 @@ public void AddPlayerGui(){
    }
     if(TeamlistSize!=0)
     {
-        AddPlayerFields();
+        //AddPlayerFields();
         }
      else
       //do nothing until validation
@@ -518,7 +517,7 @@ private void DeletePlayerGui(){
             String team =nameFeild.getText();
             boolean found=false;
             try {
-                for (String s : teamnames) {
+                for (String s : league.teamnames) {
                     if (s.equals(team)) {
                         found = true;
                         break;

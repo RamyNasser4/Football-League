@@ -129,15 +129,16 @@ League league;
         JButton ByGoals = new JButton("Goals");
         ByGoals.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 GoalData=new Object[league.DisplayTeamsByGoals().size()][4];
                 for (int i = 0; i < league.DisplayTeamsByGoals().size(); i++) {
-                    AvgData[i][0] = league.DisplayTeamsByGoals().get(i).getName();
-                    AvgData[i][1] = league.DisplayTeamsByGoals().get(i).GetTeamGoals();
-                    AvgData[i][2] =  league.DisplayTeamsByGoals().get(i).getPlayers().size();
-                    AvgData[i][3] = league.DisplayTeamsByGoals().get(i).getNoOfMatches();
+                    GoalData[i][0] = league.DisplayTeamsByGoals().get(i).getName();
+                    GoalData[i][1] = league.DisplayTeamsByGoals().get(i).GetTeamGoals();
+                    GoalData[i][2] =  league.DisplayTeamsByGoals().get(i).getPlayers().size();
+                    GoalData[i][3] = league.DisplayTeamsByGoals().get(i).getNoOfMatches();
                 }
-                TableData=AvgData;
-                model.setDataVector(AvgData,  new Object[]{"Team", "Goals", "players", "Played"});
+                TableData=GoalData;
+                model.setDataVector(GoalData,  new Object[]{"Team", "Goals", "players", "Played"});
             }
 
         });

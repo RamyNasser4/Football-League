@@ -247,9 +247,9 @@ public class Main {
                 Team team2 = new Team();
                 for (Team team : teams){
                     if (team.getName().equals(team1Name)){
-                        team1 = new Team(team);
+                        team1 = league.searchTeam(team1Name);
                     }else if (team.getName().equals(team2Name)){
-                        team2 = new Team(team);
+                        team2 = league.searchTeam(team2Name);
                     }
                 }
                 Team[] MatchTeams = new Team[2];
@@ -259,19 +259,21 @@ public class Main {
                 Referee MatchReferee = new Referee();
                 for (Referee referee : referees){
                     if (referee.getPersonName().equals(refereeName)){
-                        MatchReferee = new Referee(referee);
+                        MatchReferee = referee;
                     }
                 }
                 String stadiumName = matchInfo[5];
                 Stadium MatchStadium = new Stadium();
                 for (Stadium stadium : stadiums){
                     if (stadium.getStadiumName().equals(stadiumName)){
-                        MatchStadium = new Stadium(stadium);
+                        MatchStadium = stadium;
                     }
                 }
                 try {
                     Match newMatch = new Match(matchInfo[0],new SimpleDateFormat("dd/MM/yyyy").parse(matchInfo[0]),MatchTeams,MatchReferee,matchInfo[4],MatchStadium);
                     MatchStadium.matches.add(newMatch);
+                    team1.AddMatch(newMatch);
+                    team2.AddMatch(newMatch);
                     matches.add(newMatch);
                 }catch (ParseException exp){
                     System.out.println("Invalid date");

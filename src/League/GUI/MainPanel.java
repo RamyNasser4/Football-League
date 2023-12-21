@@ -19,7 +19,7 @@ public class MainPanel extends JPanel {
         PlayerHome playerHome = new PlayerHome(this,cardLayout,league.teamnames);
         AddPlayer addPlayer = new AddPlayer(league.teamnames,league);
         EditPlayer editPlayer = new EditPlayer(league);
-        DeletePlayer deletePlayer = new DeletePlayer(league);
+        DeletePlayer deletePlayer = new DeletePlayer(league.teamnames,league);
         TeamHome teamHome = new TeamHome(this,cardLayout);
         AddTeam addTeam = new AddTeam(league,this,cardLayout);
         EditTeam editTeam = new EditTeam(league,this,cardLayout);

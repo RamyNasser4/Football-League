@@ -14,28 +14,28 @@ public class Players extends JPanel implements ActionListener {
     JButton SEARCH;
     JButton TOPSCORERS;
     JButton TOPGKS;
+
     public Players(MainPanel main, CardLayout CARD, League league) {
         this.setBackground(Color.white);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical alignment
         this.setPreferredSize(new Dimension(980, 720));
-         TOPGKS =new JButton();
+        TOPGKS = new JButton();
         TOPGKS.setText("TopGKS");
-        TOPGKS.setFont(new Font("MVBoli",Font.PLAIN,30));
+        TOPGKS.setFont(new Font("MVBoli", Font.PLAIN, 30));
         TOPGKS.setBackground(Color.GRAY);
-        TOPGKS.setPreferredSize(new Dimension(10,50));
+        TOPGKS.setPreferredSize(new Dimension(10, 50));
 
 
-        TOPSCORERS=new JButton();
+        TOPSCORERS = new JButton();
         TOPSCORERS.setText("TopScorers");
-        TOPSCORERS.setFont(new Font("MVBoli",Font.PLAIN,30));
+        TOPSCORERS.setFont(new Font("MVBoli", Font.PLAIN, 30));
         TOPSCORERS.setBackground(Color.GRAY);
-        TOPSCORERS.setPreferredSize(new Dimension(10,50));
+        TOPSCORERS.setPreferredSize(new Dimension(10, 50));
 
-         SEARCH =new JButton();
-        SEARCH.setText("Search");
-        SEARCH.setFont(new Font("MVBoli",Font.PLAIN,30));
+        SEARCH = new JButton("Search");
+        SEARCH.setFont(new Font("MVBoli", Font.PLAIN, 30));
         SEARCH.setBackground(Color.GRAY);
-        SEARCH.setPreferredSize(new Dimension(10,50));
+        SEARCH.setPreferredSize(new Dimension(10, 50));
         SEARCH.addActionListener(this);
 
 
@@ -44,62 +44,41 @@ public class Players extends JPanel implements ActionListener {
         PANELS.add(TOPGKS);
         PANELS.add(TOPSCORERS);
         this.add(PANELS);
-        for (Team team : league.getTeams()){
-            for (Player player : team.getPlayers()){{
-                playerButton playerButton = new playerButton("name:  " + player.getPersonName() + "                 age:  " + player.getPersonAge()  + "     team:  " + player.GetPlayerTeam() + "            Goals:  " + player.getGoalsScored() +         "    assists:  " + player.getAssists() + "           ", main, CARD,player);
-                JPanel panel = new JPanel(new GridLayout(1, 1));
-                this.add(panel);
-                panel.setSize(980,50);
-                panel.add(playerButton);
-                playerButton.setHorizontalAlignment(SwingConstants.LEFT);
-                playerButton.setBackground(Color.darkGray);
-            }}
+
+        for (Team team : league.getTeams()) {
+            for (Player player : team.getPlayers()) {
+                {
+                    playerButton playerButton = new playerButton("name:  " + player.getPersonName() + "                 age:  " + player.getPersonAge() + "     team:  " + player.GetPlayerTeam() + "            Goals:  " + player.getGoalsScored() + "    assists:  " + player.getAssists() + "           ", main, CARD, player);
+                    JPanel panel = new JPanel(new GridLayout(1, 1));
+                    this.add(panel);
+                    panel.setSize(980, 50);
+                    panel.add(playerButton);
+                    playerButton.setHorizontalAlignment(SwingConstants.LEFT);
+                    playerButton.setBackground(Color.darkGray);
+                }
+            }
         }
-        /*playerButton player1 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
-        playerButton player2 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
-        playerButton player3 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
-        playerButton player4 = new playerButton("name:                                         age:              team:                           Goals:                assists:            ", main, CARD);
 
-        JPanel PANEL1 = new JPanel(new GridLayout(1, 1));
-        JPanel PANEL2 = new JPanel(new GridLayout(1, 2));
-        JPanel PANEL3 = new JPanel(new GridLayout(1, 1));
-        JPanel PANEL4 = new JPanel(new GridLayout(1, 1));
-
-        this.add(PANEL1);
-        this.add(PANEL2);
-        this.add(PANEL3);
-        this.add(PANEL4);
-        PANEL1.setSize(980,50);
-        PANEL2.setSize(980,50);
-        PANEL3.setSize(980,50);
-        PANEL4.setSize(980,50);
-
-        PANEL1.add(player1);
-        PANEL2.add(player2);
-        PANEL3.add(player3);
-        PANEL4.add(player4);*/
-        /*player1.setHorizontalAlignment(SwingConstants.LEFT);
-        player4.setHorizontalAlignment(SwingConstants.LEFT);
-        player2.setHorizontalAlignment(SwingConstants.LEFT);
-        player3.setHorizontalAlignment(SwingConstants.LEFT);*/
-
-        // Set background color for playerButtons if needed
-        /*player1.setBackground(Color.DARK_GRAY);
-        player2.setBackground(Color.DARK_GRAY);
-        player3.setBackground(Color.DARK_GRAY);
-        player4.setBackground(Color.DARK_GRAY);
-        player1.setFocusable(false);
-        player2.setFocusable(false);
-        player3.setFocusable(false);
-        player4.setFocusable(false);*/
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==SEARCH){
-            String input =JOptionPane.showInputDialog("enter the player name");
+        if (e.getSource() == SEARCH) {
+            Search();
         }
+    }
 
+    private void Search() {
+        String[] options = {"By Name", "By Team"};
+        int response = JOptionPane.showOptionDialog(null, "Choose your search type:", "Search",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                null, options, options[0]);
+
+        if (response == 0) {
+            String nameInput = JOptionPane.showInputDialog("Enter the player name");
+        } else if (response == 1) {
+            String teamInput = JOptionPane.showInputDialog("Enter the player team name");
+        }
     }
 }
 

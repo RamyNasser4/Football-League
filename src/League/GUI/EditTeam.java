@@ -145,7 +145,7 @@ public class EditTeam extends JPanel implements ActionListener {
                             league.teamnames.set(i,TeamName);
                         }
                     }
-                    main.add(new AddPlayer(league.teamnames,league),"AddPlayer");
+                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
                     cardLayout.show(main,"TeamHome");
                     main.add(new Standings(main,cardLayout,league),"Standings");
                     main.add(new EditTeam(league,main,cardLayout),"EditTeam");

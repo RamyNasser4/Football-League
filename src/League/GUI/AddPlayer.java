@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Person.Player.*;
+import League.Team.Team;
 
 import javax.swing.*;
 import java.awt.*;
@@ -135,44 +136,45 @@ public class AddPlayer extends JPanel{
                 }
 
                 else {
-                    try{
+                    try {
                         Integer.parseInt(Age);
                         Integer.parseInt(rank);
                         Integer.parseInt(number);
                         Player p = null;
-                        if(captain.equals("Yes")){
-                          if(position.equals("GoalKeeper")) {
-                               p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
-                          }
-                          else if(position.equals("Midfielder")) {
-                               p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,true);
-                          }
-                          else if(position.equals("Defender")){
-                               p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,true);
-                          }
-                        else if(position.equals("Forward")){
-                               p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,true);
-                          }
+                        if (captain.equals("Yes")) {
+                            if (position.equals("GoalKeeper")) {
+                                p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
+                            } else if (position.equals("Midfielder")) {
+                                p = new Midfielder(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, true);
+                            } else if (position.equals("Defender")) {
+                                p = new Defender(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
+                            } else if (position.equals("Forward")) {
+                                p = new Forward(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, 0, 0, 0, 0, 0, 0, true);
+                            }
 
+                        } else {
+                            if (position.equals("GoalKeeper")) {
+                                p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
+                            } else if (position.equals("Midfielder")) {
+                                p = new Midfielder(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, false);
+                            } else if (position.equals("Defender")) {
+                                p = new Defender(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
+                            } else if (position.equals("Forward")) {
+                                p = new Forward(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, 0, 0, 0, 0, 0, 0, false);
+                            }
                         }
-                       else{
-                            if(position.equals("GoalKeeper")) {
-                                 p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
-                            }
-                          else if(position.equals("Midfielder")) {
-                                 p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,false);
-                            }
-                          else if(position.equals("Defender")){
-                                 p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,false);
-                            }
-                            else if(position.equals("Forward")){
-                                 p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,false);
-                            }
-                       }
-                       league.searchTeam(team).addPlayer(p);
-                       main.add(new Players(main,cardLayout,league),"Stats");
-                       cardLayout.show(main,"PlayerHome");
+                        league.searchTeam(team).addPlayer(p);
+                       if(league.searchTeam(team).getCaptain()==null) {
+                           if (p.getCaptain()) {
+                               league.searchTeam(team).setCaptain(p);
+                           }
+                           main.add(new Players(main, cardLayout, league), "Stats");
+                           cardLayout.show(main, "PlayerHome");
                            System.out.println("Created ");
+                       }
+                       else if(league.searchTeam(team).getCaptain()!=null && captain.equals("Yes")) {
+                           JOptionPane.showMessageDialog(null, "Team must have 1 captain only");
+                       }
                     }
                     /**
                      *

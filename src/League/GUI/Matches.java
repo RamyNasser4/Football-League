@@ -122,18 +122,18 @@ public class Matches extends JPanel implements ActionListener {
             Team searched = league.searchTeam(selectedTeam);
             try {
                 System.out.println(searched);
-                ArrayList<Match> searchedMatch = searched.getMatches();
-                System.out.println(searched.getMatches());
+              // ArrayList<Match> searchedMatch = searched.getMatches();
+              // System.out.println(searched.getMatches());
                 ArrayList<Match> upcoming = new ArrayList<>();
                 ArrayList<Match> past = new ArrayList<>();
                 Date now = new Date();
-                for (Match match : searchedMatch) {
+               /* for (Match match : searchedMatch) {
                     if (match.getDate().before(now)) {
                         past.add(match);
                     } else {
                         upcoming.add(match);
                     }
-                }
+                }*/
                 main.add(new Matches(main,cardLayout,upcoming,past,league),"Matches");
                 cardLayout.show(main,"Matches");
             }catch (NullPointerException exp){

@@ -92,7 +92,7 @@ public class AddTeam extends JPanel implements ActionListener {
                 Coach newCoach = new Coach(CoachName,CoachAge,0,"",TeamName);
                 Team newTeam = new Team(TeamName,new ArrayList<>(),null,newCoach,new ArrayList<>(),0,0,0);
                 league.AddTeam(newTeam);
-                main.add(new AddPlayer(league.teamnames,league),"AddPlayer");
+               // main.add(new AddPlayer(league.teamnames,league),"AddPlayer");
                 teamNameField.setText("");
                 teamCoachField.setText("");
                 teamCoachAgeField.setText("");

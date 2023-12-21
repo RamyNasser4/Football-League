@@ -1,7 +1,7 @@
 package League.GUI;
 
 import League.League;
-import League.Person.Player.Player;
+import League.Person.Player.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -108,6 +108,7 @@ public class AddPlayer extends JPanel{
                 try{
                     team = (String) teamsComboBox.getItemAt(teamsComboBox.getSelectedIndex());
                 }
+
                 /**
                  *
                  * @throws NullPointerException  if no team exists
@@ -115,9 +116,11 @@ public class AddPlayer extends JPanel{
                 catch(NullPointerException ignorable){
                     JOptionPane.showMessageDialog(null, "Add team first");
                 }
+                System.out.println("team is "+team);
                 if(captain.equals("Yes")) {
                     boolean cap=CaptianValidation(team);
-                    if(!cap){
+
+                    if(cap){
                         JOptionPane.showMessageDialog(null, "Only one captain is allowed in team");
                     }
                 }
@@ -132,7 +135,37 @@ public class AddPlayer extends JPanel{
                         Integer.parseInt(Age);
                         Integer.parseInt(rank);
                         Integer.parseInt(number);
-                        Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(number),team);
+                        if(captain.equals("Yes")){
+                          if(position.equals("GoalKeeper")) {
+                              Player p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
+                          }
+                          else if(position.equals("Midfielder")) {
+                              Player p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,true);
+                          }
+                          else if(position.equals("Defender")){
+                              Player p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,true);
+                          }
+                        else if(position.equals("Forward")){
+                              Player p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,true);
+                          }
+
+                        }
+                       else{
+                            if(position.equals("GoalKeeper")) {
+                                Player p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
+                            }
+                          else if(position.equals("Midfielder")) {
+                                Player p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,false);
+                            }
+                          else if(position.equals("Defender")){
+                                Player p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,false);
+                            }
+                            else if(position.equals("Forward")){
+                                Player p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,false);
+                            }
+
+                       }
+                           System.out.println("Created ");
                     }
                     /**
                      *
@@ -172,10 +205,15 @@ public class AddPlayer extends JPanel{
         catch(NullPointerException exp){
              captain="Not found";
         }
-    if(captain.equals("Not found"))
-    return false;
-    else
-  return true;
+     System.out.println(league.searchTeam(teamname).getCaptain());
+     System.out.println(league.getTeams().get(0).getCaptain());
+     System.out.println(captain);
+    if(captain!=null){
+        return false;
+    }
+    else {
+        return true;
+    }
  }
 
 }

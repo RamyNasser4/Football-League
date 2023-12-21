@@ -92,6 +92,7 @@ public class Players extends JPanel implements ActionListener {
                 main.add(new Players(main,CARD,league,players));
                 CARD.show(main,"Stats" );
 
+
             } else {
                 JOptionPane.showMessageDialog(null, "Player not found");
             }

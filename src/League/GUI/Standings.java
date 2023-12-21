@@ -54,7 +54,9 @@ League league;
 
 
         }
+
         TableData=AllData;
+
         DefaultTableModel model = new DefaultTableModel(
                 AllData,
                 new Object[]{"Team", "Score", "players", "Played"}
@@ -77,7 +79,7 @@ League league;
         table.setRowHeight(40);
         table.setGridColor(Color.LIGHT_GRAY);
         table.setIntercellSpacing(new Dimension(10, 10));
-
+        table.repaint();
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(800, 600));
 
@@ -99,7 +101,13 @@ League league;
         JButton ByPoints = new JButton("All teams");
         ByPoints.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
+                AllData=new Object[league.getTeams().size()][4];
+                for (int i = 0; i < league.getTeams().size(); i++) {
+                    AllData[i][0] = league.getTeams().get(i).getName();
+                    AllData[i][1] = league.getTeams().get(i).getTotal_score();
+                    AllData[i][2] = league.getTeams().get(i).getPlayers().size();
+                    AllData[i][3] = league.getTeams().get(i).getNoOfMatches();
+                }
                 model.setDataVector(AllData,  new Object[]{"Team", "Score", "players", "Played"});
             }
         });

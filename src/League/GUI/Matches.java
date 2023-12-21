@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Matches extends JPanel implements ActionListener {
     JButton Search;
@@ -47,7 +48,6 @@ public class Matches extends JPanel implements ActionListener {
         SearchContainer.add(Search);
         this.add(SearchContainer);
         //Combo box for each team to display matches
-
         ArrayList<Team> Teams = league.getTeams();
         String Defaultvalue = "None";
         Searchbyteam = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
@@ -65,7 +65,6 @@ public class Matches extends JPanel implements ActionListener {
         SearchContainerbyteam.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
         SearchContainerbyteam.add(Searchbyteam);
         this.add(SearchContainerbyteam);
-
         //
         JLabel upcoming = new JLabel("Upcoming Matches");
         upcoming.setForeground(Color.white);
@@ -74,9 +73,11 @@ public class Matches extends JPanel implements ActionListener {
         upcoming.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(upcoming);
         upcoming.setAlignmentX(0.5f);
+        System.out.println(upcomingMatches);
         for (Match match : upcomingMatches) {
             MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + "vs" + match.getTeams()[1].getName(), main, cardLayout, match);
             this.add(matchButton);
+            System.out.println(match);
         }
         JLabel past = new JLabel("Past Matches");
         past.setForeground(Color.white);
@@ -85,9 +86,11 @@ public class Matches extends JPanel implements ActionListener {
         past.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(past);
         past.setAlignmentX(0.5f);
+        System.out.println(pastMatches);
         for (Match match : pastMatches) {
             MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + " " + match.getScore() + " " + match.getTeams()[1].getName(), main, cardLayout, match);
             this.add(matchButton);
+            System.out.println(match);
         }
     }
 
@@ -117,19 +120,26 @@ public class Matches extends JPanel implements ActionListener {
         } else if (e.getSource() == Searchbyteam) {
             String selectedTeam = (String) Searchbyteam.getSelectedItem();
             Team searched = league.searchTeam(selectedTeam);
-            ArrayList<Match> searchedMatch = searched.getMatches();
-            ArrayList<Match> upcoming = new ArrayList<>();
-            ArrayList<Match> past = new ArrayList<>();
-            Date now = new Date();
-            for (Match match : searchedMatch) {
-                if (match.getDate().before(now)) {
-                    past.add(match);
-                } else {
-                    upcoming.add(match);
+            try {
+                System.out.println(searched);
+                ArrayList<Match> searchedMatch = searched.getMatches();
+                System.out.println(searched.getMatches());
+                ArrayList<Match> upcoming = new ArrayList<>();
+                ArrayList<Match> past = new ArrayList<>();
+                Date now = new Date();
+                for (Match match : searchedMatch) {
+                    if (match.getDate().before(now)) {
+                        past.add(match);
+                    } else {
+                        upcoming.add(match);
+                    }
                 }
+                main.add(new Matches(main,cardLayout,upcoming,past,league),"Matches");
+                cardLayout.show(main,"Matches");
+            }catch (NullPointerException exp){
+                main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league));
+                cardLayout.show(main,"Matches");
             }
-            main.add(new Matches(main,cardLayout,upcoming,past,league),"Matches");
-            cardLayout.show(main,"Matches");
         }
     }
 }

@@ -12,8 +12,12 @@ import java.util.ArrayList;
 public class AddPlayer extends JPanel{
     JComboBox teamsComboBox;
     League league;
-    public AddPlayer(ArrayList<String> teamnames,League league){
+    MainPanel main;
+    CardLayout cardLayout;
+    public AddPlayer(ArrayList<String> teamnames,League league,MainPanel main,CardLayout cardLayout){
         this.league=league;
+        this.main = main;
+        this.cardLayout = cardLayout;
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(2, 1));
         JPanel titlepanel = new JPanel(new GridLayout(5, 1,0,30));
@@ -135,36 +139,39 @@ public class AddPlayer extends JPanel{
                         Integer.parseInt(Age);
                         Integer.parseInt(rank);
                         Integer.parseInt(number);
+                        Player p = null;
                         if(captain.equals("Yes")){
                           if(position.equals("GoalKeeper")) {
-                              Player p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
+                               p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
                           }
                           else if(position.equals("Midfielder")) {
-                              Player p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,true);
+                               p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,true);
                           }
                           else if(position.equals("Defender")){
-                              Player p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,true);
+                               p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,true);
                           }
                         else if(position.equals("Forward")){
-                              Player p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,true);
+                               p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,true);
                           }
 
                         }
                        else{
                             if(position.equals("GoalKeeper")) {
-                                Player p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
+                                 p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
                             }
                           else if(position.equals("Midfielder")) {
-                                Player p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,false);
+                                 p = new Midfielder(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0, Integer.parseInt(rank), 0, 0, 0, 0, 0,false);
                             }
                           else if(position.equals("Defender")){
-                                Player p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,false);
+                                 p=new Defender(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,0, 0,false);
                             }
                             else if(position.equals("Forward")){
-                                Player p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,false);
+                                 p=new Forward(name,Integer.parseInt(Age), 0, team, Integer.parseInt(number),0,0,0,0,0,0,0,false);
                             }
-
                        }
+                       league.searchTeam(team).addPlayer(p);
+                       main.add(new Players(main,cardLayout,league),"Stats");
+                       cardLayout.show(main,"PlayerHome");
                            System.out.println("Created ");
                     }
                     /**

@@ -67,7 +67,6 @@ public class Players extends JPanel implements ActionListener {
             Search();
         }
     }
-
     private void Search() {
         String[] options = {"By Name", "By Team"};
         int response = JOptionPane.showOptionDialog(null, "Choose your search type:", "Search",

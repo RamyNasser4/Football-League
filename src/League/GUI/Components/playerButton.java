@@ -1,7 +1,6 @@
 package League.GUI.Components;
 
 import League.GUI.MainPanel;
-import League.GUI.MatchInfo;
 import League.GUI.PlayerInfo;
 import League.Person.Player.Player;
 

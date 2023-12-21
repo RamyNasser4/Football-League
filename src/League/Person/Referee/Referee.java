@@ -1,4 +1,5 @@
 package League.Person.Referee;
+
 import League.Person.Person;
 
 public class Referee extends Person {

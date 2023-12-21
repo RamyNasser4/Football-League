@@ -1,4 +1,5 @@
 package League.Person.Player;
+
 /**
  * This class represents Forwards
  */

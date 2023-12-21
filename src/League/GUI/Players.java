@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import League.GUI.Components.playerButton;
 import League.League;
@@ -14,8 +15,14 @@ public class Players extends JPanel implements ActionListener {
     JButton SEARCH;
     JButton TOPSCORERS;
     JButton TOPGKS;
+    private League league;
+    MainPanel main;
+    CardLayout CARD;
 
-    public Players(MainPanel main, CardLayout CARD, League league) {
+    public Players(MainPanel main, CardLayout CARD, League league, ArrayList<Player> players) {
+        this.league = league;
+        this.main=main;
+        this.CARD=CARD;
         this.setBackground(Color.white);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical alignment
         this.setPreferredSize(new Dimension(980, 720));
@@ -45,9 +52,7 @@ public class Players extends JPanel implements ActionListener {
         PANELS.add(TOPSCORERS);
         this.add(PANELS);
 
-        for (Team team : league.getTeams()) {
-            for (Player player : team.getPlayers()) {
-                {
+        for (Player player : players) {
                     playerButton playerButton = new playerButton("name:  " + player.getPersonName() + "                 age:  " + player.getPersonAge() + "     team:  " + player.GetPlayerTeam() + "            Goals:  " + player.getGoalsScored() + "    assists:  " + player.getAssists() + "           ", main, CARD, player);
                     JPanel panel = new JPanel(new GridLayout(1, 1));
                     this.add(panel);
@@ -55,8 +60,7 @@ public class Players extends JPanel implements ActionListener {
                     panel.add(playerButton);
                     playerButton.setHorizontalAlignment(SwingConstants.LEFT);
                     playerButton.setBackground(Color.darkGray);
-                }
-            }
+
         }
 
     }
@@ -75,6 +79,22 @@ public class Players extends JPanel implements ActionListener {
 
         if (response == 0) {
             String nameInput = JOptionPane.showInputDialog("Enter the player name");
+            Player foundPlayer = null;
+            for (Team team : league.getTeams()) {
+                foundPlayer = team.searchPlayer(nameInput);
+                if (foundPlayer != null) {
+                    break;
+                }
+            }
+            if (foundPlayer != null) {
+                ArrayList<Player> players=new ArrayList<>();
+                players.add(foundPlayer);
+                main.add(new Players(main,CARD,league,players));
+                CARD.show(main,"Stats" );
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Player not found");
+            }
         } else if (response == 1) {
             String teamInput = JOptionPane.showInputDialog("Enter the player team name");
         }

@@ -122,13 +122,7 @@ public class AddPlayer extends JPanel{
                     JOptionPane.showMessageDialog(null, "Add team first");
                 }
                 System.out.println("team is "+team);
-                if(captain.equals("Yes")) {
-                    boolean cap=CaptianValidation(team);
 
-                    if(cap){
-                        JOptionPane.showMessageDialog(null, "Only one captain is allowed in team");
-                    }
-                }
                 // validation
                 if (!Validation(name,Age,rank,number,position)) {
 
@@ -163,8 +157,9 @@ public class AddPlayer extends JPanel{
                                 p = new Forward(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, 0, 0, 0, 0, 0, 0, false);
                             }
                         }
-                        league.searchTeam(team).addPlayer(p);
+
                        if(league.searchTeam(team).getCaptain()==null) {
+                           league.searchTeam(team).addPlayer(p);
                            if (p.getCaptain()) {
                                league.searchTeam(team).setCaptain(p);
                            }
@@ -174,6 +169,10 @@ public class AddPlayer extends JPanel{
                        }
                        else if(league.searchTeam(team).getCaptain()!=null && captain.equals("Yes")) {
                            JOptionPane.showMessageDialog(null, "Team must have 1 captain only");
+                       }
+                       else if(captain.equals("No")) {
+                           league.searchTeam(team).addPlayer(p);
+                           main.add(new Players(main, cardLayout, league), "Stats");
                        }
                     }
                     /**
@@ -198,31 +197,6 @@ public class AddPlayer extends JPanel{
         }
     }
 
-    public boolean Validation(String name,String team ){
-        if(name.isEmpty()||team.isEmpty()){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
- public boolean CaptianValidation(String teamname){
-     String captain;
-        try {
-            captain= String.valueOf(league.searchTeam(teamname).getCaptain());
-        }
-        catch(NullPointerException exp){
-             captain="Not found";
-        }
-     System.out.println(league.searchTeam(teamname).getCaptain());
-     System.out.println(league.getTeams().get(0).getCaptain());
-     System.out.println(captain);
-    if(captain!=null){
-        return false;
-    }
-    else {
-        return true;
-    }
- }
+
 
 }

@@ -1,6 +1,6 @@
 package League.GUI;
 
-import League.GUI.Components.StandingsButton;
+
 import League.League;
 import League.Team.Team;
 

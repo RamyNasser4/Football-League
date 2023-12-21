@@ -1,5 +1,7 @@
 package League.Person.Player;
+
 import League.Person.Person;
+
 public class Player extends Person
 
 {

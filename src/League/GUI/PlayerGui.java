@@ -178,8 +178,9 @@ public boolean Validation(String name,String team ){
      positionspanel.add(positionsLabel);
      String positions[]={"GoalKeeper","Defender","Midfielder","Forward"};
      JComboBox positionsComboBox =new JComboBox(positions);
-     positionspanel.add(positionsComboBox);
-     panel2.add(positionspanel);
+
+
+
 
      JButton saveButton=new JButton("Save");
      saveButton.setFocusable(false);

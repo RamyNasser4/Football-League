@@ -2,8 +2,8 @@ package League.Team;
 
 import League.Match.Match;
 import League.Person.Coach.Coach;
-import League.Person.Player.Goalkeeper;
-import League.Person.Player.Player;
+
+import League.Person.Player.*;
 
 import java.util.ArrayList;
 

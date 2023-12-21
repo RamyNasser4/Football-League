@@ -1,5 +1,6 @@
 package League.GUI;
 
+import League.League;
 import League.Person.Player.Player;
 
 import javax.swing.*;
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 
 public class AddPlayer extends JPanel{
     JComboBox teamsComboBox;
-    public AddPlayer(ArrayList<String> teamnames){
+    League league;
+    public AddPlayer(ArrayList<String> teamnames,League league){
+        this.league=league;
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(2, 1));
         JPanel titlepanel = new JPanel(new GridLayout(5, 1,0,30));
@@ -41,14 +44,6 @@ public class AddPlayer extends JPanel{
         agepanel.add(ageFeild);
         titlepanel.add(agepanel);
 
-        JPanel salarypanel = new JPanel(new GridLayout(1, 1));
-        JLabel salaryLabel = new JLabel("Salary");
-        salaryLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        salarypanel.add(salaryLabel);
-        JTextField salaryFeild = new JTextField("");
-        salarypanel.add(salaryFeild);
-        titlepanel.add(salarypanel);
-
         JPanel rankpanel = new JPanel(new GridLayout(1, 1));
         JLabel rankLabel = new JLabel("Rank");
         rankLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
@@ -57,6 +52,22 @@ public class AddPlayer extends JPanel{
         rankpanel.add(rankFeild);
         panel2.add(rankpanel);
 
+        JPanel numberpanel = new JPanel(new GridLayout(1, 1));
+        JLabel numberLabel = new JLabel("T-shirt number");
+        numberLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        numberpanel.add(numberLabel);
+        JTextField numberFeild = new JTextField("");
+        numberpanel.add(numberFeild);
+        titlepanel.add(numberpanel);
+
+        JPanel captainpanel = new JPanel(new GridLayout(1, 1));
+        JLabel captainLabel = new JLabel("Team Captain");
+        captainLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        captainpanel.add(captainLabel);
+        String capbool[]={"No","Yes"};
+        JComboBox captainComboBox =new JComboBox(capbool);
+        captainpanel.add(captainComboBox);
+        panel2.add(captainpanel);
 
         JPanel positionspanel = new JPanel(new GridLayout(1, 1));
         JLabel positionsLabel = new JLabel("Position");
@@ -88,9 +99,11 @@ public class AddPlayer extends JPanel{
             public void actionPerformed(ActionEvent arg0) {
                 String name = nameFeild.getText();
                 String Age = ageFeild.getText();
-                String Salary = salaryFeild.getText();
                 String rank =rankFeild.getText();
+                String number =numberFeild.getText();
                 String position = (String) positionsComboBox.getItemAt(positionsComboBox.getSelectedIndex());
+                String captain=(String) captainComboBox.getItemAt(captainComboBox.getSelectedIndex());
+
                 String team="Null";
                 try{
                     team = (String) teamsComboBox.getItemAt(teamsComboBox.getSelectedIndex());
@@ -102,33 +115,39 @@ public class AddPlayer extends JPanel{
                 catch(NullPointerException ignorable){
                     JOptionPane.showMessageDialog(null, "Add team first");
                 }
+                if(captain.equals("Yes")) {
+                    boolean cap=CaptianValidation(team);
+                    if(!cap){
+                        JOptionPane.showMessageDialog(null, "Only one captain is allowed in team");
+                    }
+                }
                 // validation
-                if (!Validation(name,Age,Salary,rank,position)) {
-                    JOptionPane.showMessageDialog(null, "Please fill all fields");
+                if (!Validation(name,Age,rank,number,position)) {
+
 
                 }
 
                 else {
                     try{
                         Integer.parseInt(Age);
-                        Integer.parseInt(Salary);
                         Integer.parseInt(rank);
-                        Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(Salary),team);
+                        Integer.parseInt(number);
+                        Player p=new Player(name,Integer.parseInt(Age),Integer.parseInt(number),team);
                     }
                     /**
                      *
                      * @throws NumberFormatException if user enters non integers
                      */
                     catch(NumberFormatException e) {
-                        JOptionPane.showMessageDialog(null, "Enter a valid number in salary,age and rank");
+                        JOptionPane.showMessageDialog(null, "Enter a valid number in number,age and rank");
                     }
 
                 }
             }
         });
     }
-    public boolean Validation(String name,String Age,String Salary,String rank,String position){
-        if (name.isEmpty()||Age.isEmpty()||Salary.isEmpty()||rank.isEmpty()||position.isEmpty()) {
+    public boolean Validation(String name,String Age,String number,String rank,String position){
+        if (name.isEmpty()||Age.isEmpty()||number.isEmpty()||rank.isEmpty()||position.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill all fields");
             return false;
         }
@@ -145,4 +164,18 @@ public class AddPlayer extends JPanel{
             return true;
         }
     }
+ public boolean CaptianValidation(String teamname){
+     String captain;
+        try {
+            captain= String.valueOf(league.searchTeam(teamname).getCaptain());
+        }
+        catch(NullPointerException exp){
+             captain="Not found";
+        }
+    if(captain.equals("Not found"))
+    return false;
+    else
+  return true;
+ }
+
 }

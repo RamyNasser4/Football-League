@@ -151,6 +151,15 @@ public class League {
         }
         return searched;
     }
+    public ArrayList<Player> getPlayersByTeamName(String teamName) {
+        for (Team team : teams) {
+            if (team.getName().equalsIgnoreCase(teamName)) {
+                return new ArrayList<>(team.getPlayers()); // Assuming Team class has a getPlayers() method
+            }
+        }
+        return new ArrayList<>(); // Return an empty list if no team is found
+    }
+
 
     public Player[] DisplayTopScorers() {
         Player[] topScorers = new Player[3];

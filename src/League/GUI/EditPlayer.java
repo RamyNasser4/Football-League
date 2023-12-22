@@ -33,7 +33,7 @@ public class EditPlayer extends JPanel implements ActionListener {
         }
     }
     else if(e.getSource()==teamComboBox){
-       this.remove(contentPanel);
+
         //removeAll();
         DisplayFields();
         revalidate();
@@ -135,25 +135,25 @@ public class EditPlayer extends JPanel implements ActionListener {
         JPanel agepanel = new JPanel(new GridLayout(1, 1));
         JLabel ageLabel = new JLabel("Age");
         ageLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        JTextField ageField = new JTextField(Integer.toString(playerToEdit.GetPlayerAge()));
         agepanel.add(ageLabel);
-        JTextField ageFeild = new JTextField(playerToEdit.getPersonAge());
-        agepanel.add(ageFeild);
+        agepanel.add(ageField);
         contentPanel.add(agepanel);
 
         JPanel rankpanel = new JPanel(new GridLayout(1, 1));
         JLabel rankLabel = new JLabel("Rank");
         rankLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         rankpanel.add(rankLabel);
-        JTextField rankFeild = new JTextField(playerToEdit.GetPlayerRank());
-        rankpanel.add(rankFeild);
+        JTextField rankField = new JTextField(Integer.toString(playerToEdit.GetPlayerRank()));
+        rankpanel.add(rankField);
         contentPanel.add(rankpanel);
 
         JPanel numberpanel = new JPanel(new GridLayout(1, 1));
         JLabel numberLabel = new JLabel("T-shirt number");
         numberLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         numberpanel.add(numberLabel);
-        JTextField numberFeild = new JTextField(playerToEdit.GetPlayerNumber());
-        numberpanel.add(numberFeild);
+        JTextField numberField = new JTextField(Integer.toString(playerToEdit.GetPlayerNumber()));
+        numberpanel.add(numberField);
         contentPanel.add(numberpanel);
 
         JPanel captainpanel = new JPanel(new GridLayout(1, 1));
@@ -168,7 +168,7 @@ public class EditPlayer extends JPanel implements ActionListener {
             contentPanel.add(captainpanel);
         }
         else {
-            JComboBox captainComboBox = new JComboBox(capbool2);
+            JComboBox captainComboBox = new JComboBox(capbool);
             captainpanel.add(captainComboBox);
             contentPanel.add(captainpanel);
         }

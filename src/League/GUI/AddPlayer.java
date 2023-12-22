@@ -163,6 +163,7 @@ public class AddPlayer extends JPanel{
                            if (p.getCaptain()) {
                                league.searchTeam(team).setCaptain(p);
                            }
+
                            //main.add(new Players(main, cardLayout, league), "Stats");
                            main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
                            cardLayout.show(main, "PlayerHome");

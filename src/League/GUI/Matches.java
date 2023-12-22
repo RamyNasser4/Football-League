@@ -73,11 +73,9 @@ public class Matches extends JPanel implements ActionListener {
         upcoming.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(upcoming);
         upcoming.setAlignmentX(0.5f);
-        System.out.println(upcomingMatches);
         for (Match match : upcomingMatches) {
-            MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + "vs" + match.getTeams()[1].getName(), main, cardLayout, match);
+            MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + " vs " + match.getTeams()[1].getName(), main, cardLayout, match);
             this.add(matchButton);
-            System.out.println(match);
         }
         JLabel past = new JLabel("Past Matches");
         past.setForeground(Color.white);
@@ -86,11 +84,9 @@ public class Matches extends JPanel implements ActionListener {
         past.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(past);
         past.setAlignmentX(0.5f);
-        System.out.println(pastMatches);
         for (Match match : pastMatches) {
             MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + " " + match.getScore() + " " + match.getTeams()[1].getName(), main, cardLayout, match);
             this.add(matchButton);
-            System.out.println(match);
         }
     }
 
@@ -121,19 +117,17 @@ public class Matches extends JPanel implements ActionListener {
             String selectedTeam = (String) Searchbyteam.getSelectedItem();
             Team searched = league.searchTeam(selectedTeam);
             try {
-                System.out.println(searched);
-              // ArrayList<Match> searchedMatch = searched.getMatches();
-              // System.out.println(searched.getMatches());
+               ArrayList<Match> searchedMatch = searched.getMatches();
                 ArrayList<Match> upcoming = new ArrayList<>();
                 ArrayList<Match> past = new ArrayList<>();
                 Date now = new Date();
-               /* for (Match match : searchedMatch) {
+                for (Match match : searchedMatch) {
                     if (match.getDate().before(now)) {
                         past.add(match);
                     } else {
                         upcoming.add(match);
                     }
-                }*/
+                }
                 main.add(new Matches(main,cardLayout,upcoming,past,league),"Matches");
                 cardLayout.show(main,"Matches");
             }catch (NullPointerException exp){

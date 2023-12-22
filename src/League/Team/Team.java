@@ -114,6 +114,14 @@ public class Team {
         this.Name = Name;
     }
 
+    public ArrayList<Match> getMatches() {
+        return Matches;
+    }
+
+    public void setMatches(ArrayList<Match> matches) {
+        Matches = matches;
+    }
+
     public int getTeam_ID() {
         return Team_ID;
     }
@@ -263,18 +271,18 @@ public class Team {
     }
 
     public Player searchPlayer(String name) {
-        for (int i = 0; i < noOfPlayers; i++) {
-            if (Players.get(i).GetPlayerName().equalsIgnoreCase(name)) {
-                return Players.get(i);
+        for (Player player : Players){
+            if (player.getPersonName().equalsIgnoreCase(name)){
+                return player;
             }
         }
         return null;
     }
 
     public Player searchPlayer(int ID) {
-        for (int i = 0; i < noOfPlayers; i++) {
-            if (Players.get(i).GetPlayerId() == ID) {
-                return Players.get(i);
+        for (Player player : Players){
+            if (player.GetPlayerId() == ID){
+                return player;
             }
         }
         return null;
@@ -296,5 +304,13 @@ public class Team {
             players.add(p.getPersonName());
         }
         return players;
+    }
+    public boolean checkAvailability(String date){
+        for (Match match : Matches){
+            if (match.getMatchDate().equalsIgnoreCase(date)){
+                return false;
+            }
+        }
+        return true;
     }
 }

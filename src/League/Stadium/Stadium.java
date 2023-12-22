@@ -91,7 +91,7 @@ public class Stadium {
      * @return true if given date has no matches and false otherwise
      * @throws RuntimeException If user inputs invalid date
      */
-    public boolean CheckAvailability(String date) {
+    public boolean CheckAvailability(String date,boolean isUpdate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
@@ -102,7 +102,7 @@ public class Stadium {
                     System.out.println("Stadium won't be available");
                     return false;
                 }
-                if (datenow.before(checkDate)) {
+                if (checkDate.before(datenow) && isUpdate) {
                     System.out.println("Date should be upcoming date");
                     return false;
                 }

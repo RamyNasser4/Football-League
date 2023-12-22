@@ -127,7 +127,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[12]),
                                     Boolean.parseBoolean(playerInfo[13]));
                             if (newPlayer.getCaptain()){
-                                TeamCaptain = new Forward(newPlayer);
+                                TeamCaptain = newPlayer;
                             }
                             players.add(newPlayer);
                         }else if (playerInfo[0].equals("Midfielder")){
@@ -147,7 +147,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[12]),
                                     Boolean.parseBoolean(playerInfo[13]));
                             if (newPlayer.getCaptain()){
-                                TeamCaptain = new Midfielder(newPlayer);
+                                TeamCaptain = newPlayer;
                             }
                             players.add(newPlayer);
                         }else if (playerInfo[0].equals("Defender")){
@@ -169,7 +169,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[13]),
                                     Boolean.parseBoolean(playerInfo[14]));
                             if (newPlayer.getCaptain()){
-                                TeamCaptain = new Defender(newPlayer);
+                                TeamCaptain = newPlayer;
                             }
                             players.add(newPlayer);
                         }else{
@@ -191,7 +191,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[13]),
                                     Boolean.parseBoolean(playerInfo[14]));
                             if (newPlayer.getCaptain()){
-                                TeamCaptain = new Goalkeeper(newPlayer);
+                                TeamCaptain = newPlayer;
                             }
                             players.add(newPlayer);
                         }
@@ -270,12 +270,12 @@ public class Main {
                     }
                 }
                 try {
-                    Match newMatch = new Match(matchInfo[0],new SimpleDateFormat("dd/MM/yyyy").parse(matchInfo[0]),MatchTeams,MatchReferee,matchInfo[4],MatchStadium);
+                    Match newMatch = new Match(matchInfo[0],MatchTeams,MatchReferee,matchInfo[4],MatchStadium);
                     MatchStadium.matches.add(newMatch);
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);
                     matches.add(newMatch);
-                }catch (ParseException exp){
+                }catch (Exception exp){
                     System.out.println("Invalid date");
                 }
             }
@@ -490,7 +490,7 @@ public class Main {
                     }
                     int StadiumChoice = input.nextInt();
                     Stadium searched = league.searchStadium(StadiumChoice);
-                    if (searched != null && searched.CheckAvailability(date)){
+                    if (searched != null && searched.CheckAvailability(date,false)){
                         matchStadium = searched;
                         break;
                     }
@@ -505,7 +505,7 @@ public class Main {
                 }catch (NullPointerException exp){
 
                 }
-                Match newMatch = new Match(date, matchDate,matchTeams,matchReferee,matchScore,matchStadium);
+                Match newMatch = new Match(date,matchTeams,matchReferee,matchScore,matchStadium);
                 league.AddMatch(newMatch);
                 matchStadium.AddMatch(newMatch);
                 team1.AddMatch(newMatch);

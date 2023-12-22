@@ -362,6 +362,22 @@ public class League {
         }
         return  null;
     }
+    public Referee searchReferee(String refereeName){
+        for (Referee referee : referees){
+            if (referee.getPersonName().equalsIgnoreCase(refereeName)){
+                return referee;
+            }
+        }
+        return  null;
+    }
+    public Stadium searchStadium(String stadiumName){
+        for (Stadium stadium : stadiums){
+            if (stadium.getStadiumName().equalsIgnoreCase(stadiumName)){
+                return stadium;
+            }
+        }
+        return  null;
+    }
 }
 
 

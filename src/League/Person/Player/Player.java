@@ -162,6 +162,12 @@ public class Player extends Person
     public void ScoreGoal() {
         goalsScored++;
     }
+    public void MakeYellowCard(){
+       ++noOfYellowCards;
+    }
+    public void MakeRedCard(){
+       ++NoOfRedCards;
+    }
 
     public void DisplayPlayer(String Name, int playerId) {
         if (this.Name.equals(Name)) {

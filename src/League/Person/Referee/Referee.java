@@ -1,19 +1,26 @@
 package League.Person.Referee;
-
+import League.Match.Match;
 import League.Person.Person;
+
+import java.util.ArrayList;
 
 public class Referee extends Person {
     public  int  noYellowCards;
     public  int noRedCards;
     protected int RefereeID;
     private static int noOfReferees = 0;
+    protected ArrayList<Match> matches;
 
-    public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards) {
+    public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards,ArrayList<Match> matches) {
         super(refereeName, refereeAge, Salary);
         ++noOfReferees;
         this.RefereeID = noOfReferees;
         this.noYellowCards = noYellowCards;
         this.noRedCards = noRedCards;
+        this.matches = new ArrayList<>(matches);
+    }
+    public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards) {
+        this(refereeName, refereeAge, Salary, noYellowCards, 0,new ArrayList<>());
     }
 
     public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards) {
@@ -74,5 +81,13 @@ public class Referee extends Person {
 
     public void setRefereeID(int refereeID) {
         RefereeID = refereeID;
+    }
+    public boolean checkAvailability(String date){
+        for (Match match : matches){
+            if (match.getMatchDate().equalsIgnoreCase(date)){
+                return false;
+            }
+        }
+        return true;
     }
 }

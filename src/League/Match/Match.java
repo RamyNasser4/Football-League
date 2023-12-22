@@ -22,7 +22,7 @@ public class Match {
     public Stadium Stadium;
     SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
     //Constructors
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score) {
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score) {
         Match_ID = ++noOfMatches;
         this.Teams = new Team[2];
         try {
@@ -41,35 +41,31 @@ public class Match {
             System.out.println("Null referee");
         }
         this.matchDate = matchDate;
-        this.matchdate = matchdate;
+        StringToDate();
         this.Score = Score;
         this.Stadium = Stadium;
         this.team1score = team1score;
         this.team2score = team2score;
     }
 
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score) {
-        this(matchDate, matchdate, Teams, Referee, Score, Stadium, team1score, 0);
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score) {
+        this(matchDate, Teams, Referee, Score, Stadium, team1score, 0);
     }
 
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
-        this(matchDate, matchdate, Teams, Referee, Score, Stadium, 0);
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium) {
+        this(matchDate, Teams, Referee, Score, Stadium, 0);
     }
 
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee, String Score) {
-        this(matchDate, matchdate, Teams, Referee, Score, null);
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score) {
+        this(matchDate, Teams, Referee, Score, null);
     }
 
-    public Match(String matchDate, Date matchdate, Team[] Teams, Referee Referee) {
-        this(matchDate, matchdate, Teams, Referee, null);
+    public Match(String matchDate, Team[] Teams, Referee Referee) {
+        this(matchDate, Teams, Referee, null);
     }
 
-    public Match(String matchDate, Date matchdate, Team[] Teams) {
-        this(matchDate, matchdate, Teams, null);
-    }
-
-    public Match(String matchDate, Date matchdate) {
-        this(matchDate, matchdate, null);
+    public Match(String matchDate, Team[] Teams) {
+        this(matchDate, Teams, null);
     }
 
     public Match(String matchDate) {
@@ -126,6 +122,14 @@ public class Match {
 
     public void setDate(Date date) {
         matchdate = date;
+    }
+
+    public String getMatchDate() {
+        return matchDate;
+    }
+
+    public void setMatchDate(String matchDate) {
+        this.matchDate = matchDate;
     }
 
     public Referee getReferee() {

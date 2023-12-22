@@ -168,7 +168,7 @@ League league;
         int column = 0;
         int row = table.rowAtPoint(e.getPoint());
         String TeamName=(String) TableData[row][column];
-        Team team=new Team(TeamName);
+        Team team=league.searchTeam(TeamName);
         mainPanel.add(new TeamInfo(team),"TeamInfo");
         cardLayout.show(mainPanel,"TeamInfo");
 

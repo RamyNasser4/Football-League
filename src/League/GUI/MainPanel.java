@@ -15,10 +15,10 @@ public class MainPanel extends JPanel {
         //PlayerGui playerGui = new PlayerGui(this,cardLayout,league);
         Matches matches = new Matches(this, cardLayout,league.upcomingMatches,league.pastMatches,league);
         Standings standings = new Standings(this,cardLayout,league);
-        Players players = new Players(this,cardLayout,league);
+        //Players players = new Players(this,cardLayout,league);
         PlayerHome playerHome = new PlayerHome(this,cardLayout,league.teamnames);
         AddPlayer addPlayer = new AddPlayer(league.teamnames,league,this,cardLayout);
-        EditPlayer editPlayer = new EditPlayer(league);
+        EditPlayer editPlayer = new EditPlayer(league.teamnames,league,this,cardLayout);
         DeletePlayer deletePlayer = new DeletePlayer(league.teamnames,league,this,cardLayout);
         TeamHome teamHome = new TeamHome(this,cardLayout);
         AddTeam addTeam = new AddTeam(league,this,cardLayout);
@@ -30,7 +30,7 @@ public class MainPanel extends JPanel {
         this.add(playerHome,"PlayerHome");
         this.add(matches, "Matches");
         this.add(standings, "Standings");
-        this.add(players,"Stats");
+       //this.add(players,"Stats");
         this.add(addPlayer,"AddPlayer");
         this.add(editPlayer,"EditPlayer");
         this.add(deletePlayer,"DeletePlayer");

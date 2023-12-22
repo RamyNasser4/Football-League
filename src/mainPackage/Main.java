@@ -770,6 +770,6 @@ public class Main {
         ReadFiles(league);
         SwingUtilities.invokeLater(() -> new GUI(league));
         //mainMenu(league);
-        //WriteFiles(league);
+       // WriteFiles(league);
     }
 }

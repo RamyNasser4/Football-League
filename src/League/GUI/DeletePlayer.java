@@ -52,9 +52,9 @@ public class DeletePlayer extends JPanel implements ActionListener{
         this.league=league;
         this.cardLayout=cardLayout;
         this.setSize(new Dimension(980, 720));
-        this.setLayout(new GridLayout(2, 1));
-        JPanel titlepanel = new JPanel(new GridLayout(1, 1,0,30));
-        JPanel contentPanel=new JPanel(new GridLayout(8, 1));
+        this.setLayout(new GridLayout(4, 1));
+        JPanel titlepanel = new JPanel(new GridLayout(2, 1,0,0));
+        JPanel contentPanel=new JPanel(new GridLayout(3, 1));
         JLabel titleLabel = new JLabel("Delete Player");
         JLabel title2Label = new JLabel("Search by Team and Name");
         title2Label.setFont(new Font("Comic Sans",Font.BOLD,15));
@@ -63,11 +63,9 @@ public class DeletePlayer extends JPanel implements ActionListener{
         titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));
         titleLabel.setVerticalAlignment(JLabel.TOP);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titlepanel.add(titleLabel);
         titlepanel.add(title2Label);
-        contentPanel.add(titleLabel);
-        this.add(titlepanel);
-        this.add(contentPanel);
-        contentPanel.add(titlepanel);
+
 
         JPanel teampanel = new JPanel(new GridLayout(1, 1));
         JLabel teamLabel = new JLabel("Player Team");
@@ -77,6 +75,8 @@ public class DeletePlayer extends JPanel implements ActionListener{
         teamComboBox.addActionListener(this);
         teampanel.add(teamComboBox);
         contentPanel.add(teampanel);
+        this.add(titlepanel);
+        this.add(contentPanel);
 
         String team;
         try {

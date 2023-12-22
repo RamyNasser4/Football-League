@@ -297,14 +297,6 @@ public class Team {
         }
         return players;
     }
-    public Player GetPlayerbyName(String name){
-        Player player=new Player();
-        for(Player p:Players){
-            if(p.getPersonName().equals(name)){
-                player=p;
-            }
-        }
-        return player;
-    }
+
 
 }

@@ -24,6 +24,8 @@ public class DeletePlayer extends JPanel implements ActionListener{
              Team searchTeam = league.searchTeam(pTeam);
              searchTeam.deletePlayer(pName);
              main.add(new DeletePlayer(league.teamnames, league, main, cardLayout), "DeletePlayer");
+             main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+             main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
              cardLayout.show(main, "PlayerHome");
              JOptionPane.showMessageDialog(null, "Player deleted successfully");
          }
@@ -53,6 +55,7 @@ public class DeletePlayer extends JPanel implements ActionListener{
         this.cardLayout=cardLayout;
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(4, 1));
+
         JPanel titlepanel = new JPanel(new GridLayout(2, 1,0,0));
         JPanel contentPanel=new JPanel(new GridLayout(3, 1));
         JLabel titleLabel = new JLabel("Delete Player");
@@ -94,6 +97,7 @@ public class DeletePlayer extends JPanel implements ActionListener{
         nameComboBox =new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayernames().toArray()));
         namepanel.add(nameComboBox);
         contentPanel.add(namepanel);
+
 
         String name;
         try {

@@ -16,6 +16,7 @@ public class AddPlayer extends JPanel{
     MainPanel main;
     CardLayout cardLayout;
     public AddPlayer(ArrayList<String> teamnames,League league,MainPanel main,CardLayout cardLayout){
+
         this.league=league;
         this.main = main;
         this.cardLayout = cardLayout;
@@ -166,17 +167,32 @@ public class AddPlayer extends JPanel{
 
                            //main.add(new Players(main, cardLayout, league), "Stats");
                            main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                           main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
                            cardLayout.show(main, "PlayerHome");
                            JOptionPane.showMessageDialog(null, "Player added successfully");
+                            nameFeild.setText("");
+                            ageFeild.setText("");
+                            rankFeild.setText("");
+                            numberFeild.setText("");
 
                        }
                        else if(league.searchTeam(team).getCaptain()!=null && captain.equals("Yes")) {
                            JOptionPane.showMessageDialog(null, "Team must have 1 captain only");
+                           main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                           main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+
                        }
                        else if(captain.equals("No")) {
                            league.searchTeam(team).addPlayer(p);
                            //main.add(new Players(main, cardLayout, league), "Stats");
                            JOptionPane.showMessageDialog(null, "Player added successfully");
+                           main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                           main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                           cardLayout.show(main, "PlayerHome");
+                           nameFeild.setText("");
+                           ageFeild.setText("");
+                           rankFeild.setText("");
+                           numberFeild.setText("");
                        }
                     }
                     /**

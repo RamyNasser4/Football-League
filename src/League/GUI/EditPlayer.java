@@ -34,27 +34,120 @@ public class EditPlayer extends JPanel implements ActionListener {
     }
     else if(e.getSource()==teamComboBox){
 
-        //removeAll();
-        DisplayFields();
-        revalidate();
-        repaint();
-
         nameComboBox.removeAllItems();
         Team team=league.searchTeam((String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex()));
         for(String p:team.getPlayernames()){
             nameComboBox.addItem(p);
         }
     }
+    else if(e.getSource()==saveButton){
+        String name = nameField.getText();
+        String Age = ageField.getText();
+        String rank =rankField.getText();
+        String number =numberField.getText();
+
+        if(!name.isEmpty() && !Age.isEmpty() && !rank.isEmpty() && !number.isEmpty() ){
+            try{
+            Integer.parseInt(Age);
+            Integer.parseInt(rank);
+            Integer.parseInt(number);
+            String captain=(String) captainComboBox.getItemAt(captainComboBox.getSelectedIndex());
+            if(captain.equals("Yes")&&league.searchTeam(pTeam).getCaptain()!=null && !league.searchTeam(pTeam).getCaptain().equals(league.searchTeam(pTeam).searchPlayer(pName))) {
+
+                JOptionPane.showMessageDialog(null, "Only 1 captain is allowed in a team");
+            }
+            if(captain.equals("Yes")&&((league.searchTeam(pTeam).getCaptain()==null)||(league.searchTeam(pTeam).getCaptain().equals(league.searchTeam(pTeam).searchPlayer(pName))))){
+                    Player p=league.searchTeam(pTeam).searchPlayer(pName);
+                    p.setPersonName(name);
+                    p.setPersonAge(Integer.parseInt(Age));
+                    p.SetPlayerRank(Integer.parseInt(rank));
+                    p.SetPlayerNumber(Integer.parseInt(number));
+                    p.setCaptain(true);
+                    league.searchTeam(pTeam).setCaptain(p);
+                    System.out.println( "7"+league.searchTeam(pTeam).getCaptain().getPersonName());
+                    JOptionPane.showMessageDialog(null, "Edited Successfully");
+                    cardLayout.show(main,"PlayerHome");
+                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                }
+
+            else if (captain.equals("No")&&league.searchTeam(pTeam).searchPlayer(pName).getCaptain()){
+                    Player p=league.searchTeam(pTeam).searchPlayer(pName);
+                    p.setPersonName(name);
+                    p.setPersonAge(Integer.parseInt(Age));
+                    p.SetPlayerRank(Integer.parseInt(rank));
+                    p.SetPlayerNumber(Integer.parseInt(number));
+                    p.setCaptain(false);
+                    league.searchTeam(pTeam).setCaptain(null);
+                    System.out.println( "1"+league.searchTeam(pTeam).getCaptain().getPersonName());
+                    JOptionPane.showMessageDialog(null, "Edited Successfully");
+                    cardLayout.show(main,"PlayerHome");
+                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                }
+
+              else if(captain.equals("No")&&!league.searchTeam(pTeam).searchPlayer(pName).getCaptain()){
+                    Player p=league.searchTeam(pTeam).searchPlayer(pName);
+                    p.setPersonName(name);
+                    p.setPersonAge(Integer.parseInt(Age));
+                    p.SetPlayerRank(Integer.parseInt(rank));
+                    p.SetPlayerNumber(Integer.parseInt(number));
+                    p.setCaptain(false);
+                    System.out.println( "11"+league.searchTeam(pTeam).getCaptain().getPersonName());
+                    JOptionPane.showMessageDialog(null, "Edited Successfully");
+                    cardLayout.show(main,"PlayerHome");
+                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                }
+
+
+
+            }
+            catch(NumberFormatException exp) {
+                JOptionPane.showMessageDialog(null, "Enter a valid number in number,age and rank");
+            }
+            catch(NullPointerException exp){
+                Player p=league.searchTeam(pTeam).searchPlayer(pName);
+                p.setPersonName(name);
+                p.setPersonAge(Integer.parseInt(Age));
+                p.SetPlayerRank(Integer.parseInt(rank));
+                p.SetPlayerNumber(Integer.parseInt(number));
+                p.setCaptain(false);
+                league.searchTeam(p.GetPlayerTeam()).setCaptain(null);
+                JOptionPane.showMessageDialog(null, "Edited Successfully");
+                cardLayout.show(main,"PlayerHome");
+                main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Please fill all fields");
+        }
+    }
     }
     JComboBox teamComboBox;
+    JComboBox nameComboBox;
+    JComboBox captainComboBox;
+    //JComboBox positionsComboBox;
     JButton searchButton;
+    JButton saveButton;
     String pTeam;
     String pName;
-    JComboBox nameComboBox;
     JPanel contentPanel;
+    JPanel namepanel;
+    JPanel teampanel;
+    JPanel titlepanel;
     League league;
     MainPanel main;
     CardLayout cardLayout;
+    JTextField nameField;
+    JTextField ageField;
+    JTextField rankField;
+    JTextField numberField;
     public EditPlayer(ArrayList<String> teamnames, League league,MainPanel main,CardLayout cardLayout) {
 
         this.main = main;
@@ -63,20 +156,20 @@ public class EditPlayer extends JPanel implements ActionListener {
 
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(4, 1));
-        JPanel titlepanel = new JPanel(new GridLayout(2, 1, 0, 0));
+        titlepanel = new JPanel(new GridLayout(2, 1, 0, 0));
         contentPanel = new JPanel(new GridLayout(3, 1));
         JLabel titleLabel = new JLabel("Edit Player");
         JLabel title2Label = new JLabel("Search by Team and Name");
         title2Label.setFont(new Font("Comic Sans", Font.BOLD, 15));
         title2Label.setVerticalAlignment(JLabel.TOP);
         title2Label.setHorizontalAlignment(JLabel.CENTER);
-        titleLabel.setFont(new Font("Comic Sans", Font.BOLD, 35));
+        titleLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
         titleLabel.setVerticalAlignment(JLabel.TOP);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titlepanel.add(titleLabel);
         titlepanel.add(title2Label);
 
-        JPanel teampanel = new JPanel(new GridLayout(1, 1));
+         teampanel = new JPanel(new GridLayout(1, 1));
         JLabel teamLabel = new JLabel("Player Team");
         teamLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
         teampanel.add(teamLabel);
@@ -94,7 +187,7 @@ public class EditPlayer extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(null, "No teams exist");
         }
 
-        JPanel namepanel = new JPanel(new GridLayout(1, 1));
+         namepanel = new JPanel(new GridLayout(1, 1));
         JLabel nameLabel = new JLabel("Player Name");
         nameLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
         namepanel.add(nameLabel);
@@ -111,31 +204,37 @@ public class EditPlayer extends JPanel implements ActionListener {
         searchButton.addActionListener(this);
         contentPanel.add(searchButton);
     }
-   /* public boolean Validation(String name,String team ){
-        if(pName.isEmpty()||pTeam.isEmpty()){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }*/
+
     public void DisplayFields(){
         this.setSize(new Dimension(980, 720));
-        this.setLayout(new GridLayout(4, 1));
-        Player playerToEdit=league.searchTeam(pTeam).searchPlayer(pName);
+        this.setLayout(new GridLayout(1, 1,0,0));
+        contentPanel .setLayout(new GridLayout(8, 1,0,30));
+        Player playerToEdit;
+        try {
+            playerToEdit = league.searchTeam(pTeam).searchPlayer(pName);
+       }
+       catch(NullPointerException exp){
+           playerToEdit=null;
+
+       }
+        this.remove(titlepanel);
+        contentPanel.remove(searchButton);
+        contentPanel.remove(namepanel);
+        contentPanel.remove(teampanel);
+        contentPanel.add(titlepanel);
         JPanel namepanel = new JPanel(new GridLayout(1, 1));
         JLabel nameLabel = new JLabel("Name");
         namepanel.add(nameLabel);
         nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        JTextField nameFeild = new JTextField(playerToEdit.getPersonName());
-        namepanel.add(nameFeild);
+        nameField = new JTextField(playerToEdit.getPersonName());
+        namepanel.add(nameField);
         contentPanel.add(namepanel);
 
 
         JPanel agepanel = new JPanel(new GridLayout(1, 1));
         JLabel ageLabel = new JLabel("Age");
         ageLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        JTextField ageField = new JTextField(Integer.toString(playerToEdit.GetPlayerAge()));
+        ageField = new JTextField(Integer.toString(playerToEdit.GetPlayerAge()));
         agepanel.add(ageLabel);
         agepanel.add(ageField);
         contentPanel.add(agepanel);
@@ -144,7 +243,7 @@ public class EditPlayer extends JPanel implements ActionListener {
         JLabel rankLabel = new JLabel("Rank");
         rankLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         rankpanel.add(rankLabel);
-        JTextField rankField = new JTextField(Integer.toString(playerToEdit.GetPlayerRank()));
+        rankField = new JTextField(Integer.toString(playerToEdit.GetPlayerRank()));
         rankpanel.add(rankField);
         contentPanel.add(rankpanel);
 
@@ -152,7 +251,7 @@ public class EditPlayer extends JPanel implements ActionListener {
         JLabel numberLabel = new JLabel("T-shirt number");
         numberLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         numberpanel.add(numberLabel);
-        JTextField numberField = new JTextField(Integer.toString(playerToEdit.GetPlayerNumber()));
+        numberField = new JTextField(Integer.toString(playerToEdit.GetPlayerNumber()));
         numberpanel.add(numberField);
         contentPanel.add(numberpanel);
 
@@ -163,18 +262,18 @@ public class EditPlayer extends JPanel implements ActionListener {
         String capbool[]={"No","Yes"};
         String capbool2[]={"Yes","No"};
         if(playerToEdit.getCaptain()) {
-            JComboBox captainComboBox = new JComboBox(capbool2);
+            captainComboBox = new JComboBox(capbool2);
             captainpanel.add(captainComboBox);
             contentPanel.add(captainpanel);
         }
         else {
-            JComboBox captainComboBox = new JComboBox(capbool);
+            captainComboBox = new JComboBox(capbool);
             captainpanel.add(captainComboBox);
             contentPanel.add(captainpanel);
         }
 
 
-        JPanel positionspanel = new JPanel(new GridLayout(1, 1));
+        /*JPanel positionspanel = new JPanel(new GridLayout(1, 1));
         JLabel positionsLabel = new JLabel("Position");
         positionsLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         positionspanel.add(positionsLabel);
@@ -183,22 +282,28 @@ public class EditPlayer extends JPanel implements ActionListener {
         String midfielder[]={"Midfielder","Defender","GoalKeeper","Forward"};
         String forward[]={"Forward","Midfielder","Defender","GoalKeeper"};
         if(playerToEdit instanceof Forward){
-            JComboBox positionsComboBox =new JComboBox(forward);
+            positionsComboBox =new JComboBox(forward);
             positionspanel.add(positionsComboBox);
         }
         else if (playerToEdit instanceof Defender){
-            JComboBox positionsComboBox =new JComboBox(defender);
+            positionsComboBox =new JComboBox(defender);
             positionspanel.add(positionsComboBox);
         }
         else if (playerToEdit instanceof Midfielder){
-            JComboBox positionsComboBox =new JComboBox(midfielder);
+            positionsComboBox =new JComboBox(midfielder);
             positionspanel.add(positionsComboBox);
         }
         else{
-            JComboBox positionsComboBox =new JComboBox(goalKeeper);
+            positionsComboBox =new JComboBox(goalKeeper);
             positionspanel.add(positionsComboBox);
         }
-        contentPanel.add(positionspanel);
+        contentPanel.add(positionspanel);*/
+
+        saveButton = new JButton("Save");
+        saveButton.setFocusable(false);
+        saveButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        saveButton.addActionListener(this);
+        contentPanel.add(saveButton);
     }
 
 

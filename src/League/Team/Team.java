@@ -145,7 +145,7 @@ public class Team {
 
     public void setCaptain(Player Captain) {
         try {
-            this.Captain = new Player(Captain);
+            this.Captain = Captain;
         } catch (NullPointerException exp) {
             System.out.println("Null captain");
         }
@@ -243,12 +243,17 @@ public class Team {
     public void deletePlayer(int PlayerID) {
         boolean isFound = false;
         for (int i = 0; i < noOfPlayers; i++) {
+
             if (Players.get(i).GetPlayerId() == PlayerID) {
+                if(this.getCaptain().equals(i)){
+                    this.setCaptain(null);
+                }
                 Players.remove(i);
                 --noOfPlayers;
                 isFound = true;
                 break;
             }
+
         }
         if (!isFound) {
             System.out.println("Invalid ID");

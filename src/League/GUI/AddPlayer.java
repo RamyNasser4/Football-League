@@ -163,7 +163,9 @@ public class AddPlayer extends JPanel{
                            if (p.getCaptain()) {
                                league.searchTeam(team).setCaptain(p);
                            }
-                           main.add(new Players(main, cardLayout, league), "Stats");
+
+                           //main.add(new Players(main, cardLayout, league), "Stats");
+                           main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
                            cardLayout.show(main, "PlayerHome");
                            JOptionPane.showMessageDialog(null, "Player added successfully");
 
@@ -173,7 +175,7 @@ public class AddPlayer extends JPanel{
                        }
                        else if(captain.equals("No")) {
                            league.searchTeam(team).addPlayer(p);
-                           main.add(new Players(main, cardLayout, league), "Stats");
+                           //main.add(new Players(main, cardLayout, league), "Stats");
                            JOptionPane.showMessageDialog(null, "Player added successfully");
                        }
                     }

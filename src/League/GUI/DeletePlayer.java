@@ -2,23 +2,59 @@ package League.GUI;
 
 import League.League;
 import League.Person.Player.Player;
-
+import League.Team.Team;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import static League.League.searchByNameAndTeam;
 
 
-public class DeletePlayer extends JPanel {
-    public DeletePlayer(ArrayList<String> teamnames,League league){
+public class DeletePlayer extends JPanel implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==deleteButton){
+         try {
+             String pName = (String) nameComboBox.getItemAt(nameComboBox.getSelectedIndex());
+             String pTeam = (String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex());
+             if(pName==null) {
+                 throw new Exception();
+             }
+             Team searchTeam = league.searchTeam(pTeam);
+             searchTeam.deletePlayer(pName);
+             main.add(new DeletePlayer(league.teamnames, league, main, cardLayout), "DeletePlayer");
+             cardLayout.show(main, "PlayerHome");
+             JOptionPane.showMessageDialog(null, "Player deleted successfully");
+         }
+         catch(Exception exception){
+             JOptionPane.showMessageDialog(null, "No Players to delete");
+         }
+        }
+        else if(e.getSource()==teamComboBox){
+           nameComboBox.removeAllItems();
+           Team team=league.searchTeam((String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex()));
+           for(String p:team.getPlayernames()){
+               nameComboBox.addItem(p);
+           }
+
+        }
+    }
+   JButton deleteButton;
+    JComboBox teamComboBox;
+    JComboBox nameComboBox;
+    League league;
+    MainPanel main;
+    CardLayout cardLayout;
+
+    public DeletePlayer(ArrayList<String> teamnames, League league,MainPanel main,CardLayout cardLayout){
+        this.main = main;
+        this.league=league;
+        this.cardLayout=cardLayout;
         this.setSize(new Dimension(980, 720));
-        this.setLayout(new GridLayout(2, 1));
-        JPanel titlepanel = new JPanel(new GridLayout(1, 1,0,30));
-        JPanel contentPanel=new JPanel(new GridLayout(8, 1));
-        JPanel panel2 = new JPanel(new GridLayout(1, 1,0,50));
+        this.setLayout(new GridLayout(4, 1));
+        JPanel titlepanel = new JPanel(new GridLayout(2, 1,0,0));
+        JPanel contentPanel=new JPanel(new GridLayout(3, 1));
         JLabel titleLabel = new JLabel("Delete Player");
         JLabel title2Label = new JLabel("Search by Team and Name");
         title2Label.setFont(new Font("Comic Sans",Font.BOLD,15));
@@ -27,113 +63,53 @@ public class DeletePlayer extends JPanel {
         titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));
         titleLabel.setVerticalAlignment(JLabel.TOP);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
+        titlepanel.add(titleLabel);
         titlepanel.add(title2Label);
-        contentPanel.add(titleLabel);
-        this.add(titlepanel);
-        this.add(contentPanel);
-        contentPanel.add(titlepanel);
+
 
         JPanel teampanel = new JPanel(new GridLayout(1, 1));
         JLabel teamLabel = new JLabel("Player Team");
         teamLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
         teampanel.add(teamLabel);
-        JComboBox teamComboBox = new JComboBox(new DefaultComboBoxModel<>(teamnames.toArray()));
+        teamComboBox = new JComboBox(new DefaultComboBoxModel<>(teamnames.toArray()));
+        teamComboBox.addActionListener(this);
         teampanel.add(teamComboBox);
-
         contentPanel.add(teampanel);
+        this.add(titlepanel);
+        this.add(contentPanel);
+
+        String team;
+        try {
+            team = (String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex());
+        }
+        catch(NullPointerException exp){
+            team="null";
+            JOptionPane.showMessageDialog(null, "No teams exist");
+        }
+
+        JPanel namepanel = new JPanel(new GridLayout(1, 1));
+        JLabel nameLabel = new JLabel("Player Name");
+        nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        namepanel.add(nameLabel);
+        nameComboBox =new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayernames().toArray()));
+        namepanel.add(nameComboBox);
+        contentPanel.add(namepanel);
+
+        String name;
+        try {
+            name = (String) nameComboBox.getItemAt(nameComboBox.getSelectedIndex());
+        }
+        catch(NullPointerException exp){
+            name="null";
+            JOptionPane.showMessageDialog(null, "No teams exist");
+        }
+         deleteButton=new JButton("Delete");
+        deleteButton.setFocusable(false);
+        deleteButton.setFont(new Font("Comic Sans",Font.BOLD,20));
+        deleteButton.addActionListener(this);
+        contentPanel.add(deleteButton);
 
 
 
-
-
-        JButton searchButton=new JButton("Search");
-        searchButton.setFocusable(false);
-        searchButton.setFont(new Font("Comic Sans",Font.BOLD,20));
-        contentPanel.add(searchButton);
-
-        searchButton.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                String team;
-                try {
-                    team = (String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex());
-                }
-                catch(NullPointerException exp){
-                    team="null";
-                    JOptionPane.showMessageDialog(null, "No teams exist");
-                }
-                JPanel namepanel = new JPanel(new GridLayout(1, 1));
-                JLabel nameLabel = new JLabel("Player Name");
-                nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-                namepanel.add(nameLabel);
-                JComboBox nameComboBox =new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayernames().toArray()));
-                namepanel.add(nameComboBox);
-                String name;
-                try {
-                    name = (String) nameComboBox.getItemAt(teamComboBox.getSelectedIndex());
-                }
-                catch(NullPointerException exp){
-                    name="null";
-                    JOptionPane.showMessageDialog(null, "No Players in team");
-                }
-                panel2.add(namepanel);
-                boolean found=false;
-                try {
-                    for (String s : teamnames) {
-                        if (s.equalsIgnoreCase(team)) {
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found) {
-                        JOptionPane.showMessageDialog(null, "Team not found");
-                    }
-                }
-                /**
-                 *
-                 * @throws NullPointerException if no team exists
-                 */
-                catch(NullPointerException exp){
-                    JOptionPane.showMessageDialog(null,"No teams Exist");
-                }
-                try {
-                    if (name.isEmpty() || team.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Enter valid name and team");
-                    }
-                    else{
-                        //Until League obj is added
-                        //League.SearchByNameAndTeam(name,team);
-                        try{ Player p= league.SearchByNameAndTeam(name,team).getFirst();
-
-                            JLabel select =new JLabel("Select Player to delete");
-                            JButton serachValue = new JButton(p.Name +" "+p.Age+" "+p.Salary);
-                            panel2.add(serachValue);
-                            panel2.add(select);
-                            serachValue.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent arg0) {
-                                    //searchByNameAndTeam.remove(0);
-                                }
-                            });}
-                        /**
-                         *
-                         * @throws NullPointerException if no player exists
-                         */
-                        catch(NullPointerException exp){
-                            JOptionPane.showMessageDialog(null,"No results Found");
-                        }
-
-
-                    }
-                }
-                catch(NullPointerException exp){
-                    JOptionPane.showMessageDialog(null,"No Player Exist");
-                }
-
-            }
-
-        });
     }
 }

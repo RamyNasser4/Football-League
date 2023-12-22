@@ -27,3 +27,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/Team2Players.txt
+/Team3Players.txt
+/Team4Players.txt

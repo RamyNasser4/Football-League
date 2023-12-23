@@ -1,7 +1,7 @@
 package League.Person.Referee;
 import League.Match.Match;
 import League.Person.Person;
-
+import League.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,7 +9,7 @@ public class Referee extends Person {
     public  int  noYellowCards;
     public  int noRedCards;
     protected int RefereeID;
-    private static int noOfReferees = 0;
+    public static int noOfReferees = 0;
     protected ArrayList<Match> matches;
 
     public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards,ArrayList<Match> matches) {
@@ -108,6 +108,7 @@ public class Referee extends Person {
             }
         }
     }
+
     public  int  CalculateSalary(){
         return Salary +1000;
     }

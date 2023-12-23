@@ -530,7 +530,9 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                 JOptionPane.showConfirmDialog(this,exp.getMessage(),"Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
             }
         }
-    }
+
+        }
+
     public boolean Validation(Team team1,Team team2,String DateStr,int Team1Score,int Team2Score,Referee referee,Stadium stadium,int noOfYellowCards,int noOfRedCards){
         Date dateObj = (Date) dateSpinner.getValue();
         Date now = new Date();

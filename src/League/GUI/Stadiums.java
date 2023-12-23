@@ -23,7 +23,7 @@ public class Stadiums extends JPanel implements ActionListener {
         //Add Team button
         addStaduimButton=new JButton("Add Staduim");
         addStaduimButton.setFocusable(false);
-        ImageIcon addTeamIcon = new ImageIcon("src/Assets/add-team.png");
+        ImageIcon addTeamIcon = new ImageIcon("src/Assets/Add-stadium.png");
         addStaduimButton.setIcon(addTeamIcon);
         addStaduimButton.setFont(new Font("Comic Sans",Font.BOLD,20));
         addStaduimButton.setIconTextGap(10);
@@ -33,14 +33,14 @@ public class Stadiums extends JPanel implements ActionListener {
         editStaduimButton.setFont(new Font("Comic Sans",Font.BOLD,20));
         editStaduimButton.setFocusable(false);
         editStaduimButton.addActionListener(this);
-        ImageIcon editStaduimIcon =new ImageIcon("src/Assets/edit-team.png");
+        ImageIcon editStaduimIcon =new ImageIcon("src/Assets/edit-stadium.png");
         editStaduimButton.setIcon(editStaduimIcon);
         editStaduimButton.setIconTextGap(10);
         //Delete Team Button
         deleteStaduimButton=new JButton("Delete Staduim");
         deleteStaduimButton.setFont(new Font("Comic Sans",Font.BOLD,20));
         deleteStaduimButton.setFocusable(false);
-        ImageIcon removeStaduimIcon =new ImageIcon("src/Assets/remove-team.png");
+        ImageIcon removeStaduimIcon =new ImageIcon("src/Assets/delete-stadium.png");
         deleteStaduimButton.setIcon(removeStaduimIcon);
         deleteStaduimButton.setIconTextGap(10);
         deleteStaduimButton.addActionListener(this);

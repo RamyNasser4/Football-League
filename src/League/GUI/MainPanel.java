@@ -28,8 +28,8 @@ public class MainPanel extends JPanel {
         EditMatch editMatch = new EditMatch(league,this,cardLayout);
         DeleteMatch deleteMatch = new DeleteMatch(league,this,cardLayout);
         Stadiums stadiums =new Stadiums(this,cardLayout);
-        AddStaduim addStaduim = new AddStaduim(league,this,cardLayout);
-        EditStaduim editStaduim = new EditStaduim(league,this,cardLayout);
+        //AddStaduim addStaduim = new AddStaduim(league,this,cardLayout);
+        //EditStaduim editStaduim = new EditStaduim(league,this,cardLayout);
 
 
         //this.add(playerGui, "PlayerGUI");
@@ -50,8 +50,8 @@ public class MainPanel extends JPanel {
         this.add(editMatch,"EditMatch");
         this.add(deleteMatch,"DeleteMatch");
         this.add(stadiums,"Stadiums");
-        this.add(addStaduim,"AddStaduim");
-        this.add(editStaduim,"EditStaduim");
+        //this.add(addStaduim,"AddStaduim");
+        //this.add(editStaduim,"EditStaduim");
 
 
 

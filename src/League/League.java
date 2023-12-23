@@ -471,6 +471,12 @@ public class League {
         }
         return null;
     }
+    public void ResetLeague(){
+        teams.removeAll(teams);
+        matches.removeAll(matches);
+        referees.removeAll(referees);
+        stadiums.removeAll(stadiums);
+    }
 }
 
 

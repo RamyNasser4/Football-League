@@ -13,6 +13,9 @@ public class SideBar extends JPanel implements ActionListener {
     SideBarButton players;
     SideBarButton standings;
     SideBarButton stats;
+    SideBarButton league;
+
+    SideBarButton referee;
     SideBarButton reset;
     SideBarButton leagueButton;
     CardLayout cardLayout;
@@ -48,6 +51,12 @@ public class SideBar extends JPanel implements ActionListener {
         stats.setIconTextGap(25);
         leagueButton = new SideBarButton("League");
         ImageIcon leagueIcon = new ImageIcon("src/Assets/league.png");
+        referee =new SideBarButton("Referee");
+        ImageIcon refereeIcon = new ImageIcon("src/Assets/player.png");
+        referee.setIcon(refereeIcon);
+        referee.setIconTextGap(25);
+        league.setIcon(leagueIcon);
+        league.setIconTextGap(25);
         leagueButton.setIcon(leagueIcon);
         leagueButton.setIconTextGap(25);
         reset = new SideBarButton("Reset All");
@@ -59,6 +68,8 @@ public class SideBar extends JPanel implements ActionListener {
         players.addActionListener(this);
         standings.addActionListener(this);
         stats.addActionListener(this);
+        league.addActionListener(this);
+        referee.addActionListener(this);
         leagueButton.addActionListener(this);
         reset.addActionListener(this);
         this.add(matches);
@@ -66,6 +77,8 @@ public class SideBar extends JPanel implements ActionListener {
         this.add(players);
         this.add(standings);
         this.add(stats);
+        this.add(league);
+        this.add(referee);
         this.add(leagueButton);
         this.add(reset);
         this.setVisible(true);
@@ -86,6 +99,11 @@ public class SideBar extends JPanel implements ActionListener {
         } else if (e.getSource() == leagueButton) {
             cardLayout.show(main,"LeagueHome");
         }
+        else if (e.getSource()==referee){
+            cardLayout.show(main,"RefereeHome");
+        }
+    }
+}
         else if(e.getSource()==reset){
             int option=JOptionPane.showConfirmDialog(this,"Are you sure you want to delete all the data of league?","Confirmation",JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {

@@ -33,6 +33,7 @@ public class DeletePlayer extends JPanel implements ActionListener{
              main.add(new DeletePlayer(league.teamNames, league, main, cardLayout), "DeletePlayer");
              main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
              main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
+             main.add(new Players(main,cardLayout,league),"Stats");
              cardLayout.show(main, "PlayerHome");
              JOptionPane.showMessageDialog(null, "Player deleted successfully");
          }

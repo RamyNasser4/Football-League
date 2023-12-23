@@ -1,6 +1,7 @@
 package League.GUI;
 
 import League.League;
+import League.Match.Match;
 import League.Stadium.Stadium;
 
 import javax.swing.*;
@@ -70,7 +71,7 @@ public class EditStadium extends JPanel implements ActionListener {
         JLabel StadiumCapacityLabel = new JLabel("Capacity : ");
         StadiumCapacityPanel.setFont(new Font("Comic Sans",Font.BOLD,20));
         StadiumCapacityLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,26));
-        StadiumCapacityLabel.add(StadiumCapacityLabel);
+        StadiumCapacityPanel.add(StadiumCapacityLabel);
         StadiumCapacityField = new JTextField("");
         StadiumCapacityField.setPreferredSize(new Dimension(300,40));
         StadiumCapacityLabel.add(StadiumCapacityField);
@@ -120,11 +121,12 @@ public class EditStadium extends JPanel implements ActionListener {
                     searched.setStadiumName(StadiumName);
                     searched.setStadiumLocation(StadiumLocation);
                     searched.setStadiumCapacity(capacity);
-
                     main.add(new AddStadium(league,main,cardLayout),"AddStadium");
                     main.add(new DeleteStadium(league,main,cardLayout),"DeleteStadium");
                     main.add(new EditStadium(league,main,cardLayout),"EditStadium");
-
+                    main.add(new AddMatch(league,main,cardLayout),"AddMatch");
+                    main.add(new EditMatch(league,main,cardLayout),"EditMatch");
+                    main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
                     cardLayout.show(main,"Stadiums");
                     }
 

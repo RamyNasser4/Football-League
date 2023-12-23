@@ -1,6 +1,9 @@
 package League.GUI;
 
 import League.League;
+import League.Match.Match;
+import League.Team.Team;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -57,17 +60,18 @@ public class DeleteStadium extends JPanel implements ActionListener {
         if (e.getSource() == DeleteStadium){
             String StadiumName = (String) chooseStadium.getSelectedItem();
             league.DeleteStadium(StadiumName);
-            for (int i = 0; i < league.matches.size(); i++) {
-                if (league.matches.get(i).getStadium().getStadiumName().equalsIgnoreCase(StadiumName)){
-                    league.matches.get(i).setStadium(null);
+            for (Match match : league.getMatches()){
+                if (match.getStadium().getStadiumName().equalsIgnoreCase(StadiumName) ){
+                    match.setStadium(null);
                 }
             }
-
-
             cardLayout.show(main,"Stadiums");
             main.add(new AddStadium(league,main,cardLayout),"AddStadium");
             main.add(new EditStadium(league,main,cardLayout),"EditStadium");
             main.add(new DeleteStadium(league,main,cardLayout),"DeleteStadium");
+            main.add(new AddMatch(league,main,cardLayout),"AddMatch");
+            main.add(new EditMatch(league,main,cardLayout),"EditMatch");
+            main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
         }
     }
 }

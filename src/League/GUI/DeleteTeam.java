@@ -57,8 +57,7 @@ public class DeleteTeam extends JPanel implements ActionListener {
                     league.teamNames.remove(i);
                 }
             }
-            System.out.println(league.teamNames);
-
+            JOptionPane.showMessageDialog(null, "Team Deleted Successfully");
             cardLayout.show(main,"TeamHome");
             main.add(new Standings(main,cardLayout,league),"Standings");
             main.add(new EditTeam(league,main,cardLayout),"EditTeam");

@@ -162,12 +162,14 @@ public class AddPlayer extends JPanel{
                                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
+                               main.add(new Standings(main,cardLayout,league),"Standings");
                            }
                            else if(league.searchTeam(team).noOfPlayers == 25){
                                JOptionPane.showMessageDialog(null, "Only 25 players are allowed in a team");
                                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
+                               main.add(new Standings(main,cardLayout,league),"Standings");
                            } else {
                                league.searchTeam(team).addPlayer(p);
                                if (p.getCaptain()) {
@@ -178,6 +180,7 @@ public class AddPlayer extends JPanel{
                                main.add(new DeletePlayer(league.teamNames, league, main, cardLayout), "DeletePlayer");
                                main.add(new EditPlayer(league.teamNames, league, main, cardLayout), "EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
+                               main.add(new Standings(main,cardLayout,league),"Standings");
                                cardLayout.show(main, "PlayerHome");
                                JOptionPane.showMessageDialog(null, "Player added successfully");
                                nameField.setText("");
@@ -193,7 +196,7 @@ public class AddPlayer extends JPanel{
                            main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                            main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                            main.add(new Players(main, cardLayout,league),"Stats");
-
+                           main.add(new Standings(main,cardLayout,league),"Standings");
                        }
                        else if(captain.equals("No")) {
                            if (league.searchTeam(team).noOfGoalkeepers == 3 ) {
@@ -201,12 +204,14 @@ public class AddPlayer extends JPanel{
                                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
+                               main.add(new Standings(main,cardLayout,league),"Standings");
                            }
                            else if(league.searchTeam(team).noOfPlayers == 25){
                                JOptionPane.showMessageDialog(null, "Only 25 players are allowed in a team");
                                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
+                               main.add(new Standings(main,cardLayout,league),"Standings");
                            }
                            else {
                                league.searchTeam(team).addPlayer(p);
@@ -215,6 +220,7 @@ public class AddPlayer extends JPanel{
                                main.add(new DeletePlayer(league.teamNames, league, main, cardLayout), "DeletePlayer");
                                main.add(new EditPlayer(league.teamNames, league, main, cardLayout), "EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
+                               main.add(new Standings(main,cardLayout,league),"Standings");
                                cardLayout.show(main, "PlayerHome");
                                nameField.setText("");
                                ageField.setText("");

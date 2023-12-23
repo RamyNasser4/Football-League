@@ -93,8 +93,6 @@ public class AddStadium extends JPanel implements ActionListener{
                 main.add(new AddStadium(league,main,cardLayout),"AddStadium");
                 main.add(new EditStadium(league,main,cardLayout),"EditStadium");
                 main.add(new DeleteStadium(league,main,cardLayout),"DeleteStadium");
-
-
             }else {
                 if(Capacity==0){
                     JOptionPane.showConfirmDialog(this, "invalid capacity ", "Invalid Field", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);

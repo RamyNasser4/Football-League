@@ -1,10 +1,12 @@
 package League.Match;
 
+import League.Person.Player.Player;
 import League.Person.Referee.Referee;
 import League.Stadium.Stadium;
 import League.Team.Team;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -20,9 +22,50 @@ public class Match {
     public Referee Referee;
     public String Score;
     public Stadium Stadium;
+    public ArrayList<Player> team1Scorers;
+    public ArrayList<Player> team1Assisters;
+    public ArrayList<Player> team2Scorers;
+    public ArrayList<Player> team2Assisters;
+    /*public ArrayList<Player> team1YellowCard;
+    public ArrayList<Player> team2YellowCard;
+    public ArrayList<Player> team1RedCard;
+    public ArrayList<Player> team2RedCard;*/
+
+    public ArrayList<Player> getTeam1Scorers() {
+        return team1Scorers;
+    }
+
+    public void setTeam1Scorers(ArrayList<Player> team1Scorers) {
+        this.team1Scorers = team1Scorers;
+    }
+
+    public ArrayList<Player> getTeam1Assisters() {
+        return team1Assisters;
+    }
+
+    public void setTeam1Assisters(ArrayList<Player> team1Assisters) {
+        this.team1Assisters = team1Assisters;
+    }
+
+    public ArrayList<Player> getTeam2Scorers() {
+        return team2Scorers;
+    }
+
+    public void setTeam2Scorers(ArrayList<Player> team2Scorers) {
+        this.team2Scorers = team2Scorers;
+    }
+
+    public ArrayList<Player> getTeam2Assisters() {
+        return team2Assisters;
+    }
+
+    public void setTeam2Assisters(ArrayList<Player> team2Assisters) {
+        this.team2Assisters = team2Assisters;
+    }
+
     SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
     //Constructors
-    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score) {
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score,ArrayList<Player> team1Scorers,ArrayList<Player> team1Assisters,ArrayList<Player> team2Scorers,ArrayList<Player> team2Assisters) {
         Match_ID = ++noOfMatches;
         this.Teams = new Team[2];
         try {
@@ -46,8 +89,23 @@ public class Match {
         this.Stadium = Stadium;
         this.team1score = team1score;
         this.team2score = team2score;
+        this.team1Scorers = team1Scorers;
+        this.team1Assisters = team1Assisters;
+        this.team2Scorers = team2Scorers;
+        this.team2Assisters = team2Assisters;
     }
-
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score,ArrayList<Player> team1Scorers,ArrayList<Player> team1Assisters,ArrayList<Player> team2Scorers) {
+        this(matchDate, Teams, Referee, Score, Stadium, team1score, 0,team1Scorers,team1Assisters,team2Scorers,new ArrayList<>());
+    }
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score,ArrayList<Player> team1Scorers,ArrayList<Player> team1Assisters) {
+        this(matchDate, Teams, Referee, Score, Stadium, team1score, 0,team1Scorers,team1Assisters,new ArrayList<>());
+    }
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score,ArrayList<Player> team1Scorers) {
+        this(matchDate, Teams, Referee, Score, Stadium, team1score, 0,team1Scorers,new ArrayList<>());
+    }
+    public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score, int team2score) {
+        this(matchDate, Teams, Referee, Score, Stadium, team1score, 0,new ArrayList<>());
+    }
     public Match(String matchDate, Team[] Teams, Referee Referee, String Score, Stadium Stadium, int team1score) {
         this(matchDate, Teams, Referee, Score, Stadium, team1score, 0);
     }
@@ -98,7 +156,27 @@ public class Match {
         }
     }
     public String WriteMatch(){
-        return matchDate + "\t" + Teams[0].getName() + "\t" + Teams[1].getName() + "\t" + Referee.getPersonName() + "\t" + Score + "\t" + Stadium.getStadiumName();
+        String match = matchDate + "\t" + Teams[0].getName() + "\t" + Teams[1].getName() + "\t" + Referee.getPersonName() + "\t" + Score + "\t" + Stadium.getStadiumName() + "\t" + ",";
+        if (!Score.isEmpty()){
+            for (Player player : team1Scorers){
+                match+= "Team1:"+player.getPersonName() + "\t";
+            }
+            for (Player player : team2Scorers){
+                match+= "Team2:"+player.getPersonName() + "\t";
+            }
+            match+= ",";
+            for (Player player : team1Assisters){
+                match += "Team1:"+player.getPersonName() + "\t";
+            }
+            for (Player player : team2Assisters){
+                try {
+                    match += "Team2:"+player.getPersonName()+"\t";
+                }catch (NullPointerException ignored){
+
+                }
+            }
+        }
+        return match;
     }
 
 
@@ -179,6 +257,22 @@ public class Match {
             }
             ++i;
         }
+    }
+
+    public int getTeam1score() {
+        return team1score;
+    }
+
+    public void setTeam1score(int team1score) {
+        this.team1score = team1score;
+    }
+
+    public int getTeam2score() {
+        return team2score;
+    }
+
+    public void setTeam2score(int team2score) {
+        this.team2score = team2score;
     }
 
     //Function of adding new teams

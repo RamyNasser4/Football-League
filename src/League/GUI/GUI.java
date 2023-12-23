@@ -36,8 +36,7 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
             ImageIcon appIcon = new ImageIcon(getClass().getResource("/Assets/league-icon.png"));
             setIconImage(appIcon.getImage());
         //Add Player
-
-
+        this.addWindowListener(this);
     }
 
 //to be added in match
@@ -70,7 +69,8 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        //Main.WriteFiles(league);
+//        Main.WriteFiles(league);
+        //System.out.println("written");
     }
 
     @Override

@@ -387,6 +387,14 @@ public class League {
         }
         return  null;
     }
+    public Match searchMatch(int MatchID){
+        for (Match match : matches){
+            if (match.getMatch_ID() == MatchID){
+                return match;
+            }
+        }
+        return null;
+    }
 }
 
 

@@ -5,6 +5,8 @@ import League.Match.Match;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.InputMismatchException;
+import java.util.Iterator;
 
 public class Stadium {
     public String name;
@@ -20,7 +22,7 @@ public class Stadium {
         this.location = location;
         this.capacity = capacity;
         this.StadiumID = noOfStadiums;
-        this.matches = new ArrayList<>(matches);
+        this.matches = matches;
     }
 
     public Stadium(String name, String location, int capacity) {
@@ -44,7 +46,7 @@ public class Stadium {
             this.name = Stadium.name;
             this.capacity = Stadium.capacity;
             this.location = Stadium.location;
-            this.matches = new ArrayList<>(Stadium.matches);
+            this.matches = Stadium.matches;
             this.StadiumID = ++noOfStadiums;
         } catch (NullPointerException exp) {
             System.out.println("Null stadium");
@@ -91,7 +93,7 @@ public class Stadium {
      * @return true if given date has no matches and false otherwise
      * @throws RuntimeException If user inputs invalid date
      */
-    public boolean CheckAvailability(String date,boolean isUpdate) {
+    public boolean CheckAvailability(String date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
@@ -100,10 +102,6 @@ public class Stadium {
             for (Match match : matches) {
                 if (match.matchdate.equals(checkDate)) {
                     System.out.println("Stadium won't be available");
-                    return false;
-                }
-                if (checkDate.before(datenow) && isUpdate) {
-                    System.out.println("Date should be upcoming date");
                     return false;
                 }
             }
@@ -130,6 +128,15 @@ public class Stadium {
             matches.add(match);
         }catch (NullPointerException exp){
             System.out.println("Invalid Match");
+        }
+    }
+    public void deleteMatch(int MatchID){
+        Iterator<Match> matchIterator = matches.iterator();
+        while (matchIterator.hasNext()){
+            Match match = matchIterator.next();
+            if (match.getMatch_ID() == MatchID){
+                matchIterator.remove();
+            }
         }
     }
 }

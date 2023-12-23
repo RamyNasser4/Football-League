@@ -108,4 +108,7 @@ public class Referee extends Person {
             }
         }
     }
+    public  int  CalculateSalary(){
+        return Salary +1000;
+    }
 }

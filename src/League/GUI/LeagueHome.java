@@ -59,10 +59,21 @@ public class LeagueHome extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addMatchButton){
-            cardLayout.show(main,"AddMatch");
+            try {
+                if (league.getTeams().size() < 2){
+                    throw new Exception("Add teams first");
+                } else if (league.getStadiums().isEmpty()) {
+                    throw new Exception("Add stadium first");
+                } else if (league.getReferees().isEmpty()) {
+                    throw new Exception("Add referee first");
+                }
+                cardLayout.show(main,"AddMatch");
+            }catch (Exception exp){
+                JOptionPane.showConfirmDialog(this,exp.getMessage(),exp.getMessage(),JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getSource() == editMatchButton) {
             try {
-                if (league.getMatches().size() == 0){
+                if (league.getMatches().isEmpty()){
                     throw new Exception("Add matches first");
                 }
                 cardLayout.show(main,"EditMatch");

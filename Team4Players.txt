@@ -1,2 +1,0 @@
-Goalkeeper	aly	7	0	zed	7	0.0	0	0	0	0	0	0	0	false
-Forward	amr	7	0	zed	8	0.0	0	0	0	0	0	0	false

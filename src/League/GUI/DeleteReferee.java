@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DeleteReferee extends JPanel implements ActionListener {
         JButton deleteButton;
-        JComboBox nameComboBox;
+
         League league;
         MainPanel main;
         CardLayout cardLayout;
@@ -28,7 +28,7 @@ public class DeleteReferee extends JPanel implements ActionListener {
                         refereeNames.add(referee.getPersonName());
                 }
                 this.setSize(new Dimension(980,720));
-                this.setLayout(new GridLayout(3,1));
+                this.setLayout(new GridLayout(4,1));
 
                 JPanel titlePanel = new JPanel(new GridLayout(1,1,0,30));
                 JLabel titleLabel= new JLabel("Delete Referee");
@@ -37,7 +37,7 @@ public class DeleteReferee extends JPanel implements ActionListener {
                 titleLabel.setHorizontalAlignment(JLabel.CENTER);
                 titlePanel.add(titleLabel);
 
-                JPanel contentPanel = new JPanel(new GridLayout(2,1));
+                JPanel contentPanel = new JPanel(new GridLayout(2,1,0,50));
                 refereeBox= new JComboBox(new DefaultComboBoxModel<>(refereeNames.toArray()));
                 refereeBox.addActionListener(this);
                 contentPanel.add(refereeBox);

@@ -44,7 +44,7 @@ public class DeleteStadium extends JPanel implements ActionListener {
         chooseTeamPanel.add(chooseStadium);
 
         JPanel DeleteStadiumPanel = new JPanel();
-        DeleteStadium = new JButton("Delete Team");
+        DeleteStadium = new JButton("Delete Stadium");
         DeleteStadium.setSize(new Dimension(100,30));
         DeleteStadium.setFont(new Font("Comic Sans",Font.BOLD,20));
         DeleteStadium.setHorizontalAlignment(SwingConstants.CENTER);
@@ -61,7 +61,7 @@ public class DeleteStadium extends JPanel implements ActionListener {
             league.DeleteStadium(StadiumName);
             for (int i = 0; i < league.matches.size(); i++) {
                 if (league.matches.get(i).getStadium().getStadiumName().equalsIgnoreCase(StadiumName)){
-                    league.matches.get(i).setStadium()=null;
+                    league.matches.get(i).setStadium(null);
                 }
             }
 

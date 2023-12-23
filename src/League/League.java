@@ -1,7 +1,6 @@
 package League;
 
 import League.Match.Match;
-import League.Person.Coach.Coach;
 import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Person.Referee.Referee;
@@ -17,7 +16,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static League.Person.Referee.Referee.noOfReferees;
+
 
 public class League {
     protected ArrayList<Team> teams;
@@ -379,10 +378,10 @@ public class League {
     }
     public void DeleteReferee(String refereeName){
         boolean isFound = false;
-        for (int i =0 ; i <noOfReferees;i++){
+        for (int i =0 ; i <Referee.noOfReferees;i++){
             if(referees.get(i).getPersonName().equals(refereeName)){
                 referees.remove(i);
-                --noOfReferees;
+                --Referee.noOfReferees;
                 isFound=true;
                 break;
             }

@@ -23,7 +23,7 @@ public class AddReferee extends JPanel {
         this.main=main;
         this.layout=cardLayout;
         this.setSize(new Dimension(980, 720));
-        this.setLayout(new GridLayout(2, 1));
+        this.setLayout(new GridLayout(1, 1));
         JPanel titlePanel= new JPanel(new GridLayout(1,1,0,30));
         JLabel titleLabel=new JLabel("Add Referee");
         titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));
@@ -32,8 +32,8 @@ public class AddReferee extends JPanel {
         titlePanel.add(titleLabel);
 
 
-        JPanel allPanel = new JPanel(new GridLayout(2,2,20,50));
-
+        JPanel allPanel = new JPanel(new GridLayout(6,1,20,50));
+        allPanel.add(titlePanel);
         JPanel namePanel = new JPanel(new GridLayout(1, 1));
         JLabel nameLabel = new JLabel("Name");
         namePanel.add(nameLabel);
@@ -55,7 +55,6 @@ public class AddReferee extends JPanel {
         saveButton.setFont(new Font("Comic Sans",Font.BOLD,20));
 
         allPanel.add(saveButton);
-        this.add(titlePanel);
         this.add(allPanel);
         this.setVisible(true);
         saveButton.addActionListener(new ActionListener() {

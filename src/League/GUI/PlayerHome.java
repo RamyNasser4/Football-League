@@ -44,28 +44,12 @@ public class PlayerHome extends JPanel {
                 }else {
                     cardLayout.show(main,"AddPlayer");
                 }
-                 /*removeAll();  // Remove existing panels
-                 AddPlayerGui();
-                 revalidate(); // Ensure the layout is updated
-                 repaint();    // Repaint the components*/
-                /*int TeamlistSize = 0;
-                try
-                {
-                    System.out.println(teamnames);
-                    TeamlistSize= teamnames.size();
-                    cardLayout.show(main,"AddPlayer");
-                }
-                *//**
+
+                /**
                  *
                  * @throws NullPointerException if no team exist
-                 *//*
-                catch(NullPointerException ignored)
-                {
-                    JOptionPane.showMessageDialog(null,"Add Team First then you can add Player");
-                    *//*String arr[]={"null"};
-                    teamsComboBox=new JComboBox (arr);
-                    TeamlistSize=0;*//*
-                }*/
+                 */
+
             }
 
 
@@ -76,10 +60,6 @@ public class PlayerHome extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                /*removeAll();
-                EditPlayerGui();
-                revalidate();
-                repaint();*/
                 if (teamnames.isEmpty()){
                     JOptionPane.showMessageDialog(null,"Add Team First then you can edit Players");
                 }else {
@@ -93,10 +73,6 @@ public class PlayerHome extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                /*removeAll();
-                DeletePlayerGui();
-                revalidate();
-                repaint();*/
                 if (teamnames.isEmpty()){
                     JOptionPane.showMessageDialog(null,"Add Team First then you can delete Players");
                 }else {

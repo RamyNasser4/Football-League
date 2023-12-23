@@ -32,7 +32,9 @@ public class MainPanel extends JPanel {
         AddStadium addStadium=new AddStadium(league,this,cardLayout);
         EditStadium editStadium=new EditStadium(league,this,cardLayout);
         DeleteStadium deleteStadium=new DeleteStadium(league,this,cardLayout);
-
+        AddReferee addReferee=new AddReferee(league,this,cardLayout);
+        DeleteReferee deleteReferee=new DeleteReferee(league,this,cardLayout);
+        RefereeHome refereeHome=new RefereeHome(this,cardLayout,league);
 
 
         //this.add(playerGui, "PlayerGUI");
@@ -56,7 +58,9 @@ public class MainPanel extends JPanel {
         this.add(addStadium,"AddStadium");
         this.add(editStadium,"EditStadium");
         this.add(deleteStadium,"DeleteStadium");
-
+        this.add(addReferee,"AddReferee");
+        this.add(refereeHome,"RefereeHome");
+        this.add(deleteReferee,"DeleteReferee");
 
 
 

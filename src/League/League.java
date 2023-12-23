@@ -34,9 +34,7 @@ public class League {
         this.matches = new ArrayList<>(matches);
         this.upcomingMatches = new ArrayList<>();
         this.pastMatches = new ArrayList<>();
-        for (Match match : matches){
-            FilterMatchByTime(match);
-        }
+        FilterMatchByTime();
         this.teams = new ArrayList<>(teams);
         teamnames = new ArrayList<>();
         for (Team team : teams){
@@ -74,6 +72,7 @@ public class League {
             this.matchCount = League.matchCount;
             this.DATE = League.DATE;
             this.matches = new ArrayList<>(League.matches);
+            FilterMatchByTime();
             try {
                 this.teams = new ArrayList<>(League.teams);
                 teamnames = new ArrayList<>();
@@ -107,9 +106,7 @@ public class League {
 
     public void setMatches(ArrayList<Match> matches) {
         this.matches = matches;
-        for (Match match : matches){
-            FilterMatchByTime(match);
-        }
+        FilterMatchByTime();
     }
 
     public ArrayList<Referee> getReferees() {
@@ -302,6 +299,7 @@ public class League {
                 throw new NullPointerException("Null");
             } else {
                 matches.add(match);
+                FilterMatchByTime();
                 matchCount++;
             }
         } catch (NullPointerException e) {
@@ -331,35 +329,35 @@ public class League {
     //Function to filter matches as held or to be held
     /**
      * This function filters matches according to current date into upcoming and past matches
-     * @param match
      * @throws NullPointerException If there is no elements in array list
      */
-    protected void FilterMatchByTime(Match match) {
+    protected void FilterMatchByTime() {
+        upcomingMatches = new ArrayList<>();
+        pastMatches = new ArrayList<>();
         for (Match m : matches) {
             Date now = new Date();
             if (m.matchdate.before(now)) {
                 System.out.println("Match time:Past");
                 try {
-                    upcomingMatches.remove(match);
+                    upcomingMatches.remove(m);
                 } catch (NullPointerException exp) {
                     System.out.println("Null");
                 }
-                pastMatches.add(match);
-
+                pastMatches.add(m);
             } else if (m.matchdate.after(now)) {
                 System.out.println("Match time:upcoming");
                 try {
-                    pastMatches.remove(match);
+                    pastMatches.remove(m);
                 } catch (NullPointerException exp) {
                     System.out.println("Null");
                 }
-                upcomingMatches.add(match);
+                upcomingMatches.add(m);
 
             } else {
                 System.out.println("Match time:now");
                 try {
-                    upcomingMatches.remove(match);
-                    pastMatches.remove(match);
+                    upcomingMatches.remove(m);
+                    pastMatches.remove(m);
                 } catch (NullPointerException exp) {
                     System.out.println("Null");
                 }
@@ -386,6 +384,7 @@ public class League {
             if (matches.get(i).getMatch_ID() == MatchID){
                 matches.remove(i);
                 isFound = true;
+                FilterMatchByTime();
                 break;
             }
         }

@@ -3,6 +3,7 @@ import League.Match.Match;
 import League.Person.Person;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Referee extends Person {
     public  int  noYellowCards;
@@ -99,9 +100,11 @@ public class Referee extends Person {
         }
     }
     public void deleteMatch(int MatchID){
-        for (Match match : matches){
+        Iterator<Match> matchIterator = matches.iterator();
+        while (matchIterator.hasNext()){
+            Match match = matchIterator.next();
             if (match.getMatch_ID() == MatchID){
-                matches.remove(match);
+                matchIterator.remove();
             }
         }
     }

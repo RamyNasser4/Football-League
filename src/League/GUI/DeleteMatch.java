@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Match.Match;
+import League.Person.Player.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -154,6 +155,28 @@ public class DeleteMatch extends JPanel implements ActionListener {
         } else if (e.getSource() == deleteMatch) {
             int MatchID = (int) chooseMatch.getSelectedItem();
             Match match = league.searchMatch(MatchID);
+            if (!match.getScore().isEmpty()){
+                for (Player player : match.getTeam1Scorers()){
+                    player.setGoalsScored(player.getGoalsScored()-1);
+                }
+                for (Player player : match.getTeam2Scorers()){
+                    player.setGoalsScored(player.getGoalsScored()-1);
+                }
+                for (Player player : match.getTeam1Assisters()){
+                    player.setAssists(player.getAssists()-1);
+                }
+                for (Player player : match.getTeam2Assisters()){
+                    player.setAssists(player.getAssists()-1);
+                }
+                if (match.getTeam1score()>match.getTeam2score()){
+                    match.getTeams()[0].setTotal_score(match.getTeams()[0].getTotal_score()-3);
+                } else if (match.getTeam2score()>match.getTeam1score()) {
+                    match.getTeams()[1].setTotal_score(match.getTeams()[1].getTotal_score()-3);
+                }else {
+                    match.getTeams()[0].setTotal_score(match.getTeams()[0].getTotal_score()-1);
+                    match.getTeams()[1].setTotal_score(match.getTeams()[1].getTotal_score()-1);
+                }
+            }
             try {
                 match.getTeams()[0].deleteMatch(MatchID);
                 match.getTeams()[1].deleteMatch(MatchID);
@@ -166,6 +189,8 @@ public class DeleteMatch extends JPanel implements ActionListener {
             league.DeleteMatch(MatchID);
             main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
             main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
+            main.add(new Standings(main,cardLayout,league),"Standings");
+            main.add(new EditMatch(league,main,cardLayout),"EditMatch");
             cardLayout.show(main,"LeagueHome");
         }
     }

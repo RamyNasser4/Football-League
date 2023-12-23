@@ -306,7 +306,6 @@ public class Match {
             Teams[1].setTotal_score(Teams[1].getTotal_score() + 1);
         } else if (team1score > team2score) {
             Teams[0].setTotal_score(Teams[0].getTotal_score() + 3);
-
         } else {
             Teams[1].setTotal_score(Teams[1].getTotal_score() + 3);
         }

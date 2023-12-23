@@ -1,5 +1,7 @@
 package League.GUI;
 
+import League.League;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,9 +13,11 @@ public class LeagueHome extends JPanel implements ActionListener {
     JButton deleteMatchButton;
     MainPanel main;
     CardLayout cardLayout;
-    public LeagueHome(MainPanel main,CardLayout cardLayout){
+    League league;
+    public LeagueHome(MainPanel main, CardLayout cardLayout,League league){
         this.main = main;
         this.cardLayout = cardLayout;
+        this.league = league;
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(3, 1));
         JPanel addMatchPanel = new JPanel(new GridLayout(1, 1));
@@ -57,9 +61,23 @@ public class LeagueHome extends JPanel implements ActionListener {
         if (e.getSource() == addMatchButton){
             cardLayout.show(main,"AddMatch");
         } else if (e.getSource() == editMatchButton) {
-            cardLayout.show(main,"EditMatch");
+            try {
+                if (league.getMatches().size() == 0){
+                    throw new Exception("Add matches first");
+                }
+                cardLayout.show(main,"EditMatch");
+            }catch (Exception exp){
+                JOptionPane.showConfirmDialog(this,exp.getMessage(),"Add matches first",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getSource() == deleteMatchButton) {
-            cardLayout.show(main,"DeleteMatch");
+            try {
+                if (league.getMatches().size() == 0){
+                    throw new Exception("Add matches first");
+                }
+                cardLayout.show(main,"DeleteMatch");
+            }catch (Exception exp){
+                JOptionPane.showConfirmDialog(this,exp.getMessage(),"Add matches first",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

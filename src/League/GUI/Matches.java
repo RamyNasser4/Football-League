@@ -48,9 +48,8 @@ public class Matches extends JPanel implements ActionListener {
         SearchContainer.add(Search);
         this.add(SearchContainer);
         //Combo box for each team to display matches
-        ArrayList<Team> Teams = league.getTeams();
         String defaultValue = "Select a Team"; // Change the default value
-        Searchbyteam = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
+        Searchbyteam = new JComboBox(new DefaultComboBoxModel<>(league.teamNames.toArray()));
         Searchbyteam.addItem(defaultValue);
         Searchbyteam.setSelectedItem(defaultValue);
         Searchbyteam.setBackground(new Color(0x313741));
@@ -65,7 +64,6 @@ public class Matches extends JPanel implements ActionListener {
         SearchContainerbyteam.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
         SearchContainerbyteam.add(Searchbyteam);
         this.add(SearchContainerbyteam);
-        //
         JLabel upcoming = new JLabel("Upcoming Matches");
         upcoming.setForeground(Color.white);
         upcoming.setBackground(new Color(0x313741));
@@ -140,11 +138,11 @@ public class Matches extends JPanel implements ActionListener {
 
                 }
 
-                // Create a new Matches panel for the searched team and show it
+
                 main.add(new Matches(main, cardLayout, upcoming, past, league), "SearchedMatches");
                 cardLayout.show(main, "SearchedMatches");
 
-                // Set the combo box to display the name of the selected team
+
                 Searchbyteam.setSelectedItem("Select a Team");
             } catch (NullPointerException exp) {
                 // Handle case where the selected team has no matches or doesn't exist

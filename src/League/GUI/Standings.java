@@ -11,11 +11,8 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
+
 
 public class Standings extends JPanel implements MouseListener{
     public JTable table;

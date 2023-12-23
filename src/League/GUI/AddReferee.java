@@ -1,18 +1,15 @@
 package League.GUI;
 
 import League.League;
-import League.Person.Person;
 import League.Person.Referee.Referee;
 
 import javax.swing.*;
-import javax.xml.validation.Validator;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class AddReferee extends JPanel {
     League league;

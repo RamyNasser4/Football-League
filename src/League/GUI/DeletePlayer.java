@@ -2,7 +2,6 @@ package League.GUI;
 
 import League.League;
 import League.Person.Player.Goalkeeper;
-import League.Person.Player.Player;
 import League.Team.Team;
 import javax.swing.*;
 import java.awt.*;
@@ -31,9 +30,9 @@ public class DeletePlayer extends JPanel implements ActionListener{
              }
              Team searchTeam = league.searchTeam(pTeam);
              searchTeam.deletePlayer(pName);
-             main.add(new DeletePlayer(league.teamnames, league, main, cardLayout), "DeletePlayer");
-             main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-             main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+             main.add(new DeletePlayer(league.teamNames, league, main, cardLayout), "DeletePlayer");
+             main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+             main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
              cardLayout.show(main, "PlayerHome");
              JOptionPane.showMessageDialog(null, "Player deleted successfully");
          }

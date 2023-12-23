@@ -4,7 +4,6 @@ import League.Team.Team;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
 
 public class TeamInfo extends JPanel {
     public TeamInfo(Team team){

@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class DeleteReferee extends JPanel implements ActionListener {
@@ -57,11 +56,10 @@ public class DeleteReferee extends JPanel implements ActionListener {
                 if(e.getSource()==deleteButton){
                         try {
                                 String refereeName = (String) refereeBox.getItemAt(refereeBox.getSelectedIndex());
-//    Referee searchReferee = league.searchReferee(refereeName);
                                 league.DeleteReferee(refereeName);
                                 main.add(new DeleteReferee(league, main, cardLayout), "DeleteReferee");
                                 cardLayout.show(main, "RefereeHome");
-                                JOptionPane.showMessageDialog(null, "Referee Deleted Succesfully");
+                                JOptionPane.showMessageDialog(null, "Referee Deleted Successfully");
                         }
                         catch (NullPointerException exp)
                         {

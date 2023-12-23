@@ -12,20 +12,20 @@ import java.util.Date;
 
 public class Match {
     //Fields
-    public static int noOfMatches = 0;
+    protected static int noOfMatches = 0;
     private final int Match_ID;
-    public String matchDate;
+    public  String matchDate;
     public Date matchdate;
-    public int team1score;
-    public int team2score;
-    public Team[] Teams;
-    public Referee Referee;
-    public String Score;
-    public Stadium Stadium;
-    public ArrayList<Player> team1Scorers;
-    public ArrayList<Player> team1Assisters;
-    public ArrayList<Player> team2Scorers;
-    public ArrayList<Player> team2Assisters;
+    protected int team1score;
+    protected int team2score;
+    protected Team[] Teams;
+    protected Referee Referee;
+    protected String Score;
+    protected Stadium Stadium;
+    private ArrayList<Player> team1Scorers;
+    private ArrayList<Player> team1Assisters;
+    private ArrayList<Player> team2Scorers;
+    private ArrayList<Player> team2Assisters;
     public Player team1Goalkeeper;
     public Player team2Goalkeeper;
     /*public ArrayList<Player> team1YellowCard;

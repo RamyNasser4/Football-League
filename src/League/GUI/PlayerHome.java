@@ -1,7 +1,5 @@
 package League.GUI;
 
-import mainPackage.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

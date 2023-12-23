@@ -5,7 +5,6 @@ import League.Match.Match;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Iterator;
 
 public class Stadium {
@@ -98,7 +97,6 @@ public class Stadium {
 
         try {
             Date checkDate = dateFormat.parse(date);
-            Date datenow = new Date();
             for (Match match : matches) {
                 if (match.matchdate.equals(checkDate)) {
                     System.out.println("Stadium won't be available");

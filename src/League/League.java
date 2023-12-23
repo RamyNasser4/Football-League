@@ -8,19 +8,17 @@ import League.Stadium.Stadium;
 import League.Team.Team;
 import League.Team.TeamAgeComparator;
 import League.Team.TeamGoalsComparator;
-
-import java.sql.Ref;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
+
 
 
 
 public class League {
     protected ArrayList<Team> teams;
-    public static ArrayList<String> teamnames;
+    public static ArrayList<String> teamNames;
     public static ArrayList<Player> searchByNameAndTeam;
     //eg 2023/2024
     public String season;
@@ -38,9 +36,9 @@ public class League {
         this.pastMatches = new ArrayList<>();
         FilterMatchByTime();
         this.teams = new ArrayList<>(teams);
-        teamnames = new ArrayList<>();
+        teamNames = new ArrayList<>();
         for (Team team : teams){
-            teamnames.add(team.getName());
+            teamNames.add(team.getName());
         }
         this.referees = new ArrayList<>(referees);
         this.stadiums = new ArrayList<>(stadiums);
@@ -77,9 +75,9 @@ public class League {
             FilterMatchByTime();
             try {
                 this.teams = new ArrayList<>(League.teams);
-                teamnames = new ArrayList<>();
+                teamNames = new ArrayList<>();
                 for (Team team : teams){
-                    teamnames.add(team.getName());
+                    teamNames.add(team.getName());
                 }
             } catch (NullPointerException exp) {
                 System.out.println("Null team");
@@ -98,7 +96,7 @@ public class League {
     public void setTeams(ArrayList<Team> teams) {
         this.teams = teams;
         for (Team team : teams){
-            teamnames.add(team.getName());
+            teamNames.add(team.getName());
         }
     }
 
@@ -127,13 +125,13 @@ public class League {
         this.stadiums = stadiums;
     }
 
-    public ArrayList<Player> SearchByNameAndTeam(String playername, String teamname) {
+    public ArrayList<Player> SearchByNameAndTeam(String playerName, String teamName) {
         //searchByNameAndTeam.clear();
         ArrayList<Player> searched = new ArrayList<>();
         for (Team t : teams) {
-            if (teamname.equalsIgnoreCase(t.getName())) {
+            if (teamName.equalsIgnoreCase(t.getName())) {
                 for (Player p : t.Players) {
-                    if (playername.equalsIgnoreCase(p.getPersonName())) {
+                    if (playerName.equalsIgnoreCase(p.getPersonName())) {
                         searched.add(p);
                     }
                 }
@@ -146,7 +144,7 @@ public class League {
             System.out.println(resultCount + " results found");
         }
         for (Team t : teams) {
-            teamnames.add(t.getName());
+            teamNames.add(t.getName());
         }
         return searched;
     }
@@ -195,25 +193,6 @@ public class League {
         return topScorers;
     }
 
-    /*public Player[] DisplayTopScorers() {
-        Player[] topScorers = new Player[3];
-        for (int i = 0; i < 3; i++) {
-            int maxGoals = -1;
-            for (int j = 0; j < teams.size(); j++) {
-                for (int k = 0; k < teams.get(j).getTotal(); k++) {
-                    if (teams.get(j).getPlayers().get(k).getGoalsScored() > maxGoals &&
-                            teams.get(j).getPlayers().get(k) != topScorers[0] &&
-                            teams.get(j).getPlayers().get(k) != topScorers[1]) {
-                        maxGoals = teams.get(j).getPlayers().get(k).getGoalsScored();
-                        topScorers[i] = teams.get(j).getPlayers().get(k);
-                    }
-                }
-            }
-        }
-        //display (return until GUI)
-        return topScorers;
-    }*/
-
     public Player[] DisplayTopGoalKeepers() {
         Player[] topKeepers = new Goalkeeper[3];
         int max1 = -1, max2 = -1, max3 = -1;
@@ -251,43 +230,19 @@ public class League {
         }
         return reversedTopKeepers;
     }
-    /*public Player[] DisplayTopGoalKeepers() {
-        Player[] topKeepers = new Goalkeeper[3];
-        int max = 0;
-        topKeepers[0] = null;
-        topKeepers[1] = null;
-        topKeepers[2] = null;
-
-        for (int j = 0; j < teams.size(); j++) {
-            for (int k = 0; k < teams.get(j).getTotal(); k++) {
-                if (teams.get(j).getPlayers().get(k) instanceof Goalkeeper) {
-                    if (max < ((Goalkeeper) teams.get(j).getPlayers().get(k)).GetSaves()) {
-                        max = ((Goalkeeper) teams.get(j).getPlayers().get(k)).GetSaves();
-                        topKeepers[2] = topKeepers[1];
-                        topKeepers[1] = topKeepers[0];
-                        topKeepers[0] = teams.get(j).getPlayers().get(k);
-                    }
-
-                }
-            }
-
-        }
-        //display (return until GUI)
-        return topKeepers;
-    }*/
 
    public ArrayList<Team> DisplayTeamByAvgAge() {
-        ArrayList<Team> teamscopy = new ArrayList<>(teams);
+        ArrayList<Team> teamsCopy = new ArrayList<>(teams);
         TeamAgeComparator comparator = new TeamAgeComparator();
-        Collections.sort(teamscopy, comparator);
-        return teamscopy;
+        Collections.sort(teamsCopy, comparator);
+        return teamsCopy;
     }
 
     public ArrayList<Team> DisplayTeamsByGoals() {
-        ArrayList<Team> teamscopy = new ArrayList<>(teams);
+        ArrayList<Team> teamsCopy = new ArrayList<>(teams);
         TeamGoalsComparator comparator = new TeamGoalsComparator();
-        Collections.sort(teamscopy, comparator);
-        return teamscopy;
+        Collections.sort(teamsCopy, comparator);
+        return teamsCopy;
 
     }
 
@@ -404,7 +359,7 @@ public class League {
     public void DeleteStadium(String stadium){
         boolean isFound = false;
         for (int i = 0; i < stadiums.size(); i++) {
-            if (stadiums.get(i).getStadiumName() == stadium){
+            if (stadiums.get(i).getStadiumName() .equals(stadium)){
                 stadiums.remove(i);
                 isFound = true;
                 FilterMatchByTime();
@@ -418,7 +373,7 @@ public class League {
     public void AddTeam(Team team){
         try {
             teams.add(team);
-            teamnames.add(team.getName());
+            teamNames.add(team.getName());
         }catch (NullPointerException exp){
             System.out.println("Invalid team");
         }

@@ -33,9 +33,6 @@ public class DeleteMatch extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         JPanel titlePanel = new JPanel(new GridLayout(1, 1));
         JPanel contentPanel = new JPanel(new GridLayout(11, 1,0,30));
-        //JScrollPane scrollPane = new JScrollPane(contentPanel);
-        //scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        // JPanel panel2 = new JPanel(new GridLayout(4, 1,0,50));
         JLabel titleLabel = new JLabel("Delete Match");
         titleLabel.setBorder(BorderFactory.createEmptyBorder(50,0,0,0));
         titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));

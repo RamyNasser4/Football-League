@@ -87,7 +87,7 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
         chooseTeam1Label.setFont(new Font("Comic Sans",Font.BOLD,20));
         chooseTeam1Label.setBorder(BorderFactory.createEmptyBorder(0,10,0,27));
         chooseTeam1Panel.add(chooseTeam1Label);
-        chooseTeam1 = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
+        chooseTeam1 = new JComboBox(new DefaultComboBoxModel<>(league.teamNames.toArray()));
         chooseTeam1.addActionListener(this);
         chooseTeam1.setEditable(false);
         chooseTeam1Panel.add(chooseTeam1);
@@ -98,7 +98,7 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
         chooseTeam2Label.setFont(new Font("Comic Sans",Font.BOLD,20));
         chooseTeam2Label.setBorder(BorderFactory.createEmptyBorder(0,10,0,27));
         chooseTeam2Panel.add(chooseTeam2Label);
-        chooseTeam2 = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
+        chooseTeam2 = new JComboBox(new DefaultComboBoxModel<>(league.teamNames.toArray()));
         chooseTeam2.addActionListener(this);
         chooseTeam2.setEditable(false);
         chooseTeam2Panel.add(chooseTeam2);

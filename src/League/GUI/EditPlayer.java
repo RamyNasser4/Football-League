@@ -7,9 +7,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import static League.League.searchByNameAndTeam;
-import League.Team.Team;
 public class EditPlayer extends JPanel implements ActionListener {
 
     @Override
@@ -66,9 +63,9 @@ public class EditPlayer extends JPanel implements ActionListener {
                     league.searchTeam(pTeam).setCaptain(p);
                     JOptionPane.showMessageDialog(null, "Edited Successfully");
                     cardLayout.show(main,"PlayerHome");
-                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                    main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                 }
 
             else if (captain.equals("No")&&league.searchTeam(pTeam).searchPlayer(pName).getCaptain()){
@@ -81,9 +78,9 @@ public class EditPlayer extends JPanel implements ActionListener {
                     league.searchTeam(pTeam).setCaptain(null);
                     JOptionPane.showMessageDialog(null, "Edited Successfully");
                     cardLayout.show(main,"PlayerHome");
-                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                    main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                 }
 
               else if(captain.equals("No")&&!league.searchTeam(pTeam).searchPlayer(pName).getCaptain()){
@@ -95,9 +92,9 @@ public class EditPlayer extends JPanel implements ActionListener {
                     p.setCaptain(false);
                     JOptionPane.showMessageDialog(null, "Edited Successfully");
                     cardLayout.show(main,"PlayerHome");
-                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                    main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                 }
                 if(pTeam.equals((String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex()))){
 
@@ -109,9 +106,9 @@ public class EditPlayer extends JPanel implements ActionListener {
                     t2.deletePlayer(pName);
                     t.addPlayer(p);
                     cardLayout.show(main,"PlayerHome");
-                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                    main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                 }
 
 
@@ -122,9 +119,9 @@ public class EditPlayer extends JPanel implements ActionListener {
             catch(NullPointerException exp){
                 JOptionPane.showMessageDialog(null, "Null");
                 cardLayout.show(main,"PlayerHome");
-                main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
             }
         }
         else{
@@ -150,7 +147,7 @@ public class EditPlayer extends JPanel implements ActionListener {
     JTextField ageField;
     JTextField rankField;
     JTextField numberField;
-    public EditPlayer(ArrayList<String> teamnames, League league,MainPanel main,CardLayout cardLayout) {
+    public EditPlayer(ArrayList<String> teamNames, League league,MainPanel main,CardLayout cardLayout) {
 
         this.main = main;
         this.league = league;
@@ -175,7 +172,7 @@ public class EditPlayer extends JPanel implements ActionListener {
         JLabel teamLabel = new JLabel("Player Team");
         teamLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
         teamPanel.add(teamLabel);
-        teamComboBox = new JComboBox(new DefaultComboBoxModel<>(teamnames.toArray()));
+        teamComboBox = new JComboBox(new DefaultComboBoxModel<>(teamNames.toArray()));
         teamComboBox.addActionListener(this);
         teamPanel.add(teamComboBox);
         contentPanel.add(teamPanel);

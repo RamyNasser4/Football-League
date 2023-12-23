@@ -21,45 +21,20 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
         this.setVisible(true);
-    /*PlayerGui PlayerGui = new PlayerGui();
-    Matches Matches = new Matches(this);*/
         MainPanel main = new MainPanel(league);
         SideBar sideBar = new SideBar(main, main.cardLayout,league);
         //MatchInfo MatchInfo= new MatchInfo();
         this.getContentPane().add(sideBar, BorderLayout.WEST);
         this.add(main);
-        //this.add(MatchInfo);
-        //this.add(PlayerGui);
-        //this.add(Matches);
-        //this.add(MatchInfo);
-        //system icon
             ImageIcon appIcon = new ImageIcon(getClass().getResource("/Assets/league-icon.png"));
             setIconImage(appIcon.getImage());
         //Add Player
         this.addWindowListener(this);
     }
 
-//to be added in match
-
     @Override
-    //to add fields of player subclasses
     public void actionPerformed(ActionEvent e) {
-        /*if(e.getSource()== comboBoxBtn){*/
-     /*   comboBoxChoice= (String) comboBox.getItemAt(comboBox.getSelectedIndex());
-        if(comboBoxChoice.equals("Forward")){
-            JTextField tacklesField=new JTextField("Enter shots here");
-        }
-        else if(comboBoxChoice.equals("Defender")){
-            JTextField savesField=new JTextField("Enter Saves here");
-            JTextField tacklesField=new JTextField("Enter tackles here");
-        }
-        else if(comboBoxChoice.equals("Midfielder")){
 
-        }
-        else{
-            JTextField savesField=new JTextField("Enter Saves here");
-            JTextField cleanSheetField=new JTextField("Enter clean sheets here");
-        }*/
     }
 
     @Override
@@ -69,8 +44,7 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        //Main.WriteFiles(league);
-        //System.out.println("written");
+
     }
 
     @Override

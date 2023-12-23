@@ -1,7 +1,6 @@
 package League.GUI;
 
 import League.League;
-import League.Person.Coach.Coach;
 import League.Person.Player.Player;
 import League.Team.Team;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class EditTeam extends JPanel implements ActionListener {
@@ -40,7 +38,7 @@ public class EditTeam extends JPanel implements ActionListener {
         this.add(contentPanel);
         JPanel chooseTeamPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         contentPanel.add(chooseTeamPanel);
-        chooseTeams = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
+        chooseTeams = new JComboBox(new DefaultComboBoxModel<>(league.teamNames.toArray()));
         chooseTeams.addActionListener(this);
         chooseTeams.setEditable(false);
         chooseTeamPanel.add(chooseTeams);
@@ -140,20 +138,20 @@ public class EditTeam extends JPanel implements ActionListener {
                     for (Player player : searched.getPlayers()) {
                         player.SetPlayerTeam(TeamName);
                     }
-                    for (int i = 0; i < league.teamnames.size(); i++) {
-                        if (league.teamnames.get(i).equalsIgnoreCase(currentTeamName)){
-                            league.teamnames.set(i,TeamName);
+                    for (int i = 0; i < league.teamNames.size(); i++) {
+                        if (league.teamNames.get(i).equalsIgnoreCase(currentTeamName)){
+                            league.teamNames.set(i,TeamName);
                         }
                     }
-                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                    main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                     cardLayout.show(main,"TeamHome");
                     main.add(new Standings(main,cardLayout,league),"Standings");
                     main.add(new EditTeam(league,main,cardLayout),"EditTeam");
                     main.add(new DeleteTeam(league,main,cardLayout),"DeleteTeam");
                     main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
-                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                    main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
 
                 }else {
                     JOptionPane.showConfirmDialog(this,"Invalid Fields","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);

@@ -17,14 +17,14 @@ import League.Person.Player.Player;
 import League.Team.Team;
 
 public class Players extends JPanel implements ActionListener {
-    JButton SEARCH;
-    JButton TOPSCORERS;
-    JButton TOPGKS;
-    JButton FILTERBYTEAM;
-    JButton RESET;
+    JButton search;
+    JButton topScorers;
+    JButton topGks;
+    JButton filterByTeam;
+    JButton reset;
     private League league;
     MainPanel main;
-    CardLayout CARD;
+    CardLayout card;
     private JTable playersTable;
     private DefaultTableModel tableModel;
 
@@ -35,50 +35,50 @@ public class Players extends JPanel implements ActionListener {
     public Players(MainPanel main, CardLayout CARD, League league, ArrayList<Player> players) {
         this.league = league;
         this.main = main;
-        this.CARD = CARD;
+        this.card = CARD;
         this.setBackground(Color.white);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use Y_AXIS for vertical alignment
         this.setPreferredSize(new Dimension(980, 720));
-        TOPGKS = new JButton();
-        TOPGKS.setText("TopGKS");
-        TOPGKS.setFont(new Font("MVBoli", Font.PLAIN, 30));
-        TOPGKS.setBackground(Color.GRAY);
-        TOPGKS.setPreferredSize(new Dimension(10, 50));
+        topGks = new JButton();
+        topGks.setText("TopGKS");
+        topGks.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        topGks.setBackground(Color.GRAY);
+        topGks.setPreferredSize(new Dimension(10, 50));
 
 
-        TOPSCORERS = new JButton();
-        TOPSCORERS.setText("TopScorers");
-        TOPSCORERS.setFont(new Font("MVBoli", Font.PLAIN, 30));
-        TOPSCORERS.setBackground(Color.GRAY);
-        TOPSCORERS.setPreferredSize(new Dimension(10, 50));
+        topScorers = new JButton();
+        topScorers.setText("TopScorers");
+        topScorers.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        topScorers.setBackground(Color.GRAY);
+        topScorers.setPreferredSize(new Dimension(10, 50));
 
 
-        SEARCH = new JButton("Search");
-        SEARCH.setFont(new Font("MVBoli", Font.PLAIN, 30));
-        SEARCH.setBackground(Color.GRAY);
-        SEARCH.setPreferredSize(new Dimension(10, 50));
-        SEARCH.addActionListener(this);
+        search = new JButton("Search");
+        search.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        search.setBackground(Color.GRAY);
+        search.setPreferredSize(new Dimension(10, 50));
+        search.addActionListener(this);
 
 
-        FILTERBYTEAM = new JButton("Team");
-        FILTERBYTEAM.setFont(new Font("MVBoli", Font.PLAIN, 30));
-        FILTERBYTEAM.setBackground(Color.GRAY);
-        FILTERBYTEAM.setPreferredSize(new Dimension(10, 50));
-        FILTERBYTEAM.addActionListener(this);
+        filterByTeam = new JButton("Team");
+        filterByTeam.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        filterByTeam.setBackground(Color.GRAY);
+        filterByTeam.setPreferredSize(new Dimension(10, 50));
+        filterByTeam.addActionListener(this);
 
-        RESET = new JButton("Reset");
-        RESET.setFont(new Font("MVBoli", Font.PLAIN, 30));
-        RESET.setBackground(Color.GRAY);
-        RESET.setPreferredSize(new Dimension(10, 50));
-        RESET.addActionListener(this);
+        reset = new JButton("Reset");
+        reset.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        reset.setBackground(Color.GRAY);
+        reset.setPreferredSize(new Dimension(10, 50));
+        reset.addActionListener(this);
 
 
         JPanel PANELS = new JPanel(new GridLayout(1, 5)); // Change grid layout to accommodate 4 buttons
-        PANELS.add(FILTERBYTEAM);
-        PANELS.add(TOPGKS);
-        PANELS.add(TOPSCORERS);
-        PANELS.add(SEARCH);
-        PANELS.add(RESET);
+        PANELS.add(filterByTeam);
+        PANELS.add(topGks);
+        PANELS.add(topScorers);
+        PANELS.add(search);
+        PANELS.add(reset);
         this.add(PANELS);
 
         for (Player player : players) {
@@ -100,8 +100,8 @@ public class Players extends JPanel implements ActionListener {
             }
         };
         loadAllPlayers();
-        TOPGKS.addActionListener(this);
-        TOPSCORERS.addActionListener(this);
+        topGks.addActionListener(this);
+        topScorers.addActionListener(this);
 
 
         playersTable.setFillsViewportHeight(true);
@@ -156,19 +156,19 @@ public class Players extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == SEARCH) {
+        if (e.getSource() == search) {
             updateTableStructure("search");
             Search();
-        } else if (e.getSource() == TOPSCORERS) {
+        } else if (e.getSource() == topScorers) {
             updateTableStructure("scorers");
             displayTopScorers();
-        } else if (e.getSource() == TOPGKS) {
+        } else if (e.getSource() == topGks) {
             updateTableStructure("goalkeepers");
             displayTopGoalkeepers();
-        } else if (e.getSource() == FILTERBYTEAM) {
+        } else if (e.getSource() == filterByTeam) {
             filterByTeam();
         }
-        else if (e.getSource() == RESET) {
+        else if (e.getSource() == reset) {
             resetTable();
         }
     }
@@ -297,7 +297,7 @@ public class Players extends JPanel implements ActionListener {
             if (foundPlayer != null) {
                 PlayerInfo playerInfoPanel = new PlayerInfo(foundPlayer);
                 main.add(playerInfoPanel, "PlayerInfo");
-                CARD.show(main, "PlayerInfo");
+                card.show(main, "PlayerInfo");
             } else {
                 JOptionPane.showMessageDialog(null, "Player not found");
             }
@@ -316,7 +316,7 @@ public class Players extends JPanel implements ActionListener {
                 if (selectedPlayer != null) {
                     PlayerInfo playerInfoPanel = new PlayerInfo(selectedPlayer);
                     main.add(playerInfoPanel, "PlayerInfo");
-                    CARD.show(main, "PlayerInfo");
+                    card.show(main, "PlayerInfo");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "No Team found.");

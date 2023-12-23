@@ -1,8 +1,6 @@
 package League.GUI;
 
 import League.League;
-import League.Person.Referee.Referee;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,10 +14,10 @@ public class MainPanel extends JPanel {
         Matches matches = new Matches(this, cardLayout,league.upcomingMatches,league.pastMatches,league);
         Standings standings = new Standings(this,cardLayout,league);
         Players players = new Players(this,cardLayout,league);
-        PlayerHome playerHome = new PlayerHome(this,cardLayout,league.teamnames);
-        AddPlayer addPlayer = new AddPlayer(league.teamnames,league,this,cardLayout);
-        EditPlayer editPlayer = new EditPlayer(league.teamnames,league,this,cardLayout);
-        DeletePlayer deletePlayer = new DeletePlayer(league.teamnames,league,this,cardLayout);
+        PlayerHome playerHome = new PlayerHome(this,cardLayout,league.teamNames);
+        AddPlayer addPlayer = new AddPlayer(league.teamNames,league,this,cardLayout);
+        EditPlayer editPlayer = new EditPlayer(league.teamNames,league,this,cardLayout);
+        DeletePlayer deletePlayer = new DeletePlayer(league.teamNames,league,this,cardLayout);
         TeamHome teamHome = new TeamHome(this,cardLayout);
         AddTeam addTeam = new AddTeam(league,this,cardLayout);
         EditTeam editTeam = new EditTeam(league,this,cardLayout);

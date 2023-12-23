@@ -2,8 +2,6 @@ package League.GUI;
 
 import League.League;
 import League.Person.Player.*;
-import League.Team.Team;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -137,22 +135,22 @@ public class AddPlayer extends JPanel{
                         Player p = null;
                         if (captain.equals("Yes")) {
                             if (position.equals("GoalKeeper")) {
-                                    p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
+                                    p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0,  true);
                             } else if (position.equals("Midfielder")) {
-                                p = new Midfielder(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, true);
+                                p = new Midfielder(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, true);
                             } else if (position.equals("Defender")) {
-                                p = new Defender(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, true);
+                                p = new Defender(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, true);
                             } else if (position.equals("Forward")) {
                                 p = new Forward(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, 0, 0, 0, 0, 0, 0, true);
                             }
 
                         } else {
                             if (position.equals("GoalKeeper")) {
-                                    p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
+                                    p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, false);
                             } else if (position.equals("Midfielder")) {
-                                p = new Midfielder(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, false);
+                                p = new Midfielder(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, false);
                             } else if (position.equals("Defender")) {
-                                p = new Defender(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0, 0, false);
+                                p = new Defender(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0,  false);
                             } else if (position.equals("Forward")) {
                                 p = new Forward(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, 0, 0, 0, 0, 0, 0, false);
                             }
@@ -161,14 +159,14 @@ public class AddPlayer extends JPanel{
                        if(league.searchTeam(team).getCaptain()==null) {
                            if (league.searchTeam(team).noOfGoalkeepers == 3 && position.equals("GoalKeeper")) {
                                JOptionPane.showMessageDialog(null, "Only 3 gk are allowed in a team");
-                               main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                               main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                               main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                               main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
                            }
                            else if(league.searchTeam(team).noOfPlayers == 25){
                                JOptionPane.showMessageDialog(null, "Only 25 players are allowed in a team");
-                               main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                               main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                               main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                               main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
                            } else {
                                league.searchTeam(team).addPlayer(p);
@@ -177,8 +175,8 @@ public class AddPlayer extends JPanel{
                                }
 
                                //main.add(new Players(main, cardLayout, league), "Stats");
-                               main.add(new DeletePlayer(league.teamnames, league, main, cardLayout), "DeletePlayer");
-                               main.add(new EditPlayer(league.teamnames, league, main, cardLayout), "EditPlayer");
+                               main.add(new DeletePlayer(league.teamNames, league, main, cardLayout), "DeletePlayer");
+                               main.add(new EditPlayer(league.teamNames, league, main, cardLayout), "EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
                                cardLayout.show(main, "PlayerHome");
                                JOptionPane.showMessageDialog(null, "Player added successfully");
@@ -192,30 +190,30 @@ public class AddPlayer extends JPanel{
                        }
                        else if(league.searchTeam(team).getCaptain()!=null && captain.equals("Yes")) {
                            JOptionPane.showMessageDialog(null, "Team must have 1 captain only");
-                           main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                           main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                           main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                           main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                            main.add(new Players(main, cardLayout,league),"Stats");
 
                        }
                        else if(captain.equals("No")) {
                            if (league.searchTeam(team).noOfGoalkeepers == 3 ) {
                                JOptionPane.showMessageDialog(null, "Only 3 gk are allowed in a team");
-                               main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                               main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                               main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                               main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
                            }
                            else if(league.searchTeam(team).noOfPlayers == 25){
                                JOptionPane.showMessageDialog(null, "Only 25 players are allowed in a team");
-                               main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                               main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                               main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
+                               main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
                            }
                            else {
                                league.searchTeam(team).addPlayer(p);
                                //main.add(new Players(main, cardLayout, league), "Stats");
                                JOptionPane.showMessageDialog(null, "Player added successfully");
-                               main.add(new DeletePlayer(league.teamnames, league, main, cardLayout), "DeletePlayer");
-                               main.add(new EditPlayer(league.teamnames, league, main, cardLayout), "EditPlayer");
+                               main.add(new DeletePlayer(league.teamNames, league, main, cardLayout), "DeletePlayer");
+                               main.add(new EditPlayer(league.teamNames, league, main, cardLayout), "EditPlayer");
                                main.add(new Players(main, cardLayout,league),"Stats");
                                cardLayout.show(main, "PlayerHome");
                                nameField.setText("");

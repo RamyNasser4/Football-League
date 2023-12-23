@@ -9,11 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EditStadium extends JPanel implements ActionListener {
-    JComboBox chooseStaduim;
-    JButton editStaduim;
-    JTextField StaduimNameField;
-    JTextField StaduimLocationField;
-    JTextField StaduimCapcityField;
+    JComboBox chooseStadium;
+    JButton editStadium;
+    JTextField StadiumNameField;
+    JTextField StadiumLocationField;
+    JTextField StadiumCapacityField;
     League league;
     MainPanel main;
     CardLayout cardLayout;
@@ -25,7 +25,7 @@ public class EditStadium extends JPanel implements ActionListener {
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         JPanel titlePanel = new JPanel(new GridLayout(1, 1));
         JPanel contentPanel=new JPanel(new GridLayout(6, 1,0,30));
-        JLabel titleLabel = new JLabel("Edit Staduim");
+        JLabel titleLabel = new JLabel("Edit Stadium");
         titleLabel.setBorder(BorderFactory.createEmptyBorder(50,0,0,0));
         titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));
         titleLabel.setVerticalAlignment(JLabel.TOP);
@@ -33,89 +33,89 @@ public class EditStadium extends JPanel implements ActionListener {
         titlePanel.add(titleLabel);
         this.add(titlePanel);
         this.add(contentPanel);
-        JPanel chooseStaduimPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        contentPanel.add(chooseStaduimPanel);
-        String [] StaduimNames=new String[league.stadiums.size()];
+        JPanel chooseStadiumPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        contentPanel.add(chooseStadiumPanel);
+        String [] StadiumNames=new String[league.stadiums.size()];
         for(int i=0;i<league.stadiums.size();i++){
-            StaduimNames[i]=league.stadiums.get(i).getStadiumName();
+            StadiumNames[i]=league.stadiums.get(i).getStadiumName();
         }
 
 
-        chooseStaduim = new JComboBox(new DefaultComboBoxModel<>(StaduimNames));
+        chooseStadium = new JComboBox(new DefaultComboBoxModel<>(StadiumNames));
 
-        chooseStaduim.addActionListener(this);
-        chooseStaduim.setEditable(false);
-        chooseStaduimPanel.add(chooseStaduim);
+        chooseStadium.addActionListener(this);
+        chooseStadium.setEditable(false);
+        chooseStadiumPanel.add(chooseStadium);
 
-        JPanel StaduimNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel StaduimNameLabel = new JLabel("Stadium Name : ");
-        StaduimNameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        StaduimNameLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,20));
-        StaduimNamePanel.add(StaduimNameLabel);
-        StaduimNameField = new JTextField("");
-        StaduimNameField.setPreferredSize(new Dimension(300,40));
-        StaduimNamePanel.add(StaduimNameField);
-        contentPanel.add(StaduimNamePanel);
+        JPanel StadiumNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel StadiumNameLabel = new JLabel("Stadium Name : ");
+        StadiumNameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        StadiumNameLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,20));
+        StadiumNamePanel.add(StadiumNameLabel);
+        StadiumNameField = new JTextField("");
+        StadiumNameField.setPreferredSize(new Dimension(300,40));
+        StadiumNamePanel.add(StadiumNameField);
+        contentPanel.add(StadiumNamePanel);
         //coach name
-        JPanel StaduimLocationPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel StaduimLocationLabel = new JLabel("Staduim Location : ");
-        StaduimLocationLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        StaduimLocationLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
-        StaduimLocationPanel.add(StaduimLocationLabel);
-        StaduimLocationField = new JTextField("");
-        StaduimLocationField.setPreferredSize(new Dimension(300,40));
-        StaduimLocationPanel.add(StaduimLocationField);
-        contentPanel.add(StaduimLocationPanel);
-        JPanel StaduimCapcityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JLabel StaduimCapcityLabel = new JLabel("Capcity : ");
-        StaduimCapcityLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        StaduimCapcityLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,26));
-        StaduimCapcityPanel.add(StaduimCapcityLabel);
-        StaduimCapcityField = new JTextField("");
-        StaduimCapcityField.setPreferredSize(new Dimension(300,40));
-        StaduimCapcityPanel.add(StaduimCapcityField);
-        contentPanel.add(StaduimCapcityPanel);
-        JPanel editStaduimPanel = new JPanel();
-            editStaduim = new JButton("Edit Staduim");
-        editStaduim.setSize(new Dimension(100,30));
-        editStaduim.setFont(new Font("Comic Sans",Font.BOLD,20));
-        editStaduim.setHorizontalAlignment(SwingConstants.CENTER);
-        editStaduim.setFocusable(false);
-        editStaduim.addActionListener(this);
-        editStaduimPanel.add(editStaduim);
+        JPanel StadiumLocationPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel StadiumLocationLabel = new JLabel("Stadium Location : ");
+        StadiumLocationLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        StadiumLocationLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
+        StadiumLocationPanel.add(StadiumLocationLabel);
+        StadiumLocationField = new JTextField("");
+        StadiumLocationField.setPreferredSize(new Dimension(300,40));
+        StadiumLocationLabel.add(StadiumLocationField);
+        contentPanel.add(StadiumLocationLabel);
+        JPanel StadiumCapacityPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel StadiumCapacityLabel = new JLabel("Capacity : ");
+        StadiumCapacityPanel.setFont(new Font("Comic Sans",Font.BOLD,20));
+        StadiumCapacityLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,26));
+        StadiumCapacityLabel.add(StadiumCapacityLabel);
+        StadiumCapacityField = new JTextField("");
+        StadiumCapacityField.setPreferredSize(new Dimension(300,40));
+        StadiumCapacityLabel.add(StadiumCapacityField);
+        contentPanel.add(StadiumCapacityLabel);
+        JPanel editStadiumPanel = new JPanel();
+        editStadium = new JButton("Edit Stadium");
+        editStadium.setSize(new Dimension(100,30));
+        editStadium.setFont(new Font("Comic Sans",Font.BOLD,20));
+        editStadium.setHorizontalAlignment(SwingConstants.CENTER);
+        editStadium.setFocusable(false);
+        editStadium.addActionListener(this);
+        editStadiumPanel.add(editStadium);
         try {
-            String StadiumName = (String) chooseStaduim.getSelectedItem();
+            String StadiumName = (String) chooseStadium.getSelectedItem();
             Stadium searched = league.searchStadium(StadiumName);
-            StaduimNameField.setText(searched.getStadiumName());
-            StaduimLocationField.setText(searched.getStadiumLocation());
-            StaduimCapcityField.setText(String.valueOf(searched.getStadiumCapacity()));
+            StadiumNameField.setText(searched.getStadiumName());
+            StadiumLocationField.setText(searched.getStadiumLocation());
+            StadiumCapacityField.setText(String.valueOf(searched.getStadiumCapacity()));
         }catch (Exception exp){
 
         }
-        contentPanel.add(editStaduimPanel);
+        contentPanel.add(editStadiumPanel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == chooseStaduim){
-            String StadiumName = (String) chooseStaduim.getSelectedItem();
+        if (e.getSource() == chooseStadium){
+            String StadiumName = (String) chooseStadium.getSelectedItem();
             Stadium searched = league.searchStadium(StadiumName);
-            StaduimNameField.setText(searched.getStadiumName());
-            StaduimLocationField.setText(searched.getStadiumLocation());
-            StaduimCapcityField.setText(String.valueOf(searched.getStadiumCapacity()));
-        } else if (e.getSource() == editStaduim) {
-            String StadiumName = StaduimNameField.getText();
-            String StadiumLocation = StaduimLocationField.getText();
+            StadiumNameField.setText(searched.getStadiumName());
+            StadiumLocationField.setText(searched.getStadiumLocation());
+            StadiumCapacityField.setText(String.valueOf(searched.getStadiumCapacity()));
+        } else if (e.getSource() == editStadium) {
+            String StadiumName = StadiumNameField.getText();
+            String StadiumLocation = StadiumLocationField.getText();
             int capacity;
             try {
-                capacity = Integer.parseInt(StaduimCapcityField.getText());
+                capacity = Integer.parseInt(StadiumCapacityField.getText());
             }catch (Exception exp){
                 //JOptionPane.showConfirmDialog(this,"Invalid Coach Age","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
                 capacity = 0;
             }
 
                 if (Validation(StadiumName,StadiumLocation,capacity)){
-                    String currentTeamName = (String) chooseStaduim.getSelectedItem();
+                    String currentTeamName = (String) chooseStadium.getSelectedItem();
                     Stadium searched = league.searchStadium(currentTeamName);
                     searched.setStadiumName(StadiumName);
                     searched.setStadiumLocation(StadiumLocation);

@@ -74,7 +74,7 @@ public class AddStadium extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addStadium){
             String StadiumName = StadiumNameField.getText();
-            String Stadiumlocation = StadiumLocationField.getText();
+            String StadiumLocation = StadiumLocationField.getText();
             int Capacity;
             try {
                 Capacity = Integer.parseInt(StadiumCapacityField.getText());
@@ -82,8 +82,8 @@ public class AddStadium extends JPanel implements ActionListener{
 
                 Capacity = 0;
             }
-            if (Validation(StadiumName,Stadiumlocation,Capacity)){
-                Stadium newStadium = new Stadium(StadiumName,Stadiumlocation,Capacity);
+            if (Validation(StadiumName,StadiumLocation,Capacity)){
+                Stadium newStadium = new Stadium(StadiumName,StadiumLocation,Capacity);
                 league.AddStadium(newStadium);
                 StadiumNameField.setText("");
                 StadiumLocationField.setText("");
@@ -102,15 +102,15 @@ public class AddStadium extends JPanel implements ActionListener{
                 if (!league.searchStadiumBool(StadiumName)) {
                     JOptionPane.showConfirmDialog(this, "This stadium already exist ", "Invalid Field", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
 
-                } if (StadiumName.equalsIgnoreCase("") || Stadiumlocation.equalsIgnoreCase("") || Capacity== 0) {
+                } if (StadiumName.equalsIgnoreCase("") || StadiumLocation.equalsIgnoreCase("") || Capacity== 0) {
 
                     JOptionPane.showConfirmDialog(this, "Invalid Fields", "Invalid Field", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
     }
-    public boolean Validation(String StadiumName,String Stadiumlocation,int Capacity){
-        if (StadiumName.equalsIgnoreCase("") || Stadiumlocation.equalsIgnoreCase("") || Capacity== 0) {
+    public boolean Validation(String StadiumName,String StadiumLocation,int Capacity){
+        if (StadiumName.equalsIgnoreCase("") || StadiumLocation.equalsIgnoreCase("") || Capacity== 0) {
             return false;
         }
         if (!league.searchStadiumBool(StadiumName)) {

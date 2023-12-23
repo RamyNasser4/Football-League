@@ -1,8 +1,6 @@
 package League.GUI;
 
 import League.League;
-import League.Team.Team;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -33,11 +31,11 @@ public class DeleteStadium extends JPanel implements ActionListener {
         //contentPanel.add(panel2);
         JPanel chooseTeamPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         contentPanel.add(chooseTeamPanel);
-        String [] StaduimNames=new String[league.stadiums.size()];
+        String [] StadiumNames=new String[league.stadiums.size()];
         for(int i=0;i<league.stadiums.size();i++){
-            StaduimNames[i]=league.stadiums.get(i).getStadiumName();
+            StadiumNames[i]=league.stadiums.get(i).getStadiumName();
         }
-        chooseStadium = new JComboBox(new DefaultComboBoxModel<>(StaduimNames));
+        chooseStadium = new JComboBox(new DefaultComboBoxModel<>(StadiumNames));
         chooseStadium.setSize(new Dimension(500,400));
         chooseStadium.addActionListener(this);
         chooseStadium.setEditable(false);

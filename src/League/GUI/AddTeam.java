@@ -35,7 +35,6 @@ public class AddTeam extends JPanel implements ActionListener {
         titlePanel.add(titleLabel);
         this.add(titlePanel);
         this.add(contentPanel);
-        //contentPanel.add(panel2);
         //team name
         JPanel teamNamePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel teamNameLabel = new JLabel("Team Name : ");
@@ -85,14 +84,13 @@ public class AddTeam extends JPanel implements ActionListener {
             try {
                 CoachAge = Integer.parseInt(teamCoachAgeField.getText());
             }catch (Exception exp){
-                //JOptionPane.showConfirmDialog(this,"Invalid Coach Age","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
                 CoachAge = 0;
             }
             if (Validation(TeamName,CoachName,CoachAge)){
-                Coach newCoach = new Coach(CoachName,CoachAge,0,"",TeamName);
+                Coach newCoach = new Coach(CoachName,CoachAge,0,TeamName);
                 Team newTeam = new Team(TeamName,new ArrayList<>(),null,newCoach,new ArrayList<>(),0,0,0);
                 league.AddTeam(newTeam);
-                main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                 teamNameField.setText("");
                 teamCoachField.setText("");
                 teamCoachAgeField.setText("");
@@ -100,9 +98,9 @@ public class AddTeam extends JPanel implements ActionListener {
                 main.add(new Standings(main,cardLayout,league),"Standings");
                 main.add(new EditTeam(league,main,cardLayout),"EditTeam");
                 main.add(new DeleteTeam(league,main,cardLayout),"DeleteTeam");
-                main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
-                main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
+                main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
+                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                 main.add(new Players(main, cardLayout,league),"PlayerInfo");
             }else {
                 JOptionPane.showConfirmDialog(this,"Invalid Fields","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);

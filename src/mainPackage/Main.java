@@ -27,7 +27,7 @@ public class Main {
             while (ReadCoach.ready()){
                 String coach = ReadCoach.readLine();
                 String[] coachInfo = coach.split("\t");
-                Coach newCoach = new Coach(coachInfo[0],Integer.parseInt(coachInfo[1]),Integer.parseInt(coachInfo[2]),coachInfo[3],coachInfo[4]);
+                Coach newCoach = new Coach(coachInfo[0],Integer.parseInt(coachInfo[1]),Integer.parseInt(coachInfo[2]),coachInfo[4]);
                 coaches.add(newCoach);
             }
         }catch (IOException exp){
@@ -144,8 +144,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[9]),
                                     Integer.parseInt(playerInfo[10]),
                                     Integer.parseInt(playerInfo[11]),
-                                    Integer.parseInt(playerInfo[12]),
-                                    Boolean.parseBoolean(playerInfo[13]));
+                                    Boolean.parseBoolean(playerInfo[12]));
                             if (newPlayer.getCaptain()){
                                 TeamCaptain = newPlayer;
                             }
@@ -165,9 +164,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[9]),
                                     Integer.parseInt(playerInfo[10]),
                                     Integer.parseInt(playerInfo[11]),
-                                    Integer.parseInt(playerInfo[12]),
-                                    Integer.parseInt(playerInfo[13]),
-                                    Boolean.parseBoolean(playerInfo[14]));
+                                    Boolean.parseBoolean(playerInfo[12]));
                             if (newPlayer.getCaptain()){
                                 TeamCaptain = newPlayer;
                             }
@@ -188,8 +185,7 @@ public class Main {
                                     Integer.parseInt(playerInfo[10]),
                                     Integer.parseInt(playerInfo[11]),
                                     Integer.parseInt(playerInfo[12]),
-                                    Integer.parseInt(playerInfo[13]),
-                                    Boolean.parseBoolean(playerInfo[14]));
+                                    Boolean.parseBoolean(playerInfo[13]));
                             if (newPlayer.getCaptain()){
                                 TeamCaptain = newPlayer;
                             }
@@ -674,11 +670,11 @@ public class Main {
                 if (PlayerPosition.equalsIgnoreCase("forward")){
                     newPlayer = new Forward(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
                 } else if (PlayerPosition.equalsIgnoreCase("midfielder")) {
-                    newPlayer = new Midfielder(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
+                    newPlayer = new Midfielder(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,isCaptain);
                 } else if (PlayerPosition.equalsIgnoreCase("defender")) {
-                    newPlayer = new Defender(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,0,isCaptain);
+                    newPlayer = new Defender(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,isCaptain);
                 }else {
-                    newPlayer = new Goalkeeper(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,0,isCaptain);
+                    newPlayer = new Goalkeeper(PlayerName,PlayerAge,0,currentTeam.getName(),PlayerNumber,0,0,0,0,0,0,0,isCaptain);
                 }
                 currentTeam.addPlayer(newPlayer);
             } else if (choice == 2) {
@@ -718,7 +714,7 @@ public class Main {
                 String CoachName = input.nextLine();
                 System.out.println("Enter Coach Age");
                 int CoachAge = input.nextInt();
-                Coach newCoach = new Coach(CoachName,CoachAge,0,"",currentTeam.getName());
+                Coach newCoach = new Coach(CoachName,CoachAge,0,currentTeam.getName());
                 currentTeam.setCoach(newCoach);
             } else if (choice == 9) {
                 break;

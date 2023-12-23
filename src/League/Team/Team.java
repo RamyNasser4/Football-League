@@ -6,7 +6,6 @@ import League.Person.Coach.Coach;
 
 import League.Person.Player.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 

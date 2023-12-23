@@ -10,11 +10,14 @@ import League.Team.Team;
 import League.Team.TeamAgeComparator;
 import League.Team.TeamGoalsComparator;
 
+import java.sql.Ref;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import static League.Person.Referee.Referee.noOfReferees;
 
 public class League {
     protected ArrayList<Team> teams;
@@ -372,6 +375,17 @@ public class League {
         }
         if (!isFound){
             System.out.println("Invalid Team Name");
+        }
+    }
+    public void DeleteReferee(String refereeName){
+        boolean isFound = false;
+        for (int i =0 ; i <noOfReferees;i++){
+            if(referees.get(i).getPersonName().equals(refereeName)){
+                referees.remove(i);
+                --noOfReferees;
+                isFound=true;
+                break;
+            }
         }
     }
     public void DeleteMatch(int MatchID){

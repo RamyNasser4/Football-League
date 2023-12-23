@@ -75,13 +75,15 @@ public class AddReferee extends JPanel {
                         Referee referee=new Referee(name,ageValue);
                         league.AddReferee(referee);
                         JOptionPane.showMessageDialog(null, "Referee saved successfully");
+                        nameField.setText("");
+                        ageField.setText("");
                     }
                     catch(NumberFormatException exp){
                         JOptionPane.showMessageDialog(null,"Enter a valid age");
                     }
                     main.add(new AddMatch(league,main,cardLayout),"AddMatch");
                     cardLayout.show(main,"RefereeHome");
-                   // main.add(new DeleteReferee());
+                    main.add(new DeleteReferee(league,main,cardLayout),"DeleteReferee");
                 }
             }
 

@@ -1,6 +1,7 @@
 package League.GUI;
 
 import League.League;
+import League.Person.Referee.Referee;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,9 @@ public class MainPanel extends JPanel {
         EditMatch editMatch = new EditMatch(league,this,cardLayout);
         DeleteMatch deleteMatch = new DeleteMatch(league,this,cardLayout);
         Stadiums stadiums =new Stadiums(this,cardLayout);
+        RefereeHome refereeHome=new RefereeHome(this,cardLayout,league);
+        AddReferee addReferee= new AddReferee(league,this,cardLayout);
+        DeleteReferee deleteReferee=new DeleteReferee(league,this,cardLayout);
         //AddStaduim addStaduim = new AddStaduim(league,this,cardLayout);
         //EditStaduim editStaduim = new EditStaduim(league,this,cardLayout);
 
@@ -50,6 +54,9 @@ public class MainPanel extends JPanel {
         this.add(editMatch,"EditMatch");
         this.add(deleteMatch,"DeleteMatch");
         this.add(stadiums,"Stadiums");
+        this.add(refereeHome,"RefereeHome");
+        this.add(addReferee,"AddReferee");
+        this.add(deleteReferee,"DeleteReferee");
         //this.add(addStaduim,"AddStaduim");
         //this.add(editStaduim,"EditStaduim");
 

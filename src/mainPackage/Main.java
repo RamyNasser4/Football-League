@@ -274,6 +274,8 @@ public class Main {
                 ArrayList<Player> team2Scorers = new ArrayList<>();
                 ArrayList<Player> team1Assisters = new ArrayList<>();
                 ArrayList<Player> team2Assisters = new ArrayList<>();
+                Player team1goalkeeper = null;
+                Player team2goalkeeper = null;
                 int Team1Score = -1;
                 int Team2Score = -1;
                 if (!matchInfo[4].isEmpty()){
@@ -288,7 +290,6 @@ public class Main {
                         }
                     }
                     String[] assisters = allMatchesInfo[2].split("\t");
-                    System.out.println(Arrays.toString(assisters));
                     for (String assisterName : assisters){
                         if(assisterName.startsWith("Team1:")){
                             Player assister = team1.searchPlayer(assisterName.substring(6));
@@ -296,6 +297,14 @@ public class Main {
                         }else if (assisterName.startsWith("Team2:")){
                             Player assister = team2.searchPlayer(assisterName.substring(6));
                             team2Assisters.add(assister);
+                        }
+                    }
+                    String[] goalkeepers = allMatchesInfo[3].split("\t");
+                    for (String goalkeeperName : goalkeepers){
+                        if (goalkeeperName.startsWith("Team1:")){
+                            team1goalkeeper = team1.searchPlayer(goalkeeperName.substring(6));
+                        } else if (goalkeeperName.startsWith("Team2:")) {
+                            team2goalkeeper = team2.searchPlayer(goalkeeperName.substring(6));
                         }
                     }
                     try {
@@ -307,7 +316,7 @@ public class Main {
                     }
                 }
                 try {
-                    Match newMatch = new Match(matchInfo[0],MatchTeams,MatchReferee,matchInfo[4],MatchStadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters);
+                    Match newMatch = new Match(matchInfo[0],MatchTeams,MatchReferee,matchInfo[4],MatchStadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters,team1goalkeeper,team2goalkeeper);
                     MatchStadium.matches.add(newMatch);
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);

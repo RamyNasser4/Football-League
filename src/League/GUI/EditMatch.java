@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Match.Match;
+import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Person.Referee.Referee;
 import League.Stadium.Stadium;
@@ -237,6 +238,8 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                     ArrayList<Player> team2Scorers = new ArrayList<>();
                     ArrayList<Player> team1Assisters = new ArrayList<>();
                     ArrayList<Player> team2Assisters = new ArrayList<>();
+                    Player team1goalkeeper = null;
+                    Player team2goalkeeper = null;
                     if (((Date) dateSpinner.getValue()).before(now)){
                         String Score = Team1Score + "-" + Team2Score;
                         match.setScore(Score);
@@ -247,6 +250,14 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                         }else {
                             team1.setTotal_score(team1.getTotal_score()-1);
                             team2.setTotal_score(team2.getTotal_score()-1);
+                        }
+                        if (Team2Score > 0){
+                            Goalkeeper team1keeper = (Goalkeeper) match.getTeam1Goalkeeper();
+                            team1keeper.setGoalsConceded(team1keeper.getGoalsConceded()-Team1Score);
+                        }
+                        if (Team1Score > 0){
+                            Goalkeeper team2keeper = (Goalkeeper) match.getTeam2Goalkeeper();
+                            team2keeper.setGoalsConceded(team2keeper.getGoalsConceded()-Team1Score);
                         }
                         match.setTeam1score(Team1Score);
                         match.setTeam2score(Team2Score);
@@ -285,7 +296,7 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                                 }
                             }
                             valid = false;
-                            //2nd team goalscorer
+                            //1st team assister
                             while (!valid){
                                 JPanel goalAssist = new JPanel(new GridLayout(2,1));
                                 JComboBox team1players = new JComboBox<>(new DefaultComboBoxModel<>(team1.getPlayernames().toArray()));
@@ -301,6 +312,34 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                                     team1Assisters.add(team1.searchPlayer((String) team1players.getSelectedItem()));
                                     valid = true;
                                 } catch (NullPointerException | InputMismatchException ignored) {
+
+                                }
+                            }
+                        }
+                        if (Team2Score > 0){
+                            boolean valid = false;
+                            while (!valid){
+                                ArrayList<String> team1Goalkeepers = new ArrayList<>();
+                                for (Player player : team1.getPlayers()){
+                                    if (player instanceof Goalkeeper){
+                                        team1Goalkeepers.add(player.getPersonName());
+                                    }
+                                }
+                                JPanel goalkeeperPanel = new JPanel(new GridLayout(2,1));
+                                JComboBox Goalkeepers = new JComboBox<>(new DefaultComboBoxModel<>(team1Goalkeepers.toArray()));
+                                JLabel message = new JLabel("Who was the goalkeeper for the 1st Team");
+                                goalkeeperPanel.add(message);
+                                goalkeeperPanel.add(Goalkeepers);
+                                int goalkeeperChoice = JOptionPane.showOptionDialog(this,goalkeeperPanel,"Goalscorer",JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+                                try {
+                                    if (goalkeeperChoice != JOptionPane.OK_OPTION){
+                                        throw new InputMismatchException();
+                                    }
+                                    Goalkeeper currentGoalKeeper = (Goalkeeper) team1.searchPlayer((String) Goalkeepers.getSelectedItem());
+                                    currentGoalKeeper.setGoalsConceded(Team2Score);
+                                    team1goalkeeper = currentGoalKeeper;
+                                    valid = true;
+                                }catch (NullPointerException | InputMismatchException ignored){
 
                                 }
                             }
@@ -343,6 +382,34 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                                     team2Assisters.add(team2.searchPlayer((String) team2players.getSelectedItem()));
                                     valid = true;
                                 } catch (NullPointerException | InputMismatchException ignored) {
+                                }
+                            }
+                        }
+                        if (Team1Score > 0){
+                            boolean valid = false;
+                            while (!valid){
+                                ArrayList<String> team2Goalkeepers = new ArrayList<>();
+                                for (Player player : team2.getPlayers()){
+                                    if (player instanceof Goalkeeper){
+                                        team2Goalkeepers.add(player.getPersonName());
+                                    }
+                                }
+                                JPanel goalkeeperPanel = new JPanel(new GridLayout(2,1));
+                                JComboBox Goalkeepers = new JComboBox<>(new DefaultComboBoxModel<>(team2Goalkeepers.toArray()));
+                                JLabel message = new JLabel("Who was the goalkeeper for the 2nd Team");
+                                goalkeeperPanel.add(message);
+                                goalkeeperPanel.add(Goalkeepers);
+                                int goalkeeperChoice = JOptionPane.showOptionDialog(this,goalkeeperPanel,"Goalscorer",JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+                                try {
+                                    if (goalkeeperChoice != JOptionPane.OK_OPTION){
+                                        throw new InputMismatchException();
+                                    }
+                                    Goalkeeper currentGoalKeeper = (Goalkeeper) team2.searchPlayer((String) Goalkeepers.getSelectedItem());
+                                    currentGoalKeeper.setGoalsConceded(Team1Score);
+                                    team1goalkeeper = currentGoalKeeper;
+                                    valid = true;
+                                }catch (NullPointerException | InputMismatchException ignored){
+
                                 }
                             }
                         }
@@ -413,11 +480,11 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
             throw new InputMismatchException("Invalid Score");
         } else if (match.getDate().after(now) && dateObj.before(now)) {
             throw new InputMismatchException("Date must be upcoming");
-        } else if (team1.getTotal() < 11) {
+        } /*else if (team1.getTotal() < 11) {
             throw new InputMismatchException("Insufficent 1st team players");
         } else if (team2.getTotal() < 11) {
             throw new InputMismatchException("Insuffienct 2nd team players");
-        }
+        }*/
         return true;
     }
 

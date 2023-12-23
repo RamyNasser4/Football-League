@@ -229,7 +229,7 @@ public class Players extends JPanel implements ActionListener {
                 rowData = new Object[]{
                         player.getPersonName(),
                         player.GetPlayerTeam(),
-                        goalkeeper.GetSaves()
+                        goalkeeper.getGoalsConceded()
                 };
             } else {
                 // scorers or default
@@ -252,7 +252,7 @@ public class Players extends JPanel implements ActionListener {
             String[] columnNames = {"Name", "Team", "Goals"};
             tableModel.setColumnIdentifiers(columnNames);
         } else if ("goalkeepers".equals(type)) {
-            String[] columnNames = {"Name", "Team", "Saves"};
+            String[] columnNames = {"Name", "Team", "GoalsConceded"};
             tableModel.setColumnIdentifiers(columnNames);
         } else if ("search".equals(type)) {
             String[] columnNames = {"Name", "Team"};

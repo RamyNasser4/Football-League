@@ -8,10 +8,10 @@ public class Goalkeeper extends Player {
      *  Saves and clean sheets
      * uniquely identifies Goalkeepers
      */
-    protected int saves;
+    protected int GoalsConceded;
     protected int cleanSheets;
-    public Goalkeeper(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int saves,int cleanSheets,Boolean isCaptain){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards,isCaptain);
-        this.saves = saves;
+    public Goalkeeper(String playerName,int playerAge,int playerSalary,String playerTeam,int playerNumber,double playerScore,int playerRank,int goalsScored,int assists,int noOfYellowCards,int noOfRedCards,int GoalsConceded,int cleanSheets,Boolean isCaptain){super(playerName,playerAge,playerSalary,playerTeam,playerNumber,playerScore,playerRank,goalsScored,assists,noOfYellowCards,noOfRedCards,isCaptain);
+        this.GoalsConceded = GoalsConceded;
         this.cleanSheets = cleanSheets;
     }
     public Goalkeeper(String playerName, int playerAge, int playerSalary, String playerTeam, int playerNumber, double playerScore, int playerRank, int goalsScored, int assists, int noOfYellowCards, int noOfRedCards,int saves,int cleanSheets) {
@@ -61,21 +61,25 @@ public class Goalkeeper extends Player {
             this.noOfYellowCards = goalkeeper.noOfYellowCards;
             this.NoOfRedCards = goalkeeper.NoOfRedCards;
             this.assists = goalkeeper.assists;
-            this.saves = goalkeeper.saves;
+            this.GoalsConceded = goalkeeper.GoalsConceded;
             this.cleanSheets = goalkeeper.cleanSheets;
         } catch (NullPointerException exp){
             System.out.println("Null");
         }
     }
     public String WriteGoalkeeper(){
-        return "Goalkeeper" + "\t" + Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + saves + "\t" + cleanSheets + "\t" + isCaptain;
-    }
-    public int GetSaves() {
-        return saves;
+        return "Goalkeeper" + "\t" + Name + "\t" + Age + "\t" + Salary + "\t" + playerTeam + "\t" + playerNumber + "\t" + playerScore + "\t"  + playerRank + "\t" + goalsScored + "\t" + assists + "\t" + noOfYellowCards + "\t" + NoOfRedCards + "\t" + GoalsConceded + "\t" + cleanSheets + "\t" + isCaptain;
     }
 
-    public void SetSaves(int saves) {
-        this.saves = saves;
+    public int getGoalsConceded() {
+        return GoalsConceded;
+    }
+
+    public void setGoalsConceded(int goalsConceded) {
+        GoalsConceded = goalsConceded;
+    }
+    public void concedeGoal(){
+        ++GoalsConceded;
     }
 
     public int GetCleanSheets() {

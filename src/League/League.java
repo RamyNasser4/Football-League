@@ -168,34 +168,28 @@ public class League {
 
     public Player[] DisplayTopScorers() {
         Player[] topScorers = new Player[3];
-        int maxGoals1 = -1, maxGoals2 = -1, maxGoals3 = -1;
-
+        int maxGoals1 = Integer.MIN_VALUE, maxGoals2 = Integer.MIN_VALUE, maxGoals3 = Integer.MIN_VALUE;
         for (Team team : teams) {
             for (Player player : team.getPlayers()) {
-                // Check if the player is not a goalkeeper
-                if (!(player instanceof Goalkeeper)) {
-                    int goals = player.getGoalsScored();
-
-                    if (goals > maxGoals1) {
-                        maxGoals3 = maxGoals2;
-                        maxGoals2 = maxGoals1;
-                        maxGoals1 = goals;
-                        topScorers[2] = topScorers[1];
-                        topScorers[1] = topScorers[0];
-                        topScorers[0] = player;
-                    } else if (goals > maxGoals2 && player != topScorers[0]) {
-                        maxGoals3 = maxGoals2;
-                        maxGoals2 = goals;
-                        topScorers[2] = topScorers[1];
-                        topScorers[1] = player;
-                    } else if (goals > maxGoals3 && player != topScorers[0] && player != topScorers[1]) {
-                        maxGoals3 = goals;
-                        topScorers[2] = player;
-                    }
+                int goals = player.getGoalsScored();
+                if (goals > maxGoals1) {
+                    maxGoals3 = maxGoals2;
+                    maxGoals2 = maxGoals1;
+                    maxGoals1 = goals;
+                    topScorers[2] = topScorers[1];
+                    topScorers[1] = topScorers[0];
+                    topScorers[0] = player;
+                } else if (goals > maxGoals2 && player != topScorers[0]) {
+                    maxGoals3 = maxGoals2;
+                    maxGoals2 = goals;
+                    topScorers[2] = topScorers[1];
+                    topScorers[1] = player;
+                } else if (goals > maxGoals3 && player != topScorers[0] && player != topScorers[1]) {
+                    maxGoals3 = goals;
+                    topScorers[2] = player;
                 }
             }
         }
-
         return topScorers;
     }
 
@@ -224,34 +218,36 @@ public class League {
         topKeepers[0] = null;
         topKeepers[1] = null;
         topKeepers[2] = null;
-
         for (Team team : teams) {
             for (Player player : team.getPlayers()) {
                 if (player instanceof Goalkeeper) {
                     Goalkeeper gk = (Goalkeeper) player;
-                    int saves = gk.GetSaves();
+                    int goalsConceded = gk.getGoalsConceded();
 
-                    if (saves > max1) {
+                    if (goalsConceded > max1) {
                         max3 = max2;
                         max2 = max1;
-                        max1 = saves;
+                        max1 = goalsConceded;
                         topKeepers[2] = topKeepers[1];
                         topKeepers[1] = topKeepers[0];
                         topKeepers[0] = gk;
-                    } else if (saves > max2 && gk != topKeepers[0]) {
+                    } else if (goalsConceded > max2 && gk != topKeepers[0]) {
                         max3 = max2;
-                        max2 = saves;
+                        max2 = goalsConceded;
                         topKeepers[2] = topKeepers[1];
                         topKeepers[1] = gk;
-                    } else if (saves > max3 && gk != topKeepers[0] && gk != topKeepers[1]) {
-                        max3 = saves;
+                    } else if (goalsConceded > max3 && gk != topKeepers[0] && gk != topKeepers[1]) {
+                        max3 = goalsConceded;
                         topKeepers[2] = gk;
                     }
                 }
             }
         }
-
-        return topKeepers;
+        Player[] reversedTopKeepers = new Player[3];
+        for (int i = 0; i < 3; i++) {
+            reversedTopKeepers[i] = topKeepers[2 - i];
+        }
+        return reversedTopKeepers;
     }
     /*public Player[] DisplayTopGoalKeepers() {
         Player[] topKeepers = new Goalkeeper[3];

@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Match.Match;
+import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 
 import javax.swing.*;
@@ -175,6 +176,14 @@ public class DeleteMatch extends JPanel implements ActionListener {
                 }else {
                     match.getTeams()[0].setTotal_score(match.getTeams()[0].getTotal_score()-1);
                     match.getTeams()[1].setTotal_score(match.getTeams()[1].getTotal_score()-1);
+                }
+                if (match.getTeam1score()>0){
+                    Goalkeeper team2keeper = (Goalkeeper) match.team2Goalkeeper;
+                    team2keeper.setGoalsConceded(team2keeper.getGoalsConceded()-match.getTeam1score());
+                }
+                if (match.getTeam2score()>0){
+                    Goalkeeper team1keeper = (Goalkeeper) match.team1Goalkeeper;
+                    team1keeper.setGoalsConceded(team1keeper.getGoalsConceded()-match.getTeam2score());
                 }
             }
             try {

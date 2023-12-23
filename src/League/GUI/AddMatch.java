@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Match.Match;
+import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Person.Referee.Referee;
 import League.Stadium.Stadium;
@@ -219,10 +220,70 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                 ArrayList<Player> team2Scorers = new ArrayList<>();
                 ArrayList<Player> team1Assisters = new ArrayList<>();
                 ArrayList<Player> team2Assisters = new ArrayList<>();
+                Player team1goalkeeper = null;
+                Player team2goalkeeper = null;
                 if (Validation(team1,team2,dateStr,Team1Score,Team2Score,referee,stadium,noOfYellowCards,noOfRedCards)){
                     String Score;
                     if (((Date)dateSpinner.getValue()).before(new Date())){
                         Score = Team1Score + "-" + Team2Score;
+                        if (Team2Score > 0){
+                            boolean valid = false;
+                            while (!valid){
+                                ArrayList<String> team1Goalkeepers = new ArrayList<>();
+                                for (Player player : team1.getPlayers()){
+                                    if (player instanceof Goalkeeper){
+                                        team1Goalkeepers.add(player.getPersonName());
+                                    }
+                                }
+                                JPanel goalkeeperPanel = new JPanel(new GridLayout(2,1));
+                                JComboBox Goalkeepers = new JComboBox<>(new DefaultComboBoxModel<>(team1Goalkeepers.toArray()));
+                                JLabel message = new JLabel("Who was the goalkeeper for the 1st Team");
+                                goalkeeperPanel.add(message);
+                                goalkeeperPanel.add(Goalkeepers);
+                                int goalkeeperChoice = JOptionPane.showOptionDialog(this,goalkeeperPanel,"Goalscorer",JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+                                try {
+                                    if (goalkeeperChoice != JOptionPane.OK_OPTION){
+                                        throw new InputMismatchException();
+                                    }
+                                    Goalkeeper currentGoalKeeper = (Goalkeeper) team1.searchPlayer((String) Goalkeepers.getSelectedItem());
+                                    currentGoalKeeper.setGoalsConceded(Team2Score);
+                                    team1goalkeeper = currentGoalKeeper;
+                                    valid = true;
+                                }catch (NullPointerException | InputMismatchException ignored){
+
+                                }
+                            }
+                        }
+                        if (Team1Score > 0){
+                            boolean valid = false;
+                            while (!valid){
+                                ArrayList<String> team2Goalkeepers = new ArrayList<>();
+                                for (Player player : team2.getPlayers()){
+                                    if (player instanceof Goalkeeper){
+                                        team2Goalkeepers.add(player.getPersonName());
+                                    }
+                                }
+                                JPanel goalkeeperPanel = new JPanel(new GridLayout(2,1));
+                                JComboBox Goalkeepers = new JComboBox<>(new DefaultComboBoxModel<>(team2Goalkeepers.toArray()));
+                                JLabel message = new JLabel("Who was the goalkeeper for the 2nd Team");
+                                goalkeeperPanel.add(message);
+                                goalkeeperPanel.add(Goalkeepers);
+                                int goalkeeperChoice = JOptionPane.showOptionDialog(this,goalkeeperPanel,"Goalscorer",JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+                                try {
+                                    if (goalkeeperChoice != JOptionPane.OK_OPTION){
+                                        throw new InputMismatchException();
+                                    }
+                                    Goalkeeper currentGoalKeeper = (Goalkeeper) team2.searchPlayer((String) Goalkeepers.getSelectedItem());
+                                    currentGoalKeeper.setGoalsConceded(Team1Score);
+                                    team2goalkeeper = currentGoalKeeper;
+                                    System.out.println(currentGoalKeeper);
+                                    valid = true;
+                                }catch (NullPointerException | InputMismatchException ignored){
+
+                                }
+                            }
+                        }
+
                         for (int i = 1; i <= Team1Score ; i++) {
                             boolean valid = false;
                             //1st team goalscorer
@@ -449,7 +510,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                     }else {
                         Score = "";
                     }
-                    Match newMatch = new Match(dateStr,teams,referee,Score,stadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters);
+                    Match newMatch = new Match(dateStr,teams,referee,Score,stadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters,team1goalkeeper,team2goalkeeper);
                     league.AddMatch(newMatch);
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);

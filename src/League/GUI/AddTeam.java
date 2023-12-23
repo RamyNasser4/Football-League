@@ -103,7 +103,7 @@ public class AddTeam extends JPanel implements ActionListener {
                 main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
                 main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
                 main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
-                main.add(new Players(main, cardLayout,league),"Stats");
+                main.add(new Players(main, cardLayout,league),"PlayerInfo");
             }else {
                 JOptionPane.showConfirmDialog(this,"Invalid Fields","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
             }

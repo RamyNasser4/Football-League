@@ -1,11 +1,14 @@
 package League.Team;
 
+
 import League.Match.Match;
 import League.Person.Coach.Coach;
 
 import League.Person.Player.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
+
 
 public class Team {
     protected static int noOfTeams = 0;
@@ -16,8 +19,8 @@ public class Team {
     protected Player Captain;
     protected Coach Coach;
     protected int Total_score;
-    protected int noOfPlayers;
-    protected int noOfGoalkeepers;
+    public int noOfPlayers;
+    public int noOfGoalkeepers;
     protected ArrayList<Match> Matches;
 
 
@@ -237,7 +240,7 @@ public class Team {
             System.out.println("Null");
         } catch (Exception exp) {
             System.out.println(exp.getMessage());
-        }
+            System.out.println(exp.getMessage());        }
     }
 
     public void deletePlayer(int PlayerID) {
@@ -319,3 +322,4 @@ public class Team {
         return true;
     }
 }
+

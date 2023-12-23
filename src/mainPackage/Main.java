@@ -771,5 +771,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> new GUI(league));
         //mainMenu(league);
        // WriteFiles(league);
+
+
     }
 }

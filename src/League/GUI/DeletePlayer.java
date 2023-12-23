@@ -1,6 +1,7 @@
 package League.GUI;
 
 import League.League;
+import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Team.Team;
 import javax.swing.*;
@@ -20,6 +21,13 @@ public class DeletePlayer extends JPanel implements ActionListener{
              String pTeam = (String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex());
              if(pName==null) {
                  throw new Exception();
+             }
+             if(league.searchTeam(pTeam).searchPlayer(pName).getCaptain()){
+                 league.searchTeam(pTeam).searchPlayer(pName).setCaptain(false);
+                 league.searchTeam(pTeam).setCaptain(null);
+             }
+             if(league.searchTeam(pTeam).searchPlayer(pName) instanceof Goalkeeper){
+                 --league.searchTeam(pTeam).noOfGoalkeepers;
              }
              Team searchTeam = league.searchTeam(pTeam);
              searchTeam.deletePlayer(pName);
@@ -56,7 +64,7 @@ public class DeletePlayer extends JPanel implements ActionListener{
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(4, 1));
 
-        JPanel titlepanel = new JPanel(new GridLayout(2, 1,0,0));
+        JPanel titlePanel = new JPanel(new GridLayout(2, 1,0,0));
         JPanel contentPanel=new JPanel(new GridLayout(3, 1));
         JLabel titleLabel = new JLabel("Delete Player");
         JLabel title2Label = new JLabel("Search by Team and Name");
@@ -66,19 +74,19 @@ public class DeletePlayer extends JPanel implements ActionListener{
         titleLabel.setFont(new Font("Comic Sans",Font.BOLD,35));
         titleLabel.setVerticalAlignment(JLabel.TOP);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titlepanel.add(titleLabel);
-        titlepanel.add(title2Label);
+        titlePanel.add(titleLabel);
+        titlePanel.add(title2Label);
 
 
-        JPanel teampanel = new JPanel(new GridLayout(1, 1));
+        JPanel teamPanel = new JPanel(new GridLayout(1, 1));
         JLabel teamLabel = new JLabel("Player Team");
         teamLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        teampanel.add(teamLabel);
+        teamPanel.add(teamLabel);
         teamComboBox = new JComboBox(new DefaultComboBoxModel<>(teamnames.toArray()));
         teamComboBox.addActionListener(this);
-        teampanel.add(teamComboBox);
-        contentPanel.add(teampanel);
-        this.add(titlepanel);
+        teamPanel.add(teamComboBox);
+        contentPanel.add(teamPanel);
+        this.add(titlePanel);
         this.add(contentPanel);
 
         String team;
@@ -90,13 +98,13 @@ public class DeletePlayer extends JPanel implements ActionListener{
             JOptionPane.showMessageDialog(null, "No teams exist");
         }
 
-        JPanel namepanel = new JPanel(new GridLayout(1, 1));
+        JPanel namePanel = new JPanel(new GridLayout(1, 1));
         JLabel nameLabel = new JLabel("Player Name");
         nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        namepanel.add(nameLabel);
+        namePanel.add(nameLabel);
         nameComboBox =new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayernames().toArray()));
-        namepanel.add(nameComboBox);
-        contentPanel.add(namepanel);
+        namePanel.add(nameComboBox);
+        contentPanel.add(namePanel);
 
 
         String name;

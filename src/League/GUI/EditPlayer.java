@@ -21,7 +21,7 @@ public class EditPlayer extends JPanel implements ActionListener {
             if(pName==null) {
                 throw new Exception();
             }
-                //removeAll();
+
                 DisplayFields();
                 revalidate();
                 repaint();
@@ -64,7 +64,6 @@ public class EditPlayer extends JPanel implements ActionListener {
                     p.SetPlayerNumber(Integer.parseInt(number));
                     p.setCaptain(true);
                     league.searchTeam(pTeam).setCaptain(p);
-                    System.out.println( "7"+league.searchTeam(pTeam).getCaptain().getPersonName());
                     JOptionPane.showMessageDialog(null, "Edited Successfully");
                     cardLayout.show(main,"PlayerHome");
                     main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
@@ -80,7 +79,6 @@ public class EditPlayer extends JPanel implements ActionListener {
                     p.SetPlayerNumber(Integer.parseInt(number));
                     p.setCaptain(false);
                     league.searchTeam(pTeam).setCaptain(null);
-                    System.out.println( "1"+league.searchTeam(pTeam).getCaptain().getPersonName());
                     JOptionPane.showMessageDialog(null, "Edited Successfully");
                     cardLayout.show(main,"PlayerHome");
                     main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
@@ -95,7 +93,6 @@ public class EditPlayer extends JPanel implements ActionListener {
                     p.SetPlayerRank(Integer.parseInt(rank));
                     p.SetPlayerNumber(Integer.parseInt(number));
                     p.setCaptain(false);
-                    System.out.println( "11"+league.searchTeam(pTeam).getCaptain().getPersonName());
                     JOptionPane.showMessageDialog(null, "Edited Successfully");
                     cardLayout.show(main,"PlayerHome");
                     main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
@@ -110,18 +107,11 @@ public class EditPlayer extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Enter a valid number in number,age and rank");
             }
             catch(NullPointerException exp){
-                Player p=league.searchTeam(pTeam).searchPlayer(pName);
-                p.setPersonName(name);
-                p.setPersonAge(Integer.parseInt(Age));
-                p.SetPlayerRank(Integer.parseInt(rank));
-                p.SetPlayerNumber(Integer.parseInt(number));
-                p.setCaptain(false);
-                league.searchTeam(p.GetPlayerTeam()).setCaptain(null);
-                JOptionPane.showMessageDialog(null, "Edited Successfully");
+                JOptionPane.showMessageDialog(null, "Null");
                 cardLayout.show(main,"PlayerHome");
                 main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
                 main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
-                main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
             }
         }
         else{
@@ -138,9 +128,9 @@ public class EditPlayer extends JPanel implements ActionListener {
     String pTeam;
     String pName;
     JPanel contentPanel;
-    JPanel namepanel;
-    JPanel teampanel;
-    JPanel titlepanel;
+    JPanel namePanel;
+    JPanel teamPanel;
+    JPanel titlePanel;
     League league;
     MainPanel main;
     CardLayout cardLayout;
@@ -156,7 +146,7 @@ public class EditPlayer extends JPanel implements ActionListener {
 
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(4, 1));
-        titlepanel = new JPanel(new GridLayout(2, 1, 0, 0));
+        titlePanel = new JPanel(new GridLayout(2, 1, 0, 0));
         contentPanel = new JPanel(new GridLayout(3, 1));
         JLabel titleLabel = new JLabel("Edit Player");
         JLabel title2Label = new JLabel("Search by Team and Name");
@@ -166,35 +156,34 @@ public class EditPlayer extends JPanel implements ActionListener {
         titleLabel.setFont(new Font("Comic Sans", Font.BOLD, 25));
         titleLabel.setVerticalAlignment(JLabel.TOP);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
-        titlepanel.add(titleLabel);
-        titlepanel.add(title2Label);
+        titlePanel.add(titleLabel);
+        titlePanel.add(title2Label);
 
-         teampanel = new JPanel(new GridLayout(1, 1));
+         teamPanel = new JPanel(new GridLayout(1, 1));
         JLabel teamLabel = new JLabel("Player Team");
         teamLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        teampanel.add(teamLabel);
+        teamPanel.add(teamLabel);
         teamComboBox = new JComboBox(new DefaultComboBoxModel<>(teamnames.toArray()));
         teamComboBox.addActionListener(this);
-        teampanel.add(teamComboBox);
-        contentPanel.add(teampanel);
+        teamPanel.add(teamComboBox);
+        contentPanel.add(teamPanel);
 
         String team;
         try {
             team = (String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex());
-            System.out.println(team);
         } catch (NullPointerException exp) {
             team = "null";
             JOptionPane.showMessageDialog(null, "No teams exist");
         }
 
-         namepanel = new JPanel(new GridLayout(1, 1));
+         namePanel = new JPanel(new GridLayout(1, 1));
         JLabel nameLabel = new JLabel("Player Name");
         nameLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
-        namepanel.add(nameLabel);
+        namePanel.add(nameLabel);
         nameComboBox = new JComboBox(new DefaultComboBoxModel<>(league.searchTeam(team).getPlayernames().toArray()));
-        namepanel.add(nameComboBox);
-        contentPanel.add(namepanel);
-        this.add(titlepanel);
+        namePanel.add(nameComboBox);
+        contentPanel.add(namePanel);
+        this.add(titlePanel);
         this.add(contentPanel);
 
 
@@ -217,59 +206,59 @@ public class EditPlayer extends JPanel implements ActionListener {
            playerToEdit=null;
 
        }
-        this.remove(titlepanel);
+        this.remove(titlePanel);
         contentPanel.remove(searchButton);
-        contentPanel.remove(namepanel);
-        contentPanel.remove(teampanel);
-        contentPanel.add(titlepanel);
-        JPanel namepanel = new JPanel(new GridLayout(1, 1));
+        contentPanel.remove(namePanel);
+        contentPanel.remove(teamPanel);
+        contentPanel.add(titlePanel);
+        JPanel namePanel = new JPanel(new GridLayout(1, 1));
         JLabel nameLabel = new JLabel("Name");
-        namepanel.add(nameLabel);
+        namePanel.add(nameLabel);
         nameLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         nameField = new JTextField(playerToEdit.getPersonName());
-        namepanel.add(nameField);
-        contentPanel.add(namepanel);
+        namePanel.add(nameField);
+        contentPanel.add(namePanel);
 
 
-        JPanel agepanel = new JPanel(new GridLayout(1, 1));
+        JPanel agePanel = new JPanel(new GridLayout(1, 1));
         JLabel ageLabel = new JLabel("Age");
         ageLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
         ageField = new JTextField(Integer.toString(playerToEdit.GetPlayerAge()));
-        agepanel.add(ageLabel);
-        agepanel.add(ageField);
-        contentPanel.add(agepanel);
+        agePanel.add(ageLabel);
+        agePanel.add(ageField);
+        contentPanel.add(agePanel);
 
-        JPanel rankpanel = new JPanel(new GridLayout(1, 1));
+        JPanel rankPanel = new JPanel(new GridLayout(1, 1));
         JLabel rankLabel = new JLabel("Rank");
         rankLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        rankpanel.add(rankLabel);
+        rankPanel.add(rankLabel);
         rankField = new JTextField(Integer.toString(playerToEdit.GetPlayerRank()));
-        rankpanel.add(rankField);
-        contentPanel.add(rankpanel);
+        rankPanel.add(rankField);
+        contentPanel.add(rankPanel);
 
-        JPanel numberpanel = new JPanel(new GridLayout(1, 1));
+        JPanel numberPanel = new JPanel(new GridLayout(1, 1));
         JLabel numberLabel = new JLabel("T-shirt number");
         numberLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        numberpanel.add(numberLabel);
+        numberPanel.add(numberLabel);
         numberField = new JTextField(Integer.toString(playerToEdit.GetPlayerNumber()));
-        numberpanel.add(numberField);
-        contentPanel.add(numberpanel);
+        numberPanel.add(numberField);
+        contentPanel.add(numberPanel);
 
-        JPanel captainpanel = new JPanel(new GridLayout(1, 1));
+        JPanel captainPanel = new JPanel(new GridLayout(1, 1));
         JLabel captainLabel = new JLabel("Team Captain");
         captainLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        captainpanel.add(captainLabel);
-        String capbool[]={"No","Yes"};
-        String capbool2[]={"Yes","No"};
+        captainPanel.add(captainLabel);
+        String capList[]={"No","Yes"};
+        String capList2[]={"Yes","No"};
         if(playerToEdit.getCaptain()) {
-            captainComboBox = new JComboBox(capbool2);
-            captainpanel.add(captainComboBox);
-            contentPanel.add(captainpanel);
+            captainComboBox = new JComboBox(capList2);
+            captainPanel.add(captainComboBox);
+            contentPanel.add(captainPanel);
         }
         else {
-            captainComboBox = new JComboBox(capbool);
-            captainpanel.add(captainComboBox);
-            contentPanel.add(captainpanel);
+            captainComboBox = new JComboBox(capList);
+            captainPanel.add(captainComboBox);
+            contentPanel.add(captainPanel);
         }
 
 

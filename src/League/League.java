@@ -402,6 +402,20 @@ public class League {
             System.out.println("Invalid Match ID");
         }
     }
+    public void DeleteStadium(String stadium){
+        boolean isFound = false;
+        for (int i = 0; i < stadiums.size(); i++) {
+            if (stadiums.get(i).getStadiumName() == stadium){
+                stadiums.remove(i);
+                isFound = true;
+                FilterMatchByTime();
+                break;
+            }
+        }
+        if (!isFound){
+            System.out.println("Invalid Match ID");
+        }
+    }
     public void AddTeam(Team team){
         try {
             teams.add(team);
@@ -456,6 +470,14 @@ public class League {
         }
         return  null;
     }
+    public Boolean searchStadiumBool(int Stadium_ID){
+        for (Stadium stadium : stadiums){
+            if (stadium.getStadiumID() == Stadium_ID){
+                return true;
+            }
+        }
+        return  false;
+    }
     public Referee searchReferee(String refereeName){
         for (Referee referee : referees){
             if (referee.getPersonName().equalsIgnoreCase(refereeName)){
@@ -471,6 +493,14 @@ public class League {
             }
         }
         return  null;
+    }
+    public boolean searchStadiumBool(String stadiumName){
+        for (Stadium stadium : stadiums){
+            if (stadium.getStadiumName().equalsIgnoreCase(stadiumName)){
+                return false;
+            }
+        }
+        return  true;
     }
     public Match searchMatch(int MatchID){
         for (Match match : matches){

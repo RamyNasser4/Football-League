@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Stadiums extends JPanel implements ActionListener {
-    JButton addStaduimButton;
-    JButton editStaduimButton;
-    JButton deleteStaduimButton;
+    JButton addStadiumButton;
+    JButton editStadiumButton;
+    JButton deleteStadiumButton;
     MainPanel main;
     CardLayout cardLayout;
     public Stadiums(MainPanel main, CardLayout cardLayout){
@@ -16,50 +16,50 @@ public class Stadiums extends JPanel implements ActionListener {
         this.cardLayout = cardLayout;
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(3, 1));
-        JPanel addStaduimPanel = new JPanel(new GridLayout(1, 1));
-        JPanel editStaduimPanel = new JPanel(new GridLayout(1, 1));
-        JPanel deleteStaduimPanel = new JPanel(new GridLayout(1, 1));
+        JPanel addStadiumPanel = new JPanel(new GridLayout(1, 1));
+        JPanel editStadiumPanel = new JPanel(new GridLayout(1, 1));
+        JPanel deleteStadiumPanel = new JPanel(new GridLayout(1, 1));
         this.setVisible(true);
-        //Add Team button
-        addStaduimButton=new JButton("Add Staduim");
-        addStaduimButton.setFocusable(false);
-        ImageIcon addTeamIcon = new ImageIcon("src/Assets/Add-stadium.png");
-        addStaduimButton.setIcon(addTeamIcon);
-        addStaduimButton.setFont(new Font("Comic Sans",Font.BOLD,20));
-        addStaduimButton.setIconTextGap(10);
-        addStaduimButton.addActionListener(this);
-        //Edit Team Button
-        editStaduimButton=new JButton("Edit Staduim");
-        editStaduimButton.setFont(new Font("Comic Sans",Font.BOLD,20));
-        editStaduimButton.setFocusable(false);
-        editStaduimButton.addActionListener(this);
-        ImageIcon editStaduimIcon =new ImageIcon("src/Assets/edit-stadium.png");
-        editStaduimButton.setIcon(editStaduimIcon);
-        editStaduimButton.setIconTextGap(10);
+
+        addStadiumButton=new JButton("Add Stadium");
+        addStadiumButton.setFocusable(false);
+        ImageIcon addStadiumIcon = new ImageIcon("src/Assets/Add-stadium.png");
+        addStadiumButton.setIcon(addStadiumIcon);
+        addStadiumButton.setFont(new Font("Comic Sans",Font.BOLD,20));
+        addStadiumButton.setIconTextGap(10);
+        addStadiumButton.addActionListener(this);
+
+        editStadiumButton=new JButton("Edit Stadium");
+        editStadiumButton.setFont(new Font("Comic Sans",Font.BOLD,20));
+        editStadiumButton.setFocusable(false);
+        editStadiumButton.addActionListener(this);
+        ImageIcon editStadiumIcon =new ImageIcon("src/Assets/edit-stadium.png");
+        editStadiumButton.setIcon(editStadiumIcon);
+        editStadiumButton.setIconTextGap(10);
         //Delete Team Button
-        deleteStaduimButton=new JButton("Delete Staduim");
-        deleteStaduimButton.setFont(new Font("Comic Sans",Font.BOLD,20));
-        deleteStaduimButton.setFocusable(false);
-        ImageIcon removeStaduimIcon =new ImageIcon("src/Assets/delete-stadium.png");
-        deleteStaduimButton.setIcon(removeStaduimIcon);
-        deleteStaduimButton.setIconTextGap(10);
-        deleteStaduimButton.addActionListener(this);
-        addStaduimPanel.add(addStaduimButton);
-        editStaduimPanel.add(editStaduimButton);
-        deleteStaduimPanel.add(deleteStaduimButton);
-        this.add(addStaduimPanel);
-        this.add(editStaduimPanel);
-        this.add(deleteStaduimPanel);
+        deleteStadiumButton=new JButton("Delete Stadium");
+        deleteStadiumButton.setFont(new Font("Comic Sans",Font.BOLD,20));
+        deleteStadiumButton.setFocusable(false);
+        ImageIcon removeStadiumIcon =new ImageIcon("src/Assets/delete-stadium.png");
+        deleteStadiumButton.setIcon(removeStadiumIcon);
+        deleteStadiumButton.setIconTextGap(10);
+        deleteStadiumButton.addActionListener(this);
+        addStadiumPanel.add(addStadiumButton);
+        editStadiumPanel.add(editStadiumButton);
+        deleteStadiumPanel.add(deleteStadiumButton);
+        this.add(addStadiumPanel);
+        this.add(editStadiumPanel);
+        this.add(deleteStadiumPanel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addStaduimButton){
-            cardLayout.show(main,"AddStaduim");
-        } else if (e.getSource() == editStaduimButton) {
-            cardLayout.show(main,"EditStaduim");
-        } else if (e.getSource() == deleteStaduimButton) {
-            cardLayout.show(main,"DeleteStaduim");
+        if (e.getSource() == addStadiumButton){
+            cardLayout.show(main,"AddStadium");
+        } else if (e.getSource() == editStadiumButton) {
+            cardLayout.show(main,"EditStadium");
+        } else if (e.getSource() == deleteStadiumButton) {
+            cardLayout.show(main,"DeleteStadium");
         }
     }
 

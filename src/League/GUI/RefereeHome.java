@@ -17,11 +17,11 @@ public class RefereeHome extends JPanel {
         this.league=league;
         this.cardlayout=cardLayout;
         this.setSize(new Dimension(980, 720));
-        this.setLayout(new GridLayout(3, 1));
+        this.setLayout(new GridLayout(2, 1));
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
         JPanel panel2 = new JPanel(new GridLayout(1, 1));
         JPanel panel3 = new JPanel(new GridLayout(1, 1));
-        ImageIcon addRefereeIcon =new ImageIcon("src/Assets/add-player.png");
+        ImageIcon addRefereeIcon =new ImageIcon("src/Assets/add-referee.png");
         this.setVisible(true);
         //Add Referee button
         JButton panel1Button=new JButton("Add Referee");
@@ -29,17 +29,12 @@ public class RefereeHome extends JPanel {
         panel1Button.setIcon(addRefereeIcon);
         panel1Button.setFont(new Font("Comic Sans",Font.BOLD,20));
 
-        //Edit Referee Button
-        JButton panel2Button=new JButton("Edit Referee");
-        panel2Button.setFont(new Font("Comic Sans",Font.BOLD,20));
-        panel2Button.setFocusable(false);
-        ImageIcon editRefereeIcon =new ImageIcon("src/Assets/edit-player.png");
-        panel2Button.setIcon(editRefereeIcon);
+
         //Delete Referee Button
         JButton panel3Button=new JButton("Delete Referee");
         panel3Button.setFont(new Font("Comic Sans",Font.BOLD,20));
         panel3Button.setFocusable(false);
-        ImageIcon removeRefereeIcon =new ImageIcon("src/Assets/remove-player.png");
+        ImageIcon removeRefereeIcon =new ImageIcon("src/Assets/delete-referee.png");
         panel3Button.setIcon(removeRefereeIcon);
         panel1Button.addActionListener(new ActionListener() {
             @Override
@@ -47,17 +42,7 @@ public class RefereeHome extends JPanel {
                 cardlayout.show(main,"AddReferee");
             }
         });
-        panel2Button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(league.getReferees().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"There is no Referees to edit.");
-                }
-                else {
-                    cardlayout.show(main,"EditReferee");
-                }
-            }
-        });
+
         panel3Button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,10 +56,9 @@ public class RefereeHome extends JPanel {
             }
         });
         panel1.add(panel1Button);
-        panel2.add(panel2Button);
+       // panel2.add(panel2Button);
         panel3.add(panel3Button);
         this.add(panel1);
-        this.add(panel2);
         this.add(panel3);
     }
 

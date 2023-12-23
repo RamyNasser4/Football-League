@@ -70,7 +70,7 @@ public class EditStadium extends JPanel implements ActionListener {
         JLabel StadiumCapacityLabel = new JLabel("Capacity : ");
         StadiumCapacityPanel.setFont(new Font("Comic Sans",Font.BOLD,20));
         StadiumCapacityLabel.setBorder(BorderFactory.createEmptyBorder(0,5,0,26));
-        StadiumCapacityLabel.add(StadiumCapacityLabel);
+        StadiumCapacityPanel.add(StadiumCapacityLabel);
         StadiumCapacityField = new JTextField("");
         StadiumCapacityField.setPreferredSize(new Dimension(300,40));
         StadiumCapacityLabel.add(StadiumCapacityField);

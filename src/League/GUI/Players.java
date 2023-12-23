@@ -5,11 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 import League.GUI.Components.playerButton;
 import League.League;
+import League.Person.Player.Goalkeeper;
 import League.Person.Player.Player;
 import League.Team.Team;
 
@@ -17,12 +19,16 @@ public class Players extends JPanel implements ActionListener {
     JButton SEARCH;
     JButton TOPSCORERS;
     JButton TOPGKS;
+    JButton FILTERBYTEAM;
+    JButton RESET;
     private League league;
     MainPanel main;
     CardLayout CARD;
+    private JTable playersTable;
+    private DefaultTableModel tableModel;
 
     public Players(MainPanel main, CardLayout card, League league) {
-        this(main, card, league, new ArrayList<Player>()); // Calls the main constructor with an empty list
+        this(main, card, league, new ArrayList<Player>());
     }
 
     public Players(MainPanel main, CardLayout CARD, League league, ArrayList<Player> players) {
@@ -53,10 +59,25 @@ public class Players extends JPanel implements ActionListener {
         SEARCH.addActionListener(this);
 
 
-        JPanel PANELS = new JPanel(new GridLayout(1, 3));
-        PANELS.add(SEARCH);
+        FILTERBYTEAM = new JButton("Team");
+        FILTERBYTEAM.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        FILTERBYTEAM.setBackground(Color.GRAY);
+        FILTERBYTEAM.setPreferredSize(new Dimension(10, 50));
+        FILTERBYTEAM.addActionListener(this);
+
+        RESET = new JButton("Reset");
+        RESET.setFont(new Font("MVBoli", Font.PLAIN, 30));
+        RESET.setBackground(Color.GRAY);
+        RESET.setPreferredSize(new Dimension(10, 50));
+        RESET.addActionListener(this);
+
+
+        JPanel PANELS = new JPanel(new GridLayout(1, 5)); // Change grid layout to accommodate 4 buttons
+        PANELS.add(FILTERBYTEAM);
         PANELS.add(TOPGKS);
         PANELS.add(TOPSCORERS);
+        PANELS.add(SEARCH);
+        PANELS.add(RESET);
         this.add(PANELS);
 
         for (Player player : players) {
@@ -69,15 +90,164 @@ public class Players extends JPanel implements ActionListener {
             playerButton.setBackground(Color.darkGray);
 
         }
+        String[] columnNames = {"Name", "Team", "Goals", "Assists"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        playersTable = new JTable(tableModel);
+        loadAllPlayers();
+        TOPGKS.addActionListener(this);
+        TOPSCORERS.addActionListener(this);
+
+
+        playersTable.setFillsViewportHeight(true);
+        playersTable.setRowHeight(30);
+        playersTable.setFont(new Font("SansSerif", Font.PLAIN, 18));
+
+
+        playersTable.setBackground(Color.DARK_GRAY);
+        playersTable.setForeground(Color.BLACK);
+
+
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+        cellRenderer.setBackground(Color.DARK_GRAY);
+        cellRenderer.setForeground(Color.BLACK);
+
+
+        for (int i = 0; i < playersTable.getColumnCount(); i++) {
+            playersTable.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+        }
+
+
+        JTableHeader header = playersTable.getTableHeader();
+        header.setBackground(Color.DARK_GRAY);
+        header.setForeground(Color.BLACK);
+        header.setFont(new Font("SansSerif", Font.BOLD, 18));
+
+
+        JScrollPane scrollPane = new JScrollPane(playersTable);
+        scrollPane.setPreferredSize(new Dimension(950, 400));
+        this.add(scrollPane);
+
+
+        playersTable.repaint();
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == SEARCH) {
+            updateTableStructure("search");
             Search();
+        } else if (e.getSource() == TOPSCORERS) {
+            updateTableStructure("scorers");
+            displayTopScorers();
+        } else if (e.getSource() == TOPGKS) {
+            updateTableStructure("goalkeepers");
+            displayTopGoalkeepers();
+        } else if (e.getSource() == FILTERBYTEAM) {
+            filterByTeam();
+        }
+        else if (e.getSource() == RESET) {
+            resetTable();
         }
     }
+
+
+    private void displayTopScorers() {
+        Player[] topScorersArray = league.DisplayTopScorers();
+        ArrayList<Player> topScorersList = convertArrayToList(topScorersArray);
+        updateTableWithPlayers(topScorersList, "scorers");
+    }
+
+    private void displayTopGoalkeepers() {
+        Player[] topKeepersArray = league.DisplayTopGoalKeepers();
+        ArrayList<Player> topKeepersList = convertArrayToList(topKeepersArray);
+        updateTableWithPlayers(topKeepersList, "goalkeepers");
+    }
+    private void filterByTeam() {
+        String teamName = JOptionPane.showInputDialog("Enter Team Name:");
+        if (teamName != null && !teamName.isEmpty()) {
+            ArrayList<Player> filteredPlayers = league.getPlayersByTeamName(teamName);
+            updateTableWithPlayers(filteredPlayers, "default");
+        }
+    }
+
+    private void loadAllPlayers() {
+        updateTableStructure("default"); // Use default table structure for loading all players
+        ArrayList<Player> allPlayers = league.getAllPlayers();
+        updateTableWithPlayers(allPlayers, "default"); // Use default type for updating table with all players
+    }
+
+    private ArrayList<Player> convertArrayToList(Player[] playersArray) {
+        ArrayList<Player> playersList = new ArrayList<>();
+        for (Player player : playersArray) {
+            if (player != null) { // Check if the player is not null before adding
+                playersList.add(player);
+            }
+        }
+        return playersList;
+    }
+
+
+    private void updateTableWithPlayers(ArrayList<Player> players, String type) {
+        tableModel.setRowCount(0); // Clear existing data
+        for (Player player : players) {
+            Object[] rowData;
+
+            if ("goalkeepers".equals(type) && player instanceof Goalkeeper) {
+                Goalkeeper goalkeeper = (Goalkeeper) player;
+                rowData = new Object[]{
+                        player.getPersonName(),
+                        player.GetPlayerTeam(),
+                        goalkeeper.GetSaves() // Ensure this method exists in Goalkeeper class
+                };
+            } else {
+                // scorers or default
+                rowData = new Object[]{
+                        player.getPersonName(),
+                        player.GetPlayerTeam(),
+                        player.getGoalsScored(),
+                        type.equals("scorers") ? null : player.getAssists()
+                };
+            }
+            tableModel.addRow(rowData);
+        }
+        playersTable.revalidate();
+        playersTable.repaint();
+        updateCellRenderers();
+    }
+
+    private void updateTableStructure(String type) {
+        if ("scorers".equals(type)) {
+            String[] columnNames = {"Name", "Team", "Goals"};
+            tableModel.setColumnIdentifiers(columnNames);
+        } else if ("goalkeepers".equals(type)) {
+            String[] columnNames = {"Name", "Team", "Saves"};
+            tableModel.setColumnIdentifiers(columnNames);
+        } else if ("search".equals(type)) {
+            String[] columnNames = {"Name", "Team"};
+            loadAllPlayers();
+            tableModel.setColumnIdentifiers(columnNames);
+        } else {
+            String[] columnNames = {"Name", "Team", "Goals", "Assists"};
+            tableModel.setColumnIdentifiers(columnNames);
+        }
+        updateCellRenderers();
+    }
+
+    private void updateCellRenderers() {
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        for (int i = 0; i < playersTable.getColumnCount(); i++) {
+            playersTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
+    private void resetTable() {
+        updateTableStructure("default");
+        loadAllPlayers();
+    }
+
     private void Search() {
         String[] options = {"By Name", "By Team"};
         int response = JOptionPane.showOptionDialog(null, "Choose your search type:", "Search",

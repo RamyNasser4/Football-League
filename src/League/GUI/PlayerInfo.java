@@ -14,10 +14,10 @@ public class PlayerInfo extends JPanel {
         this.setSize(980,720);
         this.setLayout(new GridLayout(2, 1));//name,tshirt number , age, position , team , goals , assists, no of yellow/red
         JPanel panel1 = new JPanel(new GridLayout(1, 1));
-        JPanel panel2 = new JPanel(new GridLayout(4, 2));
+        JPanel panel2 = new JPanel(new GridLayout(8, 2));
 
         JLabel label1 = new JLabel("Name: " + player.getPersonName());
-        label1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 60));
+        label1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 35));
         label1.setForeground(Color.white);
         label1.setHorizontalAlignment(JLabel.CENTER);
         panel1.setBackground(Color.DARK_GRAY);

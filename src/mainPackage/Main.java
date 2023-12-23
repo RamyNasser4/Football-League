@@ -106,7 +106,7 @@ public class Main {
                     }
                 }
                 try {
-                    ReadTeamPlayers = new BufferedReader(new FileReader("Team"+teamInfo[4]+"Players.txt"));
+                    ReadTeamPlayers = new BufferedReader(new FileReader(teamInfo[0]+"Players.txt"));
                     while (ReadTeamPlayers.ready()){
                         String player = ReadTeamPlayers.readLine();
                         String[] playerInfo = player.split("\t");
@@ -197,7 +197,7 @@ public class Main {
                         }
                     }
                 }catch (IOException exp ){
-                    System.out.println("Team " + teamInfo[4] + " file not found");
+                    System.out.println(teamInfo[0]+ " file not found");
                 }
                 catch(ArrayIndexOutOfBoundsException exp){
 
@@ -207,7 +207,7 @@ public class Main {
                         try {
                             ReadTeamPlayers.close();
                         }catch (IOException exp){
-                            System.out.println("Couldn't close team" + teamInfo[4] + "Players file");
+                            System.out.println("Couldn't close " + teamInfo[0]+ "Players file");
                         }
                     }
                 }
@@ -240,7 +240,8 @@ public class Main {
             ReadMatch = new BufferedReader(new FileReader("Matches.txt"));
             while (ReadMatch.ready()){
                 String match = ReadMatch.readLine();
-                String[] matchInfo = match.split("\t");
+                String[] allMatchesInfo = match.split(",");
+                String[] matchInfo = allMatchesInfo[0].split("\t");
                 String team1Name = matchInfo[1];
                 String team2Name = matchInfo[2];
                 Team team1 = new Team();
@@ -269,8 +270,44 @@ public class Main {
                         MatchStadium = stadium;
                     }
                 }
+                ArrayList<Player> team1Scorers = new ArrayList<>();
+                ArrayList<Player> team2Scorers = new ArrayList<>();
+                ArrayList<Player> team1Assisters = new ArrayList<>();
+                ArrayList<Player> team2Assisters = new ArrayList<>();
+                int Team1Score = -1;
+                int Team2Score = -1;
+                if (!matchInfo[4].isEmpty()){
+                    String[] scorers = allMatchesInfo[1].split("\t");
+                    for (String scorerName : scorers){
+                        if(scorerName.startsWith("Team1:")){
+                            Player scorer = team1.searchPlayer(scorerName.substring(6));
+                            team1Scorers.add(scorer);
+                        }else if (scorerName.startsWith("Team2:")){
+                            Player scorer = team2.searchPlayer(scorerName.substring(6));
+                            team2Scorers.add(scorer);
+                        }
+                    }
+                    String[] assisters = allMatchesInfo[2].split("\t");
+                    System.out.println(Arrays.toString(assisters));
+                    for (String assisterName : assisters){
+                        if(assisterName.startsWith("Team1:")){
+                            Player assister = team1.searchPlayer(assisterName.substring(6));
+                            team1Assisters.add(assister);
+                        }else if (assisterName.startsWith("Team2:")){
+                            Player assister = team2.searchPlayer(assisterName.substring(6));
+                            team2Assisters.add(assister);
+                        }
+                    }
+                    try {
+                        Team1Score = Integer.parseInt(matchInfo[4].split("-")[0]);
+                        Team2Score = Integer.parseInt(matchInfo[4].split("-")[1]);
+                    }catch (Exception exp){
+                        Team1Score = -1;
+                        Team2Score = -1;
+                    }
+                }
                 try {
-                    Match newMatch = new Match(matchInfo[0],MatchTeams,MatchReferee,matchInfo[4],MatchStadium);
+                    Match newMatch = new Match(matchInfo[0],MatchTeams,MatchReferee,matchInfo[4],MatchStadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters);
                     MatchStadium.matches.add(newMatch);
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);
@@ -363,7 +400,7 @@ public class Main {
                 WriteTeams.write("\n");
                 BufferedWriter WriteTeamPlayers = null;
                 try {
-                    WriteTeamPlayers = new BufferedWriter(new FileWriter("Team" + team.getTeam_ID() + "Players.txt"));
+                    WriteTeamPlayers = new BufferedWriter(new FileWriter(team.getName() + "Players.txt"));
                     for (Player player : team.Players){
                         if (player instanceof Forward){
                             Forward forward = (Forward) player;
@@ -381,13 +418,13 @@ public class Main {
                         WriteTeamPlayers.write("\n");
                     }
                 }catch (IOException exp){
-                    System.out.println("Team" + team.getTeam_ID() + "Players file not found");
+                    System.out.println(team.getName() + "Players file not found");
                 }finally {
                     if (WriteTeamPlayers!=null){
                         try {
                             WriteTeamPlayers.close();
                         }catch (IOException exp){
-                            System.out.println("Couldn't close Team" + team.getTeam_ID() + "Players file");
+                            System.out.println("Couldn't close "+ team.getName() + "Players file");
                         }
                     }
                 }
@@ -490,7 +527,7 @@ public class Main {
                     }
                     int StadiumChoice = input.nextInt();
                     Stadium searched = league.searchStadium(StadiumChoice);
-                    if (searched != null && searched.CheckAvailability(date,false)){
+                    if (searched != null && searched.CheckAvailability(date)){
                         matchStadium = searched;
                         break;
                     }
@@ -770,8 +807,6 @@ public class Main {
         ReadFiles(league);
         SwingUtilities.invokeLater(() -> new GUI(league));
         //mainMenu(league);
-       // WriteFiles(league);
-
-
+        //WriteFiles(league);
     }
 }

@@ -56,6 +56,10 @@ public class LeagueHome extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addMatchButton){
             cardLayout.show(main,"AddMatch");
+        } else if (e.getSource() == editMatchButton) {
+            cardLayout.show(main,"EditMatch");
+        } else if (e.getSource() == deleteMatchButton) {
+            cardLayout.show(main,"DeleteMatch");
         }
     }
 }

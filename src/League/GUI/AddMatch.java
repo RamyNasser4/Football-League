@@ -2,6 +2,7 @@ package League.GUI;
 
 import League.League;
 import League.Match.Match;
+import League.Person.Player.Player;
 import League.Person.Referee.Referee;
 import League.Stadium.Stadium;
 import League.Team.Team;
@@ -13,10 +14,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.InputMismatchException;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class AddMatch extends JPanel implements ActionListener, ChangeListener {
     League league;
@@ -27,7 +26,6 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
     JSpinner dateSpinner;
     JPanel enterScorePanel;
     JLabel enterScoreLabel;
-    JPanel ScoreLabelPanel;
     JTextField Team1ScoreInput;
     JLabel ScoreLabel;
     JTextField Team2ScoreInput;
@@ -129,29 +127,26 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
         contentPanel.add(stadiumPanel);
         //ScoreLabel
         enterScorePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        enterScoreLabel = new JLabel("Enter Score");
+        enterScoreLabel = new JLabel("Enter Score : ");
         enterScoreLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        enterScoreLabel.setBorder(BorderFactory.createEmptyBorder(0,10,0,0));
+        enterScoreLabel.setBorder(BorderFactory.createEmptyBorder(0,10,0,25));
         enterScorePanel.add(enterScoreLabel);
         enterScorePanel.setVisible(false);
         contentPanel.add(enterScorePanel);
-        ScoreLabelPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         Team1ScoreInput = new JTextField("");
         Team1ScoreInput.setPreferredSize(new Dimension(100,40));
-        ScoreLabelPanel.add(Team1ScoreInput);
+        enterScorePanel.add(Team1ScoreInput);
         ScoreLabel = new JLabel("-");
         ScoreLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        ScoreLabelPanel.add(ScoreLabel);
+        enterScorePanel.add(ScoreLabel);
         Team2ScoreInput = new JTextField("");
         Team2ScoreInput.setPreferredSize(new Dimension(100,40));
-        ScoreLabelPanel.add(Team2ScoreInput);
-        contentPanel.add(ScoreLabelPanel);
-        ScoreLabelPanel.setVisible(false);
+        enterScorePanel.add(Team2ScoreInput);
         //Yellow cards Label
         YellowCardsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         YellowCardsLabel = new JLabel("Enter No. Of Yellow cards : ");
         YellowCardsLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        YellowCardsLabel.setBorder(BorderFactory.createEmptyBorder(0,10,0,0));
+        YellowCardsLabel.setBorder(BorderFactory.createEmptyBorder(0,10,0,25));
         YellowCardsPanel.add(YellowCardsLabel);
         YellowCardsInput = new JTextField("");
         YellowCardsInput.setPreferredSize(new Dimension(100,30));
@@ -162,7 +157,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
         RedCardsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         RedCardsLabel = new JLabel("Enter No. Of Red cards : ");
         RedCardsLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        RedCardsLabel.setBorder(BorderFactory.createEmptyBorder(0,10,0,0));
+        RedCardsLabel.setBorder(BorderFactory.createEmptyBorder(0,10,0,25));
         RedCardsPanel.add(RedCardsLabel);
         RedCardsInput = new JTextField("");
         RedCardsInput.setPreferredSize(new Dimension(100,30));
@@ -220,12 +215,17 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                 Team[] teams = new Team[2];
                 teams[0] = team1;
                 teams[1] = team2;
+                ArrayList<Player> team1Scorers = new ArrayList<Player>();
+                ArrayList<Player> team2Scorers = new ArrayList<>();
+                ArrayList<Player> team1Assisters = new ArrayList<>();
+                ArrayList<Player> team2Assisters = new ArrayList<>();
                 if (Validation(team1,team2,dateStr,Team1Score,Team2Score,referee,stadium,noOfYellowCards,noOfRedCards)){
                     String Score;
                     if (((Date)dateSpinner.getValue()).before(new Date())){
                         Score = Team1Score + "-" + Team2Score;
                         for (int i = 1; i <= Team1Score ; i++) {
                             boolean valid = false;
+                            //1st team goalscorer
                             while (!valid) {
                                 JPanel goalScorer = new JPanel(new GridLayout(2,1));
                                 JComboBox team1players = new JComboBox<>(new DefaultComboBoxModel<>(team1.getPlayernames().toArray()));
@@ -238,12 +238,14 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                         throw new InputMismatchException();
                                     }
                                     team1.searchPlayer((String) team1players.getSelectedItem()).ScoreGoal();
+                                    team1Scorers.add(team1.searchPlayer((String) team1players.getSelectedItem()));
                                     valid = true;
                                 } catch (NullPointerException | InputMismatchException ignored) {
 
                                 }
                             }
                             valid = false;
+                            //2nd team goalscorer
                             while (!valid){
                                 JPanel goalAssist = new JPanel(new GridLayout(2,1));
                                 JComboBox team1players = new JComboBox<>(new DefaultComboBoxModel<>(team1.getPlayernames().toArray()));
@@ -256,6 +258,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                         throw new InputMismatchException();
                                     }
                                     team1.searchPlayer((String) team1players.getSelectedItem()).MakeAssist();
+                                    team1Assisters.add(team1.searchPlayer((String) team1players.getSelectedItem()));
                                     valid = true;
                                 } catch (NullPointerException | InputMismatchException ignored) {
 
@@ -264,6 +267,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                         }
                         for (int i = 1; i <= Team2Score ; i++) {
                             boolean valid = false;
+                            //team 2 goalscorers
                             while (!valid) {
                                 JPanel goalScorer = new JPanel(new GridLayout(2,1));
                                 JComboBox team2players = new JComboBox<>(new DefaultComboBoxModel<>(team2.getPlayernames().toArray()));
@@ -276,12 +280,14 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                         throw new InputMismatchException();
                                     }
                                     team2.searchPlayer((String) team2players.getSelectedItem()).ScoreGoal();
+                                    team2Scorers.add(team2.searchPlayer((String) team2players.getSelectedItem()));
                                     valid = true;
                                 } catch (NullPointerException | InputMismatchException ignored) {
 
                                 }
                             }
                             valid = false;
+                            //team 2 assisters
                             while (!valid){
                                 JPanel goalAssist = new JPanel(new GridLayout(2,1));
                                 JComboBox team2players = new JComboBox<>(new DefaultComboBoxModel<>(team2.getPlayernames().toArray()));
@@ -293,13 +299,15 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     if (playerAssist != JOptionPane.OK_OPTION){
                                         throw new InputMismatchException();
                                     }
-                                    team2.searchPlayer((String) team2players.getSelectedItem()).ScoreGoal();
+                                    team2.searchPlayer((String) team2players.getSelectedItem()).MakeAssist();
+                                    team2Assisters.add(team2.searchPlayer((String) team2players.getSelectedItem()));
                                     valid = true;
                                 } catch (NullPointerException | InputMismatchException ignored) {
 
                                 }
                             }
                         }
+                        ArrayList<String> playersYellowCard = new ArrayList<>();
                         for (int i = 1; i <= noOfYellowCards ; i++) {
                             boolean valid = false;
                             while (!valid){
@@ -307,7 +315,21 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                 JLabel message = new JLabel("Who took the " + i + " yellow card");
                                 String[] teamNames = {teams[0].getName(),teams[1].getName()};
                                 JComboBox matchTeams = new JComboBox(teamNames);
-                                JComboBox teamPlayers = new JComboBox(league.searchTeam((String)matchTeams.getSelectedItem()).getPlayernames().toArray());
+                                ArrayList<String> players = league.searchTeam((String)matchTeams.getSelectedItem()).getPlayernames();
+                                ArrayList<String> filteredPlayers = new ArrayList<>();
+                                for (String player : players){
+                                    int YellowCount = 0;
+                                    for (String playerYellowCard : playersYellowCard ){
+                                        if (player.equalsIgnoreCase(playerYellowCard)){
+                                            ++YellowCount;
+                                        }
+                                    }
+                                    if (YellowCount <= 1){
+                                        filteredPlayers.add(player);
+                                    }
+                                    System.out.println(player + " has " + YellowCount);
+                                }
+                                JComboBox teamPlayers = new JComboBox(filteredPlayers.toArray());
                                 YellowCards.add(message);
                                 YellowCards.add(matchTeams);
                                 YellowCards.add(teamPlayers);
@@ -315,7 +337,21 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
                                         teamPlayers.removeAllItems();
-                                        for (String playerName : league.searchTeam((String) matchTeams.getSelectedItem()).getPlayernames()){
+                                        ArrayList<String> players = league.searchTeam((String)matchTeams.getSelectedItem()).getPlayernames();
+                                        ArrayList<String> filteredPlayers = new ArrayList<>();
+                                        for (String player : players){
+                                            int YellowCount = 0;
+                                            for (String playerYellowCard : playersYellowCard ){
+                                                if (player.equalsIgnoreCase(playerYellowCard)){
+                                                    ++YellowCount;
+                                                }
+                                            }
+                                            if (YellowCount <= 1){
+                                                filteredPlayers.add(player);
+                                            }
+                                            System.out.println(player + " has " + YellowCount);
+                                        }
+                                        for (String playerName : filteredPlayers){
                                             teamPlayers.addItem(playerName);
                                         }
                                     }
@@ -328,10 +364,24 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     String playerName = (String) teamPlayers.getSelectedItem();
                                     Team playerTeam = league.searchTeam((String) matchTeams.getSelectedItem());
                                     playerTeam.searchPlayer(playerName).MakeYellowCard();
+                                    playersYellowCard.add(playerName);
+                                    System.out.println(playersYellowCard);
                                     valid = true;
                                 }catch (NullPointerException | InputMismatchException ignored){
 
                                 }
+                            }
+                        }
+                        ArrayList<String> playersRedCard = new ArrayList<>();
+                        for (String playerYellowCard : playersYellowCard ){
+                            int YellowCount = 0;
+                            for (String player : playersYellowCard){
+                                if (player.equalsIgnoreCase(playerYellowCard)){
+                                    ++YellowCount;
+                                }
+                            }
+                            if (YellowCount > 1){
+                                playersRedCard.add(playerYellowCard);
                             }
                         }
                         for (int i = 1; i <= noOfRedCards ; i++) {
@@ -341,7 +391,20 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                 JLabel message = new JLabel("Who took the " + i + " red card");
                                 String[] teamNames = {teams[0].getName(),teams[1].getName()};
                                 JComboBox matchTeams = new JComboBox(teamNames);
-                                JComboBox teamPlayers = new JComboBox(league.searchTeam((String)matchTeams.getSelectedItem()).getPlayernames().toArray());
+                                ArrayList<String> players = league.searchTeam((String)matchTeams.getSelectedItem()).getPlayernames();
+                                ArrayList<String> filterPlayers = new ArrayList<>();
+                                for (String player : players){
+                                    int RedCount = 0;
+                                    for (String playerRedCard : playersRedCard ){
+                                        if (player.equalsIgnoreCase(playerRedCard)){
+                                            ++RedCount;
+                                        }
+                                    }
+                                    if (RedCount <= 0){
+                                        filterPlayers.add(player);
+                                    }
+                                }
+                                JComboBox teamPlayers = new JComboBox(filterPlayers.toArray());
                                 RedCards.add(message);
                                 RedCards.add(matchTeams);
                                 RedCards.add(teamPlayers);
@@ -349,7 +412,20 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
                                         teamPlayers.removeAllItems();
-                                        for (String playerName : league.searchTeam((String) matchTeams.getSelectedItem()).getPlayernames()){
+                                        ArrayList<String> players = league.searchTeam((String)matchTeams.getSelectedItem()).getPlayernames();
+                                        ArrayList<String> filterPlayers = new ArrayList<>();
+                                        for (String player : players){
+                                            int RedCount = 0;
+                                            for (String playerRedCard : playersRedCard ){
+                                                if (player.equalsIgnoreCase(playerRedCard)){
+                                                    ++RedCount;
+                                                }
+                                            }
+                                            if (RedCount <= 0){
+                                                filterPlayers.add(player);
+                                            }
+                                        }
+                                        for (String playerName : filterPlayers){
                                             teamPlayers.addItem(playerName);
                                         }
                                     }
@@ -363,6 +439,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     Team playerTeam = league.searchTeam((String) matchTeams.getSelectedItem());
                                     System.out.println(playerTeam);
                                     playerTeam.searchPlayer(playerName).MakeRedCard();
+                                    playersRedCard.add(playerName);
                                     valid = true;
                                 }catch (NullPointerException | InputMismatchException ignored){
 
@@ -372,7 +449,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                     }else {
                         Score = "";
                     }
-                    Match newMatch = new Match(dateStr,teams,referee,Score,stadium);
+                    Match newMatch = new Match(dateStr,teams,referee,Score,stadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters);
                     league.AddMatch(newMatch);
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);
@@ -383,6 +460,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                         league.upcomingMatches.add(newMatch);
                     }
                     main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
+                    main.add(new EditMatch(league,main,cardLayout),"EditMatch");
                     cardLayout.show(main,"LeagueHome");
                 }
             }catch (NullPointerException exp){
@@ -403,7 +481,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
             throw new InputMismatchException("Team 2 not available at that date");
         } else if (!referee.checkAvailability(DateStr)) {
             throw new InputMismatchException("Referee not available at that date");
-        } else if (!stadium.CheckAvailability(DateStr,false)) {
+        } else if (!stadium.CheckAvailability(DateStr)) {
             throw new InputMismatchException("Stadium not available at that date");
         } else if ((Team1Score == -1 || Team2Score == -1 || Team1Score < 0 || Team2Score < 0) && dateObj.before(now)) {
             throw new InputMismatchException("Invalid Score");
@@ -425,13 +503,12 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
             if (dateObJ.before(now)){
                 enterScorePanel.setVisible(true);
                 enterScoreLabel.setVisible(true);
-                ScoreLabelPanel.setVisible(true);
                 YellowCardsPanel.setVisible(true);
                 RedCardsPanel.setVisible(true);
                 System.out.println("Visible");
             }else {
+                enterScorePanel.setVisible(false);
                 enterScoreLabel.setVisible(false);
-                ScoreLabelPanel.setVisible(false);
                 YellowCardsPanel.setVisible(false);
                 RedCardsPanel.setVisible(false);
                 System.out.println("Msh visible");

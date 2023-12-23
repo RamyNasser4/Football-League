@@ -17,7 +17,7 @@ public class Referee extends Person {
         this.RefereeID = noOfReferees;
         this.noYellowCards = noYellowCards;
         this.noRedCards = noRedCards;
-        this.matches = new ArrayList<>(matches);
+        this.matches = matches;
     }
     public Referee(String refereeName, int refereeAge, int Salary, int noYellowCards, int noRedCards) {
         this(refereeName, refereeAge, Salary, noYellowCards, 0,new ArrayList<>());
@@ -46,6 +46,7 @@ public class Referee extends Person {
             noYellowCards=0;
             noRedCards=0;
             this.RefereeID = ++noOfReferees;
+            this.matches = Ref.matches;
         }
              catch (Exception e) {
 
@@ -89,5 +90,19 @@ public class Referee extends Person {
             }
         }
         return true;
+    }
+    public void AddMatch(Match match){
+        try {
+            matches.add(match);
+        }catch (Exception exp){
+            System.out.println("Invalid Match");
+        }
+    }
+    public void deleteMatch(int MatchID){
+        for (Match match : matches){
+            if (match.getMatch_ID() == MatchID){
+                matches.remove(match);
+            }
+        }
     }
 }

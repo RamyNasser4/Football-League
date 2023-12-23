@@ -321,5 +321,17 @@ public class Team {
         }
         return true;
     }
+    public void deleteMatch(int MatchID) throws Exception{
+        boolean isFound = false;
+        for (Match match : Matches){
+            if (match.getMatch_ID() == MatchID){
+                Matches.remove(match);
+                isFound = true;
+            }
+        }
+        if(!isFound){
+            throw new Exception("Match not Found");
+        }
+    }
 }
 

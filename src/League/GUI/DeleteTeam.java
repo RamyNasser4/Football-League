@@ -1,12 +1,16 @@
 package League.GUI;
 
 import League.League;
+import League.Match.Match;
 import League.Team.Team;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 
 public class DeleteTeam extends JPanel implements ActionListener {
     JComboBox chooseTeams;
@@ -38,7 +42,6 @@ public class DeleteTeam extends JPanel implements ActionListener {
         chooseTeams.addActionListener(this);
         chooseTeams.setEditable(false);
         chooseTeamPanel.add(chooseTeams);
-        
         JPanel deleteTeamPanel = new JPanel();
         deleteTeam = new JButton("Delete Team");
         deleteTeam.setSize(new Dimension(100,30));
@@ -54,14 +57,18 @@ public class DeleteTeam extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == deleteTeam){
             String TeamName = (String) chooseTeams.getSelectedItem();
+            ArrayList<Match> currentMatches = new ArrayList<>(league.getMatches());
+            for (Match match : currentMatches){
+                if (match.getTeams()[0].getName().equalsIgnoreCase(TeamName) || match.getTeams()[1].getName().equalsIgnoreCase(TeamName)){
+                    league.DeleteMatch(match.getMatch_ID());
+                }
+            }
             league.DeleteTeam(TeamName);
             for (int i = 0; i < league.teamnames.size(); i++) {
                 if (league.teamnames.get(i).equalsIgnoreCase(TeamName)){
                     league.teamnames.remove(i);
                 }
             }
-            System.out.println(league.teamnames);
-
             cardLayout.show(main,"TeamHome");
             main.add(new Standings(main,cardLayout,league),"Standings");
             main.add(new EditTeam(league,main,cardLayout),"EditTeam");
@@ -70,7 +77,7 @@ public class DeleteTeam extends JPanel implements ActionListener {
             main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
             main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
             main.add(new Players(main, cardLayout,league),"Stats");
-
+            main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
         }
     }
 }

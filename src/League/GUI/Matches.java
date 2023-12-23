@@ -137,6 +137,7 @@ public class Matches extends JPanel implements ActionListener {
                     } else {
                         upcoming.add(match);
                     }
+
                 }
 
                 // Create a new Matches panel for the searched team and show it

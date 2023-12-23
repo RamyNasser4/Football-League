@@ -29,11 +29,10 @@ public class MainPanel extends JPanel {
         EditMatch editMatch = new EditMatch(league,this,cardLayout);
         DeleteMatch deleteMatch = new DeleteMatch(league,this,cardLayout);
         Stadiums stadiums =new Stadiums(this,cardLayout);
-        RefereeHome refereeHome=new RefereeHome(this,cardLayout,league);
-        AddReferee addReferee= new AddReferee(league,this,cardLayout);
-        DeleteReferee deleteReferee=new DeleteReferee(league,this,cardLayout);
-        //AddStaduim addStaduim = new AddStaduim(league,this,cardLayout);
-        //EditStaduim editStaduim = new EditStaduim(league,this,cardLayout);
+        AddStadium addStadium=new AddStadium(league,this,cardLayout);
+        EditStadium editStadium=new EditStadium(league,this,cardLayout);
+        DeleteStadium deleteStadium=new DeleteStadium(league,this,cardLayout);
+
 
 
         //this.add(playerGui, "PlayerGUI");
@@ -54,11 +53,10 @@ public class MainPanel extends JPanel {
         this.add(editMatch,"EditMatch");
         this.add(deleteMatch,"DeleteMatch");
         this.add(stadiums,"Stadiums");
-        this.add(refereeHome,"RefereeHome");
-        this.add(addReferee,"AddReferee");
-        this.add(deleteReferee,"DeleteReferee");
-        //this.add(addStaduim,"AddStaduim");
-        //this.add(editStaduim,"EditStaduim");
+        this.add(addStadium,"AddStadium");
+        this.add(editStadium,"EditStadium");
+        this.add(deleteStadium,"DeleteStadium");
+
 
 
 

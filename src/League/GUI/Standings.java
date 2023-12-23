@@ -80,6 +80,8 @@ League league;
         table.setGridColor(Color.LIGHT_GRAY);
         table.setIntercellSpacing(new Dimension(10, 10));
         table.repaint();
+        table.getTableHeader().setReorderingAllowed(false);
+        table.getTableHeader().setResizingAllowed(false);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(800, 600));
 

@@ -49,10 +49,10 @@ public class Matches extends JPanel implements ActionListener {
         this.add(SearchContainer);
         //Combo box for each team to display matches
         ArrayList<Team> Teams = league.getTeams();
-        String Defaultvalue = "None";
+        String defaultValue = "Select a Team"; // Change the default value
         Searchbyteam = new JComboBox(new DefaultComboBoxModel<>(league.teamnames.toArray()));
-        Searchbyteam.addItem(Defaultvalue);
-        Searchbyteam.setSelectedItem(Defaultvalue);
+        Searchbyteam.addItem(defaultValue);
+        Searchbyteam.setSelectedItem(defaultValue);
         Searchbyteam.setBackground(new Color(0x313741));
         Searchbyteam.setForeground(Color.white);
         Searchbyteam.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
@@ -115,12 +115,22 @@ public class Matches extends JPanel implements ActionListener {
             }
         } else if (e.getSource() == Searchbyteam) {
             String selectedTeam = (String) Searchbyteam.getSelectedItem();
+
+            // Check if 'None' is selected and show all matches
+            if ("Select a Team".equals(selectedTeam)) {
+                main.add(new Matches(main, cardLayout, league.upcomingMatches, league.pastMatches, league), "SearchedMatches");
+                cardLayout.show(main, "SearchedMatches");
+                return;
+            }
+
             Team searched = league.searchTeam(selectedTeam);
+
             try {
-               ArrayList<Match> searchedMatch = searched.getMatches();
+                ArrayList<Match> searchedMatch = searched.getMatches();
                 ArrayList<Match> upcoming = new ArrayList<>();
                 ArrayList<Match> past = new ArrayList<>();
                 Date now = new Date();
+
                 for (Match match : searchedMatch) {
                     if (match.getDate().before(now)) {
                         past.add(match);
@@ -128,11 +138,16 @@ public class Matches extends JPanel implements ActionListener {
                         upcoming.add(match);
                     }
                 }
-                main.add(new Matches(main,cardLayout,upcoming,past,league),"Matches");
-                cardLayout.show(main,"Matches");
-            }catch (NullPointerException exp){
-                main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league));
-                cardLayout.show(main,"Matches");
+
+                // Create a new Matches panel for the searched team and show it
+                main.add(new Matches(main, cardLayout, upcoming, past, league), "SearchedMatches");
+                cardLayout.show(main, "SearchedMatches");
+
+                // Set the combo box to display the name of the selected team
+                Searchbyteam.setSelectedItem("Select a Team");
+            } catch (NullPointerException exp) {
+                // Handle case where the selected team has no matches or doesn't exist
+                JOptionPane.showMessageDialog(this, "No matches found for the selected team.", "No Matches", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

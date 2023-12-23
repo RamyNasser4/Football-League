@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import League.GUI.Components.playerButton;
 import League.League;
 import League.Person.Player.Goalkeeper;
@@ -92,7 +93,12 @@ public class Players extends JPanel implements ActionListener {
         }
         String[] columnNames = {"Name", "Team", "Goals", "Assists"};
         tableModel = new DefaultTableModel(columnNames, 0);
-        playersTable = new JTable(tableModel);
+        playersTable = new JTable(tableModel) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // This will make all cells in the table non-editable.
+            }
+        };
         loadAllPlayers();
         TOPGKS.addActionListener(this);
         TOPSCORERS.addActionListener(this);
@@ -101,10 +107,11 @@ public class Players extends JPanel implements ActionListener {
         playersTable.setFillsViewportHeight(true);
         playersTable.setRowHeight(30);
         playersTable.setFont(new Font("SansSerif", Font.PLAIN, 18));
-
-
         playersTable.setBackground(Color.DARK_GRAY);
         playersTable.setForeground(Color.BLACK);
+        // bug fix
+        playersTable.getTableHeader().setReorderingAllowed(false);
+        playersTable.getTableHeader().setResizingAllowed(false);
 
 
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
@@ -130,6 +137,20 @@ public class Players extends JPanel implements ActionListener {
 
 
         playersTable.repaint();
+        playersTable.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                int row = playersTable.rowAtPoint(e.getPoint());
+                if (row >= 0) {
+                    String playerName = (String) tableModel.getValueAt(row, 0);
+                    Player selectedPlayer = findPlayerByName(playerName);
+                    if (selectedPlayer != null) {
+                        PlayerInfo playerInfoPanel = new PlayerInfo(selectedPlayer);
+                        main.add(playerInfoPanel, "PlayerInfo");
+                        CARD.show(main, "PlayerInfo");
+                    }
+                }
+            }
+        });
 
     }
 
@@ -177,6 +198,15 @@ public class Players extends JPanel implements ActionListener {
         ArrayList<Player> allPlayers = league.getAllPlayers();
         updateTableWithPlayers(allPlayers, "default"); // Use default type for updating table with all players
     }
+    private Player findPlayerByName(String name) {
+        for (Team team : league.getTeams()) {
+            Player player = team.searchPlayer(name);
+            if (player != null) {
+                return player;
+            }
+        }
+        return null;
+    }
 
     private ArrayList<Player> convertArrayToList(Player[] playersArray) {
         ArrayList<Player> playersList = new ArrayList<>();
@@ -199,7 +229,7 @@ public class Players extends JPanel implements ActionListener {
                 rowData = new Object[]{
                         player.getPersonName(),
                         player.GetPlayerTeam(),
-                        goalkeeper.GetSaves() // Ensure this method exists in Goalkeeper class
+                        goalkeeper.GetSaves()
                 };
             } else {
                 // scorers or default

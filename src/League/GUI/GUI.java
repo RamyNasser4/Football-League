@@ -24,7 +24,7 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
     /*PlayerGui PlayerGui = new PlayerGui();
     Matches Matches = new Matches(this);*/
         MainPanel main = new MainPanel(league);
-        SideBar sideBar = new SideBar(main, main.cardLayout);
+        SideBar sideBar = new SideBar(main, main.cardLayout,league);
         //MatchInfo MatchInfo= new MatchInfo();
         this.getContentPane().add(sideBar, BorderLayout.WEST);
         this.add(main);

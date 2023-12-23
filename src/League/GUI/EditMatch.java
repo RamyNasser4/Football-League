@@ -183,7 +183,7 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
             String Team2Score = Score.split("-")[1];
             Team1ScoreInput.setText(Team1Score);
             Team2ScoreInput.setText(Team2Score);
-        }catch (NullPointerException ignored){
+        }catch (NullPointerException | ArrayIndexOutOfBoundsException ignored){
 
         }
     }
@@ -201,6 +201,8 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
             Team team1 = league.searchTeam(team1Name);
             Team team2 = league.searchTeam(team2Name);
             Team[] teams = new Team[2];
+            teams[0] = team1;
+            teams[1] = team2;
             Referee referee = league.searchReferee(refereeName);
             Stadium stadium = league.searchStadium(stadiumName);
             int Team1Score;
@@ -238,8 +240,17 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                     if (((Date) dateSpinner.getValue()).before(now)){
                         String Score = Team1Score + "-" + Team2Score;
                         match.setScore(Score);
+                        if (match.getTeam1score()>match.getTeam2score()){
+                            team1.setTotal_score(team1.getTotal_score()-3);
+                        } else if (match.getTeam2score()>match.getTeam1score()) {
+                            team2.setTotal_score(team2.getTotal_score()-3);
+                        }else {
+                            team1.setTotal_score(team1.getTotal_score()-1);
+                            team2.setTotal_score(team2.getTotal_score()-1);
+                        }
                         match.setTeam1score(Team1Score);
                         match.setTeam2score(Team2Score);
+                        match.AddPoints();
                         for (Player player : match.getTeam1Scorers()){
                             player.setGoalsScored(player.getGoalsScored()-1);
                         }
@@ -348,6 +359,8 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                     stadium.AddMatch(match);
                     match.setStadium(stadium);
                     main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
+                    main.add(new Standings(main,cardLayout,league),"Standings");
+                    main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
                     cardLayout.show(main,"LeagueHome");
                 }
             }catch (InputMismatchException exp){
@@ -400,11 +413,11 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
             throw new InputMismatchException("Invalid Score");
         } else if (match.getDate().after(now) && dateObj.before(now)) {
             throw new InputMismatchException("Date must be upcoming");
-        }   /*else if (team1.getTotal() < 11) {
+        } else if (team1.getTotal() < 11) {
             throw new InputMismatchException("Insufficent 1st team players");
         } else if (team2.getTotal() < 11) {
             throw new InputMismatchException("Insuffienct 2nd team players");
-        }*/
+        }
         return true;
     }
 

@@ -9,63 +9,73 @@ import java.util.Date;
 public class TeamInfo extends JPanel {
     public TeamInfo(Team team){
         this.setPreferredSize(new Dimension(980, 720));
-        this.setBackground(Color.BLACK);
-        this.setLayout(new GridLayout(4, 1)); // 3 rows, 1 column
+        this.setLayout(new GridLayout(1, 1));
 
-        JPanel panel1 = new JPanel(new GridLayout(1, 1));
-        JPanel panel2 = new JPanel(new GridLayout(1, 2));
-        JPanel panel3 = new JPanel(new GridLayout(1, 1));
-        JPanel panel4 = new JPanel(new GridLayout(1,1));
+        JPanel panelContainer = new JPanel(new GridLayout(10, 1));
+        JPanel panel1=new JPanel(new GridLayout(1, 1));
         JLabel label1 = new JLabel(team.getName());
-        label1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 60));
-        label1.setForeground(Color.WHITE);
+        label1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 45));
         label1.setHorizontalAlignment(JLabel.CENTER);
-        panel1.setBackground(Color.darkGray);
         panel1.add(label1);
+        panelContainer.add(panel1);
+        this.setVisible(true);
+
         String CaptainName;
         try {
             CaptainName = team.getCaptain().getPersonName();
         }catch (NullPointerException exp){
-            CaptainName = "";
+            CaptainName = "No Captain";
         }
-        JLabel label2 = new JLabel("Captain : " + CaptainName ,JLabel.CENTER);
-        label2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        label2.setForeground(Color.WHITE);
-        label2.setIconTextGap(20);
-        panel2.setBackground(Color.gray);
-        panel2.add(label2);
+
+        JPanel panel2=new JPanel(new GridLayout(1, 1));
+        JLabel label = new JLabel("Captain");
+        label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        JTextField field1=new JTextField(CaptainName);
+        panel2.add(label);
+        panel2.add(field1);
+        field1.setEditable(false);
+        field1.setFocusable(false);
+        panelContainer.add(panel2);
+
         String CoachName;
         try {
             CoachName = team.getCoach().getPersonName();
         }catch (NullPointerException exp){
-            CoachName = "";
+            CoachName = "No Coach";
         }
-        JLabel label3 = new JLabel("Coach : " + CoachName, JLabel.CENTER);
-        label3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        label3.setForeground(Color.WHITE);
-        label3.setIconTextGap(20);
-        panel2.add(label3);
-        JLabel label4 = new JLabel("No. of players : " + team.getTotal(), JLabel.CENTER);
-        label4.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        label4.setForeground(Color.WHITE);
-        label4.setIconTextGap(20);
-        panel3.setBackground(Color.gray);
-        panel3.add(label4);
-        JLabel label5 = new JLabel("Points : " + team.getTotal_score(),JLabel.CENTER);
-        label5.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        label5.setForeground(Color.WHITE);
-        label5.setIconTextGap(20);
-        panel3.add(label5);
-        JLabel label6 = new JLabel("No. of matches : " + team.getNoOfMatches(),JLabel.CENTER);
-        label6.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        label6.setForeground(Color.WHITE);
-        label6.setIconTextGap(20);
-        panel4.add(label6);
-        panel4.setBackground(Color.gray);
-        this.add(panel1);
-        this.add(panel2);
-        this.add(panel3);
-        this.add(panel4);
-        this.setVisible(false);
+
+
+        JPanel panel3=new JPanel(new GridLayout(1, 1));
+        JLabel label3 = new JLabel("Coach");
+        label3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        JTextField field2=new JTextField(CoachName);
+        panel3.add(label3);
+        panel3.add(field2);
+        field2.setEditable(false);
+        field2.setFocusable(false);
+        panelContainer.add(panel3);
+
+        JPanel panel4=new JPanel(new GridLayout(1, 1));
+        JLabel label4 = new JLabel("Number of Players");
+        label4.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        JTextField field3=new JTextField(Integer.toString(team.getTotal()));
+        panel4.add(label4);
+        panel4.add(field3);
+        field3.setEditable(false);
+        field3.setFocusable(false);
+        panelContainer.add(panel4);
+
+        JPanel panel5=new JPanel(new GridLayout(1, 1));
+        JLabel label5 = new JLabel("Points");
+        label5.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        JTextField field4=new JTextField(Integer.toString(team.getTotal_score()));
+        panel5.add(label5);
+        panel5.add(field4);
+        field4.setEditable(false);
+        field4.setFocusable(false);
+        panelContainer.add(panel5);
+
+        this.add(panelContainer);
+
     }
 }

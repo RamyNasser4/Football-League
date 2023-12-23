@@ -37,4 +37,7 @@ public abstract class Person {
     public void setPersonSalary(int Salary) {
         this.Salary=Salary;
     }
+    public  int  CalculateSalary(){
+        return Salary;
+    }
 }

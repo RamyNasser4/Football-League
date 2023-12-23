@@ -58,4 +58,7 @@ public class Coach extends Person {
             System.out.println("Null obj coach");
         }
     }
+    public  int  CalculateSalary(){
+        return Salary+10000;
+    }
 }

@@ -14,7 +14,6 @@ public class SideBar extends JPanel implements ActionListener {
     SideBarButton standings;
     SideBarButton stats;
     SideBarButton league;
-    SideBarButton Staduims;
     CardLayout cardLayout;
     MainPanel main;
 
@@ -49,27 +48,18 @@ public class SideBar extends JPanel implements ActionListener {
         ImageIcon leagueIcon = new ImageIcon("src/Assets/league.png");
         league.setIcon(leagueIcon);
         league.setIconTextGap(25);
-        Staduims = new SideBarButton("Staduims");
-        ImageIcon staduim = new ImageIcon("src/Assets/ranking.png");
-        Staduims.setIcon(staduim);
-        Staduims.setIconTextGap(25);
-
         matches.addActionListener(this);
         teams.addActionListener(this);
         players.addActionListener(this);
         standings.addActionListener(this);
         stats.addActionListener(this);
         league.addActionListener(this);
-        Staduims.addActionListener(this);
-
-
         this.add(matches);
         this.add(teams);
         this.add(players);
         this.add(standings);
         this.add(stats);
         this.add(league);
-        this.add(Staduims);
         this.setVisible(true);
     }
 
@@ -87,9 +77,6 @@ public class SideBar extends JPanel implements ActionListener {
             cardLayout.show(main,"Stats");
         } else if (e.getSource() == league) {
             cardLayout.show(main,"LeagueHome");
-        }
-        else if (e.getSource() == Staduims) {
-            cardLayout.show(main,"Staduims");
         }
     }
 }

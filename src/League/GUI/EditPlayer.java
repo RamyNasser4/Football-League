@@ -99,7 +99,20 @@ public class EditPlayer extends JPanel implements ActionListener {
                     main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
                     main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
                 }
+                if(pTeam.equals((String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex()))){
 
+                }
+                else {
+                    Player p=league.searchTeam(pTeam).searchPlayer(pName);
+                    Team t=league.searchTeam((String) teamComboBox.getItemAt(teamComboBox.getSelectedIndex()));
+                    Team t2=league.searchTeam(pTeam);
+                    t2.deletePlayer(pName);
+                    t.addPlayer(p);
+                    cardLayout.show(main,"PlayerHome");
+                    main.add(new DeletePlayer(league.teamnames,league,main,cardLayout),"DeletePlayer");
+                    main.add(new EditPlayer(league.teamnames,league,main,cardLayout),"EditPlayer");
+                    main.add(new AddPlayer(league.teamnames,league,main,cardLayout),"AddPlayer");
+                }
 
 
             }
@@ -122,7 +135,6 @@ public class EditPlayer extends JPanel implements ActionListener {
     JComboBox teamComboBox;
     JComboBox nameComboBox;
     JComboBox captainComboBox;
-    //JComboBox positionsComboBox;
     JButton searchButton;
     JButton saveButton;
     String pTeam;
@@ -218,7 +230,7 @@ public class EditPlayer extends JPanel implements ActionListener {
         nameField = new JTextField(playerToEdit.getPersonName());
         namePanel.add(nameField);
         contentPanel.add(namePanel);
-
+        contentPanel.add(teamPanel);
 
         JPanel agePanel = new JPanel(new GridLayout(1, 1));
         JLabel ageLabel = new JLabel("Age");
@@ -260,33 +272,6 @@ public class EditPlayer extends JPanel implements ActionListener {
             captainPanel.add(captainComboBox);
             contentPanel.add(captainPanel);
         }
-
-
-        /*JPanel positionspanel = new JPanel(new GridLayout(1, 1));
-        JLabel positionsLabel = new JLabel("Position");
-        positionsLabel.setFont(new Font("Comic Sans",Font.BOLD,20));
-        positionspanel.add(positionsLabel);
-        String goalKeeper[]={"GoalKeeper","Defender","Midfielder","Forward"};
-        String defender[]={"Defender","GoalKeeper","Midfielder","Forward"};
-        String midfielder[]={"Midfielder","Defender","GoalKeeper","Forward"};
-        String forward[]={"Forward","Midfielder","Defender","GoalKeeper"};
-        if(playerToEdit instanceof Forward){
-            positionsComboBox =new JComboBox(forward);
-            positionspanel.add(positionsComboBox);
-        }
-        else if (playerToEdit instanceof Defender){
-            positionsComboBox =new JComboBox(defender);
-            positionspanel.add(positionsComboBox);
-        }
-        else if (playerToEdit instanceof Midfielder){
-            positionsComboBox =new JComboBox(midfielder);
-            positionspanel.add(positionsComboBox);
-        }
-        else{
-            positionsComboBox =new JComboBox(goalKeeper);
-            positionspanel.add(positionsComboBox);
-        }
-        contentPanel.add(positionspanel);*/
 
         saveButton = new JButton("Save");
         saveButton.setFocusable(false);

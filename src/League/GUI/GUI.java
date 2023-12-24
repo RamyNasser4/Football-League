@@ -44,7 +44,7 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Main.WriteFiles(league);
+        //Main.WriteFiles(league);
     }
 
     @Override

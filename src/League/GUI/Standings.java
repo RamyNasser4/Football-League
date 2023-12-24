@@ -186,7 +186,7 @@ League league;
         buttonPanel.add(showListButton);
         buttonPanel.add(ByPoints);
         buttonPanel.add(ByGoals);
-
+        buttonPanel.add(new JButton("Total "+String.valueOf(league.getTeams().size())));
 
         setLayout(new BorderLayout());
         add(scrollPane, BorderLayout.CENTER);

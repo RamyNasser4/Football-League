@@ -276,7 +276,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     Goalkeeper currentGoalKeeper = (Goalkeeper) team2.searchPlayer((String) Goalkeepers.getSelectedItem());
                                     currentGoalKeeper.setGoalsConceded(Team1Score);
                                     team2goalkeeper = currentGoalKeeper;
-                                    System.out.println(currentGoalKeeper);
+
                                     valid = true;
                                 }catch (NullPointerException | InputMismatchException ignored){
 
@@ -388,7 +388,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     if (YellowCount <= 1){
                                         filteredPlayers.add(player);
                                     }
-                                    System.out.println(player + " has " + YellowCount);
+
                                 }
                                 JComboBox teamPlayers = new JComboBox(filteredPlayers.toArray());
                                 YellowCards.add(message);
@@ -410,7 +410,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                             if (YellowCount <= 1){
                                                 filteredPlayers.add(player);
                                             }
-                                            System.out.println(player + " has " + YellowCount);
+
                                         }
                                         for (String playerName : filteredPlayers){
                                             teamPlayers.addItem(playerName);
@@ -426,7 +426,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     Team playerTeam = league.searchTeam((String) matchTeams.getSelectedItem());
                                     playerTeam.searchPlayer(playerName).MakeYellowCard();
                                     playersYellowCard.add(playerName);
-                                    System.out.println(playersYellowCard);
+
                                     valid = true;
                                 }catch (NullPointerException | InputMismatchException ignored){
 
@@ -498,7 +498,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                                     }
                                     String playerName = (String) teamPlayers.getSelectedItem();
                                     Team playerTeam = league.searchTeam((String) matchTeams.getSelectedItem());
-                                    System.out.println(playerTeam);
+
                                     playerTeam.searchPlayer(playerName).MakeRedCard();
                                     playersRedCard.add(playerName);
                                     valid = true;
@@ -570,13 +570,13 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                 enterScoreLabel.setVisible(true);
                 YellowCardsPanel.setVisible(true);
                 RedCardsPanel.setVisible(true);
-                System.out.println("Visible");
+
             }else {
                 enterScorePanel.setVisible(false);
                 enterScoreLabel.setVisible(false);
                 YellowCardsPanel.setVisible(false);
                 RedCardsPanel.setVisible(false);
-                System.out.println("Msh visible");
+
             }
         }
     }

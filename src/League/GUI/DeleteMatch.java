@@ -186,14 +186,14 @@ public class DeleteMatch extends JPanel implements ActionListener {
             try {
                 match.getTeams()[0].deleteMatch(MatchID);
             }catch (Exception ignored){
-                System.out.println("deleted");
+
             }
             try {
                 match.getTeams()[1].deleteMatch(MatchID);
             }catch (Exception exception){
-                System.out.println("deleted");
+
             }
-            System.out.println();
+           
             match.getReferee().deleteMatch(MatchID);
             match.getStadium().deleteMatch(MatchID);
             league.DeleteMatch(MatchID);

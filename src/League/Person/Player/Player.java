@@ -208,30 +208,7 @@ public class Player extends Person {
         ++NoOfRedCards;
     }
 
-    public void DisplayPlayer(String Name, int playerId) {
-        if (this.Name.equals(Name)) {
-            System.out.println("Player Name: " + Name);
-            System.out.println("Player Id: " + playerId);
-            System.out.println("Player Team: " + playerTeam);
-            System.out.println("Player Shirt number: " + playerNumber);
-            System.out.println("Player Age: " + Age);
-            System.out.println("Player number of goals: " + goalsScored);
-            System.out.println("Player Score: " + playerScore);
-            System.out.println("Player Rank: " + playerRank);
-        }
-        if (this.playerId == playerId) {
-            System.out.println("Player Name: " + Name);
-            System.out.println("Player Id: " + playerId);
-            System.out.println("Player Team: " + playerTeam);
-            System.out.println("Player Shirt number: " + playerNumber);
-            System.out.println("Player Age: " + Age);
-            System.out.println("Player number of goals: " + goalsScored);
-            System.out.println("Player Score: " + playerScore);
-            System.out.println("Player Rank: " + playerRank);
-        } else {
-            System.out.println("Not found");
-        }
-    }
+
     @Override
     public  int  CalculateSalary(){
         return Salary/playerRank+50000;

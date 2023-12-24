@@ -168,7 +168,6 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
         try {
             int MatchID = (int) chooseMatch.getSelectedItem();
             Match match = league.searchMatch(MatchID);
-            System.out.println(match);
             String team1Name = match.getTeams()[0].getName();
             chooseTeam1.setSelectedItem(team1Name);
             String team2Name = match.getTeams()[1].getName();
@@ -440,7 +439,6 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
             try {
                 int MatchID = (int) chooseMatch.getSelectedItem();
                 Match match = league.searchMatch(MatchID);
-                System.out.println(match);
                 String team1Name = match.getTeams()[0].getName();
                 chooseTeam1.setSelectedItem(team1Name);
                 String team2Name = match.getTeams()[1].getName();
@@ -452,7 +450,6 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                 String stadiumName = match.getStadium().getStadiumName();
                 chooseStadium.setSelectedItem(stadiumName);
                 String Score = match.getScore();
-                System.out.println(Score);
                 String Team1Score = Score.split("-")[0];
                 String Team2Score = Score.split("-")[1];
                 Team1ScoreInput.setText(Team1Score);
@@ -498,11 +495,11 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
             if (dateObJ.before(now)){
                 enterScorePanel.setVisible(true);
                 enterScoreLabel.setVisible(true);
-                System.out.println("Visible");
+
             }else {
                 enterScorePanel.setVisible(false);
                 enterScoreLabel.setVisible(false);
-                System.out.println("Msh visible");
+
             }
         }
     }

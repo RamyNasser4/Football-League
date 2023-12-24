@@ -107,7 +107,6 @@ public class Matches extends JPanel implements ActionListener {
             if (result == JOptionPane.OK_OPTION) {
                 Date selectedDate = (Date) dateSpinner.getValue();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                //System.out.println(dateFormat.format(selectedDate) instanceof String);
                 ArrayList<Match> currentDateMatches = league.Display_match_ByDateFN(dateFormat.format(selectedDate));
                 Date now = new Date();
                 Matches searchedMatches;

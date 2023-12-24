@@ -85,17 +85,17 @@ public class Match {
         try {
             this.Teams[0] = Teams[0];
         } catch (NullPointerException exp) {
-            System.out.println("Null first team");
+
         }
         try {
             this.Teams[1] = Teams[1];
         } catch (NullPointerException exp) {
-            System.out.println("Null second team");
+
         }
         try {
             this.Referee = new Referee(Referee);
         } catch (NullPointerException exp) {
-            System.out.println("Null referee");
+
         }
         this.matchDate = matchDate;
         StringToDate();
@@ -163,7 +163,7 @@ public class Match {
             try {
                 this.Teams = Arrays.copyOf(Match.Teams, Teams.length);
             } catch (NullPointerException exp) {
-                System.out.println("Null");
+
             }
             this.Referee = new Referee(Match.Referee);
             //Date
@@ -174,7 +174,7 @@ public class Match {
             this.Score = Match.Score;
             this.Stadium = Match.Stadium;
         } catch (RuntimeException exp) {
-            System.out.println("Null");
+
         }
     }
     public String WriteMatch(){

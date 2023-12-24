@@ -119,7 +119,6 @@ public class EditStadium extends JPanel implements ActionListener {
                 if (Validation(StadiumName, StadiumLocation, capacity)) {
                     String currentTeamName = (String) chooseStadium.getSelectedItem();
                     Stadium searched = league.searchStadium(currentTeamName);
-                    System.out.println(league.searchStadium(StadiumName));
                     if (league.searchStadium(StadiumName) != null && searched.getStadiumID() != league.searchStadium(StadiumName).getStadiumID()) {
                         throw new InputMismatchException();
                     }

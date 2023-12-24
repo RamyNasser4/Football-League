@@ -1,5 +1,7 @@
 package League.GUI;
 
+import League.Stadium.Stadium;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ public class Stadiums extends JPanel implements ActionListener {
     JButton editStadiumButton;
     JButton deleteStadiumButton;
     MainPanel main;
+    Stadium stadium;
     CardLayout cardLayout;
     public Stadiums(MainPanel main, CardLayout cardLayout){
         this.main = main;
@@ -54,13 +57,26 @@ public class Stadiums extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addStadiumButton){
-            cardLayout.show(main,"AddStadium");
-        } else if (e.getSource() == editStadiumButton) {
-            cardLayout.show(main,"EditStadium");
-        } else if (e.getSource() == deleteStadiumButton) {
-            cardLayout.show(main,"DeleteStadium");
+
+        if (e.getSource() == addStadiumButton) {
+
+            cardLayout.show(main, "AddStadium");
         }
+
+            if (e.getSource() == editStadiumButton) { if (stadium!=null) {
+                cardLayout.show(main, "EditStadium");
+            } else{
+                JOptionPane.showConfirmDialog(this,"Please add Add Stadium first","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
+            } if (e.getSource() == deleteStadiumButton) {
+            if (stadium!=null) {
+                cardLayout.show(main, "DeleteStadium");
+            }
+            else{
+                JOptionPane.showConfirmDialog(this,"Please add Add Stadium first","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
+            }
+        }
+
     }
 
-}

@@ -515,6 +515,7 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);
                     stadium.AddMatch(newMatch);
+                    referee.AddMatch(newMatch);
                     if (dateObj.before(new Date())){
                         newMatch.AddPoints();
                     }

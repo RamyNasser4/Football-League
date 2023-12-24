@@ -314,6 +314,7 @@ public class Main {
                 try {
                     Match newMatch = new Match(matchInfo[0],MatchTeams,MatchReferee,matchInfo[4],MatchStadium,Team1Score,Team2Score,team1Scorers,team1Assisters,team2Scorers,team2Assisters,team1goalkeeper,team2goalkeeper);
                     MatchStadium.matches.add(newMatch);
+                    MatchReferee.AddMatch(newMatch);
                     team1.AddMatch(newMatch);
                     team2.AddMatch(newMatch);
                     matches.add(newMatch);

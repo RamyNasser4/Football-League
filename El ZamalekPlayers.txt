@@ -1,2 +1,0 @@
-Forward	Ahmed Sayed Zizo	27	0	El Zamalek	25	0.0	0	8	8	0	0	0	false
-Goalkeeper	Mohamed Awad	31	0	El Zamalek	1	0.0	1	0	0	0	0	1	0	false

@@ -1,4 +1,4 @@
-Pyramids FC	0	0	0	1
-El Zamalek	5	2	1	2
-El etihad	0	0	0	3
-Al Ahly	0	2	1	4
+Al Ahly	0	25	3	1
+El Zamalek	0	0	0	2
+Pyramids FC	0	0	0	3
+Modern Future 	0	0	0	4

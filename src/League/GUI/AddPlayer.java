@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 
 public class AddPlayer extends JPanel{
@@ -133,6 +134,11 @@ public class AddPlayer extends JPanel{
                         Integer.parseInt(rank);
                         Integer.parseInt(number);
                         Player p = null;
+                        for (Player player : league.searchTeam(team).getPlayers()){
+                            if (player.GetPlayerNumber() == Integer.parseInt(number)){
+                                throw new InputMismatchException();
+                            }
+                        }
                         if (captain.equals("Yes")) {
                             if (position.equals("GoalKeeper")) {
                                     p = new Goalkeeper(name, Integer.parseInt(Age), 0, team, Integer.parseInt(number), 0, Integer.parseInt(rank), 0, 0, 0, 0, 0,  true);
@@ -238,6 +244,8 @@ public class AddPlayer extends JPanel{
                      */
                     catch(NumberFormatException e) {
                         JOptionPane.showMessageDialog(null, "Enter a valid number in number,age and rank");
+                    }catch (InputMismatchException exception){
+                        JOptionPane.showMessageDialog(null, "T-shirt number is reserved for another player");
                     }
 
 

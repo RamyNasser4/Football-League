@@ -322,7 +322,8 @@ public class Team {
     }
     public void deleteMatch(int MatchID) throws Exception{
         boolean isFound = false;
-        for (Match match : Matches){
+        ArrayList<Match> CurrentMatches = new ArrayList<>(Matches);
+        for (Match match : CurrentMatches){
             if (match.getMatch_ID() == MatchID){
                 Matches.remove(match);
                 isFound = true;

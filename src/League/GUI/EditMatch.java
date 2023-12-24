@@ -425,8 +425,10 @@ public class EditMatch extends JPanel implements ActionListener, ChangeListener 
                     match.getStadium().deleteMatch(MatchID);
                     stadium.AddMatch(match);
                     match.setStadium(stadium);
+                    JOptionPane.showMessageDialog(null, "Match edited Successfully");
                     main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
                     main.add(new Standings(main,cardLayout,league),"Standings");
+                    main.add(new EditMatch(league,main,cardLayout),"EditMatch");
                     main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
                     cardLayout.show(main,"LeagueHome");
                 }

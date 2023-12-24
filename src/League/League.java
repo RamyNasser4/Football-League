@@ -454,7 +454,10 @@ public class League {
     }
     public void ResetLeague(){
         teams.removeAll(teams);
+        teamNames.removeAll(teamNames);
         matches.removeAll(matches);
+        upcomingMatches.removeAll(upcomingMatches);
+        pastMatches.removeAll(pastMatches);
         referees.removeAll(referees);
         stadiums.removeAll(stadiums);
     }

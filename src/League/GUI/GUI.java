@@ -21,14 +21,14 @@ public class GUI extends JFrame implements ActionListener, WindowListener {
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
         this.setVisible(true);
+        this.setBackground(Color.darkGray);
         MainPanel main = new MainPanel(league);
         SideBar sideBar = new SideBar(main, main.cardLayout,league);
-        //MatchInfo MatchInfo= new MatchInfo();
+        main.cardLayout.show(main,"Matches");
         this.getContentPane().add(sideBar, BorderLayout.WEST);
         this.add(main);
-            ImageIcon appIcon = new ImageIcon(getClass().getResource("/Assets/league-icon.png"));
-            setIconImage(appIcon.getImage());
-        //Add Player
+        ImageIcon appIcon = new ImageIcon(getClass().getResource("/Assets/league-icon.png"));
+        setIconImage(appIcon.getImage());
         this.addWindowListener(this);
     }
 

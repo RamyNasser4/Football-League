@@ -518,8 +518,10 @@ public class AddMatch extends JPanel implements ActionListener, ChangeListener {
                     if (dateObj.before(new Date())){
                         newMatch.AddPoints();
                     }
+                    JOptionPane.showMessageDialog(null, "Match added Successfully");
                     main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
                     main.add(new Standings(main,cardLayout,league),"Standings");
+                    main.add(new AddMatch(league,main,cardLayout),"AddMatch");
                     main.add(new EditMatch(league,main,cardLayout),"EditMatch");
                     main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
                     cardLayout.show(main,"LeagueHome");

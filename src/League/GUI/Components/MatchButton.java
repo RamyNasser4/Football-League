@@ -21,7 +21,7 @@ public class MatchButton extends JButton implements ActionListener{
         this.cardLayout = cardLayout;
         this.match = match;
         this.setForeground(Color.white);
-        this.setBackground(new Color(0x313741));
+        this.setBackground(Color.darkGray);
         this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,30));
         this.setFocusable(false);
         this.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));

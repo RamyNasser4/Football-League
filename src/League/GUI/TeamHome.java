@@ -1,5 +1,7 @@
 package League.GUI;
 
+import League.League;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,9 +13,11 @@ public class TeamHome extends JPanel implements ActionListener{
     JButton deleteTeamButton;
     MainPanel main;
     CardLayout cardLayout;
-    public TeamHome(MainPanel main,CardLayout cardLayout){
+    League league;
+    public TeamHome(MainPanel main, CardLayout cardLayout,League league){
         this.main = main;
         this.cardLayout = cardLayout;
+        this.league = league;
         this.setSize(new Dimension(980, 720));
         this.setLayout(new GridLayout(3, 1));
         JPanel addTeamPanel = new JPanel(new GridLayout(1, 1));
@@ -57,9 +61,23 @@ public class TeamHome extends JPanel implements ActionListener{
         if (e.getSource() == addTeamButton){
             cardLayout.show(main,"AddTeam");
         } else if (e.getSource() == editTeamButton) {
-            cardLayout.show(main,"EditTeam");
+            try {
+                if (league.getTeams().isEmpty()){
+                    throw new Exception("Add teams first");
+                }
+                cardLayout.show(main,"EditTeam");
+            }catch (Exception exp){
+                JOptionPane.showConfirmDialog(this,exp.getMessage(),"Add teams first",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getSource() == deleteTeamButton) {
-            cardLayout.show(main,"DeleteTeam");
+            try {
+                if (league.getTeams().isEmpty()){
+                    throw new Exception("Add teams first");
+                }
+                cardLayout.show(main,"DeleteTeam");
+            }catch (Exception exp){
+                JOptionPane.showConfirmDialog(this,exp.getMessage(),"Add teams first",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

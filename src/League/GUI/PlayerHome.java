@@ -14,7 +14,7 @@ public class PlayerHome extends JPanel {
         JPanel panel2 = new JPanel(new GridLayout(1, 1));
         JPanel panel3 = new JPanel(new GridLayout(1, 1));
         ImageIcon addPlayerIcon =new ImageIcon("src/Assets/add-player.png");
-        this.setVisible(true);
+        //this.setVisible(true);
         //Add Player button
         JButton panel1Button=new JButton("Add Player");
         panel1Button.setFocusable(false);

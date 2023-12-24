@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+
 public class EditPlayer extends JPanel implements ActionListener {
 
     @Override
@@ -42,12 +44,16 @@ public class EditPlayer extends JPanel implements ActionListener {
         String Age = ageField.getText();
         String rank =rankField.getText();
         String number =numberField.getText();
-
         if(!name.isEmpty() && !Age.isEmpty() && !rank.isEmpty() && !number.isEmpty() ){
             try{
             Integer.parseInt(Age);
             Integer.parseInt(rank);
             Integer.parseInt(number);
+            for (Player player : league.searchTeam(pTeam).getPlayers()){
+                if (player.GetPlayerNumber() == Integer.parseInt(number)){
+                    throw new InputMismatchException();
+                }
+            }
             String captain=(String) captainComboBox.getItemAt(captainComboBox.getSelectedIndex());
             if(captain.equals("Yes")&&league.searchTeam(pTeam).getCaptain()!=null && !league.searchTeam(pTeam).getCaptain().equals(league.searchTeam(pTeam).searchPlayer(pName))) {
 
@@ -122,6 +128,8 @@ public class EditPlayer extends JPanel implements ActionListener {
                 main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                 main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");
                 main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
+            }catch (InputMismatchException exp){
+                JOptionPane.showMessageDialog(null, "T-shirt number is reserved for another player");
             }
         }
         else{

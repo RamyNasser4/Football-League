@@ -185,14 +185,19 @@ public class DeleteMatch extends JPanel implements ActionListener {
             }
             try {
                 match.getTeams()[0].deleteMatch(MatchID);
-                match.getTeams()[1].deleteMatch(MatchID);
             }catch (Exception ignored){
-
+                System.out.println("deleted");
+            }
+            try {
+                match.getTeams()[1].deleteMatch(MatchID);
+            }catch (Exception exception){
+                System.out.println("deleted");
             }
             System.out.println();
             match.getReferee().deleteMatch(MatchID);
             match.getStadium().deleteMatch(MatchID);
             league.DeleteMatch(MatchID);
+            JOptionPane.showMessageDialog(null, "Match deleted Successfully");
             main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
             main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
             main.add(new Standings(main,cardLayout,league),"Standings");

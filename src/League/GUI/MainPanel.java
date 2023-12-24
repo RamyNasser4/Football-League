@@ -10,7 +10,7 @@ public class MainPanel extends JPanel {
     public MainPanel(League league) {
         cardLayout = new CardLayout();
         this.setLayout(cardLayout);
-        //PlayerGui playerGui = new PlayerGui(this,cardLayout,league);
+        this.setBackground(Color.darkGray);
         Matches matches = new Matches(this, cardLayout,league.upcomingMatches,league.pastMatches,league);
         Standings standings = new Standings(this,cardLayout,league);
         Players players = new Players(this,cardLayout,league);
@@ -18,7 +18,7 @@ public class MainPanel extends JPanel {
         AddPlayer addPlayer = new AddPlayer(league.teamNames,league,this,cardLayout);
         EditPlayer editPlayer = new EditPlayer(league.teamNames,league,this,cardLayout);
         DeletePlayer deletePlayer = new DeletePlayer(league.teamNames,league,this,cardLayout);
-        TeamHome teamHome = new TeamHome(this,cardLayout);
+        TeamHome teamHome = new TeamHome(this,cardLayout,league);
         AddTeam addTeam = new AddTeam(league,this,cardLayout);
         EditTeam editTeam = new EditTeam(league,this,cardLayout);
         DeleteTeam deleteTeam = new DeleteTeam(league,this,cardLayout);
@@ -33,9 +33,6 @@ public class MainPanel extends JPanel {
         AddReferee addReferee=new AddReferee(league,this,cardLayout);
         DeleteReferee deleteReferee=new DeleteReferee(league,this,cardLayout);
         RefereeHome refereeHome=new RefereeHome(this,cardLayout,league);
-
-
-        //this.add(playerGui, "PlayerGUI");
         this.add(playerHome,"PlayerHome");
         this.add(matches, "Matches");
         this.add(standings, "Standings");
@@ -43,7 +40,6 @@ public class MainPanel extends JPanel {
         this.add(addPlayer,"AddPlayer");
         this.add(editPlayer,"EditPlayer");
         this.add(deletePlayer,"DeletePlayer");
-        //this.add(new TeamInfo(league.getTeams().get(0)),"TeamInfo");
         this.add(teamHome,"TeamHome");
         this.add(addTeam,"AddTeam");
         this.add(editTeam,"EditTeam");
@@ -59,9 +55,5 @@ public class MainPanel extends JPanel {
         this.add(addReferee,"AddReferee");
         this.add(refereeHome,"RefereeHome");
         this.add(deleteReferee,"DeleteReferee");
-
-
-
-
     }
 }

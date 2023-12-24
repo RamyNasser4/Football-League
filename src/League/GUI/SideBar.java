@@ -113,6 +113,18 @@ public class SideBar extends JPanel implements ActionListener {
             int option=JOptionPane.showConfirmDialog(this,"Are you sure you want to delete all the data of league?","Confirmation",JOptionPane.OK_CANCEL_OPTION);
             if (option == JOptionPane.OK_OPTION) {
                 league.ResetLeague();
+                main.add(new Matches(main,cardLayout,league.upcomingMatches,league.pastMatches,league),"Matches");
+                main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
+                main.add(new AddTeam(league,main,cardLayout),"AddTeam");
+                main.add(new AddReferee(league,main,cardLayout),"AddReferee");
+                main.add(new AddStadium(league,main,cardLayout),"AddStadium");
+                main.add(new Players(main,cardLayout,league),"Stats");
+                main.add(new Standings(main,cardLayout,league),"Standings");
+                main.add(new AddMatch(league,main,cardLayout),"AddMatch");
+                main.add(new LeagueHome(main,cardLayout,league),"LeagueHome");
+                main.add(new PlayerHome(main,cardLayout,league.teamNames),"PlayerHome");
+                main.add(new TeamHome(main,cardLayout,league),"TeamHome");
+                cardLayout.show(main,"Matches");
             }
         }
 

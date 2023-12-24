@@ -28,12 +28,12 @@ public class Matches extends JPanel implements ActionListener {
         this.cardLayout = cardLayout;
         this.league = league;
         this.setPreferredSize(new Dimension(980, 720));
-        this.setBackground(new Color(0x313741));
+        this.setBackground(Color.darkGray);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
         //Search button
         Search = new JButton("Search By Date");
-        Search.setBackground(new Color(0x313741));
+        Search.setBackground(Color.darkGray);
         Search.setForeground(Color.white);
         Search.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         Search.setFocusable(false);
@@ -43,7 +43,7 @@ public class Matches extends JPanel implements ActionListener {
         Search.addActionListener(this);
         JPanel SearchContainer = new JPanel();
         SearchContainer.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        SearchContainer.setBackground(new Color(0x313741));
+        SearchContainer.setBackground(Color.darkGray);
         SearchContainer.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
         SearchContainer.add(Search);
         this.add(SearchContainer);
@@ -52,7 +52,7 @@ public class Matches extends JPanel implements ActionListener {
         Searchbyteam = new JComboBox(new DefaultComboBoxModel<>(league.teamNames.toArray()));
         Searchbyteam.addItem(defaultValue);
         Searchbyteam.setSelectedItem(defaultValue);
-        Searchbyteam.setBackground(new Color(0x313741));
+        Searchbyteam.setBackground(Color.darkGray);
         Searchbyteam.setForeground(Color.white);
         Searchbyteam.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         Searchbyteam.setFocusable(false);
@@ -60,13 +60,13 @@ public class Matches extends JPanel implements ActionListener {
         Searchbyteam.addActionListener(this);
         JPanel SearchContainerbyteam = new JPanel();
         SearchContainerbyteam.setLayout(new FlowLayout(FlowLayout.LEFT));
-        SearchContainerbyteam.setBackground(new Color(0x313741));
+        SearchContainerbyteam.setBackground(Color.darkGray);
         SearchContainerbyteam.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
         SearchContainerbyteam.add(Searchbyteam);
         this.add(SearchContainerbyteam);
         JLabel upcoming = new JLabel("Upcoming Matches");
         upcoming.setForeground(Color.white);
-        upcoming.setBackground(new Color(0x313741));
+        upcoming.setBackground(Color.darkGray);
         upcoming.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
         upcoming.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(upcoming);
@@ -77,7 +77,7 @@ public class Matches extends JPanel implements ActionListener {
         }
         JLabel past = new JLabel("Past Matches");
         past.setForeground(Color.white);
-        past.setBackground(new Color(0x313741));
+        past.setBackground(Color.darkGray);
         past.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
         past.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
         this.add(past);

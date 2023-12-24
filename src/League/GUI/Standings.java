@@ -84,6 +84,8 @@ League league;
 
         // Customizing the header row appearance
         JTableHeader header = table.getTableHeader();
+        JViewport viewport = scrollPane.getViewport();
+        viewport.setBackground(Color.darkGray);
         header.setForeground(Color.white);
         header.setBackground(Color.BLACK); // Change header background color
         header.setFont(new Font("Arial", Font.BOLD, 18));

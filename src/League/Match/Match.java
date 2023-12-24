@@ -28,10 +28,6 @@ public class Match {
     private ArrayList<Player> team2Assisters;
     public Player team1Goalkeeper;
     public Player team2Goalkeeper;
-    /*public ArrayList<Player> team1YellowCard;
-    public ArrayList<Player> team2YellowCard;
-    public ArrayList<Player> team1RedCard;
-    public ArrayList<Player> team2RedCard;*/
 
     public ArrayList<Player> getTeam1Scorers() {
         return team1Scorers;

@@ -205,7 +205,7 @@ public class AddPlayer extends JPanel{
                            main.add(new Standings(main,cardLayout,league),"Standings");
                        }
                        else if(captain.equals("No")) {
-                           if (league.searchTeam(team).noOfGoalkeepers == 3 ) {
+                           if (league.searchTeam(team).noOfGoalkeepers == 3  && position.equals("GoalKeeper")) {
                                JOptionPane.showMessageDialog(null, "Only 3 gk are allowed in a team");
                                main.add(new DeletePlayer(league.teamNames,league,main,cardLayout),"DeletePlayer");
                                main.add(new EditPlayer(league.teamNames,league,main,cardLayout),"EditPlayer");

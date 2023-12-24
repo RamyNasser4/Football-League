@@ -50,7 +50,7 @@ public class EditPlayer extends JPanel implements ActionListener {
             Integer.parseInt(rank);
             Integer.parseInt(number);
             for (Player player : league.searchTeam(pTeam).getPlayers()){
-                if (player.GetPlayerNumber() == Integer.parseInt(number)){
+                if (player.GetPlayerNumber() == Integer.parseInt(number) && league.searchTeam(pTeam).searchPlayer(pName)!=player){
                     throw new InputMismatchException();
                 }
             }

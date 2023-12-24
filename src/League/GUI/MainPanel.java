@@ -26,7 +26,7 @@ public class MainPanel extends JPanel {
         AddMatch addMatch = new AddMatch(league,this,cardLayout);
         EditMatch editMatch = new EditMatch(league,this,cardLayout);
         DeleteMatch deleteMatch = new DeleteMatch(league,this,cardLayout);
-        Stadiums stadiums =new Stadiums(this,cardLayout);
+        Stadiums stadiums =new Stadiums(this,cardLayout,league);
         AddStadium addStadium=new AddStadium(league,this,cardLayout);
         EditStadium editStadium=new EditStadium(league,this,cardLayout);
         DeleteStadium deleteStadium=new DeleteStadium(league,this,cardLayout);

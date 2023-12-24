@@ -94,7 +94,9 @@ public class AddStadium extends JPanel implements ActionListener{
                 main.add(new EditStadium(league,main,cardLayout),"EditStadium");
                 main.add(new DeleteStadium(league,main,cardLayout),"DeleteStadium");
                 main.add(new Stadiums(main,cardLayout,league),"Stadiums");
-
+                main.add(new AddMatch(league,main,cardLayout),"AddMatch");
+                main.add(new EditMatch(league,main,cardLayout),"EditMatch");
+                main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
 
             }else {
                 if(Capacity==0){

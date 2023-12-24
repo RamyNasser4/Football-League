@@ -127,6 +127,7 @@ public class EditStadium extends JPanel implements ActionListener {
                     main.add(new AddMatch(league,main,cardLayout),"AddMatch");
                     main.add(new EditMatch(league,main,cardLayout),"EditMatch");
                     main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
+
                     cardLayout.show(main,"Stadiums");
                     }
 

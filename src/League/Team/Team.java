@@ -207,17 +207,6 @@ public class Team {
     public int getNoOfMatches(){
         return Matches.size();
     }
-    public void display() {
-        //
-    }
-
-    public void displayPlayers() {
-        //
-    }
-
-    public void displayMatches() {
-        //
-    }
 
     public void addPlayer(Player player) throws NullPointerException {
         try {

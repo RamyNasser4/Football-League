@@ -189,7 +189,11 @@ public class Players extends JPanel implements ActionListener {
         String teamName = JOptionPane.showInputDialog("Enter Team Name:");
         if (teamName != null && !teamName.isEmpty()) {
             ArrayList<Player> filteredPlayers = league.getPlayersByTeamName(teamName);
-            updateTableWithPlayers(filteredPlayers, "default");
+            if (filteredPlayers.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No team found with the name '" + teamName + "'.", "Team Not Found", JOptionPane.ERROR_MESSAGE);
+            } else {
+                updateTableWithPlayers(filteredPlayers, "default");
+            }
         }
     }
 

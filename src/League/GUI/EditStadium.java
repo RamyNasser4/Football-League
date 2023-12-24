@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 
 public class EditStadium extends JPanel implements ActionListener {
     JComboBox chooseStadium;
@@ -98,7 +99,7 @@ public class EditStadium extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == chooseStadium){
+        if (e.getSource() == chooseStadium) {
             String StadiumName = (String) chooseStadium.getSelectedItem();
             Stadium searched = league.searchStadium(StadiumName);
             StadiumNameField.setText(searched.getStadiumName());
@@ -110,36 +111,40 @@ public class EditStadium extends JPanel implements ActionListener {
             int capacity;
             try {
                 capacity = Integer.parseInt(StadiumCapacityField.getText());
-            }catch (Exception exp){
+            } catch (Exception exp) {
                 //JOptionPane.showConfirmDialog(this,"Invalid Coach Age","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
                 capacity = 0;
             }
-
-                if (Validation(StadiumName,StadiumLocation,capacity)){
+            try {
+                if (Validation(StadiumName, StadiumLocation, capacity)) {
                     String currentTeamName = (String) chooseStadium.getSelectedItem();
                     Stadium searched = league.searchStadium(currentTeamName);
+                    System.out.println(league.searchStadium(StadiumName));
+                    if (league.searchStadium(StadiumName) != null && searched.getStadiumID() != league.searchStadium(StadiumName).getStadiumID()) {
+                        throw new InputMismatchException();
+                    }
                     searched.setStadiumName(StadiumName);
                     searched.setStadiumLocation(StadiumLocation);
                     searched.setStadiumCapacity(capacity);
-                    main.add(new AddStadium(league,main,cardLayout),"AddStadium");
-                    main.add(new DeleteStadium(league,main,cardLayout),"DeleteStadium");
-                    main.add(new EditStadium(league,main,cardLayout),"EditStadium");
-                    main.add(new AddMatch(league,main,cardLayout),"AddMatch");
-                    main.add(new EditMatch(league,main,cardLayout),"EditMatch");
-                    main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
+                    main.add(new AddStadium(league, main, cardLayout), "AddStadium");
+                    main.add(new DeleteStadium(league, main, cardLayout), "DeleteStadium");
+                    main.add(new EditStadium(league, main, cardLayout), "EditStadium");
+                    main.add(new AddMatch(league, main, cardLayout), "AddMatch");
+                    main.add(new EditMatch(league, main, cardLayout), "EditMatch");
+                    main.add(new DeleteMatch(league, main, cardLayout), "DeleteMatch");
 
-                    cardLayout.show(main,"Stadiums");
-                    }
-
-
-                }else {
-                    JOptionPane.showConfirmDialog(this,"Invalid Fields","Invalid Field",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+                    cardLayout.show(main, "Stadiums");
+                } else {
+                    JOptionPane.showConfirmDialog(this, "Invalid Fields", "Invalid Field", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
                 }
-
+            } catch (Exception ignored) {
+                JOptionPane.showConfirmDialog(this, "Stadium with this name already exists", "Invalid Field", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
         }
+    }
 
-    public boolean Validation(String TeamName,String CoachName,int CoachAge){
-        if (TeamName.equalsIgnoreCase("")|| CoachName.equalsIgnoreCase("") || CoachAge== 0){
+    public boolean Validation(String StadiumName,String Location,int StadiumCapacity){
+        if (StadiumName.equalsIgnoreCase("")|| Location.equalsIgnoreCase("") || StadiumCapacity== 0){
             return false;
             }
 

@@ -108,7 +108,7 @@ public class Referee extends Person {
             }
         }
     }
-
+    @Override
     public  int  CalculateSalary(){
         return Salary +1000;
     }

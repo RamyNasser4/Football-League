@@ -232,7 +232,8 @@ public class Player extends Person {
             System.out.println("Not found");
         }
     }
+    @Override
     public  int  CalculateSalary(){
-        return Salary/playerRank+5000;
+        return Salary/playerRank+50000;
     }
 }

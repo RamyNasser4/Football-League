@@ -2,6 +2,7 @@ package League.GUI;
 
 
 import League.League;
+import League.Match.Match;
 import League.Team.Team;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Standings extends JPanel implements MouseListener{
@@ -41,10 +44,17 @@ League league;
 
         AllData=new Object[league.getTeams().size()][4];
         for (int i = 0; i < league.getTeams().size(); i++) {
+            ArrayList<Match> pastMatches = new ArrayList<Match>();
+            Date now = new Date();
+            for (Match match : league.DisplayTeamByAvgAge().get(i).getMatches()){
+                if (match.getDate().before(now)){
+                    pastMatches.add(match);
+                }
+            }
             AllData[i][0] = league.getTeams().get(i).getName();
             AllData[i][1] =  league.getTeams().get(i).getTotal_score();
             AllData[i][2] =   league.getTeams().get(i).getPlayers().size();
-            AllData[i][3] =   league.getTeams().get(i).getNoOfMatches();
+            AllData[i][3] =   pastMatches.size();
 
 
 
@@ -102,12 +112,20 @@ League league;
         JButton ByPoints = new JButton("All teams");
         ByPoints.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 AllData=new Object[league.getTeams().size()][4];
                 for (int i = 0; i < league.getTeams().size(); i++) {
+                    ArrayList<Match> pastMatches = new ArrayList<Match>();
+                    Date now = new Date();
+                    for (Match match : league.DisplayTeamByAvgAge().get(i).getMatches()){
+                        if (match.getDate().before(now)){
+                            pastMatches.add(match);
+                        }
+                    }
                     AllData[i][0] = league.getTeams().get(i).getName();
                     AllData[i][1] = league.getTeams().get(i).getTotal_score();
                     AllData[i][2] = league.getTeams().get(i).getPlayers().size();
-                    AllData[i][3] = league.getTeams().get(i).getNoOfMatches();
+                    AllData[i][3] = pastMatches.size();
                 }
                 model.setDataVector(AllData,  new Object[]{"Team", "Score", "players", "Played"});
             }
@@ -124,10 +142,17 @@ League league;
                 // Prepare data for the table model
                 AvgData = new Object[league.DisplayTeamByAvgAge().size()][4];
                 for (int i = 0; i < league.DisplayTeamByAvgAge().size(); i++) {
+                    ArrayList<Match> pastMatches = new ArrayList<Match>();
+                    Date now = new Date();
+                    for (Match match : league.DisplayTeamByAvgAge().get(i).getMatches()){
+                        if (match.getDate().before(now)){
+                            pastMatches.add(match);
+                        }
+                    }
                     AvgData[i][0] = league.DisplayTeamByAvgAge().get(i).getName();
                     AvgData[i][1] = league.DisplayTeamByAvgAge().get(i).GetAvgTeamAge();
                     AvgData[i][2] =  league.DisplayTeamByAvgAge().get(i).getPlayers().size();
-                    AvgData[i][3] = league.DisplayTeamByAvgAge().get(i).getNoOfMatches();
+                    AvgData[i][3] = pastMatches.size();
                 }
                 TableData=AvgData;
                 model.setDataVector(AvgData,  new Object[]{"Team", "average age", "players", "Played"});
@@ -141,10 +166,17 @@ League league;
 
                 GoalData=new Object[league.DisplayTeamsByGoals().size()][4];
                 for (int i = 0; i < league.DisplayTeamsByGoals().size(); i++) {
+                    ArrayList<Match> pastMatches = new ArrayList<Match>();
+                    Date now = new Date();
+                    for (Match match : league.DisplayTeamByAvgAge().get(i).getMatches()){
+                        if (match.getDate().before(now)){
+                            pastMatches.add(match);
+                        }
+                    }
                     GoalData[i][0] = league.DisplayTeamsByGoals().get(i).getName();
                     GoalData[i][1] = league.DisplayTeamsByGoals().get(i).GetTeamGoals();
                     GoalData[i][2] =  league.DisplayTeamsByGoals().get(i).getPlayers().size();
-                    GoalData[i][3] = league.DisplayTeamsByGoals().get(i).getNoOfMatches();
+                    GoalData[i][3] = pastMatches.size();;
                 }
                 TableData=GoalData;
                 model.setDataVector(GoalData,  new Object[]{"Team", "Goals", "players", "Played"});

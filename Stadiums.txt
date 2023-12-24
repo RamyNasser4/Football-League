@@ -1,0 +1,4 @@
+Cairo International Stadium	Nasr City	70000
+El Salam Stadium	El Nahda	25000
+El Defaa El Gawy Stadium	Al Hay al Aasher	30000
+Borg Al Arab Stadium	Alexandria	86000

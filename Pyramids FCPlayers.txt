@@ -1,0 +1,25 @@
+Goalkeeper	Ahmed El Shenawy	32	0	Pyramids FC	1	0.0	1	0	0	0	0	4		false
+Goalkeeper	Ahmed Mayhoub 	27	0	Pyramids FC	28	0.0	3	0	0	0	0	0		false
+Goalkeeper	Sherif Ekramy	40	0	Pyramids FC	22	0.0	2	0	0	0	0	0		false
+Defender	Osama Galal	26	0	Pyramids FC	6	0.0	1	0	0	0	0		false
+Defender	Mahmoud Marei	25	0	Pyramids FC	3	0.0	1	0	0	0	0		false
+Defender	Ali Gabr	34	0	Pyramids FC	5	0.0	1	0	0	0	0		false
+Defender	Ahmed Samy	31	0	Pyramids FC	4	0.0	1	0	0	0	0		false
+Defender	Mohamed Hamdi	28	0	Pyramids FC	21	0.0	1	0	1	0	0		false
+Defender	Karim Hafez	27	0	Pyramids FC	29	0.0	2	0	0	0	0		false
+Defender	Mohamed Chibi	30	0	Pyramids FC	15	0.0	1	0	0	1	0		false
+Defender	Ahmed Fathi	39	0	Pyramids FC	24	0.0	1	0	0	0	0		false
+Midfielder	Ibrahim Blati Toure	29	0	Pyramids FC	7	0.0	2	0	0	0	0		false
+Midfielder	Mohanad Lasheen	27	0	Pyramids FC	14	0.0	1	0	0	0	0		false
+Midfielder	Ahmed Tawfik	32	0	Pyramids FC	12	0.0	2	0	0	0	0		false
+Midfielder	Mahmoud Dunga	31	0	Pyramids FC	13	0.0	3	0	0	0	0		false
+Midfielder	Walid El Karti	29	0	Pyramids FC	18	0.0	2	0	0	0	0		false
+Midfielder	Islam Issa	27	0	Pyramids FC	8	0.0	3	0	0	0	0		false
+Midfielder	Seif Farouk Gafaar	24	0	Pyramids FC	20	0.0	3	0	0	0	0		false
+Midfielder	Abdallah Said	38	0	Pyramids FC	19	0.0	1	0	1	0	0		false
+Forward	Ramdan Sobhi	26	0	Pyramids FC	10	0.0	0	1	0	0	0	0	false
+Forward	Ibrahim Adel	22	0	Pyramids FC	30	0.0	0	1	0	0	0	0	false
+Forward	Youssef Osama Nabih	23	0	Pyramids FC	25	0.0	0	0	1	0	0	0	false
+Forward	Mostafa Fathi	29	0	Pyramids FC	11	0.0	0	2	1	0	0	0	false
+Forward	Fagrie Lakay	26	0	Pyramids FC	23	0.0	0	0	0	0	0	0	false
+Forward	Fiston Mayele	29	0	Pyramids FC	9	0.0	0	0	0	0	0	0	false

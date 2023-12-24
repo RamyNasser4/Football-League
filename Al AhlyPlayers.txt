@@ -1,4 +1,4 @@
-Goalkeeper	Mohamed El Shenawy	35	0	Al Ahly	1	0.0	1	0	0	0	0	0		false
+Goalkeeper	Mohamed El Shenawy	35	0	Al Ahly	1	0.0	1	0	0	0	0	3		false
 Goalkeeper	Oufa Shobeir	23	0	Al Ahly	31	0.0	2	0	0	0	0	0		false
 Goalkeeper	Hamza Alaa	22	0	Al Ahly	16	0.0	3	0	0	0	0	0		false
 Defender	Mohamed Abdelmonem	24	0	Al Ahly	24	0.0	1	0	0	0	0		false
@@ -15,11 +15,11 @@ Midfielder	Ahmed Kouka	22	0	Al Ahly	36	0.0	2	0	0	0	0		false
 Midfielder	Emam Ashour	25	0	Al Ahly	22	0.0	1	0	0	0	0		false
 Midfielder	Amr El Solia	33	0	Al Ahly	17	0.0	1	0	0	0	0		false
 Midfielder	Afsha	27	0	Al Ahly	19	0.0	1	0	0	0	0		false
-Forward	Hussein El Shahat	31	0	Al Ahly	14	0.0	0	0	0	0	0	0	false
+Forward	Hussein El Shahat	31	0	Al Ahly	14	0.0	0	0	0	1	0	0	false
 Forward	Ahmed Abdelkader	24	0	Al Ahly	11	0.0	0	0	0	0	0	0	false
 Forward	Taher Mohamed	26	0	Al Ahly	29	0.0	0	0	0	0	0	0	false
 Forward	Percy Tau	29	0	Al Ahly	10	0.0	0	0	0	0	0	0	false
-Forward	Karim Fouad	24	0	Al Ahly	28	0.0	0	0	0	0	0	0	false
-Forward	Mahmoud Kahraba	29	0	Al Ahly	7	0.0	0	0	0	0	0	0	false
-Forward	Anthony Modeste	35	0	Al Ahly	27	0.0	0	0	0	0	0	0	false
+Forward	Karim Fouad	24	0	Al Ahly	28	0.0	0	0	1	0	0	0	false
+Forward	Mahmoud Kahraba	29	0	Al Ahly	7	0.0	0	0	0	0	1	0	false
+Forward	Anthony Modeste	35	0	Al Ahly	27	0.0	0	1	0	0	0	0	false
 Forward	Salah Mohsen	25	0	Al Ahly	9	0.0	0	0	0	0	0	0	false

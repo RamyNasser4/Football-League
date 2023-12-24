@@ -1,0 +1,8 @@
+26/12/2023	El Zamalek	Al Ahly	Ibrahim Nour El-Din		Cairo International Stadium	,
+27/12/2023	Pyramids FC	Modern Future 	Amin Omar		El Defaa El Gawy Stadium	,
+28/12/2023	Modern Future 	Al Ahly	Amin Omar		El Defaa El Gawy Stadium	,
+29/12/2023	El Zamalek	Pyramids FC	Mohamed Maarouf		Borg Al Arab Stadium	,
+19/12/2023	Pyramids FC	El Zamalek	Mohamed Maarouf	1-3	El Salam Stadium	,Team1:Mostafa Fathi	Team2:Ahmed El Sayed Zizo	Team2:Ahmed El Sayed Zizo	Team2:Mahmoud Abdelrazek Shikabala	,Team1:Mohamed Hamdi	Team2:Mahmoud Abdelrazek Shikabala	Team2:Mohamed Awad	Team2:Ahmed El Sayed Zizo	,Team2:Mohamed Awad	Team1:Ahmed El Shenawy	
+18/12/2023	Al Ahly	Modern Future 	Mahmoud El Banna	1-1	Cairo International Stadium	,Team1:Anthony Modeste	Team2:Ahmed Atef	,Team1:Karim Fouad	Team2:Nasser Maher	,Team2:Mahmoud Genesh	Team1:Mohamed El Shenawy	
+16/12/2023	Al Ahly	Pyramids FC	Amin Omar	0-3	El Defaa El Gawy Stadium	,Team2:Ramdan Sobhi	Team2:Mostafa Fathi	Team2:Ibrahim Adel	,Team2:Youssef Osama Nabih	Team2:Abdallah Said	Team2:Mostafa Fathi	,Team1:Mohamed El Shenawy	
+22/12/2023	El Zamalek	Modern Future 	Mahmoud El Banna	2-1	El Salam Stadium	,Team1:Ahmed El Sayed Zizo	Team1:Mostafa Shalaby	Team2:Ahmed Atef	,Team1:Mahmoud Abdelrazek Shikabala	Team1:Youssef Obama	Team2:Nasser Maher	,Team2:Mahmoud Genesh	Team1:Mohamed Awad	

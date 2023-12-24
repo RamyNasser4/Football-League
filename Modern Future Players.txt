@@ -1,0 +1,21 @@
+Goalkeeper	Mahmoud Genesh	36	0	Modern Future 	16	0.0	1	0	0	1	0	2		false
+Goalkeeper	Mahmoud Hamdy	30	0	Modern Future 	1	0.0	2	0	0	0	0	0		false
+Goalkeeper	Ahmed Yehia	35	0	Modern Future 	23	0.0	3	0	0	0	0	0		false
+Defender	Ali Elfil	33	0	Modern Future 	6	0.0	1	0	0	0	0		false
+Defender	Mahmoud Rizk	30	0	Modern Future 	4	0.0	2	0	0	0	0		false
+Defender	Khaled Reda	34	0	Modern Future 	24	0.0	2	0	0	0	0		false
+Defender	Mohamed Abdelsalam	26	0	Modern Future 	5	0.0	1	0	0	0	0		false
+Defender	Mohamed Rabia	27	0	Modern Future 	26	0.0	3	0	0	0	0		false
+Defender	Tarek Taha	32	0	Modern Future 	11	0.0	2	0	0	0	0		false
+Defender	Omar Kamal	30	0	Modern Future 	7	0.0	1	0	0	0	0		false
+Midfielder	Ghanam Moamed	26	0	Modern Future 	27	0.0	1	0	0	0	0		false
+Midfielder	Mohamed Mahmoud	25	0	Modern Future 	14	0.0	1	0	0	0	0		false
+Midfielder	Mohamed Sadek	26	0	Modern Future 	28	0.0	2	0	0	0	0		false
+Midfielder	Ali Zazaa	22	0	Modern Future 	19	0.0	3	0	0	0	0		false
+Midfielder	Nasser Maher	26	0	Modern Future 	8	0.0	1	0	2	0	0		false
+Forward	Ahmed Refaat	30	0	Modern Future 	10	0.0	0	0	0	0	0	0	false
+Forward	Abdelkabir El Ouadi	30	0	Modern Future 	22	0.0	0	0	0	0	0	0	false
+Forward	Mohamed Farouk	34	0	Modern Future 	17	0.0	0	0	0	0	0	0	false
+Forward	Ahmed Atef	25	0	Modern Future 	30	0.0	0	2	0	0	0	0	false
+Forward	Marwan Mohsen	34	0	Modern Future 	9	0.0	0	0	0	0	0	0	false
+Forward	Omar El Said	33	0	Modern Future 	18	0.0	0	0	0	0	0	0	false

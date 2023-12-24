@@ -1,4 +1,4 @@
-Goalkeeper	Mohamed Awad	31	0	El Zamalek	1	0.0	1	0	0	0	0	0		false
+Goalkeeper	Mohamed Awad	31	0	El Zamalek	1	0.0	1	0	1	1	0	1		false
 Goalkeeper	Abdelrahman Nafad	19	0	El Zamalek	35	0.0	2	0	0	0	0	0		false
 Goalkeeper	Moaz Alaa	20	0	El Zamalek	34	0.0	3	0	0	0	0	0		false
 Defender	Mahmoud El Wensh	28	0	El Zamalek	28	0.0	1	0	0	0	0		false
@@ -13,8 +13,11 @@ Defender	Sayed Abdallah Neymar	23	0	El Zamalek	18	0.0	2	0	0	0	0		false
 Defender	Omar Gaber	31	0	El Zamalek	4	0.0	1	0	0	0	0		false
 Midfielder	Nabil Dunga	27	0	El Zamalek	8	0.0	1	0	0	0	0		false
 Midfielder	Amr El Sisi	29	0	El Zamalek	15	0.0	2	0	0	0	0		false
-Midfielder	Youssef Obama	28	0	El Zamalek	14	0.0	1	0	0	0	0		false
-Forward	Mostafa Shalaby	29	0	El Zamalek	11	0.0	0	0	0	0	0	0	false
-Forward	Ibrahima Ndiaye	25	0	El Zamalek	7	0.0	0	0	0	0	0	0	false
-Forward	Ahmed El Sayed Zizo	27	0	El Zamalek	25	0.0	0	0	0	0	0	0	false
-Forward	Mahmoud Abdelrazek Shikabala	37	0	El Zamalek	10	0.0	0	0	0	0	0	0	true
+Midfielder	Youssef Obama	28	0	El Zamalek	14	0.0	1	0	1	0	0		false
+Forward	Mostafa Shalaby	29	0	El Zamalek	11	0.0	1	1	0	0	0	0	false
+Forward	Ibrahima Ndiaye	25	0	El Zamalek	7	0.0	1	0	0	0	0	0	false
+Forward	Ahmed El Sayed Zizo	27	0	El Zamalek	25	0.0	1	3	1	0	0	0	false
+Forward	Mahmoud Abdelrazek Shikabala	37	0	El Zamalek	10	0.0	1	1	2	0	0	0	true
+Forward	Seifeddine Jaziri	30	0	El Zamalek	30	0.0	0	0	0	0	0	0	false
+Forward	Nasser Mansy	26	0	El Zamalek	19	0.0	0	0	0	0	0	0	false
+Forward	Samson Akinyoola	23	0	El Zamalek	9	0.0	0	0	0	0	0	0	false

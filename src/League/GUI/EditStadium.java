@@ -1,6 +1,7 @@
 package League.GUI;
 
 import League.League;
+import League.Match.Match;
 import League.Stadium.Stadium;
 
 import javax.swing.*;
@@ -120,11 +121,12 @@ public class EditStadium extends JPanel implements ActionListener {
                     searched.setStadiumName(StadiumName);
                     searched.setStadiumLocation(StadiumLocation);
                     searched.setStadiumCapacity(capacity);
-
                     main.add(new AddStadium(league,main,cardLayout),"AddStadium");
                     main.add(new DeleteStadium(league,main,cardLayout),"DeleteStadium");
                     main.add(new EditStadium(league,main,cardLayout),"EditStadium");
-
+                    main.add(new AddMatch(league,main,cardLayout),"AddMatch");
+                    main.add(new EditMatch(league,main,cardLayout),"EditMatch");
+                    main.add(new DeleteMatch(league,main,cardLayout),"DeleteMatch");
                     cardLayout.show(main,"Stadiums");
                     }
 

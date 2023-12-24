@@ -90,10 +90,10 @@ public class AddTeam extends JPanel implements ActionListener {
                 Coach newCoach = new Coach(CoachName,CoachAge,0,TeamName);
                 Team newTeam = new Team(TeamName,new ArrayList<>(),null,newCoach,new ArrayList<>(),0,0,0);
                 league.AddTeam(newTeam);
-                main.add(new AddPlayer(league.teamNames,league,main,cardLayout),"AddPlayer");
                 teamNameField.setText("");
                 teamCoachField.setText("");
                 teamCoachAgeField.setText("");
+                JOptionPane.showMessageDialog(null, "Team Added Successfully");
                 cardLayout.show(main,"TeamHome");
                 main.add(new Standings(main,cardLayout,league),"Standings");
                 main.add(new EditTeam(league,main,cardLayout),"EditTeam");

@@ -1,0 +1,2 @@
+Goalkeeper	Mohamed El Shenawy	34	0	Al Ahly	1	0.0	1	0	0	0	0	0	0	true
+Forward	Mahmoud Kahraba	29	0	Al Ahly	7	0.0	0	0	0	0	0	0	false

@@ -18,8 +18,7 @@ import java.util.Date;
 
 public class League {
     protected ArrayList<Team> teams;
-    public static ArrayList<String> teamNames;
-    public static ArrayList<Player> searchByNameAndTeam;
+    public ArrayList<String> teamNames;
     //eg 2023/2024
     public String season;
     public int matchCount;
@@ -125,28 +124,17 @@ public class League {
         this.stadiums = stadiums;
     }
 
-    public ArrayList<Player> SearchByNameAndTeam(String playerName, String teamName) {
-        //searchByNameAndTeam.clear();
-        ArrayList<Player> searched = new ArrayList<>();
-        for (Team t : teams) {
-            if (teamName.equalsIgnoreCase(t.getName())) {
-                for (Player p : t.Players) {
-                    if (playerName.equalsIgnoreCase(p.getPersonName())) {
-                        searched.add(p);
+    public Player SearchByNameAndTeam(String playerName, String teamName) {
+        for (Team team : teams){
+            if (team.getName().equalsIgnoreCase(teamName)){
+                for (Player player : team.getPlayers()){
+                    if (player.getPersonName().equalsIgnoreCase(playerName)){
+                        return player;
                     }
                 }
             }
         }
-        int resultCount = searched.size();
-        if (resultCount == 0) {
-            System.out.println("No results Found");
-        }else {
-            System.out.println(resultCount + " results found");
-        }
-        for (Team t : teams) {
-            teamNames.add(t.getName());
-        }
-        return searched;
+        return null;
     }
     public ArrayList<Player> getPlayersByTeamName(String teamName) {
         for (Team team : teams) {

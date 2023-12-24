@@ -309,28 +309,10 @@ public class Match {
     }
 
     //Function of adding new teams
-    public void addTeams(Team team1, Team team2) {
-        this.Teams = new Team[2];
-        try {
-            Teams[0] = team1;
-        } catch (NullPointerException exp) {
-            System.out.println("Null team 1");
-        }
-        try {
-            Teams[1] = team2;
-        } catch (NullPointerException exp) {
-            System.out.println("Null team 2");
-        }
-    }
+
 
     //Function of Displaying the info of the Match
-    public void Display() {
-        for (Team team : Teams) {
-            System.out.println("Match Date:" + matchdate + "\n" + "Home Team" + Teams[0].Name + "Away Team" + Teams[0].Name + "\n"
-                    + "Pitch Referee:" + Referee.Name + "\n" + "Stadium" + Stadium.getStadiumName()
-                    + "Final Result is:" + Score);
-        }
-    }
+
 
     //Function to Add Points for the teams
     public void AddPoints() {
@@ -344,9 +326,5 @@ public class Match {
         }
     }
 
-    public void TeamsScoreToString() {
-        String team1 = Integer.toString(team1score);
-        String team2 = Integer.toString(team2score);
-        Score = team1 + " " + team2;
-    }
+
 }

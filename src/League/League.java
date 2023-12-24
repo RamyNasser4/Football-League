@@ -187,36 +187,38 @@ public class League {
         topKeepers[0] = null;
         topKeepers[1] = null;
         topKeepers[2] = null;
+        Goalkeeper[] topGoalKeepers = new Goalkeeper[3];
         for (Team team : teams) {
             for (Player player : team.getPlayers()) {
                 if (player instanceof Goalkeeper) {
                     Goalkeeper gk = (Goalkeeper) player;
-                    int goalsConceded = gk.getGoalsConceded();
-
-                    if (goalsConceded > max1) {
-                        max3 = max2;
-                        max2 = max1;
-                        max1 = goalsConceded;
-                        topKeepers[2] = topKeepers[1];
-                        topKeepers[1] = topKeepers[0];
-                        topKeepers[0] = gk;
-                    } else if (goalsConceded > max2 && gk != topKeepers[0]) {
-                        max3 = max2;
-                        max2 = goalsConceded;
-                        topKeepers[2] = topKeepers[1];
-                        topKeepers[1] = gk;
-                    } else if (goalsConceded > max3 && gk != topKeepers[0] && gk != topKeepers[1]) {
-                        max3 = goalsConceded;
-                        topKeepers[2] = gk;
+                    boolean didHePlay = false;
+                    for (Match match : matches){
+                        if (match.getTeam1Goalkeeper() == gk || match.getTeam2Goalkeeper() == gk){
+                           didHePlay = true;
+                        }
+                    }
+                    if (!didHePlay){
+                        continue;
+                    }
+                    // Check if the current goalkeeper has fewer goals conceded than the top goalkeepers
+                    if (topGoalKeepers[0] == null || gk.getGoalsConceded() < topGoalKeepers[0].getGoalsConceded()) {
+                        topGoalKeepers[2] = topGoalKeepers[1];
+                        topGoalKeepers[1] = topGoalKeepers[0];
+                        topGoalKeepers[0] = gk;
+                    } else if (topGoalKeepers[1] == null || gk.getGoalsConceded() < topGoalKeepers[1].getGoalsConceded()) {
+                        topGoalKeepers[2] = topGoalKeepers[1];
+                        topGoalKeepers[1] = gk;
+                    } else if (topGoalKeepers[2] == null || gk.getGoalsConceded() < topGoalKeepers[2].getGoalsConceded()) {
+                        topGoalKeepers[2] = gk;
                     }
                 }
             }
         }
-        Player[] reversedTopKeepers = new Player[3];
-        for (int i = 0; i < 3; i++) {
-            reversedTopKeepers[i] = topKeepers[2 - i];
+        for (int i = 0;3>i;++i){
+            topKeepers[i] = topGoalKeepers[i];
         }
-        return reversedTopKeepers;
+        return topKeepers;
     }
 
    public ArrayList<Team> DisplayTeamByAvgAge() {

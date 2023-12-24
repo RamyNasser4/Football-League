@@ -31,6 +31,10 @@ public class Matches extends JPanel implements ActionListener {
         this.setBackground(Color.darkGray);
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
+        // Create a JPanel to hold your matches
+        JPanel matchesPanel = new JPanel();
+        matchesPanel.setLayout(new BoxLayout(matchesPanel, BoxLayout.Y_AXIS));
+        matchesPanel.setBackground(Color.darkGray);
         //Search button
         Search = new JButton("Search By Date");
         Search.setBackground(Color.darkGray);
@@ -46,7 +50,7 @@ public class Matches extends JPanel implements ActionListener {
         SearchContainer.setBackground(Color.darkGray);
         SearchContainer.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
         SearchContainer.add(Search);
-        this.add(SearchContainer);
+        matchesPanel.add(SearchContainer);
         //Combo box for each team to display matches
         String defaultValue = "Select a Team"; // Change the default value
         Searchbyteam = new JComboBox(new DefaultComboBoxModel<>(league.teamNames.toArray()));
@@ -63,29 +67,33 @@ public class Matches extends JPanel implements ActionListener {
         SearchContainerbyteam.setBackground(Color.darkGray);
         SearchContainerbyteam.setMaximumSize(new Dimension(Integer.MAX_VALUE, 60));
         SearchContainerbyteam.add(Searchbyteam);
-        this.add(SearchContainerbyteam);
+        matchesPanel.add(SearchContainerbyteam);
         JLabel upcoming = new JLabel("Upcoming Matches");
         upcoming.setForeground(Color.white);
         upcoming.setBackground(Color.darkGray);
         upcoming.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
         upcoming.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
-        this.add(upcoming);
+        matchesPanel.add(upcoming);
         upcoming.setAlignmentX(0.5f);
         for (Match match : upcomingMatches) {
             MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + " vs " + match.getTeams()[1].getName(), main, cardLayout, match);
-            this.add(matchButton);
+            matchesPanel.add(matchButton);
         }
         JLabel past = new JLabel("Past Matches");
         past.setForeground(Color.white);
         past.setBackground(Color.darkGray);
         past.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
         past.setBorder(BorderFactory.createEmptyBorder(0, 0, 30, 0));
-        this.add(past);
+        matchesPanel.add(past);
         past.setAlignmentX(0.5f);
         for (Match match : pastMatches) {
             MatchButton matchButton = new MatchButton(match.getTeams()[0].getName() + " " + match.getScore() + " " + match.getTeams()[1].getName(), main, cardLayout, match);
-            this.add(matchButton);
+            matchesPanel.add(matchButton);
         }
+        JScrollPane scrollPane = new JScrollPane(matchesPanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        this.add(scrollPane);
     }
 
     @Override
